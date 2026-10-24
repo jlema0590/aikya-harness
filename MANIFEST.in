@@ -1,5 +1,5 @@
 include VERSION LICENSE THIRD_PARTY_LICENSES.md README.md README.es.md
-include *.py requirements-agent-loop.txt
+include setup.py requirements-agent-loop.txt
 include docs/AGENT_LOOP.md docs/SECURITY_CONTROLS.md
 recursive-include src/aikya *.py
 include src/aikya/module_map.json

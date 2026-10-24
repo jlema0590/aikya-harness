@@ -1,5 +1,4 @@
 """Build-time resource staging; runtime installation uses aikya.installation."""
-import json
 from pathlib import Path
 import shutil
 from setuptools import setup
@@ -14,12 +13,16 @@ class BuildPy(build_py):
         package = Path(self.build_lib) / 'aikya'
         resources = package / 'resources'
         canonical = ROOT / 'src/aikya/resources'
+        if resources.exists():
+            shutil.rmtree(resources)
+        def ignore(folder, names):
+            helpers = {'scaffold.py','infrastructure.py','run_checks.py','skills_lint.py','docs_guard.py'}
+            return [name for name in names if name == '__pycache__' or name.endswith('.pyc') or (name.startswith('.env') and name != '.env.example') or (Path(folder) == canonical / 'project_template/scripts/harness' and name in helpers)]
         if canonical.is_dir():
-            shutil.copytree(canonical, resources, dirs_exist_ok=True, ignore=lambda folder,names: [name for name in names if name == '__pycache__' or name.endswith('.pyc') or (name.startswith('.env') and name != '.env.example')])
+            shutil.copytree(canonical, resources, dirs_exist_ok=True, ignore=ignore)
         distribution = resources / 'distribution'
         distribution.mkdir(parents=True, exist_ok=True)
-        mapping = json.loads((ROOT / 'src/aikya/module_map.json').read_text())
-        for name in [*(key + '.py' for key in mapping if (ROOT / (key + '.py')).is_file()), '_aikya_bootstrap.py', 'requirements-agent-loop.txt', 'VERSION']:
+        for name in ('requirements-agent-loop.txt', 'VERSION'):
             shutil.copy2(ROOT / name, distribution / name)
         for name in ('AGENT_LOOP.md', 'SECURITY_CONTROLS.md'):
             destination = distribution / 'docs' / name
