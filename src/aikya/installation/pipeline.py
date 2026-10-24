@@ -24,4 +24,6 @@ def install(target,profile,detected,dry_run=False,*,adopt_existing=False,docs_la
     plan_infrastructure(plan,actions)
     from aikya.documentation.layout import update_index
     update_index(target,plan.documentation_language)
+    from aikya.installation.bootstrap.state import record_project_reference
+    record_project_reference(target)
     return actions
