@@ -64,7 +64,7 @@ class Battery:
     def helper(self, project, name):
         return self.projects[project] / 'aikya/scripts/harness' / name
 
-    def exercise(self):
+    def onboarding(self):
         cli = ('-m', 'aikya')
         for name, method, example in [('odd', 'odd', 'next-react'), ('sdd', 'sdd', 'next-react'),
                                        ('mobile', 'odd', 'native-kotlin-ios'), ('infra', 'odd', 'infra-terraform-only')]:
@@ -90,6 +90,9 @@ class Battery:
         self.run('aikya-scaffold', self.helper('odd', 'scaffold.py'), ['plan'])
         self.run('aikya-infra', self.helper('infra', 'infrastructure.py'), ['plan', '--target', infra])
         self.run('aikya-infra', self.helper('infra', 'infrastructure.py'), ['generate', '--target', infra], expected=2, contains='Aprobación')
+    def exercise(self):
+        self.onboarding()
+        odd = self.projects['odd']; sdd = self.projects['sdd']; infra = self.projects['infra']
         workflow = self.helper('odd', 'documentation_workflows.py')
         feature = self.fixture('feature', {'title': 'Controlled lookup', 'objective': 'Return a stable controlled missing-item response.',
                                            'acceptance': ['An absent controlled ID returns the specified response.']})

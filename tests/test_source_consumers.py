@@ -15,7 +15,14 @@ class SourceConsumers(unittest.TestCase):
             for path in (ROOT / folder).glob('*.py'):
                 for node in ast.walk(ast.parse(path.read_text())):
                     names = [item.name for item in node.names] if isinstance(node, ast.Import) else [node.module] if isinstance(node, ast.ImportFrom) else []
+                    if isinstance(node, ast.Call) and node.args and isinstance(node.args[0], ast.Constant):
+                        function = node.func.attr if isinstance(node.func, ast.Attribute) else node.func.id if isinstance(node.func, ast.Name) else ''
+                        if function in ('import_module', 'find_spec', '__import__'):
+                            names += [node.args[0].value]
                     for name in names:
                         if name in aliases:
                             violations.append(f'{path.relative_to(ROOT)}:{node.lineno}:{name}')
         self.assertEqual([], violations, '\n'.join(violations))
+
+    def test_source_root_has_no_runtime_implementation_or_adapter_copies(self):
+        self.assertEqual({'setup.py'}, {p.name for p in ROOT.glob('*.py')})

@@ -4,7 +4,7 @@ from pathlib import Path
 from agent_loop_support import project
 class MemoryTests(unittest.TestCase):
  def module(self):
-  self.assertIsNotNone(importlib.util.find_spec('agent_memory'),'Missing selective project memories');return importlib.import_module('agent_memory')
+  self.assertIsNotNone(importlib.util.find_spec('aikya.memory.knowledge'),'Missing selective project memories');return importlib.import_module('aikya.memory.knowledge')
  def test_recall_is_budgeted_current_and_isolated_between_projects(self):
   m=self.module()
   with tempfile.TemporaryDirectory() as tmp:

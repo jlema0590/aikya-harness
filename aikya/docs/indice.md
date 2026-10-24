@@ -31,6 +31,7 @@
 - [research/2026-10-24-root-entrypoints.md](research/2026-10-24-root-entrypoints.md)
 - [validation/COMMAND_ACCEPTANCE.md](validation/COMMAND_ACCEPTANCE.md)
 - [validation/DOCUMENT_WORKFLOW_CLEANUP.md](validation/DOCUMENT_WORKFLOW_CLEANUP.md)
+- [validation/GENERATED_RUNTIME_ADAPTERS.md](validation/GENERATED_RUNTIME_ADAPTERS.md)
 - [validation/PYTHON_PROJECT_STRUCTURE.md](validation/PYTHON_PROJECT_STRUCTURE.md)
 - [validation/REPOSITORY_CLEANUP.md](validation/REPOSITORY_CLEANUP.md)
 - [validation/SDD_MODULARIZATION.md](validation/SDD_MODULARIZATION.md)

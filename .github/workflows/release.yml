@@ -18,7 +18,7 @@ jobs:
     name: Verify release contract, tests and catalog
     if: github.repository == 'jlema0590/aikya-harness' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     outputs:
       release_tag: ${{ steps.contract.outputs.release_tag }}
     steps:

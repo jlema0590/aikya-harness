@@ -7,7 +7,7 @@ class ExecutionStateTests(unittest.TestCase):
   self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup);self.base=Path(self.tmp.name)
   self.context={'root':str(self.base/'project'),'session_id':'s1','cache_root':str(self.base/'cache')}
  def module(self):
-  self.assertIsNotNone(importlib.util.find_spec('execution_state'),'Missing execution state manager');return importlib.import_module('execution_state')
+  self.assertIsNotNone(importlib.util.find_spec('aikya.core.state'),'Missing execution state manager');return importlib.import_module('aikya.core.state')
  def start(self,command='aikya-init'):
   m=self.module();run=m.start_run(self.context,command);return m,{**self.context,'run_id':run['run_id']}
  def test_read_only_start_uses_private_cache_and_phase_completion_needs_evidence(self):
@@ -32,7 +32,7 @@ class ExecutionStateTests(unittest.TestCase):
   self.assertEqual('pending',m.read_snapshot(other)['phases']['explore']['status'])
   self.assertIsNone(m.read_active({**c,'session_id':'other-session'}))
  def test_all_registered_commands_have_recipes_and_unrelated_text_starts_nothing(self):
-  self.module();recipes=importlib.import_module('command_workflows');observer=importlib.import_module('execution_observer')
+  self.module();recipes=importlib.import_module('aikya.middleware.commands');observer=importlib.import_module('aikya.middleware.observer')
   from aikya.installation.registration import BOOTSTRAP_COMMANDS
   for command in BOOTSTRAP_COMMANDS:self.assertEqual(command,recipes.recipe(command,'odd')['command'])
   self.assertIsNone(observer.observe(self.context,{'hook_event_name':'UserPromptSubmit','prompt':'Explain /aikya-init before I run it.'}))

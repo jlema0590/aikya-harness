@@ -46,3 +46,28 @@ class GeneratedAssetTransactions(unittest.TestCase):
     def test_file_and_generated_sources_are_mutually_exclusive(self):
         with self.assertRaises((ValueError, TypeError)):
             AssetRecord(ROOT / 'VERSION', Path('bad'), 'adapter', producer=lambda: b'bad')
+
+    def test_symlinked_adapter_template_is_rejected_before_compilation(self):
+        from aikya.installation.assets import resolve_runtime_asset
+        with tempfile.TemporaryDirectory() as temporary:
+            source = Path(temporary).resolve()
+            shutil.copytree(ROOT / 'src', source / 'src', ignore=shutil.ignore_patterns('__pycache__', '*.pyc'))
+            template = source / 'src/aikya/resources/compatibility/adapter.py.tmpl'
+            template.unlink()
+            private = source / 'private.txt'; private.write_text('@@MODULE@@ @@MODULE@@ @@FRESH@@ not python')
+            template.symlink_to(private)
+            with self.assertRaisesRegex(ValueError, 'unsafe|Symlink'):
+                resolve_runtime_asset(source, 'aikya_session.py')
+
+    def test_edited_installed_generator_template_blocks_upgrade_before_launchers_change(self):
+        from aikya.installation.registration import setup
+        with tempfile.TemporaryDirectory() as temporary:
+            base = Path(temporary).resolve(); target = base / 'project'
+            setup(ROOT, target, 'project', home=base / 'home')
+            runtime = target / '.aikya/runtime'
+            template = runtime / 'compatibility/adapter.py.tmpl'
+            template.write_bytes(template.read_bytes() + b'\n# Owner customization.\n')
+            before = (runtime / 'aikya_cli.py').read_bytes()
+            with self.assertRaisesRegex(ValueError, 'Customized|customized'):
+                setup(ROOT, target, 'project', home=base / 'home')
+            self.assertEqual(before, (runtime / 'aikya_cli.py').read_bytes())

@@ -49,5 +49,6 @@ def project_settings(source, target):
                 if not match:
                     continue
                 replacement = render_managed_hook(Path(sys.executable).absolute(), target / match[1], (), host_shell())
+                replacement.pop('timeout', None)
                 hook.update(replacement)
     return settings

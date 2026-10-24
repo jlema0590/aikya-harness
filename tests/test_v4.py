@@ -115,7 +115,7 @@ class ExternalIntegrationTests(unittest.TestCase):
             actions=installer.install(root,profile,{'modules':[],'findings':[]})
             self.assertFalse(any('ACTUALIZADO DESDE v3' in x for x in actions))
             self.assertEqual(old.read_bytes(),(previous/'v3_docs_guard.py').read_bytes())
-            self.assertEqual((root/'aikya/scripts/harness/docs_guard.py').read_bytes(),(HERE/'src/aikya/resources/project_template/scripts/harness/docs_guard.py').read_bytes())
+            self.assertEqual((root/'aikya/scripts/harness/docs_guard.py').read_bytes(),runtime_support.generated_bytes('docs_guard.py'))
             self.assertFalse((root/'.harness/backup-v3/aikya/scripts/harness/docs_guard.py').exists())
             self.assertEqual(custom.read_text(),'PERSONALIZADO; no sobrescribir')
             self.assertTrue((root/'.claude/rules/02-context-budget.md').is_file())

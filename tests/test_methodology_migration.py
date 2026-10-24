@@ -9,8 +9,8 @@ class MethodologyMigrationTests(unittest.TestCase):
  def setUp(self):
   self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup);self.root=Path(self.tmp.name)
  def helper(self):
-  self.assertIsNotNone(importlib.util.find_spec('methodology'),'Missing canonical methodology resolver')
-  return importlib.import_module('methodology')
+  self.assertIsNotNone(importlib.util.find_spec('aikya.workflows.methodology'),'Missing canonical methodology resolver')
+  return importlib.import_module('aikya.workflows.methodology')
  def test_legacy_and_missing_profiles_normalize_without_mutating_input(self):
   m=self.helper()
   for value,expected in [(None,'odd'),('standard','odd'),('odd','odd'),('sdd','sdd')]:self.assertEqual(expected,m.normalize_methodology(value))

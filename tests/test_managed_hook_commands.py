@@ -36,3 +36,23 @@ class ManagedHookCommands(unittest.TestCase):
             module.render_managed_hook(Path('relative/python'), Path('/script.py'), (), 'posix')
         with self.assertRaises(ValueError):
             module.render_managed_hook(Path(sys.executable), Path('/script.py'), (), 'unknown')
+
+    def test_owned_quality_checks_use_managed_python_without_changing_user_commands(self):
+        from aikya.tools import checks
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary).resolve(); script = root / 'aikya/scripts/harness/docs_guard.py'
+            script.parent.mkdir(parents=True); script.write_text('raise SystemExit(0)')
+            config = root / 'harness.json'; config.write_text(json.dumps({'checks': [{'name': 'docs:structure', 'command': ['python3', 'aikya/scripts/harness/docs_guard.py', 'base'], 'required': True}]}))
+            with patch.object(checks, 'ROOT', root), patch.dict(os.environ, {'PATH': ''}):
+                self.assertEqual(0, checks.run(config))
+
+    def test_project_hook_translation_preserves_existing_timeout_policy(self):
+        module = self.renderer()
+        command = 'python3 "${CLAUDE_PROJECT_DIR}/.claude/hooks/stop_docs.py"'
+        source = {'hooks': {'Stop': [{'hooks': [{'type': 'command', 'command': command},
+                                               {'type': 'command', 'command': command, 'timeout': 97}]}]}}
+        translated = module.project_settings(source, Path(tempfile.gettempdir()).resolve())
+        hooks = translated['hooks']['Stop'][0]['hooks']
+        self.assertNotIn('timeout', hooks[0])
+        self.assertEqual(97, hooks[1]['timeout'])

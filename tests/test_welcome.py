@@ -88,7 +88,7 @@ class WelcomeTests(unittest.TestCase):
     def test_cli_display_name_stored_locally_not_in_shared_profile(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d)/'project'
-            cmd=[sys.executable,str(BASE/'install.py'),'--target',str(root),
+            cmd=[sys.executable,'-m','aikya.installation.facade','--target',str(root),
                  '--answers',str(BASE/'examples/new-next-react.json'),
                  '--external','skip','--display-name','Juan']
             result=subprocess.run(cmd,capture_output=True,text=True,timeout=30)

@@ -58,6 +58,14 @@ def run(config_path=CONFIG):
             print(f'{name}: INVALID_COMMAND (se espera array de cadenas no vacías)')
             failures += 1
             continue
+        managed = {
+            'docs:structure': ['python3', 'aikya/scripts/harness/docs_guard.py', 'base'],
+            'skills:format': ['python3', 'aikya/scripts/harness/skills_lint.py'],
+            'infra:static': ['python3', 'aikya/scripts/harness/infrastructure.py', 'validate'],
+            'sdd:traceability': ['python3', 'aikya/scripts/harness/sdd_engine.py', 'lint', '--root', '.'],
+        }
+        if cmd == managed.get(name):
+            cmd = [sys.executable, *cmd[1:]]
         print(f'{name}: RUNNING {cmd!r}', flush=True)
         try:
             result = subprocess.run(cmd, cwd=cwd, check=False, timeout=300)

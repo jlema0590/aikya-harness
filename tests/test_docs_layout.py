@@ -62,7 +62,7 @@ class DocumentationLayoutTests(unittest.TestCase):
         self.assertNotIn('bugs/index.md',(docs/'indice.md').read_text())
 
     def test_feature_writer_routes_lowercase_and_architecture_into_main_directory(self):
-        spec=importlib.util.find_spec('docs_layout');self.assertIsNotNone(spec)
+        spec=importlib.util.find_spec('aikya.documentation.layout');self.assertIsNotNone(spec)
         from aikya.documentation import layout as docs_layout
         written=docs_layout.write_document(self.root,'Feature-V2/01.-Scope.md','# Actual feature\n\nApproved user scope.\n')
         self.assertEqual('aikya/docs/features/feature-v2/01.-scope.md',written)
@@ -74,7 +74,7 @@ class DocumentationLayoutTests(unittest.TestCase):
         self.assertIn('architecture/architecture-overview.md',index)
 
     def test_writer_skips_heading_only_and_rejects_custom_collision_and_symlink(self):
-        self.assertIsNotNone(importlib.util.find_spec('docs_layout'))
+        self.assertIsNotNone(importlib.util.find_spec('aikya.documentation.layout'))
         from aikya.documentation import layout as docs_layout
         self.assertIsNone(docs_layout.write_document(self.root,'bugs/empty.md','# Empty\n'))
         p=self.root/'aikya/docs/overview.md';p.parent.mkdir(parents=True,exist_ok=True);p.write_text('# Team-owned\n\nPreserve this document.\n')

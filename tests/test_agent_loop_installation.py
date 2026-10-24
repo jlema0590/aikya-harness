@@ -10,7 +10,7 @@ class LoopInstallationTests(unittest.TestCase):
    root=Path(tmp)/'project';home=Path(tmp)/'home';folder=root/'.aikya/runtime';previous={}
    for name in ('external_skills.py','skills_registry.py'):
     mirror=folder/'template/scripts/harness'/name;mirror.parent.mkdir(parents=True,exist_ok=True)
-    raw=(ROOT/name).read_bytes();mirror.write_bytes(raw);previous[mirror.relative_to(folder).as_posix()]=hashlib.sha256(raw).hexdigest()
+    raw=runtime_support.generated_bytes(name);mirror.write_bytes(raw);previous[mirror.relative_to(folder).as_posix()]=hashlib.sha256(raw).hexdigest()
    custom=folder/'template/scripts/harness/skills_registry.py';custom.write_bytes(custom.read_bytes()+b'\n# Owner customization.\n')
    (folder/'manifest.json').write_text(json.dumps({'files':previous}))
    aikya_setup.setup(ROOT,root,'project',home=home)

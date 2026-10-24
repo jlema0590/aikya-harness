@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Generate installed compatibility adapters from one validated mapping/template and remove 51 obsolete source-root launchers, the root bootstrap and five prebuilt helper copies. Keep installed filenames and source `setup.py`; repository consumers use canonical package APIs and commands.
+- Add a standard-library clean installer with version-pinned Linux/macOS and Windows entry scripts, isolated per-user environments, SHA-256 release verification, explicit global/project registration, offline installation, diagnostic state, serialized updates and ownership-aware uninstall.
+- Retain interpreters referenced by initialized projects and record generated settings deltas without copying unrelated user credentials. Preserve edited files, custom hooks and project documentation during recovery/removal.
+- Render managed startup, observer, project hooks and statusline invocations with the chosen Python and platform quoting. Keep ODD/SDD choices and the 27 slash commands intact.
+- Extend release artifacts with wheel/sdist, standalone bootstrap and pinned scripts; verify immutable asset recovery and gate publication on native and Linux distribution installer jobs. Update English/Spanish installation and contributor instructions. Scripts become downloadable only after a future authorized release publishes them.
+
 ## v7.0.0 — 2026-10-24
 
 ### Upgrade notes

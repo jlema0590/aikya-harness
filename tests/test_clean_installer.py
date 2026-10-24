@@ -61,3 +61,10 @@ class CleanInstaller(unittest.TestCase):
             with patch.dict(os.environ, {'AIKYA_INSTALL_ROOT': str(base / 'app')}), contextlib.redirect_stderr(io.StringIO()):
                 self.assertEqual(2, cli.main(['install', '--version', '7.0.0', '--scope', 'project', '--dry-run']))
             self.assertFalse((base / 'app').exists())
+
+    def test_empty_platform_storage_variable_falls_back_to_user_home(self):
+        module = self.core('environment')
+        with tempfile.TemporaryDirectory() as temporary:
+            home = Path(temporary).resolve()
+            with patch.dict(os.environ, {'HOME': str(home), 'USERPROFILE': str(home), 'XDG_DATA_HOME': '', 'AIKYA_INSTALL_ROOT': ''}), patch.object(module.sys, 'platform', 'linux'):
+                self.assertEqual(home / '.local/share/aikya', module.app_root())

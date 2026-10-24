@@ -7,7 +7,7 @@ from agent_loop_support import project,config,runtime
 
 class QualityTests(unittest.TestCase):
     def module(self):
-        self.assertIsNotNone(importlib.util.find_spec('code_quality'),'Missing shared code quality gate')
+        self.assertIsNotNone(importlib.util.find_spec('aikya.quality.source'),'Missing shared code quality gate')
         from aikya.quality import source as code_quality
         return code_quality
 
@@ -64,7 +64,11 @@ class QualityTests(unittest.TestCase):
         spec=runtime_support.module_spec('quality_edit_hook',ROOT/'src/aikya/resources/project_template/.claude/hooks/check_edit.py')
         hook=importlib.util.module_from_spec(spec);spec.loader.exec_module(hook);hook=getattr(hook,'_module',hook)
         with tempfile.TemporaryDirectory() as tmp:
-            root=Path(tmp);(root/'widget.ts').write_text('const value = 1;\n'*1001)
+            root=Path(tmp)
+            from aikya.installation.runtime import prepare_bundle, apply_bundle
+            runtime_root=root/'aikya/scripts/harness'
+            apply_bundle(runtime_root,prepare_bundle(runtime_root,ROOT,'initialized',methodology='odd'),[])
+            (root/'widget.ts').write_text('const value = 1;\n'*1001)
             feedback=hook.feedback({'tool_input':{'file_path':'widget.ts'}},root)
             self.assertIsInstance(feedback,str)
             self.assertIn('1001',feedback)

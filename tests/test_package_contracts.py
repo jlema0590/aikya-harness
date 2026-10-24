@@ -76,3 +76,16 @@ class PackageContracts(unittest.TestCase):
             actions = install.install(target, profile, {'modules': [], 'findings': []}, dry_run=True)
             self.assertTrue(actions)
             self.assertFalse(target.exists())
+
+    def test_installed_resources_resolve_through_platform_lib64_alias(self):
+        import shutil
+        from unittest.mock import patch
+        from aikya import resource_paths
+        with tempfile.TemporaryDirectory() as temporary:
+            base = Path(temporary).resolve()
+            package = base / 'lib/site-packages/aikya'
+            shutil.copytree(ROOT / 'src/aikya', package, ignore=shutil.ignore_patterns('__pycache__', '*.pyc'))
+            (base / 'lib64').symlink_to(base / 'lib', target_is_directory=True)
+            with patch.object(resource_paths, 'files', return_value=base / 'lib64/site-packages/aikya'):
+                source = resource_paths.source_root().resolve()
+                self.assertTrue(resource_paths.source_path(source, 'aikya-skills/aikya-init/SKILL.md').is_file())

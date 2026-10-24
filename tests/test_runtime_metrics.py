@@ -4,7 +4,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
 class RuntimeMetricsTests(unittest.TestCase):
  def mod(self):
-  self.assertIsNotNone(importlib.util.find_spec('runtime_metrics'),'Missing runtime metrics adapter');return importlib.import_module('runtime_metrics')
+  self.assertIsNotNone(importlib.util.find_spec('aikya.middleware.metrics'),'Missing runtime metrics adapter');return importlib.import_module('aikya.middleware.metrics')
  def test_missing_zero_expired_and_invalid_values_do_not_become_invented_usage(self):
   m=self.mod();raw={'model':{'id':'actual-model'},'context_window':{'used_percentage':25,'total_input_tokens':200},'rate_limits':{'five_hour':{'used_percentage':0,'resets_at':120},'seven_day':{'used_percentage':40,'resets_at':99}}}
   out=m.normalize_runtime_payload(raw,now=100)

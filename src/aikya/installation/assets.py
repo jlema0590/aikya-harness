@@ -68,7 +68,7 @@ def selected_package(source: Path) -> Path:
     package = source / 'src/aikya'
     if not package.is_dir() and source == package_root() / 'resources/distribution':
         package = package_root()
-    if not (package / 'module_map.json').is_file() or package.is_symlink():
+    if not (package / 'module_map.json').is_file() or any(p.is_symlink() for p in (package, *package.parents) if p == package or p == source or source in p.parents):
         raise ValueError('Incomplete packaged Aikya source')
     return package
 
@@ -85,7 +85,7 @@ def resolve_runtime_asset(source: Path, relative: str, *, _modules=None) -> Asse
     if relative.suffix == '.py' and relative.stem in modules and (len(relative.parts) == 1 or helper):
         template = source_path(source, 'compatibility/adapter.py.tmpl')
         renderer = package / 'installation/compatibility.py'
-        raw = render_adapter(relative.stem, modules, template.read_bytes())
+        raw = render_adapter(relative.stem, modules, AssetRecord(template, relative, 'resource', root=boundary).read_bytes())
         return AssetRecord(None, relative, 'adapter', lambda: raw, (mapping, renderer, template), boundary)
     path = source_path(source, 'compatibility/_aikya_bootstrap.py') if relative == Path('_aikya_bootstrap.py') else source_path(source, relative)
     return AssetRecord(path, relative, 'adapter', root=boundary)

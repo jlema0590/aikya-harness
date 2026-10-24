@@ -16,7 +16,7 @@ PREFIXES = {
 
 
 def package_root() -> Path:
-    return Path(str(files('aikya')))
+    return Path(str(files('aikya'))).resolve()
 
 
 def source_root() -> Path:

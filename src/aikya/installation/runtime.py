@@ -61,7 +61,7 @@ def prepare_bundle(runtime, source, kind, *, methodology=None):
             trusted.update(x for x in (previous.get(name), record.get('sha256')) if isinstance(x, str))
             if digest(old) in trusted or old == asset.read_bytes():
                 action = 'UPDATE'
-            elif asset.kind == 'package' or name in ('_aikya_bootstrap.py','aikya_cli.py','install.py','aikya_setup.py','agent_runtime.py') or name.startswith(('aikya-template/', 'sdd-templates/')):
+            elif asset.kind == 'package' or name in ('_aikya_bootstrap.py','aikya_cli.py','install.py','aikya_setup.py','agent_runtime.py') or name.startswith(('aikya-template/', 'sdd-templates/', 'compatibility/')):
                 raise ValueError('Customized coupled runtime requires review before upgrade: ' + name)
             else:
                 action = 'PRESERVE'

@@ -29,10 +29,9 @@ def load_module_map(path: Path) -> dict[str, str]:
         if not identifier(name) or not isinstance(target, str) or not all(identifier(p) for p in target.split('.')):
             raise ValueError('Unsafe runtime module mapping')
         implementation = path.parent / (target.replace('.', '/') + '.py')
-        if not implementation.is_file() or any(p.is_symlink() for p in (implementation, *implementation.parents)):
-            # macOS /tmp itself may be a system symlink; only inspect the selected package.
-            if not implementation.is_file() or any(p.is_symlink() for p in (implementation, *implementation.parents) if p == path.parent or path.parent in p.parents):
-                raise ValueError('Missing or unsafe Aikya implementation: ' + target)
+        if not implementation.is_file() or any(p.is_symlink() for p in (implementation, *implementation.parents)
+                                               if p == path.parent or path.parent in p.parents):
+            raise ValueError('Missing or unsafe Aikya implementation: ' + target)
     return modules
 
 

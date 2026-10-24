@@ -38,7 +38,7 @@ class SddTemplateTests(unittest.TestCase):
         sdd.approve(self.root,'SPEC-001','tasks','fixture reviewer')
 
     def test_catalog_has_nine_attributed_offline_templates(self):
-        self.assertIsNotNone(importlib.util.find_spec('sdd_templates'))
+        self.assertIsNotNone(importlib.util.find_spec('aikya.workflows.sdd.templates'))
         from aikya.workflows.sdd import templates as sdd_templates
         self.assertEqual({'feature','api','database','spec','design','tasks','evidence','review','constitution'},set(sdd_templates.catalog()))
         for name,item in sdd_templates.catalog().items():

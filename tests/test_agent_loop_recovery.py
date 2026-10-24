@@ -4,7 +4,7 @@ from pathlib import Path
 from agent_loop_support import project,config,runtime
 class RecoveryTests(unittest.TestCase):
  def module(self):
-  self.assertIsNotNone(importlib.util.find_spec('agent_loop'),'Missing durable loop');return importlib.import_module('agent_loop')
+  self.assertIsNotNone(importlib.util.find_spec('aikya.core.loop'),'Missing durable loop');return importlib.import_module('aikya.core.loop')
  def test_unfinished_effect_is_not_replayed_on_resume(self):
   m=self.module()
   with tempfile.TemporaryDirectory() as tmp:
@@ -19,7 +19,7 @@ class RecoveryTests(unittest.TestCase):
    with self.assertRaises(ValueError):m.run(moved,{**config(),'max_iterations':1},runtime(),approved=True,run_id=first['run_id'])
    with self.assertRaises(ValueError):m.run(root,config(),runtime(),approved=True,run_id=first['run_id'])
  def test_session_cumulative_totals_and_duplicate_results_do_not_double_charge(self):
-  self.assertIsNotNone(importlib.util.find_spec('agent_loop_state'),'Missing durable accounting');m=importlib.import_module('agent_loop_state')
+  self.assertIsNotNone(importlib.util.find_spec('aikya.core.checkpoints'),'Missing durable accounting');m=importlib.import_module('aikya.core.checkpoints')
   state={'cost_usd':0.0,'sessions':{},'results':{},'cost_known':True}
   one={'id':'a','session_id':'s','cost_usd':0.01};m.account(state,one);m.account(state,one)
   m.account(state,{'id':'b','session_id':'s','cost_usd':0.015});m.account(state,{'id':'c','session_id':'other','cost_usd':0.005})

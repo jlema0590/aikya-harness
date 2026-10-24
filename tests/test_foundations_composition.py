@@ -29,7 +29,7 @@ class FoundationsCompositionTests(unittest.TestCase):
         file=self.root/'.aikya/docs-policy.json';file.parent.mkdir();file.write_text(json.dumps({'schema_version':1,'language':language}))
         return profile
 
-    def workflows(self):return importlib.import_module('documentation_workflows')
+    def workflows(self):return importlib.import_module('aikya.documentation.composition')
 
     def feature(self):
         return {'title':'Missing-record response','objective':'Return a stable response for unknown records.',

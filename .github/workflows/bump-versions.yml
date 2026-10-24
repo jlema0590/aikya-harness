@@ -22,7 +22,7 @@ jobs:
   prepare:
     if: github.ref == 'refs/heads/develop' && github.repository == 'jlema0590/aikya-harness'
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     permissions:
       contents: write
       pull-requests: write

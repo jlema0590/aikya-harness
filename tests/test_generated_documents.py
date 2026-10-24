@@ -138,7 +138,7 @@ class MaintainerDocumentFooterTests(unittest.TestCase):
         import subprocess,os
         with tempfile.TemporaryDirectory() as d:
             env={key:value for key,value in os.environ.items() if key!='PYTHONPATH'}
-            result=subprocess.run([sys.executable,'-B',str(ROOT/'src/aikya/resources/project_template/scripts/harness/infrastructure.py'),'--help'],cwd=d,env=env,capture_output=True,text=True)
+            result=subprocess.run([sys.executable,'-B',str(runtime_support.module_spec('cli_infra',ROOT/'src/aikya/resources/project_template/scripts/harness/infrastructure.py').origin),'--help'],cwd=d,env=env,capture_output=True,text=True)
             self.assertEqual(0,result.returncode,result.stderr)
             self.assertIn('generate',result.stdout)
 

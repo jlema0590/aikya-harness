@@ -6,7 +6,7 @@ class AgentLoopTests(unittest.TestCase):
  def setUp(self):
   self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup);self.root=project(self.tmp.name)
  def engine(self):
-  self.assertIsNotNone(importlib.util.find_spec('agent_loop'),'Missing bounded task controller');return importlib.import_module('agent_loop')
+  self.assertIsNotNone(importlib.util.find_spec('aikya.core.loop'),'Missing bounded task controller');return importlib.import_module('aikya.core.loop')
  def test_scoped_edit_checks_and_distinct_review_complete_the_recorded_task(self):
   m=self.engine();result=m.run(self.root,config(),runtime(),approved=True)
   self.assertEqual('completed',result['status']);self.assertEqual(1,result['iteration']);self.assertEqual('VALUE = 1\n',(self.root/'src/value.py').read_text())

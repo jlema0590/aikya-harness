@@ -12,7 +12,7 @@ def config():
 
 class ExtractionTests(unittest.TestCase):
     def module(self):
-        self.assertIsNotNone(importlib.util.find_spec('agent_memory_extract'),'Missing opt-in memory extraction')
+        self.assertIsNotNone(importlib.util.find_spec('aikya.memory.extraction'),'Missing opt-in memory extraction')
         from aikya.memory import extraction as agent_memory_extract
         return agent_memory_extract
 

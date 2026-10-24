@@ -4,7 +4,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
 class ExecutionUITests(unittest.TestCase):
  def test_compact_details_missing_metrics_and_narrow_untrusted_labels(self):
-  ui=importlib.import_module('aikya_statusline')
+  ui=importlib.import_module('aikya.middleware.statusline')
   snapshot={'command':'aikya-init','methodology':'odd','phase':'implement','status':'running','activity':'Creating approved files','phases':{'implement':{'status':'running','actors':{'main':{'observed_model':None}}},'security':{'status':'pending','reason':'','actors':{}}}}
   result=ui.render_status(snapshot,{},width=160)
   self.assertIn('Implement',result);self.assertIn('Running',result);self.assertIn('N/D',result);self.assertNotIn('0%',result);self.assertNotIn('Security',result)
@@ -14,7 +14,7 @@ class ExecutionUITests(unittest.TestCase):
   snapshot['activity']='bad\x1b[31m\n'+'x'*200
   for line in ui.render_status(snapshot,{'model':'actual-model'},width=42).splitlines():self.assertLessEqual(len(line),42);self.assertNotIn('\x1b',line)
  def test_resolved_subagent_model_is_never_inherited(self):
-  ui=importlib.import_module('aikya_subagent_statusline')
+  ui=importlib.import_module('aikya.middleware.subagent_statusline')
   rows=ui.render_actor_rows({'model':{'id':'main-model'},'tasks':[{'id':'1','agentType':'reviewer','status':'running','model':'resolved-review-model','tokenCount':123},{'id':'2','agentType':'planner','status':'running'}]}, {})
   self.assertEqual('resolved-review-model',rows[0]['model']);self.assertIsNone(rows[1]['model']);self.assertIsNone(rows[1]['tokens'])
  def test_statusline_stdin_and_empty_metrics_cache_do_not_write_project(self):
