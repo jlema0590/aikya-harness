@@ -20,16 +20,16 @@ class RuntimeAdapterContracts(unittest.TestCase):
             with self.subTest(kind=kind, method=method):
                 assets = runtime_assets(ROOT, kind, methodology=method)
                 names = {name + '.py' for name in CONTRACT['adapters']} | {'_aikya_bootstrap.py'}
-                selected = [a for a in assets if a.kind != 'package' and a.destination.name in names]
+                selected = [a for a in assets if a.kind != 'package' and a.destination.parts[0] != 'compatibility' and a.destination.name in names]
                 key = kind + ('-' + method if method else '')
                 # Helpers move from template-copy ownership into runtime inventory.
                 expected = set(CONTRACT['destinations'][key])
                 if kind == 'initialized':
                     expected |= {name + '.py' for name, row in CONTRACT['adapters'].items() if row['helper']}
                 actual = {a.destination.as_posix() for a in selected}
-                self.assertEqual(expected, actual | (expected - actual if kind == 'initialized' and not hasattr(assets[0], 'read_bytes') else set()))
+                self.assertEqual(expected, actual)
                 for asset in selected:
-                    raw = asset.read_bytes() if hasattr(asset, 'read_bytes') else asset.source.read_bytes()
+                    raw = asset.read_bytes()
                     digest = hashlib.sha256(raw).hexdigest()
                     want = CONTRACT['bootstrap_sha256'] if asset.destination.name == '_aikya_bootstrap.py' else CONTRACT['adapters'][asset.destination.stem]['sha256']
                     self.assertEqual(want, digest, str(asset.destination))

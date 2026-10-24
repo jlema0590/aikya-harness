@@ -49,8 +49,9 @@ def prepare(root: Path, source: Path) -> list[dict]:
     result = []
     for relative, origin in SOURCES.items():
         target = rel_file(root, relative)
-        current_source = source_path(source,origin)
-        if not current_source.is_file(): raise ValueError('Incomplete SDD distribution: ' + origin)
+        from aikya.installation.assets import resolve_runtime_asset
+        current_source = resolve_runtime_asset(source,origin)
+        if current_source.source is not None and not current_source.source.is_file(): raise ValueError('Incomplete SDD distribution: ' + origin)
         action = 'CREATE_MANAGED'
         if target.exists():
             digest = hashlib.sha256(target.read_bytes()).hexdigest()
@@ -69,5 +70,5 @@ def apply(root: Path, operations: list[dict], actions: list[str]) -> None:
         target = root/operation['path']; backup = root/operation['backup']
         backup.parent.mkdir(parents=True, exist_ok=True)
         if not backup.exists(): shutil.copy2(target, backup)
-        shutil.copy2(operation['source'], target)
+        target.write_bytes(operation['source'].read_bytes())
         actions.append('UPDATED known SDD asset with backup: ' + operation['path'])

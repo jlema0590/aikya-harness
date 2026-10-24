@@ -21,6 +21,8 @@ def copy_project_template(plan:InstallationPlan,actions:list[str])->None:
         if not source.is_file() or '__pycache__' in source.parts or source.suffix == '.pyc':
             continue
         rel = source.relative_to(TEMPLATE)
+        if rel.parent == Path('scripts/harness') and rel.stem in {'scaffold','infrastructure','run_checks','skills_lint','docs_guard'}:
+            continue
         if rel.as_posix() in ('CLAUDE.md','harness.json','.claude/settings.json') or (adopt_existing and (rel.parts[0] in ('.github', 'infra') or rel.name in ('.gitignore', 'Dockerfile', 'compose.yml', 'compose.yaml', 'docker-compose.yml', 'docker-compose.yaml') or rel.suffix in ('.tf', '.tfvars'))):
             continue
         dest = target / (Path('aikya/scripts') / Path(*rel.parts[1:]) if rel.parts[0]=='scripts' else Path('aikya/test') / Path(*rel.parts[1:]) if rel.parts[0]=='tests' else rel)

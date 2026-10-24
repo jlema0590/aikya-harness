@@ -17,14 +17,14 @@ from aikya.documentation.layout import asset_bytes
 
 ROOT=source_root()
 from aikya.cli.commands import BOOTSTRAP_COMMANDS
-from aikya.installation.assets import CORE_FILES, EXECUTION_FILES, runtime_assets
+from aikya.installation.assets import CORE_FILES, EXECUTION_FILES, runtime_assets, resolve_runtime_asset
 HISTORICAL_GALLERY=Path('examples/documentation/generated')
 SOURCE_GALLERY='https://github.com/jlema0590/aikya-harness/blob/08db4879ae3a8697c91adb0cc46bd76e333c693b/examples/documentation/generated/README.es.md'
 
 
 def files_to_copy(source:Path):
     for asset in runtime_assets(source,'registration'):
-        yield asset.source,asset.destination
+        yield asset,asset.destination
 
 
 from aikya.installation.assets import runtime_asset_bytes
@@ -69,7 +69,7 @@ def retire_historical_gallery(runtime:Path,previous:dict[str,str],logs:list[str]
 
 
 def managed_copy(src:Path,dst:Path,root:Path,logs:list[str]):
-    if not src.is_file(): raise FileNotFoundError(src)
+    if isinstance(src,Path) and not src.is_file(): raise FileNotFoundError(src)
     for candidate in (dst, *list(dst.parents)):
         if candidate == root.parent:
             break
@@ -93,7 +93,7 @@ def managed_copy(src:Path,dst:Path,root:Path,logs:list[str]):
             return
     dst.parent.mkdir(parents=True,exist_ok=True)
     dst.write_bytes(rendered)
-    shutil.copymode(src,dst)
+    shutil.copymode(src,dst) if isinstance(src,Path) else None
     logs.append(f'INSTALADO {dst}')
 
 
@@ -112,7 +112,7 @@ def retire_packaged_mirrors(runtime,source,previous,logs):
         if any(p.is_symlink() for p in (path,*path.parents) if p==runtime or runtime in p.parents) or not path.is_file():
             logs.append('PRESERVED unsafe packaging mirror: '+str(path));continue
         canonical=runtime/name
-        if not canonical.is_file() or canonical.is_symlink() or canonical.read_bytes()!=(source/name).read_bytes():
+        if not canonical.is_file() or canonical.is_symlink() or canonical.read_bytes()!=resolve_runtime_asset(source,name).read_bytes():
             logs.append('PRESERVED mirror: canonical runtime customized or missing: '+str(path));continue
         raw=path.read_bytes()
         if hashlib.sha256(raw).hexdigest()!=previous.get(relative):
@@ -251,7 +251,7 @@ def setup(source:Path,target:Path,scope:str,home:Path|None=None,dry_run:bool=Fal
     target=target.expanduser().resolve()
     home=(home or Path.home()).expanduser().resolve()
     if scope not in ('global','project'):raise ValueError('scope debe ser global o project')
-    if not (source/'install.py').is_file() or any(not (source_path(source,'aikya-skills')/name/'SKILL.md').is_file() for name in BOOTSTRAP_COMMANDS):
+    if any(not (source_path(source,'aikya-skills')/name/'SKILL.md').is_file() for name in BOOTSTRAP_COMMANDS):
         raise ValueError('Source is not a complete Aikya distribution')
     runtime=(home/'.claude/aikya-harnes') if scope=='global' else (target/'.aikya/runtime')
     skill_root=(home/'.claude/skills') if scope=='global' else (target/'.claude/skills')
@@ -308,7 +308,7 @@ def setup(source:Path,target:Path,scope:str,home:Path|None=None,dry_run:bool=Fal
                 continue
         dst.parent.mkdir(parents=True,exist_ok=True)
         dst.write_bytes(rendered)
-        shutil.copymode(src,dst)
+        shutil.copymode(src,dst) if isinstance(src,Path) else None
         logs.append(f'SKILL disponible: /{name} ({scope})')
     if scope=='global':
         command='python3 -B '+shlex.quote(str(runtime/'aikya_session.py'))
