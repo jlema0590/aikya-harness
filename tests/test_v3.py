@@ -1,3 +1,4 @@
+import runtime_support
 import importlib.util
 import json
 import os
@@ -10,12 +11,12 @@ from unittest.mock import patch
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
-import install
-from doc_bootstrap import pages,infra_files
+from aikya.installation import facade as install
+from aikya.documentation.bootstrap import pages,infra_files
 
 
 def import_from(path,name):
-    spec=importlib.util.spec_from_file_location(name,path)
+    spec=runtime_support.module_spec(name,path)
     mod=importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod);mod=getattr(mod,'_module',mod)
     return getattr(mod, '_module', mod)

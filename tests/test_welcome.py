@@ -1,4 +1,5 @@
 """La bienvenida debe ser segura, reproducible y compatible con SessionStart."""
+import runtime_support
 import importlib.util
 import json
 import os
@@ -11,10 +12,10 @@ from unittest.mock import patch
 
 BASE = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(BASE))
-import install
+from aikya.installation import facade as install
 
 SCRIPT = BASE / 'src/aikya/resources/project_template/.claude/hooks/welcome.py'
-spec = importlib.util.spec_from_file_location('aikya_welcome', SCRIPT)
+spec = runtime_support.module_spec('aikya_welcome', SCRIPT)
 welcome = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(welcome);welcome=getattr(welcome,'_module',welcome)
 

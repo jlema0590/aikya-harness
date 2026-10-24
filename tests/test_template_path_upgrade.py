@@ -9,10 +9,10 @@ from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-import aikya_setup
+from aikya.installation import registration as aikya_setup
 from aikya.installation import runtime as bundle
 from aikya.resource_paths import source_path
-import documentation_templates as templates
+from aikya.documentation import templates as templates
 
 
 class TemplatePathUpgradeTests(unittest.TestCase):

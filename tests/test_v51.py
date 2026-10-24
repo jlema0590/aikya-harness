@@ -7,8 +7,8 @@ import sys
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
-import aikya_setup
-import install
+from aikya.installation import registration as aikya_setup
+from aikya.installation import facade as install
 
 REQUIRED={
     'aikya-init', 'aikya-analyze', 'aikya-answers', 'aikya-doctor', 'aikya-project',

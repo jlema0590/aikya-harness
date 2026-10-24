@@ -7,7 +7,7 @@ import warnings
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-import project_discovery
+from aikya.discovery import scanner as project_discovery
 
 
 class DiscoveryResourceTests(unittest.TestCase):

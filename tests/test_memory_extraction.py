@@ -2,7 +2,7 @@
 import importlib.util,json,tempfile,unittest
 from pathlib import Path
 from agent_loop_support import project,runtime
-import agent_memory
+from aikya.memory import knowledge as agent_memory
 from unittest.mock import patch
 
 
@@ -13,7 +13,7 @@ def config():
 class ExtractionTests(unittest.TestCase):
     def module(self):
         self.assertIsNotNone(importlib.util.find_spec('agent_memory_extract'),'Missing opt-in memory extraction')
-        import agent_memory_extract
+        from aikya.memory import extraction as agent_memory_extract
         return agent_memory_extract
 
     def test_extraction_requires_approval_and_only_creates_pending_candidates(self):
@@ -85,7 +85,7 @@ class ExtractionTests(unittest.TestCase):
 
     def test_private_receipt_symlink_is_rejected_before_running_a_query(self):
         module=self.module()
-        import memory_store
+        from aikya.memory import store as memory_store
         with tempfile.TemporaryDirectory() as tmp:
             root=project(tmp);private=Path(tmp)/'private';outside=Path(tmp)/'outside';outside.mkdir()
             folder=memory_store.store_root(root,'private',private,create=True)

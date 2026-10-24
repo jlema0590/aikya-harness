@@ -1,3 +1,4 @@
+import runtime_support
 import importlib.util
 import json
 from pathlib import Path
@@ -9,10 +10,10 @@ from unittest.mock import patch
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
-import aikya_setup
-import aikya_cli
-import aikya_requirements as requirements
-import install
+from aikya.installation import registration as aikya_setup
+from aikya.cli import main as aikya_cli
+from aikya.installation import requirements as requirements
+from aikya.installation import facade as install
 
 
 class AikyaV5(unittest.TestCase):
@@ -116,8 +117,8 @@ class AikyaV5(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             project=Path(tmp)
             (project/'aikya/scripts/harness').mkdir(parents=True,exist_ok=True)
-            (project/'aikya/scripts/harness/aikya_requirements.py').write_bytes((ROOT/'aikya_requirements.py').read_bytes())
-            spec=importlib.util.spec_from_file_location('aikya_scaffold_test',ROOT/'src/aikya/resources/project_template/scripts/harness/scaffold.py')
+            (project/'aikya/scripts/harness/aikya_requirements.py').write_bytes(runtime_support.generated_bytes('aikya_requirements.py'))
+            spec=runtime_support.module_spec('aikya_scaffold_test',ROOT/'src/aikya/resources/project_template/scripts/harness/scaffold.py')
             module=importlib.util.module_from_spec(spec)
             spec.loader.exec_module(module);module=getattr(module,'_module',module)
             with patch.object(requirements.shutil,'which',return_value='/fake/dotnet'):
@@ -138,7 +139,7 @@ if __name__=='__main__':unittest.main()
 
 class AikyaStartupTests(unittest.TestCase):
     def test_session_hook_invites_only_uninitialized(self):
-        from aikya_session import is_new_project
+        from aikya.cli.session import is_new_project
         with tempfile.TemporaryDirectory() as td:
             root=Path(td)
             self.assertTrue(is_new_project(root,home=Path(td)/'otherhome'))

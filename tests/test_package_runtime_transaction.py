@@ -1,3 +1,4 @@
+import runtime_support
 """Interrupted managed copies and stale previews must preserve previous bytes."""
 import hashlib
 import json
@@ -9,7 +10,7 @@ from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-import aikya_setup
+from aikya.installation import registration as aikya_setup
 from aikya.installation import runtime as bundle
 
 
@@ -48,7 +49,7 @@ class RuntimeTransactionTests(unittest.TestCase):
                 self.assertEqual(raw, (runtime / name).read_bytes())
             self.assertEqual(manifest, (runtime / '.bundle-manifest.json').read_bytes())
             bundle.apply_bundle(runtime, bundle.prepare_bundle(runtime, ROOT, 'registration'), [])
-            self.assertEqual((ROOT / 'aikya_cli.py').read_bytes(), (runtime / 'aikya_cli.py').read_bytes())
+            self.assertEqual(runtime_support.generated_bytes('aikya_cli.py'), (runtime / 'aikya_cli.py').read_bytes())
 
     def test_stale_preview_rejects_owner_edit_before_other_files_change(self):
         with tempfile.TemporaryDirectory() as temporary:

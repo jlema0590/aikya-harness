@@ -79,7 +79,7 @@ Use the Python environment containing the optional SDK and the resolved Aikya CL
 (project runtime first, otherwise the registered global runtime):
 
 ```bash
-python /path/to/aikya_cli.py feature --target . --agent-loop --loop-input reviewed-loop.json --approved
+python -m aikya feature --target . --agent-loop --loop-input reviewed-loop.json --approved
 ```
 
 The JSON command must match the requested feature, bugfix or implement command.
@@ -121,7 +121,7 @@ budgets or mark outcomes complete.
 
 ```bash
 python /path/to/agent_loop.py status --root . --run-id RUN_ID
-python /path/to/aikya_cli.py feature --target . --agent-loop --loop-input reviewed-loop.json --loop-run-id RUN_ID --approved
+python -m aikya feature --target . --agent-loop --loop-input reviewed-loop.json --loop-run-id RUN_ID --approved
 ```
 
 An effect intent is durably acknowledged before the child writes. If a process
@@ -224,8 +224,8 @@ All reported checks remain bound to the current candidate. A model must request 
 scope change if modularization requires files outside its approved allowlist.
 
 ```bash
-python /path/to/code_quality.py --root . src/service.py src/other.py
-python /path/to/code_quality.py --root . --changed --base HEAD
+python -m aikya.quality.source --root . src/service.py src/other.py
+python -m aikya.quality.source --root . --changed --base HEAD
 ```
 
 Normal edit hooks supply feedback after writes; the checker can also be configured

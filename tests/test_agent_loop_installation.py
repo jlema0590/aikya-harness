@@ -1,10 +1,11 @@
+import runtime_support
 """Installed command routing stays opt-in and portable across registration scopes."""
 import json,os,subprocess,sys,tempfile,unittest
 from pathlib import Path
 from agent_loop_support import ROOT,project,config,runtime
 class LoopInstallationTests(unittest.TestCase):
  def test_managed_packaging_mirrors_are_backed_up_and_retired_but_custom_ones_stay(self):
-  import aikya_setup,hashlib
+  from aikya.installation import registration as aikya_setup; import hashlib
   with tempfile.TemporaryDirectory() as tmp:
    root=Path(tmp)/'project';home=Path(tmp)/'home';folder=root/'.aikya/runtime';previous={}
    for name in ('external_skills.py','skills_registry.py'):
@@ -14,7 +15,7 @@ class LoopInstallationTests(unittest.TestCase):
    (folder/'manifest.json').write_text(json.dumps({'files':previous}))
    aikya_setup.setup(ROOT,root,'project',home=home)
    self.assertFalse((folder/'template/scripts/harness/external_skills.py').exists())
-   self.assertEqual((ROOT/'external_skills.py').read_bytes(),(folder/'retired-assets/template/scripts/harness/external_skills.py').read_bytes())
+   self.assertEqual(runtime_support.generated_bytes('external_skills.py'),(folder/'retired-assets/template/scripts/harness/external_skills.py').read_bytes())
    self.assertIn(b'Owner customization',custom.read_bytes())
    aikya_setup.setup(ROOT,root,'project',home=home)
    self.assertIn(b'Owner customization',custom.read_bytes())
@@ -22,10 +23,10 @@ class LoopInstallationTests(unittest.TestCase):
  def test_init_never_accepts_the_loop_switch_or_writes_a_dossier(self):
   with tempfile.TemporaryDirectory() as tmp:
    root=Path(tmp)/'new'
-   p=subprocess.run([sys.executable,str(ROOT/'aikya_cli.py'),'init','--target',str(root),'--agent-loop'],capture_output=True,text=True)
+   p=subprocess.run([sys.executable,str(ROOT / 'src/aikya/cli/main.py'),'init','--target',str(root),'--agent-loop'],capture_output=True,text=True)
    self.assertEqual(2,p.returncode);self.assertFalse(root.exists())
  def test_loop_modules_ship_in_global_project_and_initialized_runtime_without_sdk_dependency(self):
-  import aikya_setup,install
+  from aikya.installation import registration as aikya_setup; from aikya.installation import facade as install
   with tempfile.TemporaryDirectory() as tmp:
    base=Path(tmp)
    for scope in ('global','project'):
@@ -37,7 +38,7 @@ class LoopInstallationTests(unittest.TestCase):
  def test_cli_routes_feature_loop_only_when_explicit_and_reports_optional_sdk_unavailable(self):
   with tempfile.TemporaryDirectory() as tmp:
    root=project(tmp);settings=root/'loop.json';settings.write_text(json.dumps(config()))
-   p=subprocess.run([sys.executable,str(ROOT/'aikya_cli.py'),'feature','--target',str(root),'--agent-loop','--loop-input',str(settings),'--approved'],capture_output=True,text=True)
+   p=subprocess.run([sys.executable,str(ROOT / 'src/aikya/cli/main.py'),'feature','--target',str(root),'--agent-loop','--loop-input',str(settings),'--approved'],capture_output=True,text=True)
    self.assertEqual(4,p.returncode,p.stderr);self.assertEqual('optional_sdk_missing',json.loads(p.stdout)['reason']);self.assertFalse((root/'aikya/docs/loops').exists())
 
 if __name__=='__main__':unittest.main()

@@ -12,8 +12,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-import aikya_setup
-import engineering_catalog
+from aikya.installation import registration as aikya_setup
+from aikya.catalogs import engineering as engineering_catalog
 
 
 def name_from_frontmatter(path: Path) -> str:
@@ -86,9 +86,12 @@ def check_bootstrap() -> list[str]:
                 errors.append(f"Command name mismatch: {name} != {actual}")
         except (OSError, UnicodeError, ValueError) as exc:
             errors.append(str(exc))
-    for item in aikya_setup.CORE_FILES:
-        if not (ROOT / item).is_file():
-            errors.append(f"Core runtime file missing: {item}")
+    from aikya.installation.assets import runtime_assets
+    try:
+        for asset in runtime_assets(ROOT, 'registration'):
+            asset.read_bytes()
+    except (ValueError, OSError) as exc:
+        errors.append(str(exc))
     # Avoid silently shipping an unregistered command.
     files = {p.parent.name for p in (ROOT / 'src/aikya/resources/commands').glob("*/SKILL.md")}
     extra = files - set(aikya_setup.BOOTSTRAP_COMMANDS)

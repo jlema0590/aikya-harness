@@ -1,4 +1,5 @@
 """Regression contracts for SDD integration with current develop."""
+import runtime_support
 import importlib.util
 import json
 from pathlib import Path
@@ -8,15 +9,15 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-import sdd_engine as sdd
-import install
-import doc_bootstrap
-import aikya_setup
+from aikya.workflows.sdd import engine as sdd
+from aikya.installation import facade as install
+from aikya.documentation import bootstrap as doc_bootstrap
+from aikya.installation import registration as aikya_setup
 
 
 def module(name, relative):
     from aikya.resource_paths import source_path
-    spec = importlib.util.spec_from_file_location(name, source_path(ROOT,relative))
+    spec = runtime_support.module_spec(name, source_path(ROOT,relative))
     result = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(result);result=getattr(result,'_module',result)
     return result
@@ -152,7 +153,7 @@ class SddIntegrationTests(unittest.TestCase):
 
 class SddAdoptionTests(unittest.TestCase):
     def test_analyze_explicit_opt_in_and_refresh_preserve_methodology(self):
-        from aikya_analyze import execute
+        from aikya.discovery.analyze import execute
         import inspect
         self.assertIn('methodology', inspect.signature(execute).parameters)
         with tempfile.TemporaryDirectory() as d:
@@ -173,7 +174,7 @@ class SddAdoptionTests(unittest.TestCase):
             self.assertEqual('sdd', json.loads((root / '.harness/project-profile.json').read_text())['decisions']['methodology'])
 
     def test_analyze_can_upgrade_owned_standard_profile_without_losing_decisions(self):
-        from aikya_analyze import execute
+        from aikya.discovery.analyze import execute
         import inspect
         self.assertIn('methodology', inspect.signature(execute).parameters)
         with tempfile.TemporaryDirectory() as d:

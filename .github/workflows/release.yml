@@ -29,6 +29,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Install contributor package and build tools
+        run: |
+          python -m pip install 'setuptools>=77' wheel build
+          python -m pip install --no-build-isolation --no-deps -e .
       - name: Validate VERSION, changelog and tags
         id: contract
         run: python scripts/ci/release_contract.py check --github-output "$GITHUB_OUTPUT"
@@ -59,6 +63,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Install contributor package and build tools
+        run: |
+          python -m pip install 'setuptools>=77' wheel build
+          python -m pip install --no-build-isolation --no-deps -e .
       - name: Create source ZIP and notes
         shell: bash
         env:
@@ -95,6 +103,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Install contributor package and build tools
+        run: |
+          python -m pip install 'setuptools>=77' wheel build
+          python -m pip install --no-build-isolation --no-deps -e .
       - uses: actions/download-artifact@v4
         with:
           name: aikya-release-${{ github.sha }}

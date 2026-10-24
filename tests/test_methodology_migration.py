@@ -2,8 +2,8 @@
 import importlib,importlib.util,json,subprocess,sys,tempfile,unittest
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
-import install
-from aikya_analyze import execute
+from aikya.installation import facade as install
+from aikya.discovery.analyze import execute
 
 class MethodologyMigrationTests(unittest.TestCase):
  def setUp(self):
@@ -38,9 +38,9 @@ class MethodologyMigrationTests(unittest.TestCase):
  def test_init_requires_choice_or_confirmed_answers_and_supports_explicit_flag(self):
   self.helper();raw=json.loads((ROOT/'examples/next-react/answers.json').read_text());raw.pop('methodology',None)
   file=self.root/'answers.json';file.write_text(json.dumps(raw));target=self.root/'new'
-  proc=subprocess.run([sys.executable,'-B',str(ROOT/'aikya_cli.py'),'init','--target',str(target),'--answers',str(file),'--dry-run'],capture_output=True,text=True)
+  proc=subprocess.run([sys.executable,'-B',str(ROOT / 'src/aikya/cli/main.py'),'init','--target',str(target),'--answers',str(file),'--dry-run'],capture_output=True,text=True)
   self.assertEqual(4,proc.returncode,proc.stderr);self.assertIn('NEEDS_METHODOLOGY',proc.stdout);self.assertFalse(target.exists())
-  proc=subprocess.run([sys.executable,'-B',str(ROOT/'aikya_cli.py'),'init','--target',str(target),'--answers',str(file),'--methodology','odd','--dry-run','--external','skip'],capture_output=True,text=True)
+  proc=subprocess.run([sys.executable,'-B',str(ROOT / 'src/aikya/cli/main.py'),'init','--target',str(target),'--answers',str(file),'--methodology','odd','--dry-run','--external','skip'],capture_output=True,text=True)
   self.assertEqual(0,proc.returncode,proc.stderr);self.assertFalse(target.exists());self.assertEqual(raw,json.loads(file.read_text()))
 
 if __name__=='__main__':unittest.main()
@@ -63,7 +63,7 @@ class MethodologyBackupTests(unittest.TestCase):
    result=execute(root,approved=True,refresh=True);self.assertEqual('READY',result['status']);self.assertEqual('odd',json.loads(profile.read_text())['decisions']['methodology'])
    self.assertNotIn('methodology',json.loads((root/'.harness/backup-odd/project-profile.json').read_text())['decisions'])
  def test_owned_legacy_answers_are_normalized_with_profile_and_backed_up(self):
-  from methodology import migration_plan,apply_migration
+  from aikya.workflows.methodology import migration_plan,apply_migration
   with tempfile.TemporaryDirectory() as tmp:
    root=Path(tmp);previous={'_generated_by':'claude-dev-harness-interactive','decisions':{'methodology':'standard','project_type':'development','notes':'Keep'}}
    profile=root/'.harness/project-profile.json';profile.parent.mkdir();profile.write_text(json.dumps(previous));answers=root/'.aikya/answers.json';answers.parent.mkdir();answers.write_text(json.dumps(previous['decisions']))

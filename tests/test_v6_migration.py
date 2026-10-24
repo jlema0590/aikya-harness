@@ -3,8 +3,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-import install
-from token_policy import validated, HAIKU_45, HAIKU_55
+from aikya.installation import facade as install
+from aikya.routing.policy import validated, HAIKU_45, HAIKU_55
 
 ROOT = Path(__file__).resolve().parents[1]
 

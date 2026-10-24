@@ -2,7 +2,7 @@ name: Aikya | Example profiles smoke
 
 on:
   push:
-    branches: [develop, main, 'feat/**', 'fix/**', 'release/**']
+    branches: [develop, main, 'feat/**', 'fix/**', 'release/**', 'refactor/**']
     paths:
       - 'examples/**'
       - 'install.py'
@@ -58,5 +58,9 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Install contributor package and build tools
+        run: |
+          python -m pip install 'setuptools>=77' wheel build
+          python -m pip install --no-build-isolation --no-deps -e .
       - name: Check all Development / Infrastructure / DevOps profiles
         run: python scripts/ci/smoke_profiles.py

@@ -1,4 +1,5 @@
 """Scoped maintainability checks stop large candidates and expose exact clones."""
+import runtime_support
 import importlib.util,json,tempfile,unittest
 from pathlib import Path
 from agent_loop_support import project,config,runtime
@@ -7,7 +8,7 @@ from agent_loop_support import project,config,runtime
 class QualityTests(unittest.TestCase):
     def module(self):
         self.assertIsNotNone(importlib.util.find_spec('code_quality'),'Missing shared code quality gate')
-        import code_quality
+        from aikya.quality import source as code_quality
         return code_quality
 
     def test_line_limit_boundary_and_content_bound_exceptions(self):
@@ -48,7 +49,7 @@ class QualityTests(unittest.TestCase):
 
     def test_loop_never_completes_a_task_with_an_oversized_candidate(self):
         self.module()
-        import agent_loop,odd_engine
+        from aikya.core import loop as agent_loop; from aikya.workflows import odd as odd_engine
         with tempfile.TemporaryDirectory() as tmp:
             root=project(tmp);(root/'src/value.py').write_text('VALUE = 1\n'*1001)
             result=agent_loop.run(root,config(),runtime('no_write'),approved=True)
@@ -60,7 +61,7 @@ class QualityTests(unittest.TestCase):
         self.module()
         import importlib.util
         from agent_loop_support import ROOT
-        spec=importlib.util.spec_from_file_location('quality_edit_hook',ROOT/'src/aikya/resources/project_template/.claude/hooks/check_edit.py')
+        spec=runtime_support.module_spec('quality_edit_hook',ROOT/'src/aikya/resources/project_template/.claude/hooks/check_edit.py')
         hook=importlib.util.module_from_spec(spec);spec.loader.exec_module(hook);hook=getattr(hook,'_module',hook)
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp);(root/'widget.ts').write_text('const value = 1;\n'*1001)

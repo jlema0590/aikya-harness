@@ -28,7 +28,7 @@ class RecoveryTests(unittest.TestCase):
 
 class CompletionRecoveryTests(unittest.TestCase):
  def test_completed_resume_is_idempotent_but_changed_evidence_is_rejected(self):
-  import agent_loop
+  from aikya.core import loop as agent_loop
   with tempfile.TemporaryDirectory() as tmp:
    root=project(tmp);first=agent_loop.run(root,config(),runtime(),approved=True)
    second=agent_loop.run(root,config(),runtime('crash'),approved=True,run_id=first['run_id'])
@@ -38,7 +38,7 @@ class CompletionRecoveryTests(unittest.TestCase):
 
 class UsageAccountingTests(unittest.TestCase):
  def test_reported_session_tokens_are_counted_once_and_missing_usage_stays_unknown(self):
-  import agent_loop_state as store
+  from aikya.core import checkpoints as store
   data={'cost_usd':0.0,'cost_known':True,'sessions':{},'results':{}}
   def result(ident,session,cost,ins,outs):return {'id':ident,'session_id':session,'cost_usd':cost,'model_usage':{'fixture':{'inputTokens':ins,'outputTokens':outs,'cacheReadInputTokens':0,'cacheCreationInputTokens':0}}}
   first=result('a','one',.01,5,7);store.account(data,first);store.account(data,first);store.account(data,result('b','one',.02,6,9));store.account(data,result('c','two',.005,2,3))
@@ -47,7 +47,7 @@ class UsageAccountingTests(unittest.TestCase):
 
 class UsageAtomicityTests(unittest.TestCase):
  def test_malformed_usage_cannot_partially_mutate_the_durable_budget(self):
-  import copy,agent_loop_state as store
+  import copy; from aikya.core import checkpoints as store
   data={'cost_usd':0.0,'cost_known':True,'sessions':{},'results':{}};before=copy.deepcopy(data)
   with self.assertRaises(ValueError):store.account(data,{'id':'a','session_id':'s','cost_usd':float('nan'),'model_usage':{'fixture':{'inputTokens':5,'outputTokens':7,'cacheReadInputTokens':0,'cacheCreationInputTokens':0}}})
   self.assertEqual(before,data)
@@ -55,7 +55,7 @@ class UsageAtomicityTests(unittest.TestCase):
 class CheckpointCrashTests(unittest.TestCase):
  def test_interrupted_summary_projection_remains_recoverable_without_overwriting_custom_reports(self):
   from unittest.mock import patch
-  import agent_loop,agent_loop_state as store
+  from aikya.core import loop as agent_loop; from aikya.core import checkpoints as store
   with tempfile.TemporaryDirectory() as tmp:
    root=project(tmp);first=agent_loop.run(root,config(),runtime(),approved=True,cancel=lambda:True);data=store.load(root,first['run_id']);data['reason']='checkpoint_probe'
    original=store.atomic
@@ -70,7 +70,7 @@ class CheckpointCrashTests(unittest.TestCase):
    with self.assertRaises(ValueError):agent_loop.reconcile(root,first['run_id'],approved=True)
  def test_source_change_in_the_completion_checkpoint_never_closes_the_task(self):
   from unittest.mock import patch
-  import agent_loop,agent_loop_state as store,odd_engine
+  from aikya.core import loop as agent_loop; from aikya.core import checkpoints as store; from aikya.workflows import odd as odd_engine
   with tempfile.TemporaryDirectory() as tmp:
    root=project(tmp);original=store.save;changed=False
    def change_after_intent(root_path,data):

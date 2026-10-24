@@ -1,4 +1,5 @@
 """Acceptance tests v5.6: repository topology, unified workspace and welcome."""
+import runtime_support
 import importlib.util
 import io
 import json
@@ -13,13 +14,13 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[1]
 import sys
 sys.path.insert(0,str(ROOT))
-import install
-import doc_bootstrap
-import aikya_session
-from aikya_layout import app_count
+from aikya.installation import facade as install
+from aikya.documentation import bootstrap as doc_bootstrap
+from aikya.cli import session as aikya_session
+from aikya.discovery.layout import app_count
 
 def load_module(file, name):
-    spec=importlib.util.spec_from_file_location(name, file)
+    spec=runtime_support.module_spec(name, file)
     mod=importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod);mod=getattr(mod,'_module',mod)
     return getattr(mod, '_module', mod)
@@ -94,7 +95,7 @@ class AikyaLayoutTests(unittest.TestCase):
                 (stage/'app/page.tsx').write_text('export default function Page(){return null}')
                 (stage/'.gitignore').write_text('node_modules/\n.next/\n')
                 return SimpleNamespace(returncode=0)
-            with patch.object(SCAFFOLD.shutil,'which',return_value='/bin/mock'), patch('aikya_requirements.check', return_value={'ready':True,'checks':[]}):
+            with patch.object(SCAFFOLD.shutil,'which',return_value='/bin/mock'), patch('aikya.installation.requirements.check', return_value={'ready':True,'checks':[]}):
                 # El detector se importa desde una ruta distinta: sustituir temporalmente su check local.
                 script=root/'aikya/scripts/harness/aikya_requirements.py'
                 original=script.read_bytes()

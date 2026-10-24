@@ -6,12 +6,12 @@ import tempfile
 import unittest
 
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
-import documentation_templates as library
-import documentation_workflows as workflows
-import sdd_templates
-import claude_templates
-import doc_bootstrap
-import install
+from aikya.documentation import templates as library
+from aikya.documentation import composition as workflows
+from aikya.workflows.sdd import templates as sdd_templates
+from aikya.documentation import claude as claude_templates
+from aikya.documentation import bootstrap as doc_bootstrap
+from aikya.installation import facade as install
 
 SOURCE='aikya-template/docs/'
 BUG='general-swe/foundations/bug-report'

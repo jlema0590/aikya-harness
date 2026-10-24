@@ -18,20 +18,20 @@ class ExecutionUITests(unittest.TestCase):
   rows=ui.render_actor_rows({'model':{'id':'main-model'},'tasks':[{'id':'1','agentType':'reviewer','status':'running','model':'resolved-review-model','tokenCount':123},{'id':'2','agentType':'planner','status':'running'}]}, {})
   self.assertEqual('resolved-review-model',rows[0]['model']);self.assertIsNone(rows[1]['model']);self.assertIsNone(rows[1]['tokens'])
  def test_statusline_stdin_and_empty_metrics_cache_do_not_write_project(self):
-  import runtime_metrics as metrics
+  from aikya.middleware import metrics as metrics
   with tempfile.TemporaryDirectory() as tmp:
    base=Path(tmp);root=base/'project';root.mkdir();cache=base/'cache';context={'root':str(root),'session_id':'s','cache_root':str(cache)}
    metrics.cache_metrics(context,{},now=time.time())
    self.assertIsNone(metrics.read_metrics(context)['account_seven_day_pct'])
    env={**os.environ,'AIKYA_EXECUTION_CACHE':str(cache),'PYTHONDONTWRITEBYTECODE':'1'}
-   process=subprocess.run([sys.executable,'-B',str(ROOT/'aikya_statusline.py')],input=json.dumps({'cwd':str(root),'session_id':'s','model':{'id':'observed-example'},'context_window':{'used_percentage':0}}),text=True,capture_output=True,env=env)
+   process=subprocess.run([sys.executable,'-B',str(ROOT / 'src/aikya/middleware/statusline.py')],input=json.dumps({'cwd':str(root),'session_id':'s','model':{'id':'observed-example'},'context_window':{'used_percentage':0}}),text=True,capture_output=True,env=env)
    self.assertEqual(0,process.returncode,process.stderr);self.assertIn('observed-example',process.stdout);self.assertIn('Context: 0%',process.stdout);self.assertEqual([],list(root.iterdir()))
  def test_subagent_cli_emits_official_json_rows(self):
   payload={'columns':70,'tasks':[{'id':'1','agentType':'reviewer','status':'running','model':'actual','tokenCount':123}]}
-  proc=subprocess.run([sys.executable,'-B',str(ROOT/'aikya_subagent_statusline.py')],input=json.dumps(payload),capture_output=True,text=True)
+  proc=subprocess.run([sys.executable,'-B',str(ROOT / 'src/aikya/middleware/subagent_statusline.py')],input=json.dumps(payload),capture_output=True,text=True)
   row=json.loads(proc.stdout);self.assertEqual('1',row['id']);self.assertIn('actual',row['content']);self.assertLessEqual(len(row['content']),70)
  def test_compact_uses_the_active_actor_model_and_never_assigns_main_to_python(self):
-  from aikya_statusline import render_status
+  from aikya.middleware.statusline import render_status
   value={'command':'aikya-quality','phase':'review','status':'running','phases':{'review':{'status':'running','actors':{'reviewer-7':{'status':'running','observed_model':'review-model'}}}}}
   output=render_status(value,{'model':'main-model'},200);self.assertIn('review-model',output.splitlines()[0]);self.assertNotIn('main-model',output.splitlines()[0])
   value['phases']['review']['actors']={'main':{'status':'running','observed_model':'previous-model'}}
@@ -41,7 +41,7 @@ class ExecutionUITests(unittest.TestCase):
   value['phase']='review';value['phases']={'review':{'status':'running','actors':{'unknown-reviewer':{'status':'running','observed_model':None}}}}
   self.assertIn('N/D',render_status(value,{'model':'main-model'},200).splitlines()[0])
  def test_settings_preserve_custom_status_and_do_not_chain_shell_commands(self):
-  from execution_config import merge_visibility
+  from aikya.middleware.configuration import merge_visibility
   custom={'statusLine':{'type':'command','command':'my-custom-status'},'hooks':{'UserPromptSubmit':[{'hooks':[{'type':'command','command':'custom-hook'}]}]}}
   before=json.loads(json.dumps(custom));merged,proposals=merge_visibility(custom,'python3 "/runtime/execution_observer.py" hook','python3 "/runtime/aikya_statusline.py"')
   self.assertEqual(before,custom);self.assertEqual(before['statusLine'],merged['statusLine']);self.assertIn('statusLine',proposals)

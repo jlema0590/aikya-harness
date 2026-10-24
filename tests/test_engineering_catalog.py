@@ -8,9 +8,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-import engineering_catalog as catalog
-import install
-import aikya_setup
+from aikya.catalogs import engineering as catalog
+from aikya.installation import facade as install
+from aikya.installation import registration as aikya_setup
 
 EXCLUDED = {'digital-law-coordinator','ecommerce-platform-lawyer',
             'legal-quality-reviewer','privacy-dpa-lawyer','saas-contract-lawyer',

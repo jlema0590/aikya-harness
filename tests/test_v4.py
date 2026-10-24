@@ -1,4 +1,5 @@
 """Pruebas v4: integración sin red, consentimiento, diseño UI y especificación Agent Skills."""
+import runtime_support
 import importlib.util
 import json
 import subprocess
@@ -10,12 +11,12 @@ from unittest.mock import patch
 
 HERE=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(HERE))
-import external_skills as ext
-import install as installer
+from aikya.catalogs import external as ext
+from aikya.installation import facade as installer
 
 
 def load_module(path: Path,name: str):
-    spec=importlib.util.spec_from_file_location(name,path)
+    spec=runtime_support.module_spec(name,path)
     module=importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module);module=getattr(module,'_module',module)
     return getattr(module, '_module', module)
@@ -134,7 +135,7 @@ class ExternalIntegrationTests(unittest.TestCase):
     def test_cli_with_answers_plan_does_not_download(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d)/'new'
-            result=subprocess.run([sys.executable,str(HERE/'install.py'),
+            result=subprocess.run([sys.executable,str(HERE / 'src/aikya/installation/facade.py'),
                 '--target',str(root),'--answers',str(HERE/'examples/new-next-react.json'),
                 '--external','plan'],text=True,capture_output=True,timeout=30)
             self.assertEqual(result.returncode,0,result.stderr)

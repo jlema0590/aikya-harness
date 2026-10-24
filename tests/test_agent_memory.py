@@ -31,7 +31,7 @@ class MemoryTests(unittest.TestCase):
 
 class MemoryMalformedTests(unittest.TestCase):
  def test_nan_memory_times_are_rejected_instead_of_becoming_immortal(self):
-  import agent_memory
+  from aikya.memory import knowledge as agent_memory
   with tempfile.TemporaryDirectory() as tmp:
    root=project(tmp)
    with self.assertRaises(ValueError):agent_memory.remember(root,{'kind':'project','text':'Value lookup policy.','source':'src/value.py','ttl_days':1},approved=True,now=float('nan'))

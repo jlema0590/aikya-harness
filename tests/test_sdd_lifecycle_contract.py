@@ -9,8 +9,8 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-import install
-import sdd_engine as sdd
+from aikya.installation import facade as install
+from aikya.workflows.sdd import engine as sdd
 
 
 def lifecycle_fingerprints(root, kind, language):

@@ -33,7 +33,7 @@ class ExecutionStateTests(unittest.TestCase):
   self.assertIsNone(m.read_active({**c,'session_id':'other-session'}))
  def test_all_registered_commands_have_recipes_and_unrelated_text_starts_nothing(self):
   self.module();recipes=importlib.import_module('command_workflows');observer=importlib.import_module('execution_observer')
-  from aikya_setup import BOOTSTRAP_COMMANDS
+  from aikya.installation.registration import BOOTSTRAP_COMMANDS
   for command in BOOTSTRAP_COMMANDS:self.assertEqual(command,recipes.recipe(command,'odd')['command'])
   self.assertIsNone(observer.observe(self.context,{'hook_event_name':'UserPromptSubmit','prompt':'Explain /aikya-init before I run it.'}))
   self.assertFalse((self.base/'project').exists())
@@ -59,9 +59,9 @@ class ExecutionStateTests(unittest.TestCase):
   with self.assertRaises(ValueError):m.record_event(c,{'phase':'explore','status':'running','evidence':None})
  def test_all_public_command_protocols_close_with_scoped_fixture_evidence(self):
   import hashlib
-  from aikya_setup import BOOTSTRAP_COMMANDS
-  from execution_observer import observe
-  from command_workflows import recipe
+  from aikya.installation.registration import BOOTSTRAP_COMMANDS
+  from aikya.middleware.observer import observe
+  from aikya.middleware.commands import recipe
   for command in BOOTSTRAP_COMMANDS:
    context={**self.context,'session_id':command};value=observe(context,{'hook_event_name':'UserPromptSubmit','prompt':'/'+command});context['run_id']=value['run_id'];m=self.module()
    for phase in recipe(command)['required']:
@@ -78,7 +78,7 @@ class ExecutionStateTests(unittest.TestCase):
   with self.assertRaises(ValueError):m.finish_run(c,'completed')
   self.assertEqual('interrupted',m.read_snapshot(c)['status'])
  def test_prompt_identity_deduplicates_hooks_but_separates_repeated_commands_and_late_failures(self):
-  from execution_observer import observe
+  from aikya.middleware.observer import observe
   first=observe(self.context,{'hook_event_name':'UserPromptSubmit','prompt':'/aikya-init','prompt_id':'first'})
   duplicate=observe(self.context,{'hook_event_name':'UserPromptSubmit','prompt':'/aikya-init','prompt_id':'first'})
   self.assertEqual(first['run_id'],duplicate['run_id'])

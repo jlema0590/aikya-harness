@@ -3,8 +3,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from token_policy import validated, resolved_agent_model
-from token_report import summarize, estimate_cost, estimate_haiku_55_request
+from aikya.routing.policy import validated, resolved_agent_model
+from aikya.routing.usage import summarize, estimate_cost, estimate_haiku_55_request
 
 class PolicyTests(unittest.TestCase):
     def test_v591_backwards_compatibility(self):

@@ -13,12 +13,12 @@ ROOT = Path(__file__).resolve().parents[1]
 class PackageContracts(unittest.TestCase):
     def test_runtime_inventory_excludes_private_environment_files_and_unrelated_package_data(self):
         import shutil
-        import aikya_setup
+        from aikya.installation import registration as aikya_setup
         from aikya.installation.assets import runtime_assets
         with tempfile.TemporaryDirectory() as temporary:
             source = Path(temporary)
             shutil.copytree(ROOT / 'src/aikya', source / 'src/aikya', ignore=shutil.ignore_patterns('__pycache__', '*.pyc'))
-            for name in aikya_setup.CORE_FILES:
+            for name in ('requirements-agent-loop.txt','docs/AGENT_LOOP.md','docs/SECURITY_CONTROLS.md'):
                 destination = source / name
                 destination.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copy2(ROOT / name, destination)
@@ -34,7 +34,7 @@ class PackageContracts(unittest.TestCase):
             self.assertIn('template/.env.example', paths)
 
     def test_customized_package_blocks_upgrade_before_launchers_change(self):
-        import aikya_setup
+        from aikya.installation import registration as aikya_setup
         with tempfile.TemporaryDirectory() as temporary:
             target = Path(temporary) / 'project'
             home = Path(temporary) / 'home'
@@ -59,13 +59,17 @@ class PackageContracts(unittest.TestCase):
             result = subprocess.run([sys.executable, '-B', '-c', code], cwd=temporary, env=env, capture_output=True, text=True)
             self.assertEqual(0, result.returncode, result.stderr)
 
-    def test_legacy_import_and_package_share_the_same_mutable_module(self):
-        code = "import docs_layout;from aikya.documentation import layout;assert docs_layout is layout;import install;from aikya.installation import facade;assert install is facade"
-        result = subprocess.run([sys.executable, '-B', '-c', code], cwd=ROOT, capture_output=True, text=True)
-        self.assertEqual(0, result.returncode, result.stderr)
+    def test_installed_legacy_import_and_package_share_the_same_mutable_module(self):
+        from aikya.installation.registration import setup
+        with tempfile.TemporaryDirectory() as temporary:
+            target = Path(temporary)
+            setup(ROOT, target, 'project', home=target / 'home')
+            code = "import sys;sys.path.insert(0," + repr(str(target / '.aikya/runtime')) + ");import docs_layout;from aikya.documentation import layout;assert docs_layout is layout;import install;from aikya.installation import facade;assert install is facade"
+            result = subprocess.run([sys.executable, '-B', '-c', code], cwd=temporary, capture_output=True, text=True)
+            self.assertEqual(0, result.returncode, result.stderr)
 
     def test_installer_dry_run_leaves_target_untouched(self):
-        import install
+        from aikya.installation import facade as install
         with tempfile.TemporaryDirectory() as temporary:
             target = Path(temporary) / 'new'
             profile = install.validated(json.loads((ROOT / 'examples/next-react/answers.json').read_text()), target)

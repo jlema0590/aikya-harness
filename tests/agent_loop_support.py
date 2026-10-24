@@ -10,7 +10,7 @@ def project(base,method='odd',kind='development',locale='en'):
  policy=root/'.aikya/docs-policy.json';policy.parent.mkdir();policy.write_text(json.dumps({'schema_version':1,'language':locale}))
  (root/'src').mkdir();(root/'src/value.py').write_text('VALUE = 0\n')
  if method=='odd':
-  import odd_engine
+  from aikya.workflows import odd as odd_engine
   odd_engine.prepare_feature(root,'value',{'title':'Value','objective':'Set the fixture value.','acceptance':['Value equals one.'],'tasks':[{'id':'TASK-001','description':'Set value','acceptance':['AC-01'],'depends_on':[],'files':['src/value.py'],'checks':['check value']}]},approved=True)
  return root
 
@@ -21,5 +21,5 @@ def config():
                    {'name':'policy','phase':'security','argv':[sys.executable,'-c','raise SystemExit(0)'],'timeout_seconds':3}]}
 
 def runtime(mode='write'):
- import agent_runtime
+ from aikya.core import runtime as agent_runtime
  return agent_runtime.ProcessRuntime(command=[sys.executable,str(ROOT/'tests/fixtures/agent-loop/worker.py')],env={'AIKYA_FIXTURE_MODE':mode})

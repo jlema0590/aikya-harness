@@ -2,8 +2,8 @@
 import json,os,subprocess,sys,tempfile,unittest
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
-from aikya_setup import setup
-import execution_state
+from aikya.installation.registration import setup
+from aikya.core import state as execution_state
 class OnboardingMatrixTests(unittest.TestCase):
  def test_new_and_existing_projects_keep_the_explicit_method_and_real_phase_outcomes(self):
   examples={'development':'next-react','infrastructure':'infra-terraform-only','devops':'devops-kustomize'}

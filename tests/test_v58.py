@@ -1,4 +1,5 @@
 """Acceptance v5.8: autonomous Development, Infrastructure and DevOps modes."""
+import runtime_support
 import importlib.util
 import json
 import sys
@@ -10,14 +11,14 @@ from unittest.mock import patch
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
-import install
-import infrastructure_profile
-import engineering_catalog
-import aikya_requirements
-import doc_bootstrap
+from aikya.installation import facade as install
+from aikya.discovery import infrastructure as infrastructure_profile
+from aikya.catalogs import engineering as engineering_catalog
+from aikya.installation import requirements as aikya_requirements
+from aikya.documentation import bootstrap as doc_bootstrap
 
 def module(path,name):
-    spec=importlib.util.spec_from_file_location(name,path)
+    spec=runtime_support.module_spec(name,path)
     obj=importlib.util.module_from_spec(spec)
     spec.loader.exec_module(obj);obj=getattr(obj,'_module',obj)
     return getattr(obj, '_module', obj)

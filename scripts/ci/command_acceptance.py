@@ -15,7 +15,7 @@ import tempfile
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-import aikya_setup
+from aikya.installation import registration as aikya_setup
 from aikya.cli.commands import BOOTSTRAP_COMMANDS
 from aikya.documentation.layout import validate_layout, validate_generated_document_paths
 
@@ -40,7 +40,8 @@ class Battery:
 
     def run(self, command, script, arguments=(), *, expected=0, contains=None, cwd=None):
         before = self.snapshot()
-        argv = [sys.executable, '-B', str(script), *map(str, arguments)]
+        entry = list(script) if isinstance(script, tuple) else [str(script)]
+        argv = [sys.executable, '-B', *entry, *map(str, arguments)]
         result = subprocess.run(argv, cwd=cwd or self.unrelated, env=self.env,
                                 capture_output=True, text=True, timeout=90)
         output = result.stdout + result.stderr
@@ -49,7 +50,7 @@ class Battery:
         after = self.snapshot()
         changes = sorted(key for key, digest in after.items() if before.get(key) != digest)
         row = self.results[command]
-        row['checks'].append({'support': Path(script).name, 'arguments': [str(a).replace(str(ROOT), '<source>').replace(str(self.base), '<fixture>') for a in arguments],
+        row['checks'].append({'support': (' '.join(script) if isinstance(script, tuple) else Path(script).name), 'arguments': [str(a).replace(str(ROOT), '<source>').replace(str(self.base), '<fixture>') for a in arguments],
                               'exit': result.returncode, 'expected_exit': expected, 'output_sha256': sha(output.encode()),
                               'asserted_output': contains})
         row['markdown_changes'] = sorted(set(row['markdown_changes']) | set(changes))
@@ -64,7 +65,7 @@ class Battery:
         return self.projects[project] / 'aikya/scripts/harness' / name
 
     def exercise(self):
-        cli = ROOT / 'aikya_cli.py'
+        cli = ('-m', 'aikya')
         for name, method, example in [('odd', 'odd', 'next-react'), ('sdd', 'sdd', 'next-react'),
                                        ('mobile', 'odd', 'native-kotlin-ios'), ('infra', 'odd', 'infra-terraform-only')]:
             # Fixture aliases are selected from real versioned interview inputs.
