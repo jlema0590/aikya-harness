@@ -10,10 +10,10 @@ import argparse
 import hashlib
 import json
 import shutil
-import shlex
 import sys
 from pathlib import Path
 from aikya.documentation.layout import asset_bytes
+from aikya.installation.hook_commands import render_managed_hook, status_command, host_shell
 
 ROOT=source_root()
 from aikya.cli.commands import BOOTSTRAP_COMMANDS
@@ -148,7 +148,7 @@ def register_startup_hook(settings:Path, command:str, logs:list[str]) -> None:
     if not any('aikya_session.py' in str(h.get('command',''))
                for group in session if isinstance(group,dict)
                for h in group.get('hooks',[]) if isinstance(h,dict)):
-        session.append({'matcher':'startup','hooks':[{'type':'command','command':command,'timeout':5}]})
+        session.append({'matcher':'startup','hooks':[command if isinstance(command,dict) else {'type':'command','command':command,'timeout':5}]})
         settings.parent.mkdir(parents=True,exist_ok=True)
         settings.write_text(json.dumps(user,indent=2,ensure_ascii=False)+'\n',encoding='utf8')
         logs.append(f'SessionStart hook added: {settings}')
@@ -310,16 +310,15 @@ def setup(source:Path,target:Path,scope:str,home:Path|None=None,dry_run:bool=Fal
         dst.write_bytes(rendered)
         shutil.copymode(src,dst) if isinstance(src,Path) else None
         logs.append(f'SKILL disponible: /{name} ({scope})')
-    if scope=='global':
-        command='python3 -B '+shlex.quote(str(runtime/'aikya_session.py'))
-        register_startup_hook(home/'.claude/settings.json',command,logs)
-    else:
-        command='python3 "${CLAUDE_PROJECT_DIR}/.aikya/runtime/aikya_session.py"'
-        register_startup_hook(target/'.claude/settings.json',command,logs)
+    python = Path(sys.executable).absolute()
+    shell = host_shell()
+    command = render_managed_hook(python, runtime / 'aikya_session.py', (), shell)
+    register_startup_hook(settings_path, command, logs)
     from aikya.middleware.configuration import register_visibility
-    observer='python3 -B '+shlex.quote(str(runtime/'execution_observer.py'))+' hook'
-    bar='python3 -B '+shlex.quote(str(runtime/'aikya_statusline.py'))
-    register_visibility((home if scope=='global' else target)/'.claude/settings.json',observer,bar,logs,(home/'.claude' if scope=='global' else target/'.aikya')/'visibility-proposed.json',subagent_command=('python3 -B '+__import__('shlex').quote(str(runtime/'aikya_subagent_statusline.py'))) if subagent_statusline else None)
+    observer = render_managed_hook(python, runtime / 'execution_observer.py', ('hook',), shell)
+    bar = status_command(python, runtime / 'aikya_statusline.py', shell)
+    subagent = status_command(python, runtime / 'aikya_subagent_statusline.py', shell) if subagent_statusline else None
+    register_visibility(settings_path, observer, bar, logs, (home / '.claude' if scope == 'global' else target / '.aikya') / 'visibility-proposed.json', subagent_command=subagent)
     if scope=='project':
         marker=target/'.aikya/bootstrap.json'
         marker.parent.mkdir(parents=True,exist_ok=True)

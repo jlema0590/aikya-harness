@@ -1,6 +1,8 @@
 """Focused installer configuration responsibilities."""
 from __future__ import annotations
 import json
+import sys
+from pathlib import Path
 import shutil
 from aikya.discovery.infrastructure import selected as selected_infrastructure
 from aikya.installation.context import InstallationPlan
@@ -85,8 +87,10 @@ def configure_project(plan:InstallationPlan,actions:list[str])->None:
     else:
         actions.append('PRESERVED existing settings.json during adoption')
     from aikya.middleware.configuration import register_visibility
-    observer='python3 -B "${CLAUDE_PROJECT_DIR}/aikya/scripts/harness/execution_observer.py" hook'
-    bar='python3 -B "${CLAUDE_PROJECT_DIR}/aikya/scripts/harness/aikya_statusline.py"'
+    from aikya.installation.hook_commands import render_managed_hook, status_command, host_shell
+    python = Path(sys.executable).absolute()
+    observer = render_managed_hook(python, target / 'aikya/scripts/harness/execution_observer.py', ('hook',), host_shell())
+    bar = status_command(python, target / 'aikya/scripts/harness/aikya_statusline.py')
     register_visibility(target/'.claude/settings.json',observer,bar,actions,target/'.aikya/visibility-proposed.json')
     claude = target / 'CLAUDE.md'
     if not claude.exists():
@@ -94,13 +98,13 @@ def configure_project(plan:InstallationPlan,actions:list[str])->None:
     else:
         actions.append('PRESERVED existing CLAUDE.md; profile is available at .claude/rules/00-project-profile.md')
     safe_write(target/'.claude/rules/00-project-profile.md', context_markdown(profile,detected['modules']), actions, replace_managed=True)
-    checks = [{'name':'docs:structure', 'command':['python3','aikya/scripts/harness/docs_guard.py','base'], 'cwd':'.', 'required':True}, {'name':'skills:format', 'command':['python3','aikya/scripts/harness/skills_lint.py'], 'cwd':'.', 'required':True}] + make_checks(target,profile,detected['modules'])
+    checks = [{'name':'docs:structure', 'command':[sys.executable,'aikya/scripts/harness/docs_guard.py','base'], 'cwd':'.', 'required':True}, {'name':'skills:format', 'command':[sys.executable,'aikya/scripts/harness/skills_lint.py'], 'cwd':'.', 'required':True}] + make_checks(target,profile,detected['modules'])
     if selected_infrastructure(profile['infrastructure']):
         checks.append({'name':'infra:static',
-                       'command':['python3','aikya/scripts/harness/infrastructure.py','validate'],
+                       'command':[sys.executable,'aikya/scripts/harness/infrastructure.py','validate'],
                        'cwd':'.','required':False})
     if profile['methodology'] == 'sdd':
-        checks.append({'name':'sdd:traceability', 'command':['python3','aikya/scripts/harness/sdd_engine.py','lint','--root','.'], 'cwd':'.', 'required':True})
+        checks.append({'name':'sdd:traceability', 'command':[sys.executable,'aikya/scripts/harness/sdd_engine.py','lint','--root','.'], 'cwd':'.', 'required':True})
     safe_write(target/'harness.json',json.dumps({'schema_version':2,'checks':checks},indent=2,ensure_ascii=False)+'\n',actions)
     if profile['methodology'] == 'sdd':
         manifest = target/'harness.json'

@@ -1,0 +1,90 @@
+name: Aikya | Clean installers
+on:
+  pull_request:
+    branches: [develop, main]
+  push:
+    branches: [develop, main, 'feat/**', 'fix/**', 'refactor/**']
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      artifact-name:
+        type: string
+        default: ''
+permissions:
+  contents: read
+jobs:
+  build:
+    if: inputs.artifact-name == ''
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: |
+          python -m pip install build 'setuptools>=77' wheel
+          python -m build --no-isolation
+          python scripts/ci/build_installers.py --version "$(cat VERSION)" --output dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aikya-installers-${{ github.sha }}
+          path: dist/
+  native:
+    needs: build
+    if: always() && (needs.build.result == 'success' || needs.build.result == 'skipped')
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python: ['3.10', '3.11', '3.12', '3.13']
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ inputs.artifact-name || format('aikya-installers-{0}', github.sha) }}
+          path: installer-assets
+      - run: python scripts/ci/installer_smoke.py --assets installer-assets --output installer-results.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: installer-${{ matrix.os }}-${{ matrix.python }}
+          path: installer-results.json
+          if-no-files-found: ignore
+  linux-distros:
+    needs: build
+    if: always() && (needs.build.result == 'success' || needs.build.result == 'skipped')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - image: debian:bookworm-slim
+            setup: apt-get update && apt-get install -y python3 python3-venv ca-certificates curl
+          - image: fedora:42
+            setup: dnf install -y python3 python3-pip ca-certificates curl
+          - image: alpine:3.21
+            setup: apk add --no-cache python3 py3-pip ca-certificates curl
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ inputs.artifact-name || format('aikya-installers-{0}', github.sha) }}
+          path: installer-assets
+      - name: Provision test prerequisites and run the unchanged end-user installer
+        env:
+          TEST_IMAGE: ${{ matrix.image }}
+          TEST_SETUP: ${{ matrix.setup }}
+        run: |
+          docker run --rm -v "$GITHUB_WORKSPACE:/work:ro" "$TEST_IMAGE" sh -c "$TEST_SETUP && python3 /work/scripts/ci/installer_smoke.py --assets /work/installer-assets"

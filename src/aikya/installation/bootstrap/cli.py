@@ -65,6 +65,7 @@ def install(args, root, receipt_file):
             owned_locations = locations(args.scope, args.target, commands)
             managed = [*owned_locations, root / 'bin']
             before = state.snapshot(managed)
+            configuration_file = str((Path.home().resolve() if args.scope == 'global' else args.target) / '.claude/settings.json')
             metadata = [receipt_file, root / 'current.json', root / 'launchers.json']
             metadata_before = state.snapshot(metadata)
             pending = root / 'pending.json'
@@ -72,12 +73,12 @@ def install(args, root, receipt_file):
             try:
                 if old:
                     settings.remove(old.get('settings_changes', []), owned_locations[0])
-                settings_before = state.snapshot(owned_locations)
+                settings_before = state.snapshot([Path(configuration_file)])
                 print(registration(python, args.scope, args.target))
                 launchers.publish(root, candidate)
                 complete_after = state.snapshot(owned_locations)
-                settings_changes = settings.changes(settings_before, complete_after)
-                after = {name: raw for name, raw in complete_after.items() if not settings.is_settings(name) and (raw != before.get(name) or name in (old or {}).get('after', {}))}
+                settings_changes = settings.changes(settings_before, {name: raw for name, raw in complete_after.items() if name == configuration_file})
+                after = {name: raw for name, raw in complete_after.items() if name != configuration_file and (raw != before.get(name) or name in (old or {}).get('after', {}))}
                 original = {name: raw for name, raw in before.items() if name in after}
                 if old:
                     original.update({name: raw for name, raw in old['before'].items() if name in after})

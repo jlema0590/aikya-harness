@@ -53,7 +53,8 @@ def merge_settings(target: Path, actions: list[str], *, context: InstallerContex
     context=context or InstallerContext()
     HERE=context.source_root
     TEMPLATE=context.template_root
-    source = read_json_safe(TEMPLATE / '.claude/settings.json')
+    from aikya.installation.hook_commands import project_settings
+    source = project_settings(read_json_safe(TEMPLATE / '.claude/settings.json'), target)
     path = target / '.claude/settings.json'
     if not path.exists():
         safe_write(path, json.dumps(source, indent=2, ensure_ascii=False)+'\n', actions)

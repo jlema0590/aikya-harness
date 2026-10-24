@@ -11,7 +11,7 @@ def merge_visibility(settings:dict,observer_command:str,status_command:str,subag
         if not isinstance(groups,list):raise ValueError('Invalid hook groups; preserve and review manually')
         # An existing local/global observer can share the cache. Avoid duplicate registrations.
         if any('execution_observer.py' in str(h.get('command','')) or 'execution_status.py' in str(h.get('command','')) for group in groups if isinstance(group,dict) for h in group.get('hooks',[]) if isinstance(h,dict)):continue
-        group={'hooks':[{'type':'command','command':observer_command,'timeout':5}]}
+        group={'hooks':[dict(observer_command) if isinstance(observer_command,dict) else {'type':'command','command':observer_command,'timeout':5}]}
         if matcher:group['matcher']=matcher
         groups.append(group)
     for key,command in (('statusLine',status_command),('subagentStatusLine',subagent_command)):

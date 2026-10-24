@@ -21,23 +21,42 @@ recursos de terceros, instalar SDK o realizar operaciones externas.
 
 ## 1. Inicio rápido
 
-Abre Claude Code en el directorio de destino y pega:
+Los instaladores limpios están implementados en esta rama y se publicarán en la siguiente versión que incluya estos archivos. Utiliza su etiqueta en los ejemplos; no se modifican los archivos publicados de v7.0.0.
 
-```text
-Instala Aikya Harness desde https://github.com/jlema0590/aikya-harness.git --scope global
+**Linux y macOS** — requiere Python 3.10–3.13 con `venv`/pip:
+
+```sh
+AIKYA_TAG="v<release-version>"
+curl --fail --location --proto '=https' --proto-redir '=https' \
+  "https://github.com/jlema0590/aikya-harness/releases/download/${AIKYA_TAG}/install.sh" \
+  -o install-aikya.sh
+sh ./install-aikya.sh --scope global
+# Registro de proyecto: sh ./install-aikya.sh --scope project --target /ruta/absoluta/al/proyecto
 ```
 
-> **Ámbito de instalación:** solicita `global` para tu usuario de Claude Code o `project` para el repositorio actual.
-> Este bloque es una petición en lenguaje natural a Claude Code. El script interno de registro,
-> `aikya_setup.py`, acepta `--scope global` o `--scope project`; `scope=global` no es un argumento de CLI.
-> El ámbito de instalación es independiente de `/aikya-analyze --scope <relative-path>`, que selecciona el directorio que se analiza.
+**Windows** — PowerShell 5.1+ o 7 y Python 3.10–3.13 con `venv`/pip:
 
-| Valor | Dónde se registra | Cuándo elegirlo |
+```powershell
+$AikyaTag = 'v<release-version>'
+Invoke-WebRequest -Uri "https://github.com/jlema0590/aikya-harness/releases/download/$AikyaTag/install.ps1" -OutFile install-aikya.ps1
+.\install-aikya.ps1 -Scope global
+# Registro de proyecto: .\install-aikya.ps1 -Scope project -Target 'C:\work\proyecto'
+```
+
+Descarga y revisa el script antes de ejecutarlo. Verifica su bootstrap y el paquete de la versión, crea un entorno aislado y muestra la carpeta de comandos que puedes añadir al PATH de tu usuario. No requiere clonar el repositorio, permisos de administrador ni activar el entorno. Si falta Python, lo indica sin instalarlo ni modificar los gestores de paquetes del sistema o la política de ejecución.
+
+| Scope | Registro | Cuándo elegirlo |
 |---|---|---|
-| `global` | Para el usuario actual de Claude Code, con un entorno de ejecución compartido. Los proyectos se inicializan por separado. | Quieres disponer de los comandos de Aikya en distintos proyectos. |
-| `project` | En el repositorio actual, con un entorno de ejecución local en `.aikya/runtime/`. | Quieres limitar el registro a un único repositorio. |
+| `global` | Configuración de Claude y runtime compartido del usuario actual. | Tener los comandos disponibles en varios proyectos. |
+| `project` | Configuración de Claude y `.aikya/runtime/` del destino explícito. | Limitar el registro a un repositorio. |
 
-Inicia una nueva sesión de Claude Code y elige el comando de incorporación correspondiente.
+En ambos casos, la aplicación se instala por usuario. Este scope es independiente de `/aikya-analyze --scope <ruta-relativa>`, que selecciona una carpeta para analizar. Instalar no inicializa el proyecto ni selecciona ODD/SDD.
+
+Utiliza `aikya-manage doctor` para consultar el estado local, `aikya-manage update --version X.Y.Z --scope global` para actualizar a una versión explícita y `aikya-manage uninstall --scope global` para retirar los archivos de registro propios que no se hayan modificado. En scope project, añade `--target`. Para instalar sin conexión, descarga el wheel, `SHA256SUMS` y el bootstrap, y utiliza `--offline-dir` (`-OfflineDir` en Windows). Se conservan los archivos personalizados y los entornos referenciados por proyectos inicializados. En Windows, el bootstrap independiente permite completar la limpieza si el ejecutable de gestión está en uso.
+
+**Contribuidores:** desde una copia del código, crea un entorno virtual, instala `build`, `setuptools>=77` y `wheel`, y ejecuta `python -m pip install --no-build-isolation --no-deps -e .`. Utiliza `aikya`, `aikya-setup` o `python -m aikya`; se retiran las invocaciones de raíz como `python install.py`. Este procedimiento de desarrollo es independiente de la instalación mediante una versión publicada.
+
+Abre una sesión nueva de Claude Code y elige el comando de incorporación correspondiente. La compatibilidad de una sesión real del cliente y la ejecución autenticada del modelo se validan por separado de las pruebas del instalador.
 
 ## 2. Incorporación de proyectos
 
@@ -170,7 +189,7 @@ requiere una migración revisada por separado.
 | `src/aikya/resources/engineering/skills/` | Catálogo de skills técnicas. |
 | `src/aikya/resources/project_template/` | Agentes base, skills, reglas y utilidades del harness para los proyectos. |
 
-El código Python está organizado en `src/aikya/`: núcleo, herramientas, middleware, memoria, instalación, análisis, workflows, documentación, catálogos, routing y calidad. `pyproject.toml` define el paquete; los lanzadores anteriores siguen siendo compatibles.
+El código Python está organizado en `src/aikya/`: núcleo, herramientas, middleware, memoria, instalación, análisis, workflows, documentación, catálogos, routing y calidad. `pyproject.toml` define el paquete; los lanzadores instalados se generan desde una sola plantilla y mantienen su compatibilidad. En la raíz solo permanece `setup.py` como archivo Python de construcción.
 
 Todos los planes, bugs y features generados por Aikya se guardan dentro de `aikya/docs/`: `plan/`, `bugs/` y `features/`. Los planes SDD permanecen en el dossier de su especificación dentro de `aikya/docs/specs/`.
 

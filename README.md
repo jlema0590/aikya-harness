@@ -20,23 +20,42 @@ third-party downloads, SDK installation or external operations.
 
 ## 1. Quick start
 
-Open Claude Code in your target directory and paste:
+The clean installers are implemented on this branch and will be published with the next release containing these assets. Use that release tag below; existing v7.0.0 release assets are not changed.
 
-```text
-Install Aikya Harness from https://github.com/jlema0590/aikya-harness.git --scope global
+**Linux and macOS** — Python 3.10–3.13 with `venv`/pip is required:
+
+```sh
+AIKYA_TAG="v<release-version>"
+curl --fail --location --proto '=https' --proto-redir '=https' \
+  "https://github.com/jlema0590/aikya-harness/releases/download/${AIKYA_TAG}/install.sh" \
+  -o install-aikya.sh
+sh ./install-aikya.sh --scope global
+# Project registration: sh ./install-aikya.sh --scope project --target /absolute/path/to/project
 ```
 
-> **Installation scope:** request `global` for your Claude Code user, or `project` for the current repository.
-> This block is a natural-language request to Claude Code. The internal registration script,
-> `aikya_setup.py`, accepts `--scope global` or `--scope project`; `scope=global` is not a CLI argument.
-> Installation scope is separate from `/aikya-analyze --scope <relative-path>`, which selects a directory to inspect.
+**Windows** — PowerShell 5.1+ or 7 and Python 3.10–3.13 with `venv`/pip:
 
-| Value | Where it is registered | When to choose it |
+```powershell
+$AikyaTag = 'v<release-version>'
+Invoke-WebRequest -Uri "https://github.com/jlema0590/aikya-harness/releases/download/$AikyaTag/install.ps1" -OutFile install-aikya.ps1
+.\install-aikya.ps1 -Scope global
+# Project registration: .\install-aikya.ps1 -Scope project -Target 'C:\work\project'
+```
+
+Download and inspect the script before running it. It verifies its pinned bootstrap and the release wheel, creates an isolated application environment and prints the command directory to add to your user PATH. No Git clone, administrator privileges or environment activation is required. Missing Python prerequisites are reported; the installer does not install Python or change system package managers or execution policy.
+
+| Scope | Registration | When to choose it |
 |---|---|---|
-| `global` | For the current Claude Code user, using a shared runtime. Projects are initialized separately. | You want Aikya commands available across your projects. |
-| `project` | In the current repository, with a local runtime under `.aikya/runtime/`. | You want registration limited to one repository. |
+| `global` | Current user's Claude configuration and shared runtime. | Make commands available across your projects. |
+| `project` | Explicit target's Claude configuration and `.aikya/runtime/`. | Limit registration to one repository. |
 
-Start a new Claude Code session, then choose the onboarding command below.
+Both scopes store the application per user. Scope is separate from `/aikya-analyze --scope <relative-path>`, which selects a directory to inspect. Installation does not initialize a project or choose ODD/SDD.
+
+Use `aikya-manage doctor` for local installation state, `aikya-manage update --version X.Y.Z --scope global` for an explicit release, and `aikya-manage uninstall --scope global` to remove unchanged owned registration assets. Add `--target` with project scope. For offline installation, download the release wheel, `SHA256SUMS` and bootstrap and pass `--offline-dir` (`-OfflineDir` on Windows). Edited assets are preserved; environments referenced by initialized projects are retained. On Windows, use the standalone bootstrap to finish cleanup of an in-use management executable.
+
+**Contributors:** from a source checkout, create a virtual environment, install `build`, `setuptools>=77` and `wheel`, then run `python -m pip install --no-build-isolation --no-deps -e .`. Use `aikya`, `aikya-setup` or `python -m aikya`; source-root scripts such as `python install.py` are retired. This contributor path is separate from the release installation above.
+
+Start a new Claude Code session, then choose the onboarding command below. Native host-session compatibility and authenticated model execution are separate from installer smoke tests.
 
 ## 2. Onboarding
 
@@ -166,7 +185,7 @@ reviewed migration.
 | `src/aikya/resources/engineering/skills/` | Curated technical skills. |
 | `src/aikya/resources/project_template/` | Base project agents, skills, rules and harness utilities. |
 
-Python code lives in `src/aikya/`, grouped into core, tools, middleware, memory, installation, discovery, workflows, documentation, catalogs, routing and quality. `pyproject.toml` defines the package; existing script entry points remain compatible.
+Python code lives in `src/aikya/`, grouped into core, tools, middleware, memory, installation, discovery, workflows, documentation, catalogs, routing and quality. `pyproject.toml` defines the package; installed script entry points remain compatible and are generated from one template. Only `setup.py` remains as a root Python build file.
 
 All Aikya-generated plans, bugs and features stay inside `aikya/docs/`: `plan/`, `bugs/` and `features/`. SDD plans remain in their authoritative specification dossier under `aikya/docs/specs/`.
 
