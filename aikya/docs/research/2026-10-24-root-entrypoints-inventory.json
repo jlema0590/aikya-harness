@@ -1,0 +1,327 @@
+{
+  "schema": 1,
+  "date": "2026-10-24",
+  "source_commit": "d37f090918fe0ec6d97787170b784108759bd70a",
+  "branch": "refactor/root-entrypoints-cleanup",
+  "version": "7.0.0",
+  "root_python_files": 53,
+  "compatibility_adapters": [
+    {
+      "root_file": "agent_loop.py",
+      "module": "aikya.core.loop",
+      "implementation_path": "src/aikya/core/loop.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "agent_loop_state.py",
+      "module": "aikya.core.checkpoints",
+      "implementation_path": "src/aikya/core/checkpoints.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "agent_memory.py",
+      "module": "aikya.memory.knowledge",
+      "implementation_path": "src/aikya/memory/knowledge.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "agent_memory_extract.py",
+      "module": "aikya.memory.extraction",
+      "implementation_path": "src/aikya/memory/extraction.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "agent_runtime.py",
+      "module": "aikya.core.runtime",
+      "implementation_path": "src/aikya/core/runtime.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "aikya_analyze.py",
+      "module": "aikya.discovery.analyze",
+      "implementation_path": "src/aikya/discovery/analyze.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "aikya_cli.py",
+      "module": "aikya.cli.main",
+      "implementation_path": "src/aikya/cli/main.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "aikya_layout.py",
+      "module": "aikya.discovery.layout",
+      "implementation_path": "src/aikya/discovery/layout.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "aikya_requirements.py",
+      "module": "aikya.installation.requirements",
+      "implementation_path": "src/aikya/installation/requirements.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "aikya_router.py",
+      "module": "aikya.routing.router",
+      "implementation_path": "src/aikya/routing/router.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "aikya_session.py",
+      "module": "aikya.cli.session",
+      "implementation_path": "src/aikya/cli/session.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "aikya_setup.py",
+      "module": "aikya.installation.registration",
+      "implementation_path": "src/aikya/installation/registration.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "aikya_statusline.py",
+      "module": "aikya.middleware.statusline",
+      "implementation_path": "src/aikya/middleware/statusline.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "aikya_subagent_statusline.py",
+      "module": "aikya.middleware.subagent_statusline",
+      "implementation_path": "src/aikya/middleware/subagent_statusline.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "analysis_manifest.py",
+      "module": "aikya.discovery.manifest",
+      "implementation_path": "src/aikya/discovery/manifest.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "check_events.py",
+      "module": "aikya.middleware.events",
+      "implementation_path": "src/aikya/middleware/events.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "claude_templates.py",
+      "module": "aikya.documentation.claude",
+      "implementation_path": "src/aikya/documentation/claude.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "code_quality.py",
+      "module": "aikya.quality.source",
+      "implementation_path": "src/aikya/quality/source.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "command_workflows.py",
+      "module": "aikya.middleware.commands",
+      "implementation_path": "src/aikya/middleware/commands.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "context_budget.py",
+      "module": "aikya.quality.context_budget",
+      "implementation_path": "src/aikya/quality/context_budget.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "doc_bootstrap.py",
+      "module": "aikya.documentation.bootstrap",
+      "implementation_path": "src/aikya/documentation/bootstrap.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "docs_language.py",
+      "module": "aikya.documentation.language",
+      "implementation_path": "src/aikya/documentation/language.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "docs_layout.py",
+      "module": "aikya.documentation.layout",
+      "implementation_path": "src/aikya/documentation/layout.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "docs_migration_hashes.py",
+      "module": "aikya.documentation.migration_hashes",
+      "implementation_path": "src/aikya/documentation/migration_hashes.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "docs_templates_en.py",
+      "module": "aikya.documentation.pages_en",
+      "implementation_path": "src/aikya/documentation/pages_en.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "docs_templates_es.py",
+      "module": "aikya.documentation.pages_es",
+      "implementation_path": "src/aikya/documentation/pages_es.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "documentation_templates.py",
+      "module": "aikya.documentation.templates",
+      "implementation_path": "src/aikya/documentation/templates.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "documentation_workflows.py",
+      "module": "aikya.documentation.composition",
+      "implementation_path": "src/aikya/documentation/composition.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "durable_io.py",
+      "module": "aikya.storage",
+      "implementation_path": "src/aikya/storage.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "engineering_catalog.py",
+      "module": "aikya.catalogs.engineering",
+      "implementation_path": "src/aikya/catalogs/engineering.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "execution_config.py",
+      "module": "aikya.middleware.configuration",
+      "implementation_path": "src/aikya/middleware/configuration.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "execution_lifecycle.py",
+      "module": "aikya.middleware.lifecycle",
+      "implementation_path": "src/aikya/middleware/lifecycle.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "execution_observer.py",
+      "module": "aikya.middleware.observer",
+      "implementation_path": "src/aikya/middleware/observer.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "execution_state.py",
+      "module": "aikya.core.state",
+      "implementation_path": "src/aikya/core/state.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "external_skills.py",
+      "module": "aikya.catalogs.external",
+      "implementation_path": "src/aikya/catalogs/external.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "infrastructure_profile.py",
+      "module": "aikya.discovery.infrastructure",
+      "implementation_path": "src/aikya/discovery/infrastructure.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "install.py",
+      "module": "aikya.installation.facade",
+      "implementation_path": "src/aikya/installation/facade.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "memory_store.py",
+      "module": "aikya.memory.store",
+      "implementation_path": "src/aikya/memory/store.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "methodology.py",
+      "module": "aikya.workflows.methodology",
+      "implementation_path": "src/aikya/workflows/methodology.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "model_capabilities.py",
+      "module": "aikya.routing.models",
+      "implementation_path": "src/aikya/routing/models.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "odd_engine.py",
+      "module": "aikya.workflows.odd",
+      "implementation_path": "src/aikya/workflows/odd.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "profile_builder.py",
+      "module": "aikya.discovery.profiles",
+      "implementation_path": "src/aikya/discovery/profiles.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "project_discovery.py",
+      "module": "aikya.discovery.scanner",
+      "implementation_path": "src/aikya/discovery/scanner.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "runtime_metrics.py",
+      "module": "aikya.middleware.metrics",
+      "implementation_path": "src/aikya/middleware/metrics.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "sdd_assets.py",
+      "module": "aikya.workflows.sdd.assets",
+      "implementation_path": "src/aikya/workflows/sdd/assets.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "sdd_engine.py",
+      "module": "aikya.workflows.sdd.engine",
+      "implementation_path": "src/aikya/workflows/sdd/engine.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "sdd_localization.py",
+      "module": "aikya.workflows.sdd.localization",
+      "implementation_path": "src/aikya/workflows/sdd/localization.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "sdd_templates.py",
+      "module": "aikya.workflows.sdd.templates",
+      "implementation_path": "src/aikya/workflows/sdd/templates.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "skills_registry.py",
+      "module": "aikya.catalogs.skills",
+      "implementation_path": "src/aikya/catalogs/skills.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "token_policy.py",
+      "module": "aikya.routing.policy",
+      "implementation_path": "src/aikya/routing/policy.py",
+      "physical_lines": 16
+    },
+    {
+      "root_file": "token_report.py",
+      "module": "aikya.routing.usage",
+      "implementation_path": "src/aikya/routing/usage.py",
+      "physical_lines": 16
+    }
+  ],
+  "other_root_files": [
+    {
+      "root_file": "_aikya_bootstrap.py",
+      "physical_lines": 39
+    },
+    {
+      "root_file": "setup.py",
+      "physical_lines": 34
+    }
+  ],
+  "module_map_entries": 56
+}
