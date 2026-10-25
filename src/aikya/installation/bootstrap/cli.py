@@ -17,7 +17,7 @@ def parser():
     for action in ('install', 'update', 'uninstall', 'doctor'):
         command = sub.add_parser(action)
         if action in ('install', 'update'):
-            command.add_argument('--version', required=True)
+            command.add_argument('--version', help='Release X.Y.Z; defaults to the latest published stable release')
             command.add_argument('--python', type=Path, default=Path(sys.executable))
             command.add_argument('--offline-dir', type=Path)
         if action != 'doctor':
@@ -41,7 +41,7 @@ def registration(python, scope, target, dry_run=False):
 
 
 def install(args, root, receipt_file):
-    download.validate_version(args.version)
+    args.version = download.resolve_version(args.version, args.offline_dir)
     environment.check_python(args.python)
     old = json.loads(receipt_file.read_text()) if receipt_file.exists() else None
     owned_locations = locations(args.scope, args.target)

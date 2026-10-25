@@ -21,14 +21,13 @@ recursos de terceros, instalar SDK o realizar operaciones externas.
 
 ## 1. Inicio rápido
 
-Los instaladores limpios están implementados en esta rama y se publicarán en la siguiente versión que incluya estos archivos. Utiliza su etiqueta en los ejemplos; no se modifican los archivos publicados de v7.0.0.
+Instala la **última versión estable publicada** sin clonar el repositorio ni indicar un número de versión. Estos instaladores estarán disponibles cuando se publique v7.0.1.
 
 **Linux y macOS** — requiere Python 3.10–3.13 con `venv`/pip:
 
 ```sh
-AIKYA_TAG="v<release-version>"
 curl --fail --location --proto '=https' --proto-redir '=https' \
-  "https://github.com/jlema0590/aikya-harness/releases/download/${AIKYA_TAG}/install.sh" \
+  "https://github.com/jlema0590/aikya-harness/releases/latest/download/install.sh" \
   -o install-aikya.sh
 sh ./install-aikya.sh --scope global
 # Registro de proyecto: sh ./install-aikya.sh --scope project --target /ruta/absoluta/al/proyecto
@@ -37,13 +36,12 @@ sh ./install-aikya.sh --scope global
 **Windows** — PowerShell 5.1+ o 7 y Python 3.10–3.13 con `venv`/pip:
 
 ```powershell
-$AikyaTag = 'v<release-version>'
-Invoke-WebRequest -Uri "https://github.com/jlema0590/aikya-harness/releases/download/$AikyaTag/install.ps1" -OutFile install-aikya.ps1
+Invoke-WebRequest -Uri 'https://github.com/jlema0590/aikya-harness/releases/latest/download/install.ps1' -OutFile install-aikya.ps1
 .\install-aikya.ps1 -Scope global
 # Registro de proyecto: .\install-aikya.ps1 -Scope project -Target 'C:\work\proyecto'
 ```
 
-Descarga y revisa el script antes de ejecutarlo. Verifica su bootstrap y el paquete de la versión, crea un entorno aislado y muestra la carpeta de comandos que puedes añadir al PATH de tu usuario. No requiere clonar el repositorio, permisos de administrador ni activar el entorno. Si falta Python, lo indica sin instalarlo ni modificar los gestores de paquetes del sistema o la política de ejecución.
+Descarga y revisa el script antes de ejecutarlo. Cada ejecución con conexión selecciona la última versión estable publicada en GitHub, incluso si reutilizas un script descargado anteriormente. Se excluyen los borradores y las versiones preliminares. Verifica su bootstrap y el paquete de la versión seleccionada, crea un entorno aislado y muestra la carpeta de comandos que puedes añadir al PATH de tu usuario. No requiere clonar el repositorio, permisos de administrador ni activar el entorno. Si falta Python, lo indica sin instalarlo ni modificar los gestores de paquetes del sistema o la política de ejecución.
 
 | Scope | Registro | Cuándo elegirlo |
 |---|---|---|
@@ -52,7 +50,9 @@ Descarga y revisa el script antes de ejecutarlo. Verifica su bootstrap y el paqu
 
 En ambos casos, la aplicación se instala por usuario. Este scope es independiente de `/aikya-analyze --scope <ruta-relativa>`, que selecciona una carpeta para analizar. Instalar no inicializa el proyecto ni selecciona ODD/SDD.
 
-Utiliza `aikya-manage doctor` para consultar el estado local, `aikya-manage update --version X.Y.Z --scope global` para actualizar a una versión explícita y `aikya-manage uninstall --scope global` para retirar los archivos de registro propios que no se hayan modificado. En scope project, añade `--target`. Para instalar sin conexión, descarga el wheel, `SHA256SUMS` y el bootstrap, y utiliza `--offline-dir` (`-OfflineDir` en Windows). Se conservan los archivos personalizados y los entornos referenciados por proyectos inicializados. En Windows, el bootstrap independiente permite completar la limpieza si el ejecutable de gestión está en uso.
+Utiliza `aikya-manage update --scope global` para actualizar a la última versión estable, `aikya-manage doctor` para consultar el estado local y `aikya-manage uninstall --scope global` para retirar los archivos de registro propios que no se hayan modificado. En scope project, añade `--target`. Para elegir una versión concreta, utiliza `--version X.Y.Z` en el instalador de Linux/macOS o en el gestor, o `-Version X.Y.Z` en Windows. Si falla la consulta de la última versión, la instalación se detiene sin recurrir a una versión anterior.
+
+Para instalar sin conexión, descarga el script de instalación, el wheel, `SHA256SUMS` y el bootstrap de una misma versión, y utiliza `--offline-dir` (`-OfflineDir` en Windows). El script utiliza su propia versión sin conexión; al ejecutar directamente el bootstrap o el gestor, también debes indicar `--version X.Y.Z`. Se conservan los archivos personalizados y los entornos referenciados por proyectos inicializados. En Windows, el bootstrap independiente permite completar la limpieza si el ejecutable de gestión está en uso.
 
 **Contribuidores:** desde una copia del código, crea un entorno virtual, instala `build`, `setuptools>=77` y `wheel`, y ejecuta `python -m pip install --no-build-isolation --no-deps -e .`. Utiliza `aikya`, `aikya-setup` o `python -m aikya`; se retiran las invocaciones de raíz como `python install.py`. Este procedimiento de desarrollo es independiente de la instalación mediante una versión publicada.
 

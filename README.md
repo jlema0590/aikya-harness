@@ -20,14 +20,13 @@ third-party downloads, SDK installation or external operations.
 
 ## 1. Quick start
 
-The clean installers are implemented on this branch and will be published with the next release containing these assets. Use that release tag below; existing v7.0.0 release assets are not changed.
+Install the **latest published stable release** without cloning the repository or entering a version number. These installers become available when v7.0.1 is published.
 
 **Linux and macOS** — Python 3.10–3.13 with `venv`/pip is required:
 
 ```sh
-AIKYA_TAG="v<release-version>"
 curl --fail --location --proto '=https' --proto-redir '=https' \
-  "https://github.com/jlema0590/aikya-harness/releases/download/${AIKYA_TAG}/install.sh" \
+  "https://github.com/jlema0590/aikya-harness/releases/latest/download/install.sh" \
   -o install-aikya.sh
 sh ./install-aikya.sh --scope global
 # Project registration: sh ./install-aikya.sh --scope project --target /absolute/path/to/project
@@ -36,13 +35,12 @@ sh ./install-aikya.sh --scope global
 **Windows** — PowerShell 5.1+ or 7 and Python 3.10–3.13 with `venv`/pip:
 
 ```powershell
-$AikyaTag = 'v<release-version>'
-Invoke-WebRequest -Uri "https://github.com/jlema0590/aikya-harness/releases/download/$AikyaTag/install.ps1" -OutFile install-aikya.ps1
+Invoke-WebRequest -Uri 'https://github.com/jlema0590/aikya-harness/releases/latest/download/install.ps1' -OutFile install-aikya.ps1
 .\install-aikya.ps1 -Scope global
 # Project registration: .\install-aikya.ps1 -Scope project -Target 'C:\work\project'
 ```
 
-Download and inspect the script before running it. It verifies its pinned bootstrap and the release wheel, creates an isolated application environment and prints the command directory to add to your user PATH. No Git clone, administrator privileges or environment activation is required. Missing Python prerequisites are reported; the installer does not install Python or change system package managers or execution policy.
+Download and inspect the script before running it. Each online run selects GitHub's latest published stable release, including when reusing a previously downloaded script. Drafts and prereleases are excluded. It verifies its pinned bootstrap and the selected release wheel, creates an isolated application environment and prints the command directory to add to your user PATH. No Git clone, administrator privileges or environment activation is required. Missing Python prerequisites are reported; the installer does not install Python or change system package managers or execution policy.
 
 | Scope | Registration | When to choose it |
 |---|---|---|
@@ -51,7 +49,9 @@ Download and inspect the script before running it. It verifies its pinned bootst
 
 Both scopes store the application per user. Scope is separate from `/aikya-analyze --scope <relative-path>`, which selects a directory to inspect. Installation does not initialize a project or choose ODD/SDD.
 
-Use `aikya-manage doctor` for local installation state, `aikya-manage update --version X.Y.Z --scope global` for an explicit release, and `aikya-manage uninstall --scope global` to remove unchanged owned registration assets. Add `--target` with project scope. For offline installation, download the release wheel, `SHA256SUMS` and bootstrap and pass `--offline-dir` (`-OfflineDir` on Windows). Edited assets are preserved; environments referenced by initialized projects are retained. On Windows, use the standalone bootstrap to finish cleanup of an in-use management executable.
+Use `aikya-manage update --scope global` to update to the latest stable release, `aikya-manage doctor` for local installation state, and `aikya-manage uninstall --scope global` to remove unchanged owned registration assets. Add `--target` with project scope. To select a specific release, pass `--version X.Y.Z` to the shell installer or manager, or `-Version X.Y.Z` to the Windows installer. A failed latest-release lookup stops installation without falling back to an older version.
+
+For offline installation, download one release's entry script, wheel, `SHA256SUMS` and bootstrap, then pass `--offline-dir` (`-OfflineDir` on Windows). The entry script uses its own release version offline; direct bootstrap/manager calls also require `--version X.Y.Z`. Edited assets are preserved; environments referenced by initialized projects are retained. On Windows, use the standalone bootstrap to finish cleanup of an in-use management executable.
 
 **Contributors:** from a source checkout, create a virtual environment, install `build`, `setuptools>=77` and `wheel`, then run `python -m pip install --no-build-isolation --no-deps -e .`. Use `aikya`, `aikya-setup` or `python -m aikya`; source-root scripts such as `python install.py` are retired. This contributor path is separate from the release installation above.
 

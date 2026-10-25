@@ -33,4 +33,8 @@ else
     echo 'An HTTPS downloader (curl or wget) is required.' >&2; exit 2
 fi
 "$selected_python" -I -B -c 'import hashlib,sys;expected=sys.argv[2];actual=hashlib.sha256(open(sys.argv[1],"rb").read()).hexdigest();sys.exit(0 if actual==expected else "Bootstrap integrity checksum mismatch")' "$payload" '@@BOOTSTRAP_SHA256@@'
-"$selected_python" -I -B "$payload" install --version '@@VERSION@@' --python "$selected_python" "$@"
+# Offline entry scripts retain their release pin; caller options may override it.
+if [ -n "$offline_dir" ]; then
+    set -- --version '@@VERSION@@' "$@"
+fi
+"$selected_python" -I -B "$payload" install --python "$selected_python" "$@"

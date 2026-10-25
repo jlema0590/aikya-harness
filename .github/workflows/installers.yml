@@ -53,6 +53,10 @@ jobs:
           name: ${{ inputs.artifact-name || format('aikya-installers-{0}', github.sha) }}
           path: installer-assets
       - run: python scripts/ci/installer_smoke.py --assets installer-assets --output installer-results.json
+      - name: Test latest selection and native entry script options
+        run: |
+          python -m pip install --no-deps --no-index --find-links installer-assets aikya-harness
+          python -m unittest discover -s tests -p test_latest_installer.py -v
       - uses: actions/upload-artifact@v4
         if: always()
         with:

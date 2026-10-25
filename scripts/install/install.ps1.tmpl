@@ -5,6 +5,7 @@ param(
     [string]$Target,
     [string]$Python,
     [string]$OfflineDir,
+    [string]$Version,
     [switch]$DryRun
 )
 $ErrorActionPreference = 'Stop'
@@ -33,7 +34,9 @@ try {
     else { Invoke-WebRequest -UseBasicParsing -Uri 'https://github.com/jlema0590/aikya-harness/releases/download/v@@VERSION@@/aikya-bootstrap.pyz' -OutFile $payload -TimeoutSec 120 }
     $actual = (Get-FileHash -LiteralPath $payload -Algorithm SHA256).Hash.ToLowerInvariant()
     if ($actual -ne '@@BOOTSTRAP_SHA256@@') { throw 'Bootstrap integrity checksum mismatch' }
-    $arguments = @('-I','-B',$payload,'install','--version','@@VERSION@@','--scope',$Scope)
+    $arguments = @('-I','-B',$payload,'install','--scope',$Scope)
+    if ($Version) { $arguments += @('--version',$Version) }
+    elseif ($OfflineDir) { $arguments += @('--version','@@VERSION@@') }
     if ($Target) { $arguments += @('--target',$Target) }
     if ($Python) { $arguments += @('--python',$Python) }
     if ($OfflineDir) { $arguments += @('--offline-dir',$OfflineDir) }

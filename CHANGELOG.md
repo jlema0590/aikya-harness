@@ -2,11 +2,16 @@
 
 ## Unreleased
 
+## v7.0.1 — 2026-10-25
+
+- Select the latest published stable GitHub release by default for clean installation and updates on Linux, macOS and Windows. Resolve the release once before downloading version-pinned, SHA-256-verified assets; reject malformed metadata, drafts, prereleases and failed lookups without provisioning or silently falling back.
+- Simplify both README quick starts with permanent latest-release download links. Keep optional numeric version selection (`--version` / PowerShell `-Version`), explicit registration scopes and deterministic offline installation using the entry script's release version.
+- Add release-selection and executable entry-script regressions to native installer CI; retain standalone bootstrap integrity and existing installation ownership/recovery controls.
 - Generate installed compatibility adapters from one validated mapping/template and remove 51 obsolete source-root launchers, the root bootstrap and five prebuilt helper copies. Keep installed filenames and source `setup.py`; repository consumers use canonical package APIs and commands.
-- Add a standard-library clean installer with version-pinned Linux/macOS and Windows entry scripts, isolated per-user environments, SHA-256 release verification, explicit global/project registration, offline installation, diagnostic state, serialized updates and ownership-aware uninstall.
+- Add a standard-library clean installer with Linux/macOS and Windows entry scripts, version-pinned bootstrap integrity, isolated per-user environments, SHA-256 release verification, explicit global/project registration, offline installation, diagnostic state, serialized updates and ownership-aware uninstall.
 - Retain interpreters referenced by initialized projects and record generated settings deltas without copying unrelated user credentials. Preserve edited files, custom hooks and project documentation during recovery/removal.
 - Render managed startup, observer, project hooks and statusline invocations with the chosen Python and platform quoting. Keep ODD/SDD choices and the 27 slash commands intact.
-- Extend release artifacts with wheel/sdist, standalone bootstrap and pinned scripts; verify immutable asset recovery and gate publication on native and Linux distribution installer jobs. Update English/Spanish installation and contributor instructions. Scripts become downloadable only after a future authorized release publishes them.
+- Extend release artifacts with wheel/sdist, standalone bootstrap and platform scripts; verify immutable asset recovery and gate publication on native and Linux distribution installer jobs. Update English/Spanish installation and contributor instructions. Scripts become downloadable when v7.0.1 is published.
 
 ## v7.0.0 — 2026-10-24
 

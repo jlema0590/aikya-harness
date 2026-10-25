@@ -1,4 +1,4 @@
-"""Build one deterministic stdlib zipapp and version-pinned platform scripts."""
+"""Build deterministic platform installers with pinned bootstrap integrity."""
 import argparse
 import hashlib
 from pathlib import Path

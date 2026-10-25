@@ -1,12 +1,14 @@
 """Bounded release downloads and strict SHA-256 manifests; no package indexes."""
 import hashlib
+import json
 from pathlib import Path
 import re
 from urllib.parse import urlsplit
 from urllib.request import HTTPRedirectHandler, build_opener
 
 REPOSITORY = 'https://github.com/jlema0590/aikya-harness'
-HOSTS = {'github.com', 'release-assets.githubusercontent.com', 'objects.githubusercontent.com'}
+HOSTS = {'github.com', 'api.github.com', 'release-assets.githubusercontent.com', 'objects.githubusercontent.com'}
+LATEST_RELEASE = 'https://api.github.com/repos/jlema0590/aikya-harness/releases/latest'
 LIMIT = 100 * 1024 * 1024
 
 
@@ -14,6 +16,22 @@ def validate_version(version):
     if not re.fullmatch(r'(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)', version):
         raise ValueError('Select an explicit numeric release version, for example 7.0.0')
     return version
+
+
+def resolve_version(version, offline_dir=None):
+    """Resolve latest once; all subsequent assets use the selected numeric version."""
+    if version not in (None, 'latest'):
+        return validate_version(version)
+    if offline_dir is not None:
+        raise ValueError('Offline installation requires --version X.Y.Z')
+    release = json.loads(https_bytes(LATEST_RELEASE, 1024 * 1024))
+    if (not isinstance(release, dict) or release.get('draft') is not False
+            or release.get('prerelease') is not False or not release.get('published_at')):
+        raise ValueError('Latest release metadata must describe a published stable release')
+    tag = release.get('tag_name')
+    if not isinstance(tag, str) or not tag.startswith('v'):
+        raise ValueError('Latest release requires a stable vX.Y.Z tag')
+    return validate_version(tag[1:])
 
 
 def validate_url(url):
