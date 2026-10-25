@@ -25,6 +25,7 @@ agent-loop = ["claude-agent-sdk==0.2.173"]
 [project.scripts]
 aikya = "aikya.cli.main:main"
 aikya-setup = "aikya.installation.registration:main"
+aikya-manage = "aikya.installation.bootstrap.cli:main"
 
 [project.urls]
 Repository = "https://github.com/jlema0590/aikya-harness"

@@ -2,7 +2,7 @@
 import asyncio,sys,tempfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
-from agent_runtime import sdk_options
+from aikya.core.runtime import sdk_options
 async def check():
  with tempfile.TemporaryDirectory() as tmp:
   root=Path(tmp);events=[];acknowledged=[]

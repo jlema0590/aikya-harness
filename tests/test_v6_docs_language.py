@@ -6,10 +6,10 @@ import tempfile
 import unittest
 from pathlib import Path
 
-import install
-from aikya_analyze import execute
-from doc_bootstrap import pages
-from docs_language import POLICY_FILE, read, resolve, validate, write_approved
+from aikya.installation import facade as install
+from aikya.discovery.analyze import execute
+from aikya.documentation.bootstrap import pages
+from aikya.documentation.language import POLICY_FILE, read, resolve, validate, write_approved
 
 ROOT = Path(__file__).resolve().parents[1]
 

@@ -1,4 +1,5 @@
 """Aikya 6.0.0 SDD: state-machine, traceability, safety and installation tests."""
+import runtime_support
 import json
 import os
 import subprocess
@@ -9,10 +10,10 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
-import sdd_engine as sdd
-import install
-import aikya_setup
-import doc_bootstrap
+from aikya.workflows.sdd import engine as sdd
+from aikya.installation import facade as install
+from aikya.installation import registration as aikya_setup
+from aikya.documentation import bootstrap as doc_bootstrap
 
 class Sdd60Tests(unittest.TestCase):
     def setUp(self):
@@ -226,7 +227,7 @@ class Sdd60Tests(unittest.TestCase):
 
     def test_sdd_blocks_infrastructure_without_approved_tasks(self):
         import importlib.util
-        spec=importlib.util.spec_from_file_location("sdd_infra_gate",
+        spec=runtime_support.module_spec("sdd_infra_gate",
              ROOT/'src/aikya/resources/project_template/scripts/harness/infrastructure.py')
         module=importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module);module=getattr(module,'_module',module)
@@ -250,7 +251,7 @@ class Sdd60Tests(unittest.TestCase):
 
     def test_sdd_blocks_scaffold_until_tasks_approved(self):
         import importlib.util
-        spec=importlib.util.spec_from_file_location("sdd_scaffold_gate",
+        spec=runtime_support.module_spec("sdd_scaffold_gate",
              ROOT/'src/aikya/resources/project_template/scripts/harness/scaffold.py')
         module=importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module);module=getattr(module,'_module',module)

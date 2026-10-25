@@ -10,7 +10,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-import aikya_setup
+from aikya.installation import registration as aikya_setup
 
 GALLERY = 'examples/documentation/generated'
 

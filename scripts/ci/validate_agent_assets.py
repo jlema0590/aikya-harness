@@ -8,8 +8,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT))
-from _aikya_bootstrap import activate
-activate()
 from aikya.resource_paths import source_path
 NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 ALLOWED_MODELS = {"inherit", "opus", "sonnet", "haiku"}

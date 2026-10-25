@@ -50,7 +50,7 @@ def prepare_bundle(runtime, source, kind, *, methodology=None):
         if destination.exists() and not destination.is_file():
             raise ValueError('Non-regular runtime destination: ' + name)
         old = destination.read_bytes() if destination.exists() else None
-        new = runtime_asset_bytes(asset.destination, asset.source.read_bytes())
+        new = runtime_asset_bytes(asset.destination, asset.read_bytes())
         if old == new:
             action = 'KEEP'
         elif old is None:
@@ -59,9 +59,9 @@ def prepare_bundle(runtime, source, kind, *, methodology=None):
             record = ASSETS.get('aikya/scripts/harness/' + name, {})
             trusted = set(predecessors.get(name, [])) | set(record.get('variants', {})) | set(TRUSTED.get('aikya/scripts/harness/' + name, []))
             trusted.update(x for x in (previous.get(name), record.get('sha256')) if isinstance(x, str))
-            if digest(old) in trusted or old == asset.source.read_bytes():
+            if digest(old) in trusted or old == asset.read_bytes():
                 action = 'UPDATE'
-            elif asset.kind == 'package' or name in ('_aikya_bootstrap.py','aikya_cli.py','install.py','aikya_setup.py','agent_runtime.py') or name.startswith(('aikya-template/', 'sdd-templates/')):
+            elif asset.kind == 'package' or name in ('_aikya_bootstrap.py','aikya_cli.py','install.py','aikya_setup.py','agent_runtime.py') or name.startswith(('aikya-template/', 'sdd-templates/', 'compatibility/')):
                 raise ValueError('Customized coupled runtime requires review before upgrade: ' + name)
             else:
                 action = 'PRESERVE'
@@ -70,13 +70,13 @@ def prepare_bundle(runtime, source, kind, *, methodology=None):
             raise ValueError('Conflicting runtime package backup: ' + name)
         legacy_backup = None
         if action == 'UPDATE' and kind == 'initialized':
-            if asset.destination.suffix == '.md' and old == asset.source.read_bytes() and old != new:
+            if asset.destination.suffix == '.md' and old == asset.read_bytes() and old != new:
                 legacy_backup = safe_path(runtime.parents[2], '.harness/backup-docs-layout/runtime/aikya/scripts/harness/' + name)
             if name == 'aikya_requirements.py' and digest(old) in predecessors.get('v56_aikya_requirements.py', []):
                 legacy_backup = safe_path(runtime.parents[2], '.harness/backup-v56/aikya_requirements.py')
             if legacy_backup is not None and legacy_backup.exists() and legacy_backup.read_bytes() != old:
                 raise ValueError('Conflicting legacy runtime backup')
-        operations.append({'path': destination, 'relative': name, 'source': asset.source, 'source_hash': digest(asset.source.read_bytes()), 'kind': asset.kind, 'old': old, 'new': new, 'backup': backup, 'legacy_backup': legacy_backup, 'action': action})
+        operations.append({'path': destination, 'relative': name, 'source': asset, 'source_hash': asset.source_digest(), 'kind': asset.kind, 'old': old, 'new': new, 'backup': backup, 'legacy_backup': legacy_backup, 'action': action})
     operations.extend(retired_template_assets(runtime, source, previous))
     return operations
 
@@ -115,7 +115,7 @@ def apply_bundle(runtime, operations, actions):
     # Revalidate the complete batch before activating any new adapter.
     for op in operations:
         path = safe_path(runtime, op['relative'])
-        if (path.read_bytes() if path.exists() else None) not in (op['old'],op['new']) or (op['source'] is not None and digest(op['source'].read_bytes()) != op['source_hash']):
+        if (path.read_bytes() if path.exists() else None) not in (op['old'],op['new']) or (op['source'] is not None and op['source'].source_digest() != op['source_hash']):
             raise ValueError('Runtime changed after package preflight: ' + op['relative'])
     changed = []
     try:

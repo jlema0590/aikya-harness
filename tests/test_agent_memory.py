@@ -4,7 +4,7 @@ from pathlib import Path
 from agent_loop_support import project
 class MemoryTests(unittest.TestCase):
  def module(self):
-  self.assertIsNotNone(importlib.util.find_spec('agent_memory'),'Missing selective project memories');return importlib.import_module('agent_memory')
+  self.assertIsNotNone(importlib.util.find_spec('aikya.memory.knowledge'),'Missing selective project memories');return importlib.import_module('aikya.memory.knowledge')
  def test_recall_is_budgeted_current_and_isolated_between_projects(self):
   m=self.module()
   with tempfile.TemporaryDirectory() as tmp:
@@ -31,7 +31,7 @@ class MemoryTests(unittest.TestCase):
 
 class MemoryMalformedTests(unittest.TestCase):
  def test_nan_memory_times_are_rejected_instead_of_becoming_immortal(self):
-  import agent_memory
+  from aikya.memory import knowledge as agent_memory
   with tempfile.TemporaryDirectory() as tmp:
    root=project(tmp)
    with self.assertRaises(ValueError):agent_memory.remember(root,{'kind':'project','text':'Value lookup policy.','source':'src/value.py','ttl_days':1},approved=True,now=float('nan'))

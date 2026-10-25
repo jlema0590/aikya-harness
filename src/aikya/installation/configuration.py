@@ -1,6 +1,8 @@
 """Focused installer configuration responsibilities."""
 from __future__ import annotations
 import json
+import sys
+from pathlib import Path
 import shutil
 from aikya.discovery.infrastructure import selected as selected_infrastructure
 from aikya.installation.context import InstallationPlan
@@ -85,8 +87,10 @@ def configure_project(plan:InstallationPlan,actions:list[str])->None:
     else:
         actions.append('PRESERVED existing settings.json during adoption')
     from aikya.middleware.configuration import register_visibility
-    observer='python3 -B "${CLAUDE_PROJECT_DIR}/aikya/scripts/harness/execution_observer.py" hook'
-    bar='python3 -B "${CLAUDE_PROJECT_DIR}/aikya/scripts/harness/aikya_statusline.py"'
+    from aikya.installation.hook_commands import render_managed_hook, status_command, host_shell
+    python = Path(sys.executable).absolute()
+    observer = render_managed_hook(python, target / 'aikya/scripts/harness/execution_observer.py', ('hook',), host_shell())
+    bar = status_command(python, target / 'aikya/scripts/harness/aikya_statusline.py')
     register_visibility(target/'.claude/settings.json',observer,bar,actions,target/'.aikya/visibility-proposed.json')
     claude = target / 'CLAUDE.md'
     if not claude.exists():

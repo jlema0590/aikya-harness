@@ -1,4 +1,5 @@
 """Regresiones v5.7: Node, infraestructura selectiva, generación segura y migración."""
+import runtime_support
 import importlib.util
 import json
 import subprocess
@@ -11,13 +12,13 @@ from unittest.mock import patch
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
-import aikya_requirements
-import infrastructure_profile
-import install
-import engineering_catalog
+from aikya.installation import requirements as aikya_requirements
+from aikya.discovery import infrastructure as infrastructure_profile
+from aikya.installation import facade as install
+from aikya.catalogs import engineering as engineering_catalog
 
 def load(file,name):
-    spec=importlib.util.spec_from_file_location(name,file)
+    spec=runtime_support.module_spec(name,file)
     module=importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module);module=getattr(module,'_module',module)
     return getattr(module, '_module', module)
@@ -173,7 +174,7 @@ class V57Tests(unittest.TestCase):
             target.parent.mkdir(parents=True)
             target.write_bytes(older.read_bytes())
             install.install(root,p,{'modules':[],'findings':[]})
-            self.assertEqual((ROOT/'aikya_requirements.py').read_bytes(),target.read_bytes())
+            self.assertEqual(runtime_support.generated_bytes('aikya_requirements.py'),target.read_bytes())
             self.assertEqual(older.read_bytes(),(root/'.harness/backup-v56/aikya_requirements.py').read_bytes())
         with tempfile.TemporaryDirectory() as d:
             root=Path(d);p=self.profile(root)

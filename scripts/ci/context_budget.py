@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """CI entry point for the static instruction-size proxy."""
-from pathlib import Path
+import runpy
 import sys
-sys.dont_write_bytecode=True
-sys.path.insert(0,str(Path(__file__).resolve().parents[2]))
-from _aikya_bootstrap import run
-run('aikya.quality.context_budget',entry_file=__file__)
+sys.dont_write_bytecode = True
+if __name__ == '__main__':
+    runpy.run_module('aikya.quality.context_budget', run_name='__main__')

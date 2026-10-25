@@ -10,9 +10,9 @@ def main(argv=None):
     a=p.parse_args(argv)
     if not a.live or not a.approved:p.error('Both --live and --approved are required; there is no automatic model invocation')
     if a.output and (a.output.exists() or a.output.is_symlink() or not a.output.parent.is_dir()):p.error('Report destination must be a new file in an existing directory')
-    from agent_runtime import ProcessRuntime
-    from agent_loop import run,validated
-    import odd_engine
+    from aikya.core.runtime import ProcessRuntime
+    from aikya.core.loop import run,validated
+    from aikya.workflows import odd as odd_engine
     runtime=ProcessRuntime()
     if not runtime.available():print(json.dumps({'status':'blocked','reason':'optional_sdk_missing'}));return 4
     with tempfile.TemporaryDirectory(prefix='aikya-live-loop-') as tmp:

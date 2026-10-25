@@ -14,11 +14,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT))
-from _aikya_bootstrap import activate
-activate()
 from aikya.resource_paths import source_path
 sys.path.insert(0,str(ROOT))
-from docs_layout import stamp
+from aikya.documentation.layout import stamp
 
 
 def main() -> int:

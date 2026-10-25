@@ -3,9 +3,9 @@ import hashlib,json,sys,tempfile,unittest
 from pathlib import Path
 from unittest.mock import patch
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
-import aikya_setup
-from command_workflows import recipe
-from documentation_workflows import select
+from aikya.installation import registration as aikya_setup
+from aikya.middleware.commands import recipe
+from aikya.documentation.composition import select
 RENAMES={'aikya-project-init':'aikya-project','aikya-infra-project':'aikya-infra','aikya-architecture-review':'aikya-arc-review','aikya-documentation-sync':'aikya-docs-sync','aikya-skills-install':'aikya-install-skill'}
 class CommandRenameTests(unittest.TestCase):
  def test_new_names_are_executable_recipes_and_old_names_are_not_registered(self):
@@ -34,7 +34,7 @@ class CommandRenameTests(unittest.TestCase):
     aikya_setup.setup(ROOT,root,scope,home=home)
     self.assertEqual(before,{p.relative_to(skills).as_posix():p.read_bytes() for p in skills.rglob('SKILL.md')})
  def test_project_installer_never_recreates_the_retired_public_aliases(self):
-  import install
+  from aikya.installation import facade as install
   with tempfile.TemporaryDirectory() as tmp:
    root=Path(tmp);raw=json.loads((ROOT/'examples/next-react/answers.json').read_text());profile=install.validated(raw,root)
    install.install(root,profile,{'modules':[],'findings':[]},docs_lang='en')

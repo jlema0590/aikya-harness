@@ -10,7 +10,7 @@ class OddEngineTests(unittest.TestCase):
    'tasks':[{'id':'TASK-001','description':'Document lookup.','acceptance':['AC-01'],'depends_on':[],'files':['src/lookup.py'],'checks':['synthetic lookup check']},
             {'id':'TASK-002','description':'Review lookup fixture.','acceptance':['AC-01'],'depends_on':['TASK-001'],'files':['tests/test_lookup.py'],'checks':['synthetic review check']}]}
  def mod(self):
-  self.assertIsNotNone(importlib.util.find_spec('odd_engine'),'Missing durable ODD engine');return importlib.import_module('odd_engine')
+  self.assertIsNotNone(importlib.util.find_spec('aikya.workflows.odd'),'Missing durable ODD engine');return importlib.import_module('aikya.workflows.odd')
  def prepare(self):return self.mod().prepare_feature(self.root,'lookup',self.payload,approved=True)
  def evidence(self):
   path=self.root/'checks/fixture.log';path.parent.mkdir(exist_ok=True);path.write_text('Synthetic fixture evidence; no application command executed.');return 'checks/fixture.log'

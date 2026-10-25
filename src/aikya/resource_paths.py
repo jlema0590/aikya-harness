@@ -11,17 +11,18 @@ PREFIXES = {
     'engineering': 'engineering', 'sdd-templates': 'sdd_templates',
     'claude-templates': 'claude_templates',
     'aikya-template': 'aikya-template', 'migrations': 'migrations',
+    'compatibility': 'compatibility',
 }
 
 
 def package_root() -> Path:
-    return Path(str(files('aikya')))
+    return Path(str(files('aikya'))).resolve()
 
 
 def source_root() -> Path:
     package = package_root()
     candidate = package.parent.parent
-    if package.parent.name == 'src' and (candidate / '_aikya_bootstrap.py').is_file():
+    if package.parent.name == 'src' and (package / 'module_map.json').is_file():
         return candidate
     return package / 'resources/distribution'
 

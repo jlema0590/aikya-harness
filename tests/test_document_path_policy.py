@@ -1,4 +1,5 @@
 """New generated plans, bugs and features must stay in the canonical docs tree."""
+import runtime_support
 import importlib.util
 from pathlib import Path
 import sys
@@ -7,11 +8,11 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-import docs_layout
+from aikya.documentation import layout as docs_layout
 
 
 def guard(root):
-    spec = importlib.util.spec_from_file_location('path_policy_guard', ROOT / 'src/aikya/resources/project_template/scripts/harness/docs_guard.py')
+    spec = runtime_support.module_spec('path_policy_guard', ROOT / 'src/aikya/resources/project_template/scripts/harness/docs_guard.py')
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module);module=getattr(module,'_module',module)
     module = getattr(module, '_module', module)
@@ -22,7 +23,7 @@ def guard(root):
 
 class DocumentPathPolicy(unittest.TestCase):
     def test_managed_runtime_templates_are_assets_not_misplaced_living_records(self):
-        import install
+        from aikya.installation import facade as install
         import json
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)

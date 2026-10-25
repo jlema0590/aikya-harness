@@ -4,7 +4,7 @@ from pathlib import Path
 from agent_loop_support import project,runtime
 class RuntimeTests(unittest.TestCase):
  def module(self):
-  self.assertIsNotNone(importlib.util.find_spec('agent_runtime'),'Missing optional runtime adapter');return importlib.import_module('agent_runtime')
+  self.assertIsNotNone(importlib.util.find_spec('aikya.core.runtime'),'Missing optional runtime adapter');return importlib.import_module('aikya.core.runtime')
  def test_tools_are_denied_outside_the_reviewed_file_set_and_during_review(self):
   m=self.module()
   with tempfile.TemporaryDirectory() as tmp:

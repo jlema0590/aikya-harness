@@ -5,13 +5,13 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-import aikya_cli
-import install
-from aikya_analyze import execute
-from project_discovery import scan, safe_scope
-from profile_builder import build
-from token_policy import HAIKU_45
-from aikya_router import route
+from aikya.cli import main as aikya_cli
+from aikya.installation import facade as install
+from aikya.discovery.analyze import execute
+from aikya.discovery.scanner import scan, safe_scope
+from aikya.discovery.profiles import build
+from aikya.routing.policy import HAIKU_45
+from aikya.routing.router import route
 
 class AnalyzeV6Tests(unittest.TestCase):
     def test_analysis_only_router_suggests_frontend_security_and_docker(self):

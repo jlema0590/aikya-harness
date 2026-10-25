@@ -1,0 +1,40 @@
+#!/bin/sh
+# Aikya @@VERSION@@; generated from the reviewed release commit.
+set -eu
+case "$(uname -s)" in Linux|Darwin) ;; *) echo 'Use install.ps1 on native Windows.' >&2; exit 2;; esac
+selected_python=''
+offline_dir=''
+previous=''
+for argument in "$@"; do
+    case "$previous" in --python) selected_python="$argument";; --offline-dir) offline_dir="$argument";; esac
+    previous="$argument"
+done
+probe='import sys,venv,ensurepip;sys.exit(0 if (3,10)<=sys.version_info[:2]<=(3,13) else 2)'
+if [ -n "$selected_python" ]; then
+    "$selected_python" -I -B -c "$probe" || { echo 'Python 3.10–3.13 with venv/ensurepip is required.' >&2; exit 2; }
+else
+    for candidate in python3.13 python3.12 python3.11 python3.10 python3 python; do
+        if command -v "$candidate" >/dev/null 2>&1 && "$candidate" -I -B -c "$probe" >/dev/null 2>&1; then
+            selected_python="$(command -v "$candidate")"; break
+        fi
+    done
+fi
+[ -n "$selected_python" ] || { echo 'Install Python 3.10–3.13 with venv/ensurepip first.' >&2; exit 2; }
+stage="$(mktemp -d "${TMPDIR:-/tmp}/aikya-install.XXXXXXXX")"
+trap 'rm -rf "$stage"' EXIT HUP INT TERM
+payload="$stage/aikya-bootstrap.pyz"
+if [ -n "$offline_dir" ]; then
+    cp "$offline_dir/aikya-bootstrap.pyz" "$payload"
+elif command -v curl >/dev/null 2>&1; then
+    curl --fail --silent --show-error --location --proto '=https' --proto-redir '=https' --connect-timeout 15 --max-time 120 'https://github.com/jlema0590/aikya-harness/releases/download/v@@VERSION@@/aikya-bootstrap.pyz' -o "$payload"
+elif command -v wget >/dev/null 2>&1; then
+    wget --https-only --timeout=30 --tries=1 -q 'https://github.com/jlema0590/aikya-harness/releases/download/v@@VERSION@@/aikya-bootstrap.pyz' -O "$payload"
+else
+    echo 'An HTTPS downloader (curl or wget) is required.' >&2; exit 2
+fi
+"$selected_python" -I -B -c 'import hashlib,sys;expected=sys.argv[2];actual=hashlib.sha256(open(sys.argv[1],"rb").read()).hexdigest();sys.exit(0 if actual==expected else "Bootstrap integrity checksum mismatch")' "$payload" '@@BOOTSTRAP_SHA256@@'
+# Offline entry scripts retain their release pin; caller options may override it.
+if [ -n "$offline_dir" ]; then
+    set -- --version '@@VERSION@@' "$@"
+fi
+"$selected_python" -I -B "$payload" install --python "$selected_python" "$@"

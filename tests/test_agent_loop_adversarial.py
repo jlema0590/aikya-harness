@@ -2,7 +2,7 @@
 import copy,json,math,os,subprocess,sys,tempfile,threading,time,unittest
 from pathlib import Path
 from agent_loop_support import ROOT,project,config,runtime
-import agent_loop,agent_loop_state as state
+from aikya.core import loop as agent_loop; from aikya.core import checkpoints as state
 class AdversarialLoopTests(unittest.TestCase):
  def test_numeric_and_structural_fuzz_inputs_never_start_an_executor(self):
   cases=[]
@@ -32,7 +32,7 @@ class AdversarialLoopTests(unittest.TestCase):
    with self.assertRaises(ValueError):state.load(root,result['run_id'])
    self.assertEqual('{}',outside.read_text())
  def test_sdd_unapproved_work_cannot_run_and_loop_never_approves_stages(self):
-  import sdd_engine as sdd
+  from aikya.workflows.sdd import engine as sdd
   with tempfile.TemporaryDirectory() as tmp:
    root=project(tmp,method='sdd');spec={'id':'SPEC-001','title':'Fixture value','objective':'Set one','requirements':[{'id':'REQ-001','description':'Value equals one','acceptance':['Value is one']}],'nonfunctional':[],'questions':[]}
    sdd.initialize(root,spec);raw={**config(),'work_id':'SPEC-001','command':'aikya-implement'}
@@ -70,7 +70,7 @@ class AdversarialLoopTests(unittest.TestCase):
 
 class MethodologyMatrixTests(unittest.TestCase):
  def test_all_project_types_locales_and_methodologies_keep_their_original_gates(self):
-  import sdd_engine as sdd
+  from aikya.workflows.sdd import engine as sdd
   for kind in ('development','infrastructure','devops'):
    for locale in ('en','es'):
     for method in ('odd','sdd'):

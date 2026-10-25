@@ -1,6 +1,7 @@
 """Focused installer migrations responsibilities."""
 from __future__ import annotations
 from aikya.resource_paths import source_path
+from aikya.installation.assets import resolve_runtime_asset
 import hashlib
 import json
 import shutil
@@ -67,8 +68,8 @@ def documentation_runtime_plan(target: Path, *, context: InstallerContext=None) 
     operations=[]
     for relative,record in ASSETS.items():
         if relative=='CLAUDE.md':continue  # Existing repository instructions stay owner-controlled.
-        destination=target/relative;source=source_path(HERE,record['source'])
-        if not source.is_file():continue
+        destination=target/relative;source=resolve_runtime_asset(HERE,record['source'])
+        if source.source is not None and not source.source.is_file():continue
         if any(p.is_symlink() for p in (destination,*destination.parents) if p==target or target in p.parents):
             operations.append({'path':relative,'action':'BLOCKED','reason':'Symlinked runtime asset'});continue
         if not destination.is_file():continue
@@ -98,7 +99,7 @@ def upgrade_documentation_runtime(target: Path, actions: list[str], *, context: 
     operations=documentation_runtime_plan(target, context=context)
     if any(op['action']=='BLOCKED' for op in operations):raise ValueError('Unsafe runtime update: '+json.dumps(operations))
     for op in operations:
-        destination=target/op['path'];source=source_path(HERE,op['source']);backup=target/op['backup']
+        destination=target/op['path'];source=resolve_runtime_asset(HERE,op['source']);backup=target/op['backup']
         backup.parent.mkdir(parents=True,exist_ok=True)
         if not backup.exists():shutil.copy2(destination,backup)
         destination.write_bytes(asset_bytes(destination,source.read_bytes(),suffix=op.get('suffix','')))

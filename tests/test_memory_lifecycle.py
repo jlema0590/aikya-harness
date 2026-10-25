@@ -3,7 +3,7 @@ import json, os, shutil, tempfile, unittest
 from pathlib import Path
 from unittest.mock import patch
 from agent_loop_support import project
-import agent_memory as memory
+from aikya.memory import knowledge as memory
 
 
 def raw(scope='project'):
@@ -69,8 +69,8 @@ class LifecycleTests(unittest.TestCase):
             self.assertIn('stable value',memory.recall(root,'stable value',4000))
 
     def test_legacy_notes_require_review_before_binding_to_a_checkout(self):
-        import agent_loop_state as state
-        from docs_layout import write_document
+        from aikya.core import checkpoints as state
+        from aikya.documentation.layout import write_document
         with tempfile.TemporaryDirectory() as tmp:
             root=project(tmp);text='Use a stable value lookup.'
             ident=state.sha({'kind':'feedback','text':text,'source':'src/value.py'})[:24]
@@ -81,7 +81,7 @@ class LifecycleTests(unittest.TestCase):
             self.assertIn(text,memory.recall(root,'value',4000,now=20))
 
     def test_interrupted_migration_is_explicitly_retryable_and_keeps_a_receipt(self):
-        import durable_io
+        from aikya import storage as durable_io
         with tempfile.TemporaryDirectory() as tmp:
             root=project(tmp);note=memory.remember(root,raw(),approved=True)
             memory.remember(root,{**raw(),'text':'A second stable lookup decision.'},approved=True)
@@ -93,7 +93,7 @@ class LifecycleTests(unittest.TestCase):
                     counter[0]+=1
                     if counter[0]==2:raise OSError('simulated second note interruption')
                 return original(path,body,**kwargs)
-            with patch('durable_io.atomic_write',side_effect=fail_second):
+            with patch('aikya.storage.atomic_write',side_effect=fail_second):
                 with self.assertRaises(OSError):memory.migrate(moved,prior,approved=True)
             memory.migrate(moved,prior,approved=True)
             self.assertEqual(2,len(list((moved/'aikya/docs/memory').glob('[a-f0-9]'*24+'.md'))))
@@ -102,7 +102,7 @@ class LifecycleTests(unittest.TestCase):
 
 class DurableWriteTests(unittest.TestCase):
     def test_memory_and_documents_use_fsync_and_failed_replace_keeps_original(self):
-        import docs_layout
+        from aikya.documentation import layout as docs_layout
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp);target=root/'note.md';target.write_text('original')
             with patch('os.fsync',wraps=os.fsync) as sync:

@@ -7,8 +7,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'src/aikya/resources/project_template/scripts/harness'))
 sys.path.insert(0, str(ROOT))
 
-from docs_guard import kind_from_prompt
-from context_budget import estimate
+from aikya.documentation.guard import kind_from_prompt
+from aikya.quality.context_budget import estimate
 
 class V6ContextTests(unittest.TestCase):
     def test_false_positive_substrings(self):

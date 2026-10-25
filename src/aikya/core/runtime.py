@@ -1,7 +1,6 @@
 """Optional Claude SDK worker with scoped tools and a bounded subprocess protocol."""
 from __future__ import annotations
 from aikya.core.permissions import settings_paths,settings_fingerprints,tool_path,tool_allowed
-from aikya.resource_paths import source_root
 import importlib.util,json,os,selectors,signal,subprocess,sys,time,uuid
 from pathlib import Path
 from aikya.core.checkpoints import safe_file
@@ -17,7 +16,11 @@ from aikya.core.checkpoints import safe_file
 
 class ProcessRuntime:
     def __init__(self,command=None,env=None):
-        self.command=command or [sys.executable,'-B',str(source_root()/'agent_runtime.py'),'worker']
+        # A registered copy may not be installed in this interpreter. Pin the
+        # child to the same package, ignoring project/PYTHONPATH import shadows.
+        package_parent=str(Path(__file__).resolve().parents[2])
+        bootstrap='import runpy,sys;sys.path.insert(0,sys.argv.pop(1));runpy.run_module("aikya.core.runtime",run_name="__main__")'
+        self.command=command or [sys.executable,'-I','-B','-c',bootstrap,package_parent,'worker']
         self.env=env or {};self.is_sdk=command is None
     def available(self):return not self.is_sdk or importlib.util.find_spec('claude_agent_sdk') is not None
     def execute(self,request,on_event,cancel=lambda:False):

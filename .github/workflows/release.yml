@@ -18,7 +18,7 @@ jobs:
     name: Verify release contract, tests and catalog
     if: github.repository == 'jlema0590/aikya-harness' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     outputs:
       release_tag: ${{ steps.contract.outputs.release_tag }}
     steps:
@@ -29,6 +29,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Install contributor package and build tools
+        run: |
+          python -m pip install 'setuptools>=77' wheel build
+          python -m pip install --no-build-isolation --no-deps -e .
       - name: Validate VERSION, changelog and tags
         id: contract
         run: python scripts/ci/release_contract.py check --github-output "$GITHUB_OUTPUT"
@@ -45,7 +49,7 @@ jobs:
           python scripts/ci/smoke_profiles.py
 
   package:
-    name: Build source archive and checksum
+    name: Build installable release artifacts
     needs: verify
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -59,6 +63,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Install contributor package and build tools
+        run: |
+          python -m pip install 'setuptools>=77' wheel build
+          python -m pip install --no-build-isolation --no-deps -e .
       - name: Create source ZIP and notes
         shell: bash
         env:
@@ -69,7 +77,9 @@ jobs:
           python scripts/ci/release_contract.py notes --output dist/RELEASE_NOTES.md
           git archive --format=zip --prefix=aikya-harness/ \
             --output="dist/aikya-harness-$RELEASE_TAG.zip" "$GITHUB_SHA"
-          (cd dist && sha256sum "aikya-harness-$RELEASE_TAG.zip" > SHA256SUMS)
+          python -m build --no-isolation
+          python scripts/ci/build_installers.py --version "${RELEASE_TAG#v}" --output dist
+          python scripts/ci/release_assets.py --directory dist --version "${RELEASE_TAG#v}"
           (cd dist && sha256sum --check SHA256SUMS)
       - uses: actions/upload-artifact@v4
         with:
@@ -78,9 +88,15 @@ jobs:
           if-no-files-found: error
           retention-days: 90
 
+  installer-tests:
+    needs: [verify, package]
+    uses: ./.github/workflows/installers.yml
+    with:
+      artifact-name: aikya-release-${{ github.sha }}
+
   publish:
     name: Create tag and publish GitHub Release
-    needs: [verify, package]
+    needs: [verify, package, installer-tests]
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
@@ -95,6 +111,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Install contributor package and build tools
+        run: |
+          python -m pip install 'setuptools>=77' wheel build
+          python -m pip install --no-build-isolation --no-deps -e .
       - uses: actions/download-artifact@v4
         with:
           name: aikya-release-${{ github.sha }}
@@ -130,30 +150,28 @@ jobs:
           TAG_STATUS: ${{ steps.tag_state.outputs.tag_status }}
         run: |
           set -euo pipefail
-          ZIP="aikya-harness-$RELEASE_TAG.zip"
-
+          python scripts/ci/release_assets.py --directory dist --version "${RELEASE_TAG#v}" > release-assets.txt
+          mapfile -t ASSETS < release-assets.txt
           if gh release view "$RELEASE_TAG" --json tagName >/dev/null 2>&1; then
-            echo "Existing release detected; attaching only missing artifacts."
-            for ASSET in "$ZIP" SHA256SUMS; do
-              if ! gh release view "$RELEASE_TAG" --json assets --jq '.assets[].name' \
-                | grep -Fxq "$ASSET"; then
-                gh release upload "$RELEASE_TAG" "dist/$ASSET"
-              fi
-            done
-          elif [[ "$TAG_STATUS" == "match" ]]; then
-            # Recovery when a previous job created the tag but failed to publish.
-            gh release create "$RELEASE_TAG" "dist/$ZIP" dist/SHA256SUMS \
-              --verify-tag --title "Aikya Harness $RELEASE_TAG" \
-              --notes-file dist/RELEASE_NOTES.md --latest
-          elif [[ "$TAG_STATUS" == "missing" ]]; then
-            # gh creates a lightweight tag at the exact validated SHA.
-            # Avoid a separate tag-create API call that can leave orphaned tags.
-            gh release create "$RELEASE_TAG" "dist/$ZIP" dist/SHA256SUMS \
-              --target "$GITHUB_SHA" \
-              --title "Aikya Harness $RELEASE_TAG" \
-              --notes-file dist/RELEASE_NOTES.md --latest
+            mkdir -p existing-release
+            gh release download "$RELEASE_TAG" --dir existing-release
+            python scripts/ci/release_assets.py --directory dist --version "${RELEASE_TAG#v}" \
+              --existing existing-release > missing-assets.txt
+            while IFS= read -r ASSET; do
+              [ -n "$ASSET" ] && gh release upload "$RELEASE_TAG" "dist/$ASSET"
+            done < missing-assets.txt
           else
-            echo "::error::Unexpected tag state"; exit 1
+            FILES=()
+            for ASSET in "${ASSETS[@]}"; do FILES+=("dist/$ASSET"); done
+            if [[ "$TAG_STATUS" == "match" ]]; then
+              gh release create "$RELEASE_TAG" "${FILES[@]}" --verify-tag \
+                --title "Aikya Harness $RELEASE_TAG" --notes-file dist/RELEASE_NOTES.md --latest
+            elif [[ "$TAG_STATUS" == "missing" ]]; then
+              gh release create "$RELEASE_TAG" "${FILES[@]}" --target "$GITHUB_SHA" \
+                --title "Aikya Harness $RELEASE_TAG" --notes-file dist/RELEASE_NOTES.md --latest
+            else
+              echo "::error::Unexpected tag state"; exit 1
+            fi
           fi
 
           # Verify that the remote tag still resolves to the expected commit.
