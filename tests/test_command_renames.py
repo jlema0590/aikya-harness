@@ -29,7 +29,7 @@ class CommandRenameTests(unittest.TestCase):
     for old,new in RENAMES.items():
      self.assertFalse((skills/old/'SKILL.md').exists(),old);self.assertTrue((skills/new/'SKILL.md').is_file())
      self.assertEqual(originals[old],(runtime/'command-backups'/old/'SKILL.md').read_bytes())
-    self.assertEqual(27,len(list(skills.glob('aikya-*/SKILL.md'))))
+    self.assertEqual(28,len(list(skills.glob('aikya-*/SKILL.md'))))
     before={p.relative_to(skills).as_posix():p.read_bytes() for p in skills.rglob('SKILL.md')}
     aikya_setup.setup(ROOT,root,scope,home=home)
     self.assertEqual(before,{p.relative_to(skills).as_posix():p.read_bytes() for p in skills.rglob('SKILL.md')})

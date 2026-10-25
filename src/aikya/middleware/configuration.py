@@ -1,7 +1,7 @@
 """Merge visibility configuration without replacing user commands or permissions."""
 from __future__ import annotations
 import json
-EVENTS={'UserPromptSubmit':None,'PreToolUse':'Skill','PostToolUseFailure':None,'SubagentStart':None,'SubagentStop':None,'StopFailure':None,'SessionEnd':None}
+EVENTS={'SessionStart':None,'UserPromptSubmit':None,'PreToolUse':'Skill','PostToolUse':'Edit|Write|Bash|PowerShell','PostToolUseFailure':None,'SubagentStart':None,'SubagentStop':None,'StopFailure':None,'SessionEnd':None}
 
 def merge_visibility(settings:dict,observer_command:str,status_command:str,subagent_command:str|None=None):
     if not isinstance(settings,dict) or not isinstance(settings.get('hooks',{}),dict):raise ValueError('Invalid settings; preserve and review manually')

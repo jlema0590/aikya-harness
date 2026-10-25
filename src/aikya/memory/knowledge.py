@@ -168,6 +168,63 @@ def migrate(root,previous_identity,*,scope='project',approved=False,private_root
     return [stores.reference(root,p,scope) for p,_ in changes]
 
 
+def note_status(root,note,when,*,source_hashes=None):
+    """One eligibility rule for recall and read-only inspection; never changes notes."""
+    cache=source_hashes if source_hashes is not None else {}
+    source=note['source']
+    if source not in cache:
+        try:cache[source]=fingerprint(safe_file(root,source))
+        except (ValueError,OSError):cache[source]='unavailable'
+    current=cache[source]
+    source_status=('missing' if current is None else 'unavailable' if current=='unavailable'
+                   else 'current' if current==note['source_hash'] else 'changed')
+    expired=when>=note['created_at']+note['ttl_days']*86400
+    same_identity=note['project_identity']==identity(root)
+    eligible=(same_identity and note['review_state']=='approved' and
+              when>=note['created_at'] and not expired and source_status=='current')
+    return {'source_status':source_status,'expired':expired,'identity_matches':same_identity,
+            'eligible_for_recall':eligible}
+
+
+def inspect_notes(root,*,now=None,limit=5000,max_input_bytes=104857600):
+    """Inspect only project notes, including non-recallable records; no writes."""
+    from aikya.memory.contracts import NoteInspection
+    if type(limit) is not int or not 1<=limit<=5000:raise ValueError('Invalid note inventory limit')
+    if type(max_input_bytes) is not int or not 1<=max_input_bytes<=104857600:raise ValueError('Invalid note input budget')
+    root=Path(root).absolute();when=moment(now);result=NoteInspection();hashes={}
+    base=safe_file(root,'aikya/docs/memory/MEMORY.md').parent
+    if not base.is_dir():return result
+    from itertools import islice
+    paths=list(islice(base.glob('*.md'),limit+2))
+    paths=sorted(p for p in paths if p.name!='MEMORY.md')
+    if len(paths)>limit:result.omitted_count+=len(paths)-limit;result.diagnostics.append('note_limit')
+    remaining=max_input_bytes
+    for position,path in enumerate(paths[:limit]):
+        try:size=path.stat().st_size
+        except OSError:result.omitted_count+=1;continue
+        if path.is_symlink() or size>20000:result.omitted_count+=1;continue
+        if size>remaining:
+            result.omitted_count+=len(paths[:limit])-position;result.diagnostics.append('note_input_limit');break
+        remaining-=size
+        note=_note(root,path)
+        if not note or note['scope']!='project':
+            result.omitted_count+=1;continue
+        if note['source'] not in hashes:
+            try:
+                from aikya.code_index.policy import read_source,content_hash
+                source=safe_file(root,note['source']);source_size=source.stat().st_size
+                if source_size>min(remaining,10000000):raise ValueError('Note source exceeds remaining input budget')
+                remaining-=source_size
+                hashes[note['source']]=content_hash(read_source(root,note['source'],source_size))
+            except FileNotFoundError:hashes[note['source']]=None
+            except (OSError,ValueError):
+                hashes[note['source']]='unavailable'
+                if 'note_source_unavailable' not in result.diagnostics:result.diagnostics.append('note_source_unavailable')
+        result.notes.append({**note,**note_status(root,note,when,source_hashes=hashes),
+                             'path':path.relative_to(root).as_posix()})
+    return result
+
+
 def recall(root,query,budget_chars,*,now=None,scopes=('project',),private_root=None):
     if type(budget_chars) is not int or not 0<=budget_chars<=16000:raise ValueError('Invalid total memory budget')
     if not isinstance(query,str) or len(query)>10000:raise ValueError('Invalid memory query')
@@ -178,11 +235,7 @@ def recall(root,query,budget_chars,*,now=None,scopes=('project',),private_root=N
         for path in sorted(stores.store_root(root,scope,private_root).glob('*.md'))[:101]:
             if path.name=='MEMORY.md':continue
             note=_note(root,path)
-            if not note or note['scope']!=scope or note['project_identity']!=identity(root) or note['review_state']!='approved':continue
-            if when<note['created_at'] or when>=note['created_at']+note['ttl_days']*86400:continue
-            try:current=fingerprint(safe_file(root,note['source']))
-            except (ValueError,OSError):continue
-            if current!=note['source_hash']:continue
+            if not note or note['scope']!=scope or not note_status(root,note,when)['eligible_for_recall']:continue
             score=len(words&set(re.findall(r'\w+',note['text'].lower())))
             if score:candidates.append((-score,note['id'],scope,note['text']))
     chunks=[];remaining=budget_chars;seen=set()

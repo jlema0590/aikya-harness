@@ -128,6 +128,11 @@ def runtime_assets(source: Path, target_kind: str, *, methodology=None) -> tuple
                 raise ValueError('Symlinked resource input: ' + str(path))
             if path.is_file() and '__pycache__' not in rel.parts and path.suffix != '.pyc' and not rel.is_relative_to('examples/documentation/generated') and not (path.name.startswith('.env') and path.name != '.env.example'):
                 result.append(AssetRecord(path, rel, 'resource', root=boundary))
+    viewer = package / 'resources/memory-viewer'
+    if viewer.is_dir():
+        for path in sorted(viewer.iterdir()):
+            if path.is_file():
+                result.append(AssetRecord(path, Path('src/aikya/resources/memory-viewer') / path.name, 'resource', root=package))
     destinations = [r.destination for r in result]
     if len(destinations) != len(set(destinations)):
         raise ValueError('Runtime asset destination collision')

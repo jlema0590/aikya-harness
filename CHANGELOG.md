@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Add `/aikya-memory`, the 28th public command, with a self-contained local HTML knowledge graph, source tree, bounded inventory, filters, provenance and an explicit loopback live view. Share project-note validation and eligibility with existing recall; preserve review states, custom artifacts and private stores.
+- Add a checkout-bound incremental SQLite code index with Python AST declarations and optional pinned Tree-sitter adapters for Java, JavaScript/JSX, TypeScript/TSX, C# and Go. Verify source hashes before bounded task-scoped retrieval, invalidate obsolete declarations and rotate byte-limited batches without model calls or automatic dependency installation.
+- Configure local policy during approved onboarding and add session-owned observation plus explicit `--watch`. Reconcile external edits, additions, renames, deletions and note expiry; publish matching HTML/report hashes atomically with recoverable ownership state, preserve navigation in the live view and avoid self-export loops. Keep existing-project ignore files and custom hooks intact.
+- Extend command, copied-runtime, browser, adversarial and distribution validation; document English/Spanish usage and optional parser coverage. Index/export maintenance uses local resources and no model/API tokens; normal assistant context usage remains separate.
+
 ## v7.0.1 — 2026-10-25
 
 - Verify the PowerShell bootstrap checksum through the already-selected Python interpreter so installation does not depend on `Get-FileHash` module availability. Stream checksum code through stdin to preserve quoting in Windows PowerShell 5.1 and retain SHA-256 failure blocking; cover legacy argument passing, unavailable cmdlets and corrupt bootstrap payloads.

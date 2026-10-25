@@ -1,0 +1,1 @@
+package demo; public interface OrderRepository { void save(); }

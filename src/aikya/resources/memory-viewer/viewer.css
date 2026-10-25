@@ -1,0 +1,393 @@
+:root{
+  color-scheme:light;
+  --bg:#f4f4ef;
+  --panel:#fafbf6;
+  --ink:#24352c;
+  --muted:#667268;
+  --line:#d9dfd5;
+  --accent:#47785d;
+  --wash:#e6ecdf;
+  --focus:#97782e;
+  --fast:140ms;
+  --enter:220ms}
+  *{
+    box-sizing:border-box}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--ink);
+      font:14px/1.5 "Avenir Next","Segoe UI",sans-serif}
+      body.dark{
+        color-scheme:dark;
+        --bg:#121c18;
+        --panel:#19251f;
+        --ink:#e0e9dc;
+        --muted:#9aa99e;
+        --line:#344239;
+        --accent:#9aba80;
+        --wash:#293a2d;
+        --focus:#e6bd60}
+        a{
+          color:inherit}
+          button,input,select{
+            font:inherit;
+            color:inherit}
+            button,select,input{
+              background:var(--panel);
+              border:1px solid var(--line);
+              border-radius:5px;
+              min-height:34px}
+              button{
+                padding:5px 10px;
+                cursor:pointer}
+                button:hover{
+                  background:var(--wash)}
+                  button:disabled{
+                    opacity:.4;
+                    cursor:default}
+                    :focus-visible{
+                      outline:2px solid var(--focus);
+                      outline-offset:3px}
+                      button[aria-pressed=true]{
+                        background:var(--wash);
+                        color:var(--accent);
+                        border-color:var(--accent)}
+                        .topbar{
+                          padding:18px 30px;
+                          border-bottom:1px solid var(--line);
+                          display:flex;
+                          align-items:center;
+                          justify-content:space-between;
+                          gap:16px}
+                          .wordmark{
+                            text-decoration:none;
+                            font-weight:750;
+                            font-size:23px;
+                            letter-spacing:-1px}
+                            .wordmark span{
+                              font-size:13px;
+                              font-weight:400;
+                              letter-spacing:0;
+                              color:var(--muted);
+                              margin-left:16px}
+                              .actions{
+                                display:flex;
+                                gap:8px;
+                                align-items:center;
+                                flex-wrap:wrap}
+                                .actions span{
+                                  font-size:11px;
+                                  color:var(--muted);
+                                  margin-right:12px}
+                                  .intro{
+                                    display:flex;
+                                    justify-content:space-between;
+                                    align-items:center;
+                                    padding:30px;
+                                    gap:20px}
+                                    .eyebrow{
+                                      font-size:10px;
+                                      letter-spacing:1.6px;
+                                      text-transform:uppercase;
+                                      color:var(--muted);
+                                      margin:0 0 9px}
+                                      h1{
+                                        font-family:Georgia,serif;
+                                        font-weight:400;
+                                        font-size:33px;
+                                        line-height:1.15;
+                                        margin:0 0 9px;
+                                        letter-spacing:-.7px}
+                                        h2{
+                                          font-size:14px;
+                                          margin:0 0 12px}
+                                          .muted{
+                                            color:var(--muted);
+                                            margin:4px 0;
+                                            font-size:12px}
+                                            #metrics{
+                                              display:flex;
+                                              gap:25px;
+                                              font-size:11px;
+                                              color:var(--muted)}
+                                              #metrics strong{
+                                                display:block;
+                                                font-size:25px;
+                                                font-weight:500;
+                                                color:var(--ink)}
+                                                .workspace{
+                                                  display:grid;
+                                                  grid-template-columns:230px minmax(0,1fr) 280px;
+                                                  border-block:1px solid var(--line);
+                                                  min-height:620px}
+                                                  .sources,.inspector{
+                                                    padding:24px 20px;
+                                                    background:var(--panel);
+                                                    overflow:auto;
+                                                    max-height:820px}
+                                                    .sources{
+                                                      border-right:1px solid var(--line)}
+                                                      .inspector{
+                                                        border-left:1px solid var(--line)}
+                                                        .inspector h2{
+                                                          font-size:19px;
+                                                          overflow-wrap:anywhere}
+                                                          .mono,pre{
+                                                            font:11px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;
+                                                            overflow-wrap:anywhere}
+                                                            .mono{
+                                                              color:var(--muted)}
+                                                              pre{
+                                                                white-space:pre-wrap;
+                                                                margin:18px 0;
+                                                                padding-top:14px;
+                                                                border-top:1px solid var(--line);
+                                                                max-height:380px;
+                                                                overflow:auto}
+                                                                .evidence-note{
+                                                                  border-top:1px solid var(--line);
+                                                                  padding-top:16px;
+                                                                  color:var(--muted);
+                                                                  font-size:11px}
+                                                                  .toolbar{
+                                                                    display:flex;
+                                                                    gap:12px;
+                                                                    justify-content:space-between;
+                                                                    padding:14px 18px;
+                                                                    border-bottom:1px solid var(--line);
+                                                                    flex-wrap:wrap}
+                                                                    nav{
+                                                                      display:flex;
+                                                                      gap:5px}
+                                                                      nav button{
+                                                                        border-color:transparent;
+                                                                        background:none;
+                                                                        font-size:12px}
+                                                                        .search{
+                                                                          flex:1;
+                                                                          min-width:160px;
+                                                                          max-width:280px}
+                                                                          .search input{
+                                                                            width:100%;
+                                                                            padding:7px 10px}
+                                                                            .filters{
+                                                                              padding:12px 18px;
+                                                                              display:flex;
+                                                                              align-items:center;
+                                                                              gap:12px;
+                                                                              flex-wrap:wrap;
+                                                                              border-bottom:1px solid var(--line);
+                                                                              font-size:11px}
+                                                                              .filters label{
+                                                                                display:flex;
+                                                                                align-items:center;
+                                                                                gap:6px}
+                                                                                .filters select{
+                                                                                  max-width:160px;
+                                                                                  font-size:11px}
+                                                                                  .filters button{
+                                                                                    font-size:11px}
+                                                                                    .zoom{
+                                                                                      display:flex;
+                                                                                      gap:4px;
+                                                                                      margin-left:auto}
+                                                                                      #coverage{
+                                                                                        font-size:11px;
+                                                                                        color:var(--muted);
+                                                                                        padding:0 18px;
+                                                                                        min-height:18px}
+                                                                                        #stage{
+                                                                                          min-height:490px;
+                                                                                          position:relative}
+                                                                                          #graph{
+                                                                                            width:100%;
+                                                                                            height:490px;
+                                                                                            display:block;
+                                                                                            background:radial-gradient(circle,var(--line) .7px,transparent .8px);
+                                                                                            background-size:18px 18px}
+                                                                                            svg[hidden],div[hidden],p[hidden]{
+                                                                                              display:none!important}
+                                                                                              .edge{
+                                                                                                stroke:var(--muted);
+                                                                                                stroke-width:1;
+                                                                                                opacity:.22}
+                                                                                                .edge.active{
+                                                                                                  opacity:.85;
+                                                                                                  stroke:var(--accent);
+                                                                                                  stroke-width:1.8}
+                                                                                                  .node{
+                                                                                                    cursor:pointer;
+                                                                                                    transition:opacity var(--fast) ease-out}
+                                                                                                    .node circle{
+                                                                                                      fill:var(--accent);
+                                                                                                      stroke:var(--bg);
+                                                                                                      stroke-width:3}
+                                                                                                      .node.folder circle{
+                                                                                                        fill:#b9944c}
+                                                                                                        .node.project circle{
+                                                                                                          fill:var(--ink)}
+                                                                                                          .node.file circle{
+                                                                                                            fill:#618e9c}
+                                                                                                            .node.document circle{
+                                                                                                              fill:#a180ac}
+                                                                                                              .node.memory circle{
+                                                                                                                fill:#b36c52}
+                                                                                                                .node.method circle,.node.function circle{
+                                                                                                                  fill:#7b9472}
+                                                                                                                  .node text{
+                                                                                                                    font-size:10px;
+                                                                                                                    fill:var(--ink);
+                                                                                                                    text-anchor:middle;
+                                                                                                                    paint-order:stroke;
+                                                                                                                    stroke:var(--bg);
+                                                                                                                    stroke-width:4px;
+                                                                                                                    stroke-linejoin:round;
+                                                                                                                    pointer-events:none}
+                                                                                                                    .node.selected circle{
+                                                                                                                      stroke:var(--focus);
+                                                                                                                      stroke-width:4}
+                                                                                                                      .node.dimmed{
+                                                                                                                        opacity:.22}
+                                                                                                                        .node:focus{
+                                                                                                                          outline:none}
+                                                                                                                          .node:focus-visible circle{
+                                                                                                                            stroke:var(--focus);
+                                                                                                                            stroke-width:4}
+                                                                                                                            #canvas{
+                                                                                                                              transform-origin:500px 325px;
+                                                                                                                              transition:transform var(--enter) cubic-bezier(.23,1,.32,1)}
+                                                                                                                              .map-footer{
+                                                                                                                                padding:12px 18px;
+                                                                                                                                border-top:1px solid var(--line);
+                                                                                                                                display:flex;
+                                                                                                                                justify-content:space-between;
+                                                                                                                                align-items:center;
+                                                                                                                                gap:12px;
+                                                                                                                                flex-wrap:wrap;
+                                                                                                                                color:var(--muted);
+                                                                                                                                font-size:10px}
+                                                                                                                                #pages{
+                                                                                                                                  display:flex;
+                                                                                                                                  gap:6px;
+                                                                                                                                  align-items:center}
+                                                                                                                                  .tree-button{
+                                                                                                                                    width:100%;
+                                                                                                                                    display:block;
+                                                                                                                                    text-align:left;
+                                                                                                                                    border:0;
+                                                                                                                                    background:transparent;
+                                                                                                                                    font-size:11px;
+                                                                                                                                    min-height:28px;
+                                                                                                                                    padding:4px;
+                                                                                                                                    overflow:hidden;
+                                                                                                                                    text-overflow:ellipsis;
+                                                                                                                                    white-space:nowrap}
+                                                                                                                                    .tree-button.selected{
+                                                                                                                                      background:var(--wash)}
+                                                                                                                                      details{
+                                                                                                                                        font-size:11px}
+                                                                                                                                        details details{
+                                                                                                                                          margin-left:9px}
+                                                                                                                                          summary{
+                                                                                                                                            cursor:pointer;
+                                                                                                                                            padding:5px 0;
+                                                                                                                                            color:var(--muted);
+                                                                                                                                            overflow-wrap:anywhere}
+                                                                                                                                            .inventory-row{
+                                                                                                                                              display:grid;
+                                                                                                                                              grid-template-columns:minmax(0,1fr) 90px;
+                                                                                                                                              gap:4px 12px;
+                                                                                                                                              border:0;
+                                                                                                                                              border-bottom:1px solid var(--line);
+                                                                                                                                              border-radius:0;
+                                                                                                                                              width:100%;
+                                                                                                                                              text-align:left;
+                                                                                                                                              padding:11px 18px;
+                                                                                                                                              background:none;
+                                                                                                                                              font-size:12px}
+                                                                                                                                              .inventory-row small{
+                                                                                                                                                grid-column:1/-1;
+                                                                                                                                                color:var(--muted);
+                                                                                                                                                overflow-wrap:anywhere}
+                                                                                                                                                #empty{
+                                                                                                                                                  padding:60px 30px;
+                                                                                                                                                  color:var(--muted);
+                                                                                                                                                  text-align:center}
+                                                                                                                                                  #connections button{
+                                                                                                                                                    display:block;
+                                                                                                                                                    text-align:left;
+                                                                                                                                                    width:100%;
+                                                                                                                                                    font-size:11px;
+                                                                                                                                                    margin:4px 0;
+                                                                                                                                                    overflow-wrap:anywhere}
+                                                                                                                                                    footer{
+                                                                                                                                                      display:flex;
+                                                                                                                                                      justify-content:space-between;
+                                                                                                                                                      padding:15px 30px;
+                                                                                                                                                      color:var(--muted);
+                                                                                                                                                      font-size:9px;
+                                                                                                                                                      gap:20px}
+                                                                                                                                                      .sr-only{
+                                                                                                                                                        position:absolute;
+                                                                                                                                                        width:1px;
+                                                                                                                                                        height:1px;
+                                                                                                                                                        padding:0;
+                                                                                                                                                        margin:-1px;
+                                                                                                                                                        overflow:hidden;
+                                                                                                                                                        clip:rect(0,0,0,0);
+                                                                                                                                                        white-space:nowrap;
+                                                                                                                                                        border:0}
+                                                                                                                                                        body.motion-off *,body.motion-off *::before,body.motion-off *::after{
+                                                                                                                                                          transition:none!important;
+                                                                                                                                                          animation:none!important;
+                                                                                                                                                          scroll-behavior:auto!important}
+                                                                                                                                                          @media(prefers-reduced-motion:reduce){
+                                                                                                                                                            *{
+                                                                                                                                                              transition:none!important;
+                                                                                                                                                              animation:none!important;
+                                                                                                                                                              scroll-behavior:auto!important}
+                                                                                                                                                            }
+                                                                                                                                                            @media(max-width:1150px){
+                                                                                                                                                              .workspace{
+                                                                                                                                                                grid-template-columns:190px minmax(0,1fr)}
+                                                                                                                                                                .inspector{
+                                                                                                                                                                  grid-column:1/-1;
+                                                                                                                                                                  border-left:0;
+                                                                                                                                                                  border-top:1px solid var(--line);
+                                                                                                                                                                  max-height:none}
+                                                                                                                                                                }
+                                                                                                                                                                @media(max-width:640px){
+                                                                                                                                                                  .topbar,.intro{
+                                                                                                                                                                    padding:18px;
+                                                                                                                                                                    align-items:flex-start;
+                                                                                                                                                                    flex-direction:column}
+                                                                                                                                                                    .actions{
+                                                                                                                                                                      gap:5px}
+                                                                                                                                                                      .intro h1{
+                                                                                                                                                                        font-size:29px}
+                                                                                                                                                                        .workspace{
+                                                                                                                                                                          display:flex;
+                                                                                                                                                                          flex-direction:column}
+                                                                                                                                                                          .sources{
+                                                                                                                                                                            border-right:0;
+                                                                                                                                                                            border-bottom:1px solid var(--line);
+                                                                                                                                                                            max-height:240px}
+                                                                                                                                                                            .toolbar{
+                                                                                                                                                                              padding:12px}
+                                                                                                                                                                              .search{
+                                                                                                                                                                                max-width:none}
+                                                                                                                                                                                nav{
+                                                                                                                                                                                  flex-wrap:wrap}
+                                                                                                                                                                                  #metrics{
+                                                                                                                                                                                    gap:20px}
+                                                                                                                                                                                    #graph{
+                                                                                                                                                                                      height:420px}
+                                                                                                                                                                                      #stage{
+                                                                                                                                                                                        min-height:420px}
+                                                                                                                                                                                        .zoom{
+                                                                                                                                                                                          margin-left:0}
+                                                                                                                                                                                          footer{
+                                                                                                                                                                                            padding:15px 18px;
+                                                                                                                                                                                            flex-direction:column;
+                                                                                                                                                                                            gap:6px}
+                                                                                                                                                                                          }

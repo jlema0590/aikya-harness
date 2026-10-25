@@ -184,7 +184,7 @@ requiere una migración revisada por separado.
 
 | Ruta | Finalidad |
 |---|---|
-| `src/aikya/resources/commands/` | Fuente de los 27 comandos públicos de Claude Code. |
+| `src/aikya/resources/commands/` | Fuente de los 28 comandos públicos de Claude Code. |
 | `src/aikya/resources/engineering/agents/` | Definiciones del catálogo de agentes especialistas. |
 | `src/aikya/resources/engineering/skills/` | Catálogo de skills técnicas. |
 | `src/aikya/resources/project_template/` | Agentes base, skills, reglas y utilidades del harness para los proyectos. |
@@ -238,6 +238,7 @@ Los proyectos existentes no se reorganizan automáticamente.
 | /aikya-verify | Validar los cambios técnicos y sus resultados |
 | /aikya-models | Revisar la política opcional de selección de modelos |
 | /aikya-tokens | Consultar el consumo de tokens y los costes estimados de API |
+| /aikya-memory | Explorar memoria y código locales en un grafo HTML o mantener una vista en vivo |
 | /aikya-specify | Crear una especificación y criterios de aceptación |
 | /aikya-clarify | Resolver dudas y registrar aprobación explícita |
 | /aikya-plan | Preparar el diseño técnico y la estrategia de pruebas |
@@ -287,6 +288,35 @@ La guía de inicialización y el diagnóstico de herramientas quedan en `overvie
 Los documentos gestionados anteriores se migran con copias en `.harness/backup-docs-layout/`.
 Los conflictos con documentos personalizados requieren revisión. Las rutas de ejecución
 `.harness/` y `aikya/scripts/harness/` conservan sus nombres.
+
+### Memoria de código local y HTML
+
+La inicialización e incorporación aprobadas configuran el índice incremental y su
+actualización automática por proyecto. Los hooks de sesión arrancan el observador
+local en proyectos configurados; se detiene al terminar la última sesión. Para
+trabajar con otros editores, mantén un observador explícito activo:
+
+```text
+/aikya-memory
+/aikya-memory --refresh --open
+/aikya-memory --watch --open
+/aikya-memory --dry-run
+```
+
+El observador detecta archivos guardados, clases nuevas, renombrados y borrados.
+Actualiza SQLite en `.harness/state/code-index/` y regenera
+`aikya/docs/memory/view/index.html` junto con su `report.md`. Con `--watch --open`
+también refresca la página mediante un visor temporal en localhost. El archivo
+exportado sigue siendo una instantánea autónoma sin internet. No instala servicios
+del sistema.
+
+Indexar y exportar no llama a modelos ni consume tokens de API; utiliza CPU y disco
+locales. Las consultas posteriores a la IA conservan su consumo habitual. Python
+funciona sin dependencias adicionales; el extra opcional fijado `code-index` añade
+Java, JavaScript/JSX, TypeScript/TSX, C# y Go. Los demás lenguajes mantienen el
+inventario por archivo. Un cambio de fuente invalida su vigencia sin reescribir
+decisiones ni aprobaciones. La adopción preserva el `.gitignore` personalizado.
+Consulta la [configuración, límites y ciclo de vida](aikya/docs/architecture/local-memory.md).
 
 ## 6. Agentes de ingeniería y Agent Skills
 

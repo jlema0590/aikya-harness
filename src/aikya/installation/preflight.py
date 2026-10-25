@@ -10,6 +10,15 @@ from aikya.installation.migrations import documentation_runtime_plan,managed_pat
 
 
 def prepare_installation(target,profile,detected,adopt_existing,docs_lang,context):
+    from aikya.memory.viewer.export import preflight as memory_preflight
+    from aikya.core.checkpoints import safe_file
+    safe_file(target,'.gitignore')
+    memory_policy=None
+    if (target/'.aikya/code-index.json').exists():
+        from aikya.code_index.policy import load_policy
+        memory_policy=load_policy(target)
+    if memory_policy is None or memory_policy.auto_export:
+        memory_preflight(target)
     HERE=context.source_root
     TEMPLATE=context.template_root
     if adopt_existing and profile.get('mode') != 'existing':

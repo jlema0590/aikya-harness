@@ -71,3 +71,30 @@ jobs:
 
       - name: Verify installed wheel without checkout imports or optional SDK
         run: python scripts/ci/package_smoke.py --wheel dist/aikya_harness-$(cat VERSION)-py3-none-any.whl
+
+  local-memory:
+    name: Local memory | ${{ matrix.os }} | Python ${{ matrix.python }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python: ['3.10', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install package and reviewed binary parser extras
+        run: python -m pip install ".[code-index]" --only-binary=tree-sitter,tree-sitter-java,tree-sitter-javascript,tree-sitter-typescript,tree-sitter-c-sharp,tree-sitter-go
+      - name: Verify indexing, observation, local serving and installed assets
+        run: |
+          python -B -m unittest discover -s tests -p test_code_index.py -v
+          python -B -m unittest discover -s tests -p test_code_index_languages.py -v
+          python -B -m unittest discover -s tests -p test_memory_viewer.py -v
+          python -B -m unittest discover -s tests -p test_memory_watch.py -v
+          python -B -m unittest discover -s tests -p test_memory_live.py -v
+          python -B -m unittest discover -s tests -p test_memory_integration.py -v
