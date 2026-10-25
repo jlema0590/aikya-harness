@@ -162,6 +162,7 @@ class LatestEntryScripts(unittest.TestCase):
             base = Path(temporary).resolve(); assets = self.build(base)
             driver = base / 'driver.ps1'
             driver.write_text('param([string]$Installer,[string]$Python,[string]$Assets)\n'
+                              '$PSNativeCommandArgumentPassing = "Legacy"\n'
                               'function global:Get-FileHash { throw "Get-FileHash is unavailable" }\n'
                               '& $Installer -Scope global -Python $Python -OfflineDir $Assets -DryRun\n')
             env = {**os.environ, 'AIKYA_INSTALL_ROOT': str(base / 'app'), 'HOME': str(base / 'home'), 'USERPROFILE': str(base / 'home')}
