@@ -154,3 +154,23 @@ class LatestEntryScripts(unittest.TestCase):
                     self.assertEqual(0, result.returncode, result.stderr)
                     self.assertEqual(version or '7.0.1', json.loads(result.stdout)['version'])
                     self.assertFalse((base / 'app').exists())
+
+    @unittest.skipUnless(shutil.which('powershell') or shutil.which('pwsh'), 'PowerShell is required')
+    def test_powershell_verifies_bootstrap_without_get_filehash_and_rejects_corruption(self):
+        powershell = shutil.which('powershell') or shutil.which('pwsh')
+        with tempfile.TemporaryDirectory() as temporary:
+            base = Path(temporary).resolve(); assets = self.build(base)
+            driver = base / 'driver.ps1'
+            driver.write_text('param([string]$Installer,[string]$Python,[string]$Assets)\n'
+                              'function global:Get-FileHash { throw "Get-FileHash is unavailable" }\n'
+                              '& $Installer -Scope global -Python $Python -OfflineDir $Assets -DryRun\n')
+            env = {**os.environ, 'AIKYA_INSTALL_ROOT': str(base / 'app'), 'HOME': str(base / 'home'), 'USERPROFILE': str(base / 'home')}
+            command = [powershell, '-NoProfile', '-File', str(driver), '-Installer', str(assets / 'install.ps1'), '-Python', sys.executable, '-Assets', str(assets)]
+            result = subprocess.run(command, env=env, cwd=base, capture_output=True, text=True)
+            self.assertEqual(0, result.returncode, result.stderr)
+            self.assertEqual('7.0.1', json.loads(result.stdout)['version'])
+            (assets / 'aikya-bootstrap.pyz').write_bytes(b'corrupt bootstrap')
+            result = subprocess.run(command, env=env, cwd=base, capture_output=True, text=True)
+            self.assertNotEqual(0, result.returncode)
+            self.assertIn('checksum mismatch', result.stderr)
+            self.assertFalse((base / 'app').exists())

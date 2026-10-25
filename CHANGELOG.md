@@ -4,6 +4,7 @@
 
 ## v7.0.1 — 2026-10-25
 
+- Verify the PowerShell bootstrap checksum through the already-selected Python interpreter so installation does not depend on `Get-FileHash` module availability. Keep SHA-256 failure blocking and add executable coverage for unavailable cmdlets and corrupt bootstrap payloads.
 - Fix default SDK worker startup for the task loop and model-assisted memory extraction after root adapter removal. Launch the canonical package module with the current interpreter and a pinned, isolated import root; preserve copied global/project/initialized runtimes and explicit custom worker commands.
 - Add behavioral source, isolated-wheel and copied-runtime worker startup/protocol checks with an offline SDK stand-in and hostile working-directory/PYTHONPATH shadows. Clarify same-interpreter Aikya/SDK setup and explicit memory recall configuration; preserve loop opt-in, approvals and execution limits.
 - Select the latest published stable GitHub release by default for clean installation and updates on Linux, macOS and Windows. Resolve the release once before downloading version-pinned, SHA-256-verified assets; reject malformed metadata, drafts, prereleases and failed lookups without provisioning or silently falling back.
