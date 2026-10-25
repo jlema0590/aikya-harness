@@ -13,6 +13,7 @@
 - [plan/2026-10-23-repository-cleanup.md](plan/2026-10-23-repository-cleanup.md)
 - [plan/2026-10-24-generated-runtime-adapters.md](plan/2026-10-24-generated-runtime-adapters.md)
 - [plan/2026-10-25-agent-worker-startup.md](plan/2026-10-25-agent-worker-startup.md)
+- [plan/2026-10-25-indice-local-codigo.es.md](plan/2026-10-25-indice-local-codigo.es.md)
 - [plan/2026-10-25-latest-release-installation.md](plan/2026-10-25-latest-release-installation.md)
 - [plan/archive/docs-plans/2026-10-22-claude-project-templates.md](plan/archive/docs-plans/2026-10-22-claude-project-templates.md)
 - [plan/archive/docs-plans/2026-10-22-document-template-catalog.md](plan/archive/docs-plans/2026-10-22-document-template-catalog.md)
