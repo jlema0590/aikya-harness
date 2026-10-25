@@ -43,3 +43,6 @@ class GeneratedAdapterDistribution(unittest.TestCase):
             self.assertEqual(0, result.returncode, result.stderr[-3000:])
             result = subprocess.run([str(python), '-B', str(target / '.aikya/runtime/aikya_cli.py'), '--help'], cwd=base, capture_output=True, text=True)
             self.assertEqual(0, result.returncode, result.stderr)
+            from agent_worker_support import install_sdk, assert_startup
+            install_sdk(python)
+            assert_startup(self, python, base)

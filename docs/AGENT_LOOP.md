@@ -13,14 +13,41 @@ specification, plan and tasks. Every task dependency must be complete. Small ODD
 work can continue through the ordinary inline workflow without creating a dossier.
 /aikya-init and /aikya-analyze never start this loop automatically.
 
-Install the optional runtime in a separate Python environment when you choose to
-use it. The tested SDK is 0.2.173, with Python 3.10 or later:
+Install both Aikya and the optional SDK in the same separate Python environment
+when you choose to use the loop. Use Python 3.10–3.13 and the verified wheel from
+your selected Aikya release; replace `X.Y.Z` below with that release version.
+The tested SDK is pinned to 0.2.173.
+
+Linux/macOS:
 
 ```bash
 python3 -m venv .venv-aikya-loop
-.venv-aikya-loop/bin/python -m pip install -r /path/to/aikya/requirements-agent-loop.txt
-.venv-aikya-loop/bin/python /path/to/aikya/agent_runtime.py check
+.venv-aikya-loop/bin/python -m pip install /path/to/aikya_harness-X.Y.Z-py3-none-any.whl
+.venv-aikya-loop/bin/python -m pip install 'claude-agent-sdk==0.2.173'
+.venv-aikya-loop/bin/python -m aikya.core.runtime check
 ```
+
+Windows PowerShell:
+
+```powershell
+py -3 -m venv .venv-aikya-loop
+.\.venv-aikya-loop\Scripts\python.exe -m pip install 'C:\downloads\aikya_harness-X.Y.Z-py3-none-any.whl'
+.\.venv-aikya-loop\Scripts\python.exe -m pip install 'claude-agent-sdk==0.2.173'
+.\.venv-aikya-loop\Scripts\python.exe -m aikya.core.runtime check
+```
+
+For contributors, install the checkout into that environment with
+`python -m pip install --no-build-isolation --no-deps -e /path/to/aikya`
+after installing its documented build prerequisites, then install the pinned SDK.
+`requirements-agent-loop.txt` remains the equivalent pinned SDK requirements file
+in the distribution. Installing only that file does not install the Aikya package.
+
+Use this same environment's Python for the commands below; `python` is shorthand
+for its executable and does not require activation. SDK availability is local to
+that interpreter. The clean installer intentionally creates a base environment
+without the SDK, so an SDK installed elsewhere does not enable its interpreter.
+The `check` command confirms SDK import/version only; it does not authenticate,
+call a model or prove that a task is authorized.
 
 Authenticate Claude in that environment using your organization's supported
 method. Do not put credentials in the reviewed JSON, task files or audit records.
@@ -75,12 +102,16 @@ not protection against a hostile OS user concurrently replacing filesystem paths
 
 ## Execute, observe and stop
 
-Use the Python environment containing the optional SDK and the resolved Aikya CLI
-(project runtime first, otherwise the registered global runtime):
+Use the Python environment containing both Aikya and the optional SDK:
 
 ```bash
 python -m aikya feature --target . --agent-loop --loop-input reviewed-loop.json --approved
 ```
+
+Installed project/global compatibility adapters remain supported. The default
+worker launches the canonical package module with the current interpreter and
+pins its package import root, including when invoked through a copied adapter.
+It does not rely on root source launchers or the project's current directory.
 
 The JSON command must match the requested feature, bugfix or implement command.
 Explore, Plan, Implement, Validate, Security and Review remain English; status is
@@ -120,7 +151,7 @@ review instead of being silently overwritten. Do not manually edit state to rese
 budgets or mark outcomes complete.
 
 ```bash
-python /path/to/agent_loop.py status --root . --run-id RUN_ID
+python -m aikya.core.loop status --root . --run-id RUN_ID
 python -m aikya feature --target . --agent-loop --loop-input reviewed-loop.json --loop-run-id RUN_ID --approved
 ```
 
@@ -129,7 +160,7 @@ stops before its matching result arrives, automatic resume refuses to replay it.
 Inspect the files and checkpoints, then explicitly reconcile when appropriate:
 
 ```bash
-python /path/to/agent_loop.py reconcile --root . --run-id RUN_ID --approved
+python -m aikya.core.loop reconcile --root . --run-id RUN_ID --approved
 ```
 
 Reconciliation does not replay tools or erase history. An unfinished model query
@@ -163,14 +194,20 @@ default. To include private notes in a loop, explicitly set memory_scopes to
 limits the combined content. Team synchronization and a second conversation
 compactor are not implemented.
 
+Loop recall is disabled when `memory_budget_chars` is omitted or zero. A positive
+budget enables retrieval during implementation iterations; it does not create or
+approve notes. Startup/visibility hooks and ordinary slash commands do not inject
+this memory automatically. Direct local note and recall commands do not need the
+optional SDK; model-assisted extraction does.
+
 ```bash
-python /path/to/agent_memory.py add --root . --input reviewed-memory.json --approved
-python /path/to/agent_memory.py recall --root . --query "value lookup" --budget-chars 4000
-python /path/to/agent_memory.py propose --root . --input candidate.json
-python /path/to/agent_memory.py review --root . --id NOTE_ID --decision approved --approved
-python /path/to/agent_memory.py recall --root . --query "value lookup" --include-private --budget-chars 4000
-python /path/to/agent_memory.py migrate --root . --scope project --from-identity PREVIOUS_IDENTITY --approved
-python /path/to/agent_memory.py migrate --root . --scope private --from-identity PREVIOUS_IDENTITY --approved
+python -m aikya.memory.knowledge add --root . --input reviewed-memory.json --approved
+python -m aikya.memory.knowledge recall --root . --query "value lookup" --budget-chars 4000
+python -m aikya.memory.knowledge propose --root . --input candidate.json
+python -m aikya.memory.knowledge review --root . --id NOTE_ID --decision approved --approved
+python -m aikya.memory.knowledge recall --root . --query "value lookup" --include-private --budget-chars 4000
+python -m aikya.memory.knowledge migrate --root . --scope project --from-identity PREVIOUS_IDENTITY --approved
+python -m aikya.memory.knowledge migrate --root . --scope private --from-identity PREVIOUS_IDENTITY --approved
 ```
 
 Input requires kind, text, source and ttl_days (1–365), with optional scope
@@ -184,7 +221,7 @@ files/evidence. Recovered notes are labelled as untrusted reference material.
 
 ### Optional model-assisted extraction
 
-Run agent_memory_extract.py only after reviewing the source files and model budget.
+Run `python -m aikya.memory.extraction` only after reviewing the source files and model budget.
 It reuses the existing ProcessRuntime with read-only scoped tools and one model
 query. It creates up to three pending candidates, never automatically approving
 or consolidating them. The supplied file contents are disclosed to the configured
@@ -202,7 +239,7 @@ runtime/provider. No model invocation occurs during installation or onboarding.
 ```
 
 ```bash
-python /path/to/agent_memory_extract.py --root . --input reviewed-extraction.json --approved
+python -m aikya.memory.extraction --root . --input reviewed-extraction.json --approved
 ```
 
 The optional hooks_approved flag has the same meaning as in the task loop. Limits

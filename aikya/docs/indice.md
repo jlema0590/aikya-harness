@@ -1,5 +1,6 @@
 # Document index
 
+- [bugs/2026-10-25-agent-loop-worker-launch.md](bugs/2026-10-25-agent-loop-worker-launch.md)
 - [bugs/bugs.md](bugs/bugs.md)
 - [design/harness/2026-10-23-odd-observabilidad.es.md](design/harness/2026-10-23-odd-observabilidad.es.md)
 - [examples/2026-10-23-onboarding-odd-sdd.es.md](examples/2026-10-23-onboarding-odd-sdd.es.md)
@@ -11,6 +12,7 @@
 - [plan/2026-10-23-python-project-structure.md](plan/2026-10-23-python-project-structure.md)
 - [plan/2026-10-23-repository-cleanup.md](plan/2026-10-23-repository-cleanup.md)
 - [plan/2026-10-24-generated-runtime-adapters.md](plan/2026-10-24-generated-runtime-adapters.md)
+- [plan/2026-10-25-agent-worker-startup.md](plan/2026-10-25-agent-worker-startup.md)
 - [plan/2026-10-25-latest-release-installation.md](plan/2026-10-25-latest-release-installation.md)
 - [plan/archive/docs-plans/2026-10-22-claude-project-templates.md](plan/archive/docs-plans/2026-10-22-claude-project-templates.md)
 - [plan/archive/docs-plans/2026-10-22-document-template-catalog.md](plan/archive/docs-plans/2026-10-22-document-template-catalog.md)
@@ -30,6 +32,8 @@
 - [research/2026-10-23-installer-doc-path-audit.md](research/2026-10-23-installer-doc-path-audit.md)
 - [research/2026-10-23-repository-cleanup-audit.md](research/2026-10-23-repository-cleanup-audit.md)
 - [research/2026-10-24-root-entrypoints.md](research/2026-10-24-root-entrypoints.md)
+- [validation/AGENT_LOOP_MEMORY_ACTIVATION.md](validation/AGENT_LOOP_MEMORY_ACTIVATION.md)
+- [validation/AGENT_WORKER_STARTUP_FIX.md](validation/AGENT_WORKER_STARTUP_FIX.md)
 - [validation/COMMAND_ACCEPTANCE.md](validation/COMMAND_ACCEPTANCE.md)
 - [validation/DOCUMENT_WORKFLOW_CLEANUP.md](validation/DOCUMENT_WORKFLOW_CLEANUP.md)
 - [validation/GENERATED_RUNTIME_ADAPTERS.md](validation/GENERATED_RUNTIME_ADAPTERS.md)
