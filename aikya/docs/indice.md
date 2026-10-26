@@ -19,6 +19,7 @@
 - [plan/2026-10-25-latest-release-installation.md](plan/2026-10-25-latest-release-installation.md)
 - [plan/2026-10-25-memory-actualizacion-automatica.es.md](plan/2026-10-25-memory-actualizacion-automatica.es.md)
 - [plan/2026-10-25-skills-a-eleccion-del-usuario.es.md](plan/2026-10-25-skills-a-eleccion-del-usuario.es.md)
+- [plan/2026-10-26-instalacion-unificada-mods.es.md](plan/2026-10-26-instalacion-unificada-mods.es.md)
 - [plan/2026-10-26-memory-viewer-v2.md](plan/2026-10-26-memory-viewer-v2.md)
 - [plan/archive/docs-plans/2026-10-22-claude-project-templates.md](plan/archive/docs-plans/2026-10-22-claude-project-templates.md)
 - [plan/archive/docs-plans/2026-10-22-document-template-catalog.md](plan/archive/docs-plans/2026-10-22-document-template-catalog.md)
