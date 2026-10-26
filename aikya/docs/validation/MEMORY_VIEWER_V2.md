@@ -90,6 +90,13 @@ copied/installed worker-startup acceptance are repeated for this correction. The
 superseded local rerun was intentionally stopped and restarted after this runtime
 change; its partial output is not counted as a successful full regression.
 
+A macOS CI invocation subsequently reached the live-client assertion before its
+browser callback had published a URL: the test assumed a fixed four-second
+startup. It now waits for that actual readiness event, within a bounded deadline,
+while still rejecting an exited client and verifying the live response, observer
+identity and lease ownership. This changes test synchronization, not product
+startup/permission policy.
+
 ## Reproduction
 
 Use a contributor environment with the package installed, plus Playwright and

@@ -228,9 +228,17 @@ raise SystemExit(main(['memory','--target',str(root),'--watch','--open','--docs-
             client = subprocess.Popen([sys.executable, '-I', '-B', '-c', script, str(ROOT / 'src'), str(root)],
                                       stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, text=True)
             try:
-                time.sleep(4)
+                # A loaded CI host can start later; readiness is the actual URL
+                # published by the OS-browser callback, not a fixed sleep.
+                ready_url = root / 'viewer-url.txt'
+                deadline = time.monotonic() + 30
+                while time.monotonic() < deadline and client.poll() is None:
+                    if ready_url.is_file() and ready_url.stat().st_size:
+                        break
+                    time.sleep(.05)
                 self.assertIsNone(client.poll(), 'Live client stopped instead of reusing the running observer')
-                with urlopen((root / 'viewer-url.txt').read_text(), timeout=5) as response:
+                self.assertTrue(ready_url.is_file(), 'Live client did not publish its ready URL')
+                with urlopen(ready_url.read_text(encoding='utf8'), timeout=5) as response:
                     self.assertIn('<html lang="es"', response.read().decode())
                 self.assertEqual(observer, json.loads(state.read_text())['pid'])
                 (root / 'stop-viewer.txt').write_text('stop')
