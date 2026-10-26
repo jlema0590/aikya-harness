@@ -95,6 +95,69 @@ Mapeo: Harness `global` → Mods `user`; Harness `project` → Mods `project`.
 El ámbito `local` propio de Mods sigue siendo independiente; no crear un tercer
 ámbito de Harness ni mezclarlo con el directorio de análisis `--scope`.
 
+### Instalación opcional de BoxBot
+
+Durante la instalación inicial, `--mods all` incluye Flow, Usage y BoxBot del
+catálogo verificado. En Linux/macOS, el comando objetivo será:
+
+```sh
+curl -fsSL https://jlema0590.github.io/aikya-harness/install.sh | sh -s -- --mods all
+```
+
+Esta URL y la opción unificada todavía están pendientes de implementación y
+publicación. En Windows, el instalador descargable admitirá `-Mods all`; probar
+su paso de argumentos antes de documentar una variante con tubería.
+
+Después de que la instalación unificada haya registrado el marketplace local
+`aikya-mods`, también se podrá añadir BoxBot mediante la CLI nativa:
+
+```sh
+claude plugin install aikya-boxbot@aikya-mods --scope user
+```
+
+Para un proyecto, ejecutar desde su carpeta con `--scope project`. Reiniciar la
+sesión de Claude Code para cargar el plugin. Esta instalación posterior usa el
+catálogo registrado; no implica descargar automáticamente un bundle nuevo.
+
+Si BoxBot lo instaló el gestor unificado, queda en su selección registrada y se
+actualiza con ella. Si se añadió mediante la CLI nativa, el gestor debe detectar
+su existencia y ofrecer su incorporación explícita a la gestión, sin atribuirse
+propiedad ni actualizarlo/desinstalarlo automáticamente. No instalar otra copia.
+
+### Actualización de Harness y de los mods seleccionados
+
+Los siguientes comandos de actualización de Harness ya existen:
+
+```sh
+aikya-manage update --scope global
+aikya-manage update --scope project --target "/ruta/del/proyecto"
+```
+
+Actualmente actualizan Harness; la gestión conjunta de Mods se implementará en
+este plan. La actualización será una acción explícita, sin procesos periódicos
+ni descargas en segundo plano. El gestor resolverá la última release estable
+compatible de cada componente y verificará sus artefactos antes de activarlos.
+
+En una instalación gestionada conjuntamente, `update` sin una selección nueva
+conservará los identificadores de mods guardados en el recibo:
+
+| Selección registrada | Resultado de la actualización |
+|---|---|
+| Sólo Harness | Actualizar Harness; no añadir mods |
+| Harness + Flow + Usage | Actualizar esos tres componentes; no añadir BoxBot |
+| Harness + Flow + Usage + BoxBot | Actualizar Harness y los tres mods registrados |
+| Mods instalados por otras vías | Informar de ellos; conservarlos sin asumir su gestión |
+
+Guardar los IDs resueltos al instalar con `--mods all`; una actualización sin
+selección explícita no incorporará futuros plugins sólo porque crezca el catálogo.
+Una selección nueva no elimina mods omitidos: retirarlos requiere una operación
+de desinstalación explícita y comprobación de propiedad.
+
+Harness y el bundle de Mods mantienen versiones independientes. `--version`
+fija Harness y `--mods-version` fija Mods para esa operación. Si las versiones
+elegidas son incompatibles, detenerse antes de activar cambios; si un fallo ocurre
+después, informar de la instalación parcial y permitir un reintento seguro.
+
 ## 3. Restricciones globales
 
 - Mantener los 28 comandos del harness; los mods son plugins de Claude, no Agent
@@ -180,11 +243,18 @@ Interfaces a introducir:
 
 - [ ] Probar antes de implementar selección recomendada/todos/ninguno/individual,
   mapeo de scopes y errores de CLI; `--dry-run` no invoca red ni Claude.
+- [ ] Probar actualización conservando los IDs del recibo: sólo Harness no añade
+  mods; Flow + Usage no añade BoxBot; BoxBot gestionado se actualiza. Un catálogo
+  ampliado no cambia automáticamente la selección guardada con `--mods all`.
 - [ ] Implementar `plan_components()` e `install_plugins()`. Usar `claude plugin
   marketplace add <fuente> --scope <scope> --json` y `claude plugin install
   <id>@aikya-mods --scope <scope> --json`, con cwd del destino cuando corresponda.
 - [ ] Leer inventario con la API JSON disponible; validar capacidades antes de
   efectos. Probar archivos/rutas especiales y wrappers nativos en Windows.
+- [ ] Detectar BoxBot añadido por CLI nativa después de registrar el marketplace:
+  no duplicarlo ni apropiárselo. Su incorporación al recibo exige una selección
+  explícita y confirmar ámbito/origen; no eliminarlo al desinstalar Harness si
+  sigue siendo una instalación externa a la gestión.
 - [ ] Preparar y verificar ambas distribuciones antes de activar cambios. Mantener
   recibos por componente con versión, scope, fuente, propietario y resultado.
 - [ ] Fallar antes de escribir si falta Claude para el conjunto solicitado.
@@ -244,8 +314,10 @@ Interfaces a introducir:
 - [ ] Revisar convivencia de Flow/Usage con la observabilidad y statusLine actuales:
   no crear otra barra propia ni sobrescribir preferencias para aparentar integración.
 - [ ] Actualizar README en/es, changelog e informe de validación con resultados
-  observados. Abrir PR contra develop y separar aprobación de código de release
-  y despliegue de Pages.
+  observados. Explicar BoxBot durante/después de la instalación, el reinicio de
+  Claude y la actualización explícita conservando la selección; distinguir los
+  comandos actuales de los nuevos. Abrir PR contra develop y separar aprobación
+  de código de release y despliegue de Pages.
 
 ## 7. Conexión de Flow con la evidencia del harness
 
