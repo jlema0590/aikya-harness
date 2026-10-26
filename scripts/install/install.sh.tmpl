@@ -5,8 +5,10 @@ case "$(uname -s)" in Linux|Darwin) ;; *) echo 'Use install.ps1 on native Window
 selected_python=''
 offline_dir=''
 previous=''
+dry_run=''
 for argument in "$@"; do
     case "$previous" in --python) selected_python="$argument";; --offline-dir) offline_dir="$argument";; esac
+    [ "$argument" != --dry-run ] || dry_run=1
     previous="$argument"
 done
 probe='import sys,venv,ensurepip;sys.exit(0 if (3,10)<=sys.version_info[:2]<=(3,13) else 2)'
@@ -20,6 +22,14 @@ else
     done
 fi
 [ -n "$selected_python" ] || { echo 'Install Python 3.10–3.13 with venv/ensurepip first.' >&2; exit 2; }
+# Offline entry scripts retain their release pin; caller options may override it.
+if [ -n "$offline_dir" ]; then
+    set -- --version '@@VERSION@@' "$@"
+fi
+if [ -n "$dry_run" ]; then
+    "$selected_python" -I -B -c @@PREVIEW_SHELL@@ "$@"
+    exit $?
+fi
 stage="$(mktemp -d "${TMPDIR:-/tmp}/aikya-install.XXXXXXXX")"
 trap 'rm -rf "$stage"' EXIT HUP INT TERM
 payload="$stage/aikya-bootstrap.pyz"
@@ -33,8 +43,4 @@ else
     echo 'An HTTPS downloader (curl or wget) is required.' >&2; exit 2
 fi
 "$selected_python" -I -B -c 'import hashlib,sys;expected=sys.argv[2];actual=hashlib.sha256(open(sys.argv[1],"rb").read()).hexdigest();sys.exit(0 if actual==expected else "Bootstrap integrity checksum mismatch")' "$payload" '@@BOOTSTRAP_SHA256@@'
-# Offline entry scripts retain their release pin; caller options may override it.
-if [ -n "$offline_dir" ]; then
-    set -- --version '@@VERSION@@' "$@"
-fi
 "$selected_python" -I -B "$payload" install --python "$selected_python" "$@"

@@ -93,10 +93,7 @@ def activate(root: Path, receipt: dict) -> None:
     write_json(root / 'current.json', receipt)
 
 
-def receipt_path(root, scope, target):
-    identity = scope + ':' + (str(target) if scope == 'project' else str(Path.home().resolve()))
-    return root / 'receipts' / (hashlib.sha256(identity.encode('utf8')).hexdigest() + '.json')
-
+from .options import receipt_path
 
 def record_project_reference(target, prefix=None):
     """Track only projects initialized by an owned managed interpreter; never scan."""

@@ -3,6 +3,7 @@ import argparse
 import hashlib
 from pathlib import Path
 import re
+import shlex
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -25,6 +26,8 @@ def build(version, output):
     for name in ('install.sh', 'install.ps1'):
         text = (ROOT / 'scripts/install' / (name + '.tmpl')).read_text(encoding='utf8')
         text = text.replace('@@VERSION@@', version).replace('@@BOOTSTRAP_SHA256@@', digest)
+        preview = (source / 'options.py').read_text(encoding='utf8') + '\nraise SystemExit(entry_preview())\n'
+        text = text.replace('@@PREVIEW_SHELL@@', shlex.quote(preview)).replace('@@PREVIEW_CODE@@', preview)
         if '@@' in text:
             raise ValueError('Unresolved installer template placeholder')
         (output / name).write_text(text, encoding='utf8')

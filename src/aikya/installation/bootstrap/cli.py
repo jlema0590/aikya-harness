@@ -1,8 +1,7 @@
 """Clean install/update/doctor/uninstall, callable before Aikya is installed."""
-import argparse
+from contextlib import nullcontext
 import hashlib
 import json
-import os
 from pathlib import Path
 import shutil
 import sys
@@ -11,21 +10,7 @@ import uuid
 from . import download, environment, state, launchers, settings
 
 
-def parser():
-    result = argparse.ArgumentParser(description=__doc__)
-    sub = result.add_subparsers(dest='action', required=True)
-    for action in ('install', 'update', 'uninstall', 'doctor'):
-        command = sub.add_parser(action)
-        if action in ('install', 'update'):
-            command.add_argument('--version', help='Release X.Y.Z; defaults to the latest published stable release')
-            command.add_argument('--python', type=Path, default=Path(sys.executable))
-            command.add_argument('--offline-dir', type=Path)
-        if action != 'doctor':
-            command.add_argument('--scope', choices=('global', 'project'), required=True)
-            command.add_argument('--target', type=Path)
-            command.add_argument('--dry-run', action='store_true')
-    return result
-
+from .options import parser
 
 def locations(scope, target, commands=()):
     base = Path.home().resolve() if scope == 'global' else target
@@ -40,7 +25,7 @@ def registration(python, scope, target, dry_run=False):
     return environment.run(python, '-c', code, scope, target or Path.cwd(), '1' if dry_run else '0')
 
 
-def install(args, root, receipt_file):
+def install_harness(args, root, receipt_file, locked=False):
     args.version = download.resolve_version(args.version, args.offline_dir)
     environment.check_python(args.python)
     old = json.loads(receipt_file.read_text()) if receipt_file.exists() else None
@@ -54,7 +39,7 @@ def install(args, root, receipt_file):
     with tempfile.TemporaryDirectory(prefix='aikya-release-') as temporary:
         assets = download.fetch_release(args.version, Path(temporary), args.offline_dir)
         wheel = assets['wheel']; environment.verify_wheel(wheel, args.version)
-        with state.installation_lock(root):
+        with nullcontext() if locked else state.installation_lock(root):
             if (root / 'pending.json').exists():
                 raise ValueError('Interrupted operation needs review; run aikya-manage doctor')
             old = json.loads(receipt_file.read_text()) if receipt_file.exists() else None
@@ -99,11 +84,10 @@ def install(args, root, receipt_file):
                     pending.unlink(missing_ok=True)
                 raise
     print('Installed ' + args.version + '; executable directory: ' + str(root / 'bin'))
-    print('Add this directory to your user PATH, or run its commands by absolute path. No activation is required.')
     return 0
 
 
-def uninstall(args, root, receipt_file):
+def uninstall_harness(args, root, receipt_file, locked=False):
     if not receipt_file.is_file():
         raise ValueError('No owned installation receipt for this scope/target')
     receipt = json.loads(receipt_file.read_text())
@@ -115,7 +99,7 @@ def uninstall(args, root, receipt_file):
     if args.dry_run:
         print('PLAN: remove only unchanged owned registration assets; preserve project documents')
         return 0
-    with state.installation_lock(root):
+    with nullcontext() if locked else state.installation_lock(root):
         if (root / 'pending.json').exists():
             raise ValueError('Interrupted operation requires recovery before uninstall')
         for record in receipt.get('settings_changes', []):
@@ -154,15 +138,20 @@ def main(argv: list[str] | None = None) -> int:
     try:
         root = environment.app_root(); state.safe(root)
         if args.action == 'doctor':
-            print(json.dumps({'root': str(root), 'installed': (root / 'current.json').is_file(),
-                              'pending': (root / 'pending.json').exists(), 'cleanup_pending': (root / 'cleanup-pending.json').exists(), 'project_references': state.active_references(root)}))
-            return 2 if (root / 'pending.json').exists() else 0
+            from .coordinator import component_status
+            statuses = component_status(root)
+            print(json.dumps({'components': statuses, 'root': str(root), 'installed': (root / 'current.json').is_file(),
+                              'pending': (root / 'pending.json').exists(), 'cleanup_pending': (root / 'cleanup-pending.json').exists(),
+                              'project_references': state.active_references(root),
+                              'flow_connection': {'mode': 'session', 'status': 'not-checked', 'command': '/aikya-flow connect <cache-root>'}}))
+            return 2 if (root / 'pending.json').exists() or any(p.get('status') == 'partial' for p in statuses) else 0
         if args.scope == 'project':
             if args.target is None or not args.target.is_dir():
                 raise ValueError('Project scope requires --target pointing to an existing directory')
             args.target = args.target.expanduser().absolute(); state.safe(args.target)
         receipt_file = state.safe(state.receipt_path(root, args.scope, args.target))
-        return uninstall(args, root, receipt_file) if args.action == 'uninstall' else install(args, root, receipt_file)
+        from .coordinator import execute
+        return execute(args, root, receipt_file)
     except (ValueError, OSError, RuntimeError, TimeoutError) as exc:
         print('ERROR: ' + str(exc), file=sys.stderr)
         return 2
