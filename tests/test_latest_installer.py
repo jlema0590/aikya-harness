@@ -24,7 +24,7 @@ def metadata(**changes):
 
 
 class LatestReleaseSelection(unittest.TestCase):
-    def test_install_and_update_default_to_published_stable_release_without_writes(self):
+    def test_dry_run_defers_latest_resolution_without_network_or_writes(self):
         for action in ('install', 'update'):
             with self.subTest(action=action), tempfile.TemporaryDirectory() as temporary:
                 base = Path(temporary).resolve(); project = base / 'project'; project.mkdir()
@@ -38,8 +38,8 @@ class LatestReleaseSelection(unittest.TestCase):
                 with patch.dict(os.environ, {'AIKYA_INSTALL_ROOT': str(base / 'app')}), patch.object(download, 'https_bytes', side_effect=read), contextlib.redirect_stdout(output):
                     result = cli.main([action, '--scope', 'project', '--target', str(project), '--dry-run'])
                 self.assertEqual(0, result)
-                self.assertEqual('7.2.3', json.loads(output.getvalue())['version'])
-                self.assertEqual([(LATEST, 1024 * 1024)], requests)
+                self.assertEqual('latest', json.loads(output.getvalue())['version'])
+                self.assertEqual([], requests)
                 self.assertFalse((base / 'app').exists())
                 self.assertEqual([], list(project.iterdir()))
 
@@ -81,7 +81,7 @@ class LatestReleaseSelection(unittest.TestCase):
                 app = Path(temporary).resolve() / 'app'
                 effect = {'side_effect': response} if isinstance(response, Exception) else {'return_value': response}
                 with patch.dict(os.environ, {'AIKYA_INSTALL_ROOT': str(app)}), patch.object(download, 'https_bytes', **effect), contextlib.redirect_stderr(io.StringIO()):
-                    self.assertEqual(2, cli.main(['install', '--scope', 'global', '--dry-run']))
+                    self.assertEqual(2, cli.main(['install', '--scope', 'global', '--mods', 'none']))
                 self.assertFalse(app.exists())
 
     def test_offline_latest_requires_numeric_version_without_network_or_writes(self):
@@ -128,7 +128,7 @@ class LatestEntryScripts(unittest.TestCase):
                    'TEST_PAYLOAD': str(assets / 'aikya-bootstrap.pyz')}
             for version in ([], ['--version', '7.1.2']):
                 with self.subTest(version=version):
-                    result = subprocess.run(['/bin/sh', str(assets / 'install.sh'), '--scope', 'global', '--python', str(python), '--dry-run', *version], env=env, capture_output=True, text=True)
+                    result = subprocess.run(['/bin/sh', str(assets / 'install.sh'), '--scope', 'global', '--python', str(python), *version], env=env, capture_output=True, text=True)
                     self.assertEqual(0, result.returncode, result.stderr)
                     args = json.loads(result.stdout)
                     self.assertEqual(version, args[args.index('--version'):] if '--version' in args else [])
@@ -142,11 +142,11 @@ class LatestEntryScripts(unittest.TestCase):
             env = {**os.environ, 'AIKYA_INSTALL_ROOT': str(base / 'app'), 'HOME': str(base / 'home'), 'USERPROFILE': str(base / 'home')}
             for version in (None, '7.1.2'):
                 if os.name == 'nt':
-                    argv = [powershell, '-NoProfile', '-File', str(assets / 'install.ps1'), '-Scope', 'global', '-Python', sys.executable, '-OfflineDir', str(assets), '-DryRun']
+                    argv = [powershell, '-NoProfile', '-File', str(assets / 'install.ps1'), '-Scope', 'global', '-Python', sys.executable, '-OfflineDir', str(assets), '-Mods', 'none', '-DryRun']
                     if version:
                         argv += ['-Version', version]
                 else:
-                    argv = ['/bin/sh', str(assets / 'install.sh'), '--scope', 'global', '--python', sys.executable, '--offline-dir', str(assets), '--dry-run']
+                    argv = ['/bin/sh', str(assets / 'install.sh'), '--scope', 'global', '--python', sys.executable, '--offline-dir', str(assets), '--mods', 'none', '--dry-run']
                     if version:
                         argv += ['--version', version]
                 with self.subTest(version=version):
@@ -164,14 +164,26 @@ class LatestEntryScripts(unittest.TestCase):
             driver.write_text('param([string]$Installer,[string]$Python,[string]$Assets)\n'
                               '$PSNativeCommandArgumentPassing = "Legacy"\n'
                               'function global:Get-FileHash { throw "Get-FileHash is unavailable" }\n'
-                              '& $Installer -Scope global -Python $Python -OfflineDir $Assets -DryRun\n')
+                              '& $Installer -Scope global -Python $Python -OfflineDir $Assets -Mods none -DryRun\n')
             env = {**os.environ, 'AIKYA_INSTALL_ROOT': str(base / 'app'), 'HOME': str(base / 'home'), 'USERPROFILE': str(base / 'home')}
             command = [powershell, '-NoProfile', '-File', str(driver), '-Installer', str(assets / 'install.ps1'), '-Python', sys.executable, '-Assets', str(assets)]
             result = subprocess.run(command, env=env, cwd=base, capture_output=True, text=True)
             self.assertEqual(0, result.returncode, result.stderr)
             self.assertEqual('7.0.1', json.loads(result.stdout)['version'])
             (assets / 'aikya-bootstrap.pyz').write_bytes(b'corrupt bootstrap')
+            driver.write_text(driver.read_text().replace(' -DryRun', ''))
             result = subprocess.run(command, env=env, cwd=base, capture_output=True, text=True)
             self.assertNotEqual(0, result.returncode)
             self.assertIn('checksum mismatch', result.stderr)
             self.assertFalse((base / 'app').exists())
+
+    @unittest.skipIf(os.name == 'nt', 'POSIX entry script')
+    def test_piped_entry_preview_never_downloads_or_creates_files(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            base=Path(temporary).resolve();assets=self.build(base);binary=base/'bin';binary.mkdir()
+            curl=binary/'curl';curl.write_text('#!/bin/sh\necho unexpected-network >&2\nexit 99\n');curl.chmod(0o755)
+            env={**os.environ,'PATH':str(binary)+os.pathsep+os.environ['PATH'],'AIKYA_INSTALL_ROOT':str(base/'app')}
+            result=subprocess.run(['/bin/sh','-s','--','--dry-run','--mods','all','--python',sys.executable],input=(assets/'install.sh').read_text(),cwd=base,env=env,capture_output=True,text=True)
+            self.assertEqual(0,result.returncode,result.stderr)
+            self.assertEqual(['*'],json.loads(result.stdout)['mods'])
+            self.assertFalse((base/'app').exists())

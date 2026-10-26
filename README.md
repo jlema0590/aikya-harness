@@ -20,42 +20,118 @@ third-party downloads, SDK installation or external operations.
 
 ## 1. Quick start
 
-Install the **latest published stable release** without cloning the repository or entering a version number. These installers become available when v7.0.1 is published.
+Install **Harness + Flow + Usage** globally with one command. BoxBot is optional.
+Requires Python 3.10–3.13 with `venv`/pip and native Claude Code 2.1.308+ for Mods.
 
-**Linux and macOS** — Python 3.10–3.13 with `venv`/pip is required:
+> The unified installer and short URLs below ship with the release containing
+> this change. The Pages URLs require a successful deployment before use; the
+> older published installer does not provide the new Mods options.
+
+**Linux / macOS**:
 
 ```sh
-curl --fail --location --proto '=https' --proto-redir '=https' \
-  "https://github.com/jlema0590/aikya-harness/releases/latest/download/install.sh" \
-  -o install-aikya.sh
-sh ./install-aikya.sh --scope global
-# Project registration: sh ./install-aikya.sh --scope project --target /absolute/path/to/project
+curl -fsSL https://jlema0590.github.io/aikya-harness/install.sh | sh
 ```
 
-**Windows** — PowerShell 5.1+ or 7 and Python 3.10–3.13 with `venv`/pip:
+**Windows PowerShell 5.1 / 7**:
 
 ```powershell
-Invoke-WebRequest -Uri 'https://github.com/jlema0590/aikya-harness/releases/latest/download/install.ps1' -OutFile install-aikya.ps1
-.\install-aikya.ps1 -Scope global
-# Project registration: .\install-aikya.ps1 -Scope project -Target 'C:\work\project'
+irm https://jlema0590.github.io/aikya-harness/install.ps1.txt | iex
 ```
 
-Download and inspect the script before running it. Each online run selects GitHub's latest published stable release, including when reusing a previously downloaded script. Drafts and prereleases are excluded. It verifies its pinned bootstrap and the selected release wheel, creates an isolated application environment and prints the command directory to add to your user PATH. No Git clone, administrator privileges or environment activation is required. Missing Python prerequisites are reported; the installer does not install Python or change system package managers or execution policy.
+To inspect the entry script or supply advanced options, download `install.sh` or
+`install.ps1` from the published release. For example:
 
-| Scope | Registration | When to choose it |
-|---|---|---|
-| `global` | Current user's Claude configuration and shared runtime. | Make commands available across your projects. |
-| `project` | Explicit target's Claude configuration and `.aikya/runtime/`. | Limit registration to one repository. |
+```sh
+sh ./install.sh --scope project --target /absolute/path/to/project
+sh ./install.sh --mods all       # Include BoxBot
+sh ./install.sh --mods none      # Harness only; Claude is not required
+sh ./install.sh --dry-run        # No network, writes or Claude commands
+```
 
-Both scopes store the application per user. Scope is separate from `/aikya-analyze --scope <relative-path>`, which selects a directory to inspect. Installation does not initialize a project or choose ODD/SDD.
+```powershell
+.\install.ps1 -Scope project -Target 'C:\work\project'
+.\install.ps1 -Mods all
+.\install.ps1 -Mods none
+.\install.ps1 -DryRun
+```
 
-Use `aikya-manage update --scope global` to update to the latest stable release, `aikya-manage doctor` for local installation state, and `aikya-manage uninstall --scope global` to remove unchanged owned registration assets. Add `--target` with project scope. To select a specific release, pass `--version X.Y.Z` to the shell installer or manager, or `-Version X.Y.Z` to the Windows installer. A failed latest-release lookup stops installation without falling back to an older version.
+| Option | Behavior |
+|---|---|
+| Default / `--scope global` | User-wide Harness registration and Mods `user` scope. |
+| `--scope project --target <path>` | Harness and Mods registration for that existing project directory. |
+| `--mods recommended` | Flow + Usage. |
+| `--mods all` | All official plugins in the verified release catalog, including BoxBot. |
+| `--mods none` | Install/update Harness only; leave Mods untouched. |
+| `--mod <id>` (repeatable) | Explicit plugin selection; cannot combine with `--mods`. |
+| `--version X.Y.Z` / `--mods-version X.Y.Z` | Pin Harness / Mods independently for this operation. |
+| `--no-path` | Leave user PATH unchanged. |
 
-For offline installation, download one release's entry script, wheel, `SHA256SUMS` and bootstrap, then pass `--offline-dir` (`-OfflineDir` on Windows). The entry script uses its own release version offline; direct bootstrap/manager calls also require `--version X.Y.Z`. Edited assets are preserved; environments referenced by initialized projects are retained. On Windows, use the standalone bootstrap to finish cleanup of an in-use management executable.
+PowerShell equivalents include `-Mods`, `-Mod`, `-ModsVersion` and `-NoPath`.
+Scope is separate from `/aikya-analyze --scope <relative-path>`, which selects a
+directory to inspect. Installation does not initialize a project or choose ODD/SDD.
 
-**Contributors:** from a source checkout, create a virtual environment, install `build`, `setuptools>=77` and `wheel`, then run `python -m pip install --no-build-isolation --no-deps -e .`. Use `aikya`, `aikya-setup` or `python -m aikya`; source-root scripts such as `python install.py` are retired. This contributor path is separate from the release installation above.
+The installer resolves each latest stable release once, verifies SHA-256 and the
+local plugin catalog, and keeps versioned marketplace sources on disk. It uses
+Claude's native plugin CLI without cloning, installing Git/Node, administrator
+privileges or calls to AI models. Missing prerequisites stop the requested bundle
+before activation; use `--mods none` when installing Harness without Claude.
 
-Start a new Claude Code session, then choose the onboarding command below. Native host-session compatibility and authenticated model execution are separate from installer smoke tests.
+Open a **new terminal and Claude session** after installation. Supported Bash/Zsh
+profiles and Windows user PATH receive a managed entry; other shells show the
+command directory for manual configuration. Python/Claude are not installed for
+you, and execution policy is not changed.
+
+To add BoxBot later, after the marketplace has been registered:
+
+```sh
+claude plugin install aikya-boxbot@aikya-mods --scope user
+```
+
+For project scope, run from the project directory with `--scope project`.
+Plugins added directly through Claude remain externally owned; selecting one
+explicitly with the manager can enroll a matching verified source for updates,
+while preserving it on uninstall. Existing unrelated marketplace sources require
+review rather than automatic replacement.
+
+**Updates are explicit**, with no background updater:
+
+```sh
+aikya-manage update --scope global
+aikya-manage update --scope project --target /absolute/path/to/project
+aikya-manage doctor
+aikya-manage uninstall --scope global
+# Keep managed Mods when removing Harness:
+aikya-manage uninstall --scope global --keep-mods
+```
+
+Update preserves the registered plugin IDs: it updates BoxBot only if managed,
+and does not add it or future catalog plugins automatically. Legacy Harness-only
+installations remain Harness-only until you explicitly select Mods. Custom files
+and external plugins are preserved. A partial plugin operation returns failure,
+is visible in `doctor`, and can be retried. Shared or modified marketplace sources
+require review. Persistent sources are retained conservatively.
+
+For offline installation, put the Harness entry script, bootstrap, wheel and
+`SHA256SUMS` in one directory; put Mods `release.json`, bundle ZIP and its own
+`SHA256SUMS` in the `mods/` subdirectory. Pass `--offline-dir <dir>` and
+`--mods-version X.Y.Z` (PowerShell `-OfflineDir` / `-ModsVersion`). Entry scripts pin
+their own Harness release offline; direct manager calls also require `--version`.
+Unified Mods management requires Harness 7.1.0 or newer. Older Harness versions
+can only be selected for Harness-only registrations without managed Mods.
+Use `--mods none` to omit the Mods bundle. Initialized projects retain referenced
+interpreters. On Windows, the standalone bootstrap can finish cleanup if a
+management executable is in use.
+
+Installing Flow does not connect it to execution evidence automatically. Use
+`/aikya-flow connect <cache-root>` in the current session; `doctor` reports that
+session connection as not checked. Flow and Usage do not replace your statusLine.
+
+**Contributors:** create a virtual environment, install `build`, `setuptools>=77`
+and `wheel`, then run `python -m pip install --no-build-isolation --no-deps -e .`.
+Use `aikya`, `aikya-setup` or `python -m aikya`; root Python launchers are retired.
+Native session rendering and authenticated model execution are separate from
+installer acceptance tests.
 
 ## 2. Onboarding
 

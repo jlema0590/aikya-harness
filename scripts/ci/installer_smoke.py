@@ -30,9 +30,9 @@ def check(assets, python=sys.executable):
             return process
         for scope in ('global', 'project'):
             target = ['--target', project] if scope == 'project' else []
-            arguments = ['--scope', scope, *target, '--offline-dir', assets]
+            arguments = ['--scope', scope, *target, '--offline-dir', assets, '--mods', 'none', '--no-path']
             if os.name == 'nt':
-                command = ['powershell', '-NoProfile', '-File', assets / 'install.ps1', '-Scope', scope, '-Python', python, '-OfflineDir', assets]
+                command = ['powershell', '-NoProfile', '-File', assets / 'install.ps1', '-Scope', scope, '-Python', python, '-OfflineDir', assets, '-Mods', 'none', '-NoPath']
                 if target:
                     command += ['-Target', project]
             else:

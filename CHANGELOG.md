@@ -1,6 +1,13 @@
 # Changelog
 
-## Unreleased
+## v7.1.0 — 2026-10-26
+
+- Unify clean Harness installation with the verified official Aikya Mods bundle. Default to global Harness + Flow + Usage; support optional BoxBot/all, individual selections, Harness-only installation, independent version pins and deterministic offline bundles. Resolve each published stable release once and retain versioned local marketplace sources without cloning or running upstream installers.
+- Use Claude Code's native JSON plugin interface with prerequisite checks, explicit per-scope ownership, preserved external plugins and recoverable partial receipts. Keep selected plugin IDs across updates and legacy Harness-only installations; report partial operations and the unchecked session-specific Flow connection in doctor.
+- Manage reversible Bash/Zsh profile and Windows user PATH entries, preserving custom content and supporting opt-out. Make standalone manager and entry-script previews use the same embedded policy without network, writes or Claude calls; retain PowerShell caller preferences and bootstrap integrity checks.
+- Keep native Claude JSON, managed Python subprocesses, installer metadata and CLI diagnostics explicitly UTF-8 on legacy Windows locales. Cover real byte transport, persisted Unicode paths and non-Latin error output without relaxing ownership checks.
+- Start the memory viewer's numeric loopback server without reverse DNS, avoiding unrelated offline/macOS hostname lookup delays. Retain capability, origin and publication checks; cover startup with hostname resolution unavailable.
+- Prepare verified short installation URLs through a reusable/manual GitHub Pages workflow invoked after release publication. Serve exact checksum-verified release script bytes with provenance; public URLs require the release and Pages deployment. Add native installer, adversarial bundle, selection, recovery, PATH and Pages regressions, and refresh both README editions.
 
 - Replace selectable worker-pipe reads with a bounded reader thread and two-chunk queue so the local worker protocol also operates on Windows. Retain effect acknowledgments, message-size limits, deadlines, cancellation and runtime cleanup; add a real worker regression with OS pipe selectors unavailable and include it in native memory CI.
 - Preserve byte-verified shipped resources during Windows Git checkouts, without relaxing template or migration-catalog integrity checks. Exercise real CRLF checkout conversion, validate UTF-8 declaration offsets against LF/CRLF bytes, hash raw exported HTML in tests, and wait for test-owned observer processes to exit before Windows cleanup. Propagate every native memory-test failure through the CI shell.

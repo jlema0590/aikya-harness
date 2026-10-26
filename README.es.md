@@ -21,42 +21,121 @@ recursos de terceros, instalar SDK o realizar operaciones externas.
 
 ## 1. Inicio rápido
 
-Instala la **última versión estable publicada** sin clonar el repositorio ni indicar un número de versión. Estos instaladores estarán disponibles cuando se publique v7.0.1.
+Instala **Harness + Flow + Usage** globalmente con un comando. BoxBot es opcional.
+Requiere Python 3.10–3.13 con `venv`/pip y Claude Code nativo 2.1.308+ para Mods.
 
-**Linux y macOS** — requiere Python 3.10–3.13 con `venv`/pip:
+> El instalador unificado y las URLs cortas estarán disponibles con la release
+> que incluya este cambio. Las URLs de Pages requieren un despliegue correcto
+> antes de utilizarlas; el instalador publicado anterior no admite las nuevas
+> opciones de Mods.
+
+**Linux / macOS**:
 
 ```sh
-curl --fail --location --proto '=https' --proto-redir '=https' \
-  "https://github.com/jlema0590/aikya-harness/releases/latest/download/install.sh" \
-  -o install-aikya.sh
-sh ./install-aikya.sh --scope global
-# Registro de proyecto: sh ./install-aikya.sh --scope project --target /ruta/absoluta/al/proyecto
+curl -fsSL https://jlema0590.github.io/aikya-harness/install.sh | sh
 ```
 
-**Windows** — PowerShell 5.1+ o 7 y Python 3.10–3.13 con `venv`/pip:
+**Windows PowerShell 5.1 / 7**:
 
 ```powershell
-Invoke-WebRequest -Uri 'https://github.com/jlema0590/aikya-harness/releases/latest/download/install.ps1' -OutFile install-aikya.ps1
-.\install-aikya.ps1 -Scope global
-# Registro de proyecto: .\install-aikya.ps1 -Scope project -Target 'C:\work\proyecto'
+irm https://jlema0590.github.io/aikya-harness/install.ps1.txt | iex
 ```
 
-Descarga y revisa el script antes de ejecutarlo. Cada ejecución con conexión selecciona la última versión estable publicada en GitHub, incluso si reutilizas un script descargado anteriormente. Se excluyen los borradores y las versiones preliminares. Verifica su bootstrap y el paquete de la versión seleccionada, crea un entorno aislado y muestra la carpeta de comandos que puedes añadir al PATH de tu usuario. No requiere clonar el repositorio, permisos de administrador ni activar el entorno. Si falta Python, lo indica sin instalarlo ni modificar los gestores de paquetes del sistema o la política de ejecución.
+Para revisar el script o indicar opciones, descarga `install.sh` o `install.ps1`
+de la release publicada. Por ejemplo:
 
-| Scope | Registro | Cuándo elegirlo |
-|---|---|---|
-| `global` | Configuración de Claude y runtime compartido del usuario actual. | Tener los comandos disponibles en varios proyectos. |
-| `project` | Configuración de Claude y `.aikya/runtime/` del destino explícito. | Limitar el registro a un repositorio. |
+```sh
+sh ./install.sh --scope project --target /ruta/absoluta/al/proyecto
+sh ./install.sh --mods all       # Incluir BoxBot
+sh ./install.sh --mods none      # Sólo Harness; no requiere Claude
+sh ./install.sh --dry-run        # Sin red, escrituras ni llamadas a Claude
+```
 
-En ambos casos, la aplicación se instala por usuario. Este scope es independiente de `/aikya-analyze --scope <ruta-relativa>`, que selecciona una carpeta para analizar. Instalar no inicializa el proyecto ni selecciona ODD/SDD.
+```powershell
+.\install.ps1 -Scope project -Target 'C:\work\proyecto'
+.\install.ps1 -Mods all
+.\install.ps1 -Mods none
+.\install.ps1 -DryRun
+```
 
-Utiliza `aikya-manage update --scope global` para actualizar a la última versión estable, `aikya-manage doctor` para consultar el estado local y `aikya-manage uninstall --scope global` para retirar los archivos de registro propios que no se hayan modificado. En scope project, añade `--target`. Para elegir una versión concreta, utiliza `--version X.Y.Z` en el instalador de Linux/macOS o en el gestor, o `-Version X.Y.Z` en Windows. Si falla la consulta de la última versión, la instalación se detiene sin recurrir a una versión anterior.
+| Opción | Comportamiento |
+|---|---|
+| Predeterminado / `--scope global` | Registro de Harness por usuario y scope `user` de Mods. |
+| `--scope project --target <ruta>` | Registro de Harness y Mods para ese directorio de proyecto existente. |
+| `--mods recommended` | Flow + Usage. |
+| `--mods all` | Plugins oficiales del catálogo verificado, incluido BoxBot. |
+| `--mods none` | Instalar/actualizar sólo Harness; conservar Mods sin cambios. |
+| `--mod <id>` repetible | Selección explícita; incompatible con `--mods`. |
+| `--version X.Y.Z` / `--mods-version X.Y.Z` | Fijar versiones independientes de Harness / Mods para esa operación. |
+| `--no-path` | Conservar el PATH del usuario sin cambios. |
 
-Para instalar sin conexión, descarga el script de instalación, el wheel, `SHA256SUMS` y el bootstrap de una misma versión, y utiliza `--offline-dir` (`-OfflineDir` en Windows). El script utiliza su propia versión sin conexión; al ejecutar directamente el bootstrap o el gestor, también debes indicar `--version X.Y.Z`. Se conservan los archivos personalizados y los entornos referenciados por proyectos inicializados. En Windows, el bootstrap independiente permite completar la limpieza si el ejecutable de gestión está en uso.
+Equivalentes PowerShell: `-Mods`, `-Mod`, `-ModsVersion` y `-NoPath`.
+Este scope es independiente de `/aikya-analyze --scope <ruta-relativa>`, que elige
+la carpeta a analizar. Instalar no inicializa el proyecto ni selecciona ODD/SDD.
 
-**Contribuidores:** desde una copia del código, crea un entorno virtual, instala `build`, `setuptools>=77` y `wheel`, y ejecuta `python -m pip install --no-build-isolation --no-deps -e .`. Utiliza `aikya`, `aikya-setup` o `python -m aikya`; se retiran las invocaciones de raíz como `python install.py`. Este procedimiento de desarrollo es independiente de la instalación mediante una versión publicada.
+El instalador resuelve cada última release estable una vez, verifica SHA-256 y el
+catálogo local, y conserva las fuentes versionadas del marketplace. Utiliza la
+CLI nativa de plugins de Claude sin clonar, instalar Git/Node, pedir permisos de
+administrador ni realizar llamadas a modelos de IA. Si faltan requisitos, detiene
+el conjunto solicitado antes de activarlo; `--mods none` permite instalar Harness
+sin Claude.
 
-Abre una sesión nueva de Claude Code y elige el comando de incorporación correspondiente. La compatibilidad de una sesión real del cliente y la ejecución autenticada del modelo se validan por separado de las pruebas del instalador.
+Abre una **terminal y sesión de Claude nuevas** después de instalar. Los perfiles
+Bash/Zsh admitidos y el PATH de usuario de Windows reciben una entrada gestionada;
+en otros shells se muestra la carpeta para configurarla manualmente. No instala
+Python/Claude ni cambia la política de ejecución.
+
+Para añadir BoxBot después de registrar el marketplace:
+
+```sh
+claude plugin install aikya-boxbot@aikya-mods --scope user
+```
+
+Para un proyecto, ejecutar desde su carpeta con `--scope project`. Los plugins
+instalados directamente con Claude conservan su propiedad externa; una selección
+explícita en el gestor puede incorporarlos a las actualizaciones si su fuente
+verificada coincide, conservándolos al desinstalar. Las fuentes ajenas de
+marketplace requieren revisión antes de reemplazarse.
+
+**Las actualizaciones son explícitas**, sin procesos en segundo plano:
+
+```sh
+aikya-manage update --scope global
+aikya-manage update --scope project --target /ruta/absoluta/al/proyecto
+aikya-manage doctor
+aikya-manage uninstall --scope global
+# Conservar Mods al retirar Harness:
+aikya-manage uninstall --scope global --keep-mods
+```
+
+Actualizar conserva los IDs registrados: actualiza BoxBot sólo si está gestionado,
+sin añadirlo ni incorporar futuros plugins automáticamente. Una instalación
+heredada de sólo Harness sigue igual hasta seleccionar Mods explícitamente.
+Conserva archivos personalizados y plugins externos. Si falla una operación de
+plugins, devuelve error, `doctor` muestra el estado parcial y se puede reintentar.
+Las fuentes compartidas o modificadas requieren revisión. Las fuentes persistentes
+se conservan de forma prudente.
+
+Sin conexión, deja el script de Harness, bootstrap, wheel y `SHA256SUMS` en un
+directorio; guarda `release.json`, ZIP del bundle y `SHA256SUMS` de Mods en el
+subdirectorio `mods/`. Utiliza `--offline-dir <ruta>` y `--mods-version X.Y.Z`
+(PowerShell `-OfflineDir` / `-ModsVersion`). El script fija su versión de Harness
+sin conexión; las llamadas directas al gestor también requieren `--version`.
+La gestión conjunta requiere Harness 7.1.0 o superior. Sólo se pueden elegir
+versiones anteriores para registros de sólo Harness sin Mods gestionados.
+`--mods none` permite omitir el bundle. Los proyectos inicializados conservan sus
+intérpretes referenciados. En Windows, el bootstrap independiente permite completar
+la retirada si el ejecutable de gestión está en uso.
+
+Instalar Flow no lo conecta automáticamente con la evidencia de ejecución.
+Utiliza `/aikya-flow connect <cache-root>` en la sesión actual; `doctor` indica que
+no ha comprobado esa conexión de sesión. Flow y Usage conservan tu statusLine.
+
+**Contribuidores:** crea un entorno virtual, instala `build`, `setuptools>=77` y
+`wheel`, y ejecuta `python -m pip install --no-build-isolation --no-deps -e .`.
+Utiliza `aikya`, `aikya-setup` o `python -m aikya`; se retiran los lanzadores Python
+de raíz. La apariencia en la sesión nativa y la ejecución autenticada del modelo
+se validan por separado de la aceptación del instalador.
 
 ## 2. Incorporación de proyectos
 

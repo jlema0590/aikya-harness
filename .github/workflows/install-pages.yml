@@ -1,0 +1,88 @@
+name: Aikya | Verified installation pages
+
+on:
+  workflow_dispatch:
+    inputs:
+      release-tag:
+        description: Published stable release tag (vX.Y.Z)
+        required: true
+        type: string
+  workflow_call:
+    inputs:
+      release-tag:
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: aikya-install-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.repository == 'jlema0590/aikya-harness'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      RELEASE_TAG: ${{ inputs.release-tag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify published stable release before downloading
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import os, re
+          tag = os.environ['RELEASE_TAG']
+          if not re.fullmatch(r'v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)', tag):
+              raise SystemExit('Expected a stable vX.Y.Z release tag')
+          PY
+          gh api "repos/$GITHUB_REPOSITORY/releases/tags/$RELEASE_TAG" > published-release.json
+          python - <<'PY'
+          import json, os
+          release = json.load(open('published-release.json'))
+          if (release.get('tag_name') != os.environ['RELEASE_TAG'] or
+              release.get('draft') is not False or release.get('prerelease') is not False or not release.get('published_at')):
+              raise SystemExit('Release is not a published stable release')
+          PY
+          gh release download "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --dir release-entry \
+            --pattern install.sh --pattern install.ps1 --pattern SHA256SUMS
+      - name: Build exact verified entry files
+        shell: bash
+        run: |
+          PYTHONPATH=src python scripts/ci/build_install_pages.py --version "${RELEASE_TAG#v}" --assets release-entry --output install-site
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: install-site
+      - uses: actions/deploy-pages@v4
+        id: deployment
+      - name: Verify public entry bytes and text response
+        env:
+          PAGES_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          python - <<'PY'
+          import os, pathlib, urllib.request
+          base = os.environ['PAGES_URL'].rstrip('/') + '/'
+          for name in ('install.sh', 'install.ps1.txt'):
+              with urllib.request.urlopen(base + name, timeout=30) as response:
+                  if response.read() != (pathlib.Path('install-site') / name).read_bytes():
+                      raise SystemExit('Published installer bytes differ: ' + name)
+                  if name.endswith('.txt') and not response.headers.get_content_type().startswith('text/'):
+                      raise SystemExit('PowerShell entry must be served as text')
+          PY

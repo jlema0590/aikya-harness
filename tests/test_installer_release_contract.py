@@ -23,7 +23,7 @@ class InstallerReleaseContract(unittest.TestCase):
             for name in ('aikya-bootstrap.pyz', 'install.sh', 'install.ps1'):
                 self.assertEqual(digests[name], hashlib.sha256((out / name).read_bytes()).hexdigest())
             env = {**os.environ, 'AIKYA_INSTALL_ROOT': str(base / 'app'), 'PYTHONPATH': '', 'HOME': str(base / 'home'), 'USERPROFILE': str(base / 'home')}
-            process = subprocess.run([sys.executable, '-I', '-B', str(out / 'aikya-bootstrap.pyz'), 'install', '--version', '7.0.0', '--scope', 'global', '--dry-run'], cwd=base, env=env, capture_output=True, text=True)
+            process = subprocess.run([sys.executable, '-I', '-B', str(out / 'aikya-bootstrap.pyz'), 'install', '--version', '7.0.0', '--scope', 'global', '--mods', 'none', '--dry-run'], cwd=base, env=env, capture_output=True, text=True)
             self.assertEqual(0, process.returncode, process.stderr)
             self.assertFalse((base / 'app').exists())
             first = (out / 'aikya-bootstrap.pyz').read_bytes()

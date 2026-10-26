@@ -8,7 +8,7 @@ from . import state
 
 def publish(root, candidate):
     marker = state.safe(root / 'launchers.json')
-    previous = json.loads(marker.read_text()) if marker.exists() else {}
+    previous = json.loads(marker.read_text(encoding='utf8')) if marker.exists() else {}
     destination_root = root / 'bin'
     for name in ('aikya', 'aikya-setup', 'aikya-manage'):
         filename = name + ('.exe' if os.name == 'nt' else '')
@@ -29,7 +29,7 @@ def publish(root, candidate):
 
 def remove(root):
     marker = state.safe(root / 'launchers.json')
-    owned = json.loads(marker.read_text()) if marker.exists() else {}
+    owned = json.loads(marker.read_text(encoding='utf8')) if marker.exists() else {}
     for name in owned:
         if Path(name).parent != root / 'bin':
             raise ValueError('Unsafe launcher ownership record')
