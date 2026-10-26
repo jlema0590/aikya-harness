@@ -6,9 +6,35 @@ import sys
 import tempfile
 import time
 import unittest
+from contextlib import contextmanager
+from unittest.mock import patch
 from urllib.request import urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+@contextmanager
+def completed_observers():
+    """Wait for actual test-owned children before deleting their Windows cwd."""
+    processes = []
+    launch = subprocess.Popen
+
+    def observed_launch(*args, **kwargs):
+        process = launch(*args, **kwargs)
+        processes.append(process)
+        return process
+
+    with patch('aikya.code_index.hooks.subprocess.Popen', side_effect=observed_launch):
+        try:
+            yield
+        finally:
+            for process in processes:
+                try:
+                    process.wait(12)
+                except subprocess.TimeoutExpired:
+                    process.kill()
+                    process.wait(5)
+                    raise AssertionError('Session observer did not exit after SessionEnd')
 
 
 class MemoryIntegrationTests(unittest.TestCase):
@@ -61,7 +87,7 @@ class MemoryIntegrationTests(unittest.TestCase):
     def test_session_hooks_start_and_stop_only_the_project_observer(self):
         from aikya.code_index.policy import configure
         from aikya.code_index.hooks import process_event
-        with tempfile.TemporaryDirectory() as folder:
+        with tempfile.TemporaryDirectory() as folder, completed_observers():
             root = Path(folder).resolve();configure(root, approved=True)
             (root / 'entity.py').write_text('class SessionEntity: pass\n')
             event = {'hook_event_name': 'SessionStart', 'session_id': 'test-session'}
@@ -142,7 +168,7 @@ class MemoryIntegrationTests(unittest.TestCase):
     def test_session_observer_respects_disabled_automatic_export(self):
         from aikya.code_index.policy import configure
         from aikya.code_index.hooks import process_event
-        with tempfile.TemporaryDirectory() as folder:
+        with tempfile.TemporaryDirectory() as folder, completed_observers():
             root = Path(folder).resolve();configure(root, approved=True)
             path = root / '.aikya/code-index.json'
             policy = json.loads(path.read_text());policy['auto_export'] = False
@@ -176,7 +202,7 @@ class MemoryIntegrationTests(unittest.TestCase):
     def test_live_client_reuses_session_observer_and_releases_only_its_lease(self):
         from aikya.code_index.policy import configure
         from aikya.code_index.hooks import process_event
-        with tempfile.TemporaryDirectory() as folder:
+        with tempfile.TemporaryDirectory() as folder, completed_observers():
             root = Path(folder).resolve();configure(root, approved=True)
             (root / 'entity.py').write_text('class Entity: pass\n')
             process_event(root, {'hook_event_name': 'SessionStart', 'session_id': 'host-session'})

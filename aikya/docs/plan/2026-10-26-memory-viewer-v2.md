@@ -27,12 +27,14 @@ source hierarchy derives from paths, with no inferred runtime request flows.
   parser checks, browser acceptance, package build and isolated installation
   scenarios. Report the distinction between offline contracts and authenticated
   assistant sessions, which remain in the user's other environment.
-- [ ] Review the complete develop diff, commit, push the current branch and open
+- [x] Review the complete develop diff, commit, push the current branch and open
   its pull request against develop. Inspect remote checks without merging.
 
-Local acceptance is complete; observed results and reproduction commands are in
+Initial local acceptance is complete; observed results and reproduction commands are in
 [version 2 validation](../validation/MEMORY_VIEWER_V2.md). Publication is the
-authorized final step; its status is tracked by the resulting pull request.
+authorized final step and is tracked in
+[pull request 20](https://github.com/jlema0590/aikya-harness/pull/20). Its initial
+Windows findings and follow-up are recorded in the validation report.
 
 ## Review focus
 

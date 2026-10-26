@@ -90,14 +90,17 @@ class CodeIndexTests(unittest.TestCase):
 
     def test_utf8_positions_nested_names_and_imports_are_source_bound(self):
         text = 'import os\nclass Café:\n    def run(self):\n        return "á"\n'
-        self.source(text=text)
-        self.sync(self.root)
-        snap = self.Store(self.root).read_snapshot()
-        method = next(s for s in snap.symbols if s['qualified_name'] == 'Café.run')
-        self.assertEqual('run', method['name'])
-        self.assertEqual(3, method['start_line'])
-        self.assertTrue(text.encode()[method['start_byte']:method['end_byte']].startswith(b'def run'))
-        self.assertEqual('os', snap.imports[0]['name'])
+        for newline in ('\n', '\r\n'):
+            with self.subTest(newline=repr(newline)):
+                raw = text.replace('\n', newline).encode('utf8')
+                (self.root / 'service.py').write_bytes(raw)
+                self.sync(self.root)
+                snap = self.Store(self.root).read_snapshot()
+                method = next(s for s in snap.symbols if s['qualified_name'] == 'Café.run')
+                self.assertEqual('run', method['name'])
+                self.assertEqual(3, method['start_line'])
+                self.assertTrue(raw[method['start_byte']:method['end_byte']].startswith(b'def run'))
+                self.assertEqual('os', snap.imports[0]['name'])
 
     def test_secret_and_symlink_paths_are_excluded_without_execution(self):
         self.source()

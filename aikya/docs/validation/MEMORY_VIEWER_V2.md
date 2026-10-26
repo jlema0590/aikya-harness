@@ -30,7 +30,7 @@ were loaded from a temporary directory; no SDK or user credentials were needed.
 
 | Check | Observed result |
 |---|---|
-| Complete regression suite | 593 tests run in 965.754 s: 590 passed and 3 environment-specific skips; zero failures/errors |
+| Complete local regression before native acceptance | 593 tests run in 965.754 s: 590 passed and 3 environment-specific skips; zero failures/errors |
 | Public executable command contracts | All 28 commands exercised; 52 process checks passed, including expected rejection cases |
 | Final focused exporter tests | 13 passed |
 | Version 2 browser acceptance | 19 checks passed against the final generated artifact |
@@ -54,6 +54,30 @@ selection, source inspection, empty searches, reduced motion and widths 1560,
 traffic were observed. Updated [desktop](../examples/aikya-memory-live-desktop.png)
 and [mobile](../examples/aikya-memory-live-mobile.png) captures are retained.
 
+## Native Windows findings and follow-up
+
+Initial Windows Python 3.13 CI exposed issues that local macOS acceptance could
+not establish. Git's `core.autocrlf` changed packaged reference-template and
+migration-catalog bytes, correctly triggering their integrity checks. Resource
+attributes now preserve their committed bytes. The new real-Git checkout test
+reproduced the CRLF corruption before this change and passes afterward. It covers
+template, migration and viewer resource paths; integrity comparisons remain exact.
+
+Two assertions also mixed translated text with byte contracts: declaration
+offsets are now checked against explicit UTF-8 LF and CRLF source bytes, and the
+HTML hash assertion reads actual bytes. Viewer assertions decode UTF-8 explicitly.
+Observer integration tests now wait for their actual child processes after
+SessionEnd; a Stopped status alone can precede process exit and retain a Windows
+working-directory handle. No shutdown behavior is bypassed and a child that does
+not stop still fails the test. Native memory steps use a shell that propagates
+each failed command rather than only the final command's exit status.
+
+The 1 checkout, 17 index, 13 exporter and 10 observer/integration tests pass locally
+after this follow-up. The complete local suite is rerun with the added checkout
+case. Current native acceptance and merge requirements are visible on
+[pull request 20](https://github.com/jlema0590/aikya-harness/pull/20); these local
+results do not substitute for its Windows jobs.
+
 ## Reproduction
 
 Use a contributor environment with the package installed, plus Playwright and
@@ -63,6 +87,7 @@ dependency. `AIKYA_CHROMIUM_EXECUTABLE` can select an existing Chromium executab
 
 ```text
 python -B -m unittest discover -s tests -q
+python -B -m unittest discover -s tests -p test_asset_line_endings.py -v
 python -B scripts/ci/command_acceptance.py --output <temporary>/commands.json
 python -B scripts/ci/smoke_profiles.py
 python -B scripts/ci/validate_agent_assets.py
