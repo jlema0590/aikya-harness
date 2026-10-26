@@ -47,8 +47,13 @@ class MemoryWatchTests(unittest.TestCase):
         while time.monotonic() < deadline:
             if self.errors:
                 raise self.errors[0]
-            if check():
-                return
+            try:
+                if check():
+                    return
+            except (FileNotFoundError, PermissionError):
+                # Windows can deny a read during atomic replacement. Retry only
+                # within the same deadline; observer errors still fail above.
+                pass
             time.sleep(.025)
         self.fail('Local update did not converge within the test timeout')
 

@@ -30,7 +30,8 @@ were loaded from a temporary directory; no SDK or user credentials were needed.
 
 | Check | Observed result |
 |---|---|
-| Complete local regression before native acceptance | 593 tests run in 965.754 s: 590 passed and 3 environment-specific skips; zero failures/errors |
+| Initial local regression before native acceptance | 593 tests run in 965.754 s: 590 passed and 3 environment-specific skips; zero failures/errors |
+| Final production-runtime local regression | 595 tests run in 955.716 s: 592 passed and 3 environment-specific skips; zero failures/errors |
 | Public executable command contracts | All 28 commands exercised; 52 process checks passed, including expected rejection cases |
 | Final focused exporter tests | 13 passed |
 | Version 2 browser acceptance | 19 checks passed against the final generated artifact |
@@ -74,7 +75,8 @@ each failed command rather than only the final command's exit status.
 
 The 1 checkout, 17 index, 13 exporter and 10 observer/integration tests pass locally
 after this follow-up. The complete local suite is rerun with the added checkout
-case. Current native acceptance and merge requirements are visible on
+and transport cases. The later test-only synchronization adjustments also receive
+focused acceptance; they do not change production runtime behavior. Current native acceptance and merge requirements are visible on
 [pull request 20](https://github.com/jlema0590/aikya-harness/pull/20); these local
 results do not substitute for its Windows jobs.
 
@@ -96,6 +98,12 @@ startup. It now waits for that actual readiness event, within a bounded deadline
 while still rejecting an exited client and verifying the live response, observer
 identity and lease ownership. This changes test synchronization, not product
 startup/permission policy.
+
+The raw-file polling assertion also hit a transient Windows sharing denial while
+the observer atomically replaced HTML. Its bounded convergence waiter now retries
+only missing-file/sharing errors. An observer error or a result that never
+converges still fails; publication verification and production permissions are
+unchanged.
 
 ## Reproduction
 
