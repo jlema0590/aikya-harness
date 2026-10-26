@@ -1,4 +1,5 @@
 """Acceptance tests v5.6: repository topology, unified workspace and welcome."""
+import runtime_support
 import importlib.util
 import io
 import json
@@ -13,18 +14,18 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[1]
 import sys
 sys.path.insert(0,str(ROOT))
-import install
-import doc_bootstrap
-import aikya_session
-from aikya_layout import app_count
+from aikya.installation import facade as install
+from aikya.documentation import bootstrap as doc_bootstrap
+from aikya.cli import session as aikya_session
+from aikya.discovery.layout import app_count
 
 def load_module(file, name):
-    spec=importlib.util.spec_from_file_location(name, file)
+    spec=runtime_support.module_spec(name, file)
     mod=importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(mod)
-    return mod
+    spec.loader.exec_module(mod);mod=getattr(mod,'_module',mod)
+    return getattr(mod, '_module', mod)
 
-SCAFFOLD=load_module(ROOT/'template/scripts/harness/scaffold.py','scaffold_v56')
+SCAFFOLD=load_module(ROOT/'src/aikya/resources/project_template/scripts/harness/scaffold.py','scaffold_v56')
 
 class AikyaLayoutTests(unittest.TestCase):
     def answers(self, target, **changes):
@@ -76,10 +77,11 @@ class AikyaLayoutTests(unittest.TestCase):
             root=Path(d)
             old=root/'docs/overview.md'
             old.parent.mkdir()
-            old.write_text('# Documento editado por el equipo\n')
+            old.write_text('# Documento editado por el equipo\n\nAlcance confirmado por el equipo.\n')
             p=self.answers(root,mode='existing')
             install.install(root,p,{'modules':[],'findings':[]})
-            self.assertEqual(old.read_text(),(root/'aikya/docs/overview.md').read_text())
+            self.assertIn(old.read_text().strip(),(root/'aikya/docs/overview.md').read_text())
+            self.assertEqual('# Documento editado por el equipo\n\nAlcance confirmado por el equipo.\n',old.read_text())
             self.assertTrue(old.exists())
 
     def test_single_scaffold_stages_and_preserves_ignore(self):
@@ -93,7 +95,7 @@ class AikyaLayoutTests(unittest.TestCase):
                 (stage/'app/page.tsx').write_text('export default function Page(){return null}')
                 (stage/'.gitignore').write_text('node_modules/\n.next/\n')
                 return SimpleNamespace(returncode=0)
-            with patch.object(SCAFFOLD.shutil,'which',return_value='/bin/mock'), patch('aikya_requirements.check', return_value={'ready':True,'checks':[]}):
+            with patch.object(SCAFFOLD.shutil,'which',return_value='/bin/mock'), patch('aikya.installation.requirements.check', return_value={'ready':True,'checks':[]}):
                 # El detector se importa desde una ruta distinta: sustituir temporalmente su check local.
                 script=root/'aikya/scripts/harness/aikya_requirements.py'
                 original=script.read_bytes()
@@ -149,13 +151,13 @@ class AikyaLayoutTests(unittest.TestCase):
             root=Path(d)
             hooks=root/'.claude/hooks'
             hooks.mkdir(parents=True)
-            previous=ROOT/'migrations/v55/hooks/request_docs.py'
+            previous=ROOT/'src/aikya/resources/migrations/v55/hooks/request_docs.py'
             (hooks/'request_docs.py').write_bytes(previous.read_bytes())
             custom=(hooks/'stop_docs.py')
             custom.write_text('#!/usr/bin/env python3\n# custom team hook\n')
             p=self.answers(root,mode='existing')
             install.install(root,p,{'modules':[],'findings':[]})
-            self.assertEqual((ROOT/'template/.claude/hooks/request_docs.py').read_bytes(),
+            self.assertEqual((ROOT/'src/aikya/resources/project_template/.claude/hooks/request_docs.py').read_bytes(),
                              (hooks/'request_docs.py').read_bytes())
             self.assertIn('custom team hook',custom.read_text())
 

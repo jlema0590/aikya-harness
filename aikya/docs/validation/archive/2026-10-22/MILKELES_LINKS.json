@@ -1,0 +1,10 @@
+{
+  "scope": "Local relative file/directory targets; anchors and external links not checked. Upstream illustrative/placeholder links may be unresolved by design.",
+  "commit": "35fc8e29be1f0093b8ef13a9762de67dc99b6882",
+  "missing_links": [
+    {
+      "document": "milkeles/general-swe/foundations/architecture-overview.md",
+      "target": "decisions/0007-use-postgres-for-the-ledger.md"
+    }
+  ]
+}

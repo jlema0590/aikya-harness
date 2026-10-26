@@ -1,0 +1,461 @@
+{
+  "revision": "d37f090918fe0ec6d97787170b784108759bd70a",
+  "adapters": {
+    "aikya_cli": {
+      "module": "aikya.cli.main",
+      "sha256": "1d1e751e45b70262ed2b096a88eb87d1d0f543d122dde00c9dd41859ac6177a8",
+      "helper": false
+    },
+    "aikya_session": {
+      "module": "aikya.cli.session",
+      "sha256": "6812192c04bd3a6593f2a6f24008be54e1fd53477991dd4472d636d42325e9de",
+      "helper": false
+    },
+    "agent_loop": {
+      "module": "aikya.core.loop",
+      "sha256": "b9a508e937262f1858be9fad6d7d4dccfcee465d5a8714e31c136ad93e5eb9e8",
+      "helper": false
+    },
+    "agent_loop_state": {
+      "module": "aikya.core.checkpoints",
+      "sha256": "00e0f4df064bd0e89de53d45bee22ea2240436790969a68129680f850dfece84",
+      "helper": false
+    },
+    "agent_runtime": {
+      "module": "aikya.core.runtime",
+      "sha256": "312f9ac1fd039f2f95064b6b5c6761d528273b422e7ba0a4fd9927d91dd1c848",
+      "helper": false
+    },
+    "execution_state": {
+      "module": "aikya.core.state",
+      "sha256": "f32712dd89d98c905937ecc5367de2df93a58f885cc2c19c5b4b53186c79bdb2",
+      "helper": false
+    },
+    "check_events": {
+      "module": "aikya.middleware.events",
+      "sha256": "b0d18169aae9af943849e9fc619266b0e9ebd23dd38c37121fc8bf2a1ca82e71",
+      "helper": false
+    },
+    "command_workflows": {
+      "module": "aikya.middleware.commands",
+      "sha256": "8118ebaeb28f012b0e4cc3b2274fbb16b922a9f9ea1f93dd474c1595d55381ad",
+      "helper": false
+    },
+    "execution_config": {
+      "module": "aikya.middleware.configuration",
+      "sha256": "f0cbc37165aa9c13b7ebd4fe6660e9fa436b7af6fca68bc1ab33994f8d931d3e",
+      "helper": false
+    },
+    "execution_lifecycle": {
+      "module": "aikya.middleware.lifecycle",
+      "sha256": "a7c6ce72f394a41a7d2f53b729558d244e7c80dd20de468822322579d6c36a50",
+      "helper": false
+    },
+    "execution_observer": {
+      "module": "aikya.middleware.observer",
+      "sha256": "44d2453554369d8ef8723dca1fc87f9a10c6bbf9a72a7fa1cb0986e4bda187f9",
+      "helper": false
+    },
+    "runtime_metrics": {
+      "module": "aikya.middleware.metrics",
+      "sha256": "0d42079f47356d806a877f4933dce8841581f135828a7523905b18eacad4ca8e",
+      "helper": false
+    },
+    "aikya_statusline": {
+      "module": "aikya.middleware.statusline",
+      "sha256": "7d511d04301dccff8c28058f3d146461fc8f5f64bea25c4a56734a84075bcbdd",
+      "helper": false
+    },
+    "aikya_subagent_statusline": {
+      "module": "aikya.middleware.subagent_statusline",
+      "sha256": "25f8f37724048ca83ae94d72f2286c00064412cd2e43edd7856d9cb369e0c08e",
+      "helper": false
+    },
+    "agent_memory": {
+      "module": "aikya.memory.knowledge",
+      "sha256": "6d76b20fea06ebf845a53d7ba5d3afd1c72adec9967757a339cf2c242a3ea90d",
+      "helper": false
+    },
+    "memory_store": {
+      "module": "aikya.memory.store",
+      "sha256": "c024e97335d1a24b6f4ad60279d34cfce31f52da7144a9e1647d02f9485c6618",
+      "helper": false
+    },
+    "agent_memory_extract": {
+      "module": "aikya.memory.extraction",
+      "sha256": "64d7eb1f0cf39039d1e866b4d5cac4cf2d401e51938a3d940a4682ac436536d9",
+      "helper": false
+    },
+    "install": {
+      "module": "aikya.installation.facade",
+      "sha256": "d025f1fb9c6ca4a02724d5fb65746261a12665f67e393c5ae2684ee1ac6bffb0",
+      "helper": false
+    },
+    "aikya_setup": {
+      "module": "aikya.installation.registration",
+      "sha256": "a366db8c11aec0c97581141718c64b092340bc57a4b13510b29afaba5b972dcc",
+      "helper": false
+    },
+    "aikya_requirements": {
+      "module": "aikya.installation.requirements",
+      "sha256": "f210d32539176b2bea27fb550e86819182649faae39c247c9a8b1912f05301f8",
+      "helper": false
+    },
+    "aikya_analyze": {
+      "module": "aikya.discovery.analyze",
+      "sha256": "d8cfb97bd634e7f33528bbdc388315a4475880425c83f24e2acb4ac63f6b0a4c",
+      "helper": false
+    },
+    "project_discovery": {
+      "module": "aikya.discovery.scanner",
+      "sha256": "8674083585c032b5c60ef2259e10441e57e28e72a0444e56d676f6c9f912d4d1",
+      "helper": false
+    },
+    "profile_builder": {
+      "module": "aikya.discovery.profiles",
+      "sha256": "fd3b4cf0d8927d6d9c5c83e9ae78807ddd8444f1b00850a31f7677f3e035baf0",
+      "helper": false
+    },
+    "analysis_manifest": {
+      "module": "aikya.discovery.manifest",
+      "sha256": "234b7c178c4939dfe9374f0ab7590929d16e9f83e65f55454b96cab5239ab897",
+      "helper": false
+    },
+    "aikya_layout": {
+      "module": "aikya.discovery.layout",
+      "sha256": "cbee0acde65261cfdb7448e1c39bd0d8973b538109bd0bcf5e212c95027da622",
+      "helper": false
+    },
+    "infrastructure_profile": {
+      "module": "aikya.discovery.infrastructure",
+      "sha256": "8f2556b214e5eb9aa80a47b50fa8748de380bf311febeb07b322e401d7e05fb4",
+      "helper": false
+    },
+    "methodology": {
+      "module": "aikya.workflows.methodology",
+      "sha256": "af7975c529853641ca83a2f2885dfc3065bd0675709b5cbfff69520b0b3ec61b",
+      "helper": false
+    },
+    "odd_engine": {
+      "module": "aikya.workflows.odd",
+      "sha256": "2869158bfbd9a6d1940802dba759256e76fb44e6af595e9794c8923d4184deb2",
+      "helper": false
+    },
+    "sdd_engine": {
+      "module": "aikya.workflows.sdd.engine",
+      "sha256": "229de317950d81d76f15d9f8006c31b69f9785f19cbaa216f4d5f211b5d4dfcd",
+      "helper": false
+    },
+    "sdd_assets": {
+      "module": "aikya.workflows.sdd.assets",
+      "sha256": "ccea1c2065a814d9f84ea0b9ba7a21bb983a8cc015bee817c366c01e3019a932",
+      "helper": false
+    },
+    "sdd_localization": {
+      "module": "aikya.workflows.sdd.localization",
+      "sha256": "78f78d4f28eb41200427b154a208e0176d7498808ee4930fa17efb8ac43d41e1",
+      "helper": false
+    },
+    "sdd_templates": {
+      "module": "aikya.workflows.sdd.templates",
+      "sha256": "062b5980612dcb79170eb64c709705d9c7dc4d472f0212db57a99b5a4d4eef6a",
+      "helper": false
+    },
+    "doc_bootstrap": {
+      "module": "aikya.documentation.bootstrap",
+      "sha256": "2d1dfa14cc22dddbdf1a99c5ddbe06b1245e2c1a05b020492df197001728ba77",
+      "helper": false
+    },
+    "docs_language": {
+      "module": "aikya.documentation.language",
+      "sha256": "bedac55e1c2895ae016856429cb5c6fab4e218ff7d020c946f022dc30f368925",
+      "helper": false
+    },
+    "docs_layout": {
+      "module": "aikya.documentation.layout",
+      "sha256": "d22b1628e2bc7087630ee3e3da08ce149e9a54cd5f4bbe1be53e384d71b81829",
+      "helper": false
+    },
+    "docs_templates_en": {
+      "module": "aikya.documentation.pages_en",
+      "sha256": "49b841431639e8a4aa743b6ad090eb8ace81f8c6e22338a73e863c29db230c2b",
+      "helper": false
+    },
+    "docs_templates_es": {
+      "module": "aikya.documentation.pages_es",
+      "sha256": "5b66be93afb494af7dc870c8c2906abedcbed608ba8e67d0ca21f278d787d2e0",
+      "helper": false
+    },
+    "docs_migration_hashes": {
+      "module": "aikya.documentation.migration_hashes",
+      "sha256": "94410b36de4ba118757695950ceacb00ed4a41ff3f23a6b5699b49ee940dbe1a",
+      "helper": false
+    },
+    "claude_templates": {
+      "module": "aikya.documentation.claude",
+      "sha256": "7eefb61367b7fb9d9c7cbbeeb9ceb0a68e160fdc44a1b2dceb380c88c292ae1f",
+      "helper": false
+    },
+    "documentation_templates": {
+      "module": "aikya.documentation.templates",
+      "sha256": "ae1d3105c372455484f91b85c34f484aa38d2589cd09d891f2e26f33b0af3b39",
+      "helper": false
+    },
+    "documentation_workflows": {
+      "module": "aikya.documentation.composition",
+      "sha256": "3787e0db4e4a8bf32c8306952c3568f04018f49bc19f7b4b215967008907fa7a",
+      "helper": false
+    },
+    "engineering_catalog": {
+      "module": "aikya.catalogs.engineering",
+      "sha256": "3755d6734f522b358addd6716ee2051f669f85f9dcdf10f9ae46037e5b148262",
+      "helper": false
+    },
+    "external_skills": {
+      "module": "aikya.catalogs.external",
+      "sha256": "79e99ad51128b86f851d7f1dd43235a6918bfb61ea3f082a0338b05e6e6a1a00",
+      "helper": false
+    },
+    "skills_registry": {
+      "module": "aikya.catalogs.skills",
+      "sha256": "d9a4472ab7df1120b88b54110134e20f8b33e6df10de43dacf43b21569fb0871",
+      "helper": false
+    },
+    "aikya_router": {
+      "module": "aikya.routing.router",
+      "sha256": "1628a535b1e3e080321fafce791e3bdab12e9385f1373d556a0eebbcdf5af48d",
+      "helper": false
+    },
+    "model_capabilities": {
+      "module": "aikya.routing.models",
+      "sha256": "5475aa7b5edcd348b94f5c306af201602ee56b42fd60c0190343c209d13bd196",
+      "helper": false
+    },
+    "token_policy": {
+      "module": "aikya.routing.policy",
+      "sha256": "6e524bdade0916073c95acade3975c43f27798b553f2f072ac1c3bc1e0226d50",
+      "helper": false
+    },
+    "token_report": {
+      "module": "aikya.routing.usage",
+      "sha256": "b2f2bbd87f3d12a685596a9591a3044384633fa26e47a8c205a0a3cca9467aa5",
+      "helper": false
+    },
+    "context_budget": {
+      "module": "aikya.quality.context_budget",
+      "sha256": "75996fa911e74601ea4641cf43d5a5836275447349f02cc1bdb5aad820e17e40",
+      "helper": false
+    },
+    "code_quality": {
+      "module": "aikya.quality.source",
+      "sha256": "a1793a5db1950ba9e44cc14f49adad706fb1471adb2584ff3936f465424f92f1",
+      "helper": false
+    },
+    "durable_io": {
+      "module": "aikya.storage",
+      "sha256": "d59ee2b50b9821ec938c954e56cd8aea5301a7529c2d65fad8b67f6765b40435",
+      "helper": false
+    },
+    "scaffold": {
+      "module": "aikya.tools.scaffold",
+      "sha256": "03e821e8b21044ce0d38423d49a211e49b2494e2b73536d08b1e5d2c5f8525f5",
+      "helper": true
+    },
+    "infrastructure": {
+      "module": "aikya.tools.infrastructure",
+      "sha256": "67af0bace9c03a45042ff0542cbc0d83ebc7b7a922f68aee9a6e4e04af62e922",
+      "helper": true
+    },
+    "run_checks": {
+      "module": "aikya.tools.checks",
+      "sha256": "072105bcf3cba5fa1e0fcfb75a8a77962d35cc8f082bcf06ed87ef7faa8636b0",
+      "helper": true
+    },
+    "skills_lint": {
+      "module": "aikya.tools.skills_lint",
+      "sha256": "54e08d01c236c67bd3e35db57f8ac747c65d55cf60d94372bee2ae0a4feeec0c",
+      "helper": true
+    },
+    "docs_guard": {
+      "module": "aikya.documentation.guard",
+      "sha256": "4dc5e5d0b99c6476900194a22f2501a6d917d9a5a80485e79c971452dc4ae4a2",
+      "helper": true
+    }
+  },
+  "bootstrap_sha256": "967258c9ca21bba6a54ee78249ffe97fe7819b4aeac5df08be63a29e6697e214",
+  "destinations": {
+    "registration": [
+      "_aikya_bootstrap.py",
+      "agent_loop.py",
+      "agent_loop_state.py",
+      "agent_memory.py",
+      "agent_memory_extract.py",
+      "agent_runtime.py",
+      "aikya_analyze.py",
+      "aikya_cli.py",
+      "aikya_layout.py",
+      "aikya_requirements.py",
+      "aikya_router.py",
+      "aikya_session.py",
+      "aikya_setup.py",
+      "aikya_statusline.py",
+      "aikya_subagent_statusline.py",
+      "analysis_manifest.py",
+      "check_events.py",
+      "claude_templates.py",
+      "code_quality.py",
+      "command_workflows.py",
+      "doc_bootstrap.py",
+      "docs_language.py",
+      "docs_layout.py",
+      "docs_migration_hashes.py",
+      "docs_templates_en.py",
+      "docs_templates_es.py",
+      "documentation_templates.py",
+      "documentation_workflows.py",
+      "durable_io.py",
+      "engineering_catalog.py",
+      "execution_config.py",
+      "execution_lifecycle.py",
+      "execution_observer.py",
+      "execution_state.py",
+      "external_skills.py",
+      "infrastructure_profile.py",
+      "install.py",
+      "memory_store.py",
+      "methodology.py",
+      "model_capabilities.py",
+      "odd_engine.py",
+      "profile_builder.py",
+      "project_discovery.py",
+      "runtime_metrics.py",
+      "sdd_assets.py",
+      "sdd_engine.py",
+      "sdd_localization.py",
+      "sdd_templates.py",
+      "skills_registry.py",
+      "template/scripts/harness/docs_guard.py",
+      "template/scripts/harness/infrastructure.py",
+      "template/scripts/harness/run_checks.py",
+      "template/scripts/harness/scaffold.py",
+      "template/scripts/harness/skills_lint.py",
+      "token_policy.py",
+      "token_report.py"
+    ],
+    "initialized-odd": [
+      "_aikya_bootstrap.py",
+      "agent_loop.py",
+      "agent_loop_state.py",
+      "agent_memory.py",
+      "agent_memory_extract.py",
+      "agent_runtime.py",
+      "aikya_analyze.py",
+      "aikya_cli.py",
+      "aikya_layout.py",
+      "aikya_requirements.py",
+      "aikya_router.py",
+      "aikya_session.py",
+      "aikya_setup.py",
+      "aikya_statusline.py",
+      "aikya_subagent_statusline.py",
+      "analysis_manifest.py",
+      "check_events.py",
+      "claude_templates.py",
+      "code_quality.py",
+      "command_workflows.py",
+      "doc_bootstrap.py",
+      "docs_language.py",
+      "docs_layout.py",
+      "docs_migration_hashes.py",
+      "docs_templates_en.py",
+      "docs_templates_es.py",
+      "documentation_templates.py",
+      "documentation_workflows.py",
+      "durable_io.py",
+      "engineering_catalog.py",
+      "execution_config.py",
+      "execution_lifecycle.py",
+      "execution_observer.py",
+      "execution_state.py",
+      "external_skills.py",
+      "infrastructure_profile.py",
+      "install.py",
+      "memory_store.py",
+      "methodology.py",
+      "model_capabilities.py",
+      "odd_engine.py",
+      "profile_builder.py",
+      "project_discovery.py",
+      "runtime_metrics.py",
+      "sdd_assets.py",
+      "sdd_localization.py",
+      "sdd_templates.py",
+      "skills_registry.py",
+      "template/scripts/harness/docs_guard.py",
+      "template/scripts/harness/infrastructure.py",
+      "template/scripts/harness/run_checks.py",
+      "template/scripts/harness/scaffold.py",
+      "template/scripts/harness/skills_lint.py",
+      "token_policy.py",
+      "token_report.py"
+    ],
+    "initialized-sdd": [
+      "_aikya_bootstrap.py",
+      "agent_loop.py",
+      "agent_loop_state.py",
+      "agent_memory.py",
+      "agent_memory_extract.py",
+      "agent_runtime.py",
+      "aikya_analyze.py",
+      "aikya_cli.py",
+      "aikya_layout.py",
+      "aikya_requirements.py",
+      "aikya_router.py",
+      "aikya_session.py",
+      "aikya_setup.py",
+      "aikya_statusline.py",
+      "aikya_subagent_statusline.py",
+      "analysis_manifest.py",
+      "check_events.py",
+      "claude_templates.py",
+      "code_quality.py",
+      "command_workflows.py",
+      "doc_bootstrap.py",
+      "docs_language.py",
+      "docs_layout.py",
+      "docs_migration_hashes.py",
+      "docs_templates_en.py",
+      "docs_templates_es.py",
+      "documentation_templates.py",
+      "documentation_workflows.py",
+      "durable_io.py",
+      "engineering_catalog.py",
+      "execution_config.py",
+      "execution_lifecycle.py",
+      "execution_observer.py",
+      "execution_state.py",
+      "external_skills.py",
+      "infrastructure_profile.py",
+      "install.py",
+      "memory_store.py",
+      "methodology.py",
+      "model_capabilities.py",
+      "odd_engine.py",
+      "profile_builder.py",
+      "project_discovery.py",
+      "runtime_metrics.py",
+      "sdd_assets.py",
+      "sdd_engine.py",
+      "sdd_localization.py",
+      "sdd_templates.py",
+      "skills_registry.py",
+      "template/scripts/harness/docs_guard.py",
+      "template/scripts/harness/infrastructure.py",
+      "template/scripts/harness/run_checks.py",
+      "template/scripts/harness/scaffold.py",
+      "template/scripts/harness/skills_lint.py",
+      "token_policy.py",
+      "token_report.py"
+    ]
+  }
+}

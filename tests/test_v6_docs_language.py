@@ -6,10 +6,10 @@ import tempfile
 import unittest
 from pathlib import Path
 
-import install
-from aikya_analyze import execute
-from doc_bootstrap import pages
-from docs_language import POLICY_FILE, read, resolve, validate, write_approved
+from aikya.installation import facade as install
+from aikya.discovery.analyze import execute
+from aikya.documentation.bootstrap import pages
+from aikya.documentation.language import POLICY_FILE, read, resolve, validate, write_approved
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -81,7 +81,7 @@ class DocumentationLanguageTests(unittest.TestCase):
             install.install(root, profile(root), {"modules": [], "findings": []}, docs_lang="es")
             self.assertEqual(read(root), "es")
             self.assertIn("Visión general", (root / "aikya/docs/overview.md").read_text())
-            self.assertIn("Agentes técnicos disponibles", (root / "aikya/docs/agents.md").read_text())
+            self.assertIn("Agentes técnicos disponibles", (root / "aikya/docs/tools/agents.md").read_text())
             self.assertIn("Technical project profile", (root / ".claude/rules/00-project-profile.md").read_text())
             self.assertFalse((root / ".aikya/analysis/manifest.json").exists())
 
@@ -91,7 +91,7 @@ class DocumentationLanguageTests(unittest.TestCase):
             install.install(root, profile(root), {"modules": [], "findings": []}, docs_lang="en")
             self.assertEqual(read(root), "en")
             self.assertIn("Project overview", (root / "aikya/docs/overview.md").read_text())
-            self.assertIn("Available engineering agents", (root / "aikya/docs/agents.md").read_text())
+            self.assertIn("Available engineering agents", (root / "aikya/docs/tools/agents.md").read_text())
             self.assertIn("not a history of model invocations",
                           (root / "aikya/docs/skills.md").read_text().lower())
 
@@ -99,18 +99,18 @@ class DocumentationLanguageTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
             (root / "pom.xml").write_text("<project/>", encoding="utf8")
-            preview = execute(root, docs_lang="es", dry_run=True)
+            preview = execute(root, docs_lang="es", dry_run=True,methodology='odd')
             self.assertEqual(preview["documentation_language"], "es")
             self.assertFalse(preview["writes"])
             self.assertIn(POLICY_FILE, [x["path"] for x in preview["plan"]])
             self.assertFalse((root / POLICY_FILE).exists())
-            result = execute(root, docs_lang="es", approved=True)
+            result = execute(root, docs_lang="es", approved=True,methodology='odd')
             self.assertTrue(result["writes"])
             self.assertEqual(read(root), "es")
             self.assertIn("Visión general", (root / "aikya/docs/overview.md").read_text())
             self.assertIn("existing repository analysis", (root / ".aikya/analysis/report.md").read_text())
             with self.assertRaises(ValueError):
-                execute(root, docs_lang="en", dry_run=True)
+                execute(root, docs_lang="en", dry_run=True,methodology='odd')
 
     def test_existing_custom_document_survives_localization(self):
         with tempfile.TemporaryDirectory() as temp:
@@ -119,7 +119,7 @@ class DocumentationLanguageTests(unittest.TestCase):
             custom = root / "aikya/docs/overview.md"
             custom.parent.mkdir(parents=True)
             custom.write_text("# Team document\nDo not overwrite\n", encoding="utf8")
-            result = execute(root, docs_lang="en", approved=True)
+            result = execute(root, docs_lang="en", approved=True,methodology='odd')
             self.assertTrue(result["writes"])
             self.assertEqual(custom.read_text(), "# Team document\nDo not overwrite\n")
 

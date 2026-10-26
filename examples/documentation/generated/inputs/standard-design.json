@@ -1,0 +1,13 @@
+{
+  "title": "Synthetic design example",
+  "sections": {
+    "context-and-scope": "Synthetic change: a local read-only catalogue returns the agreed missing-item response.",
+    "goals": "Synthetic local catalogue: goals. This bounded example does not assert a deployed system, measured target or approval.",
+    "non-goals": "Synthetic local catalogue: non-goals. This bounded example does not assert a deployed system, measured target or approval.",
+    "the-design": "Reuse the synthetic catalogue lookup adapter; preserve its existing response contract.",
+    "alternatives-considered": "A separate service is excluded because the synthetic example requires no additional runtime.",
+    "cross-cutting-concerns": "Synthetic local catalogue: cross-cutting concerns. This bounded example does not assert a deployed system, measured target or approval.",
+    "rollout-and-rollback": "Synthetic local catalogue: rollout and rollback. This bounded example does not assert a deployed system, measured target or approval.",
+    "open-questions": "Synthetic local catalogue: open questions. This bounded example does not assert a deployed system, measured target or approval."
+  }
+}

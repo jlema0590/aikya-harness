@@ -1,0 +1,1518 @@
+{
+  "schema": 1,
+  "baseline_commit": "08db4879ae3a8697c91adb0cc46bd76e333c693b",
+  "cleanup_applied": true,
+  "package_restructuring_applied": false,
+  "python_matrix": [
+    {
+      "python": "3.10",
+      "tests": 478,
+      "seconds": 133.594,
+      "result": "OK",
+      "preexisting_resource_warning": true
+    },
+    {
+      "python": "3.11",
+      "tests": 478,
+      "seconds": 130.453,
+      "result": "OK",
+      "preexisting_resource_warning": true
+    },
+    {
+      "python": "3.12",
+      "tests": 478,
+      "seconds": 142.637,
+      "result": "OK",
+      "preexisting_resource_warning": true
+    },
+    {
+      "python": "3.13",
+      "tests": 478,
+      "seconds": 137.696,
+      "result": "OK",
+      "preexisting_resource_warning": true
+    }
+  ],
+  "onboarding_matrix": {
+    "cases": 48,
+    "result": "passed",
+    "types": [
+      "development",
+      "infrastructure",
+      "devops"
+    ],
+    "methods": [
+      "odd",
+      "sdd"
+    ],
+    "locales": [
+      "en",
+      "es"
+    ],
+    "scopes": [
+      "global",
+      "project"
+    ],
+    "commands": [
+      "init",
+      "analyze"
+    ],
+    "unrelated_cwd": true,
+    "pythonpath_empty": true,
+    "live_provider_calls": false
+  },
+  "actual_baseline_upgrades": {
+    "baseline": "08db4879ae3a8697c91adb0cc46bd76e333c693b",
+    "results": [
+      {
+        "scope": "global",
+        "baseline_gallery_files": 265,
+        "managed_files_backed_up_and_retired": 264,
+        "custom_files_preserved": 1,
+        "repeat_upgrade": "passed",
+        "installed_onboarding_exit": 0
+      },
+      {
+        "scope": "project",
+        "baseline_gallery_files": 265,
+        "managed_files_backed_up_and_retired": 264,
+        "custom_files_preserved": 1,
+        "repeat_upgrade": "passed",
+        "installed_onboarding_exit": 0
+      }
+    ]
+  },
+  "example_profiles": {
+    "passed": 14,
+    "total": 14
+  },
+  "assets": {
+    "valid": true,
+    "agents": 30,
+    "skills": 29,
+    "commands": 27
+  },
+  "catalog": {
+    "valid": true,
+    "templates": 120,
+    "references": 155,
+    "pin": "35fc8e29be1f0093b8ef13a9762de67dc99b6882"
+  },
+  "verification": {
+    "distribution": {
+      "baseline_files": 679,
+      "baseline_bytes": 2909925,
+      "current_files": 414,
+      "current_source_bytes": 2533312,
+      "current_rendered_bytes": 2535073,
+      "gallery_files_excluded": 265,
+      "destination_collisions": 0
+    },
+    "gallery": {
+      "checksummed_documents": 253,
+      "hash_mismatches": 0,
+      "source_files_retained": 265
+    },
+    "archived_paths": 19,
+    "removed_duplicate_bytes": 1057227,
+    "preserved_retired_command_hash_records": [
+      ".claude/skills/aikya-project-init/SKILL.md",
+      ".claude/skills/aikya-infra-project/SKILL.md",
+      ".claude/skills/aikya-architecture-review/SKILL.md",
+      ".claude/skills/aikya-skills-install/SKILL.md",
+      ".claude/skills/aikya-documentation-sync/SKILL.md"
+    ],
+    "compatibility_helpers": "Preserved byte-for-byte; observed module_root and resolve_actor_model contracts unchanged.",
+    "footer_missing": [],
+    "canonical_layout_errors": [],
+    "local_markdown_link_diagnostics": [
+      {
+        "source": "documentation-templates/milkeles/general-swe/foundations/architecture-decision-record.md",
+        "target": "documentation-templates/milkeles/general-swe/foundations/0012-{slug}.md"
+      },
+      {
+        "source": "documentation-templates/milkeles/general-swe/foundations/architecture-overview.md",
+        "target": "documentation-templates/milkeles/general-swe/foundations/decisions/0007-use-postgres-for-the-ledger.md"
+      },
+      {
+        "source": "examples/documentation/generated/standard/summary.md",
+        "target": "examples/documentation/generated/standard/../../../../fixture-evidence.log"
+      }
+    ]
+  },
+  "source_quality": {
+    "changed_files": {
+      "files": 2,
+      "errors": [],
+      "warnings": [],
+      "duplicates": []
+    },
+    "all_files": {
+      "files": 139,
+      "errors": [
+        {
+          "path": "install.py",
+          "line": 1,
+          "code": "file_too_large",
+          "message": "1309 lines: split by responsibility; maximum is 1,000 physical lines."
+        }
+      ],
+      "warning_count": 13,
+      "duplicate_group_count": 3
+    }
+  },
+  "local_cache_cleanup": {
+    "removed_files": 334,
+    "removed_bytes": 5355128,
+    "paths": [
+      {
+        "path": "__pycache__/agent_loop.cpython-310.pyc",
+        "bytes": 21351
+      },
+      {
+        "path": "__pycache__/agent_loop.cpython-311.pyc",
+        "bytes": 48237
+      },
+      {
+        "path": "__pycache__/agent_loop.cpython-312.pyc",
+        "bytes": 40321
+      },
+      {
+        "path": "__pycache__/agent_loop.cpython-313.pyc",
+        "bytes": 41410
+      },
+      {
+        "path": "__pycache__/agent_loop_state.cpython-310.pyc",
+        "bytes": 9470
+      },
+      {
+        "path": "__pycache__/agent_loop_state.cpython-311.pyc",
+        "bytes": 20729
+      },
+      {
+        "path": "__pycache__/agent_loop_state.cpython-312.pyc",
+        "bytes": 17076
+      },
+      {
+        "path": "__pycache__/agent_loop_state.cpython-313.pyc",
+        "bytes": 17564
+      },
+      {
+        "path": "__pycache__/agent_memory.cpython-310.pyc",
+        "bytes": 13002
+      },
+      {
+        "path": "__pycache__/agent_memory.cpython-311.pyc",
+        "bytes": 28987
+      },
+      {
+        "path": "__pycache__/agent_memory.cpython-312.pyc",
+        "bytes": 24225
+      },
+      {
+        "path": "__pycache__/agent_memory.cpython-313.pyc",
+        "bytes": 24691
+      },
+      {
+        "path": "__pycache__/agent_memory_extract.cpython-313.pyc",
+        "bytes": 13600
+      },
+      {
+        "path": "__pycache__/agent_runtime.cpython-310.pyc",
+        "bytes": 8913
+      },
+      {
+        "path": "__pycache__/agent_runtime.cpython-311.pyc",
+        "bytes": 17628
+      },
+      {
+        "path": "__pycache__/agent_runtime.cpython-312.pyc",
+        "bytes": 15795
+      },
+      {
+        "path": "__pycache__/agent_runtime.cpython-313.pyc",
+        "bytes": 16240
+      },
+      {
+        "path": "__pycache__/aikya_analyze.cpython-310.pyc",
+        "bytes": 14597
+      },
+      {
+        "path": "__pycache__/aikya_analyze.cpython-311.pyc",
+        "bytes": 28097
+      },
+      {
+        "path": "__pycache__/aikya_analyze.cpython-312.pyc",
+        "bytes": 23245
+      },
+      {
+        "path": "__pycache__/aikya_analyze.cpython-313.pyc",
+        "bytes": 23814
+      },
+      {
+        "path": "__pycache__/aikya_cli.cpython-310.pyc",
+        "bytes": 8177
+      },
+      {
+        "path": "__pycache__/aikya_cli.cpython-311.pyc",
+        "bytes": 17150
+      },
+      {
+        "path": "__pycache__/aikya_cli.cpython-312.pyc",
+        "bytes": 15679
+      },
+      {
+        "path": "__pycache__/aikya_cli.cpython-313.pyc",
+        "bytes": 15750
+      },
+      {
+        "path": "__pycache__/aikya_layout.cpython-310.pyc",
+        "bytes": 1672
+      },
+      {
+        "path": "__pycache__/aikya_layout.cpython-311.pyc",
+        "bytes": 2680
+      },
+      {
+        "path": "__pycache__/aikya_layout.cpython-312.pyc",
+        "bytes": 2354
+      },
+      {
+        "path": "__pycache__/aikya_layout.cpython-313.pyc",
+        "bytes": 2384
+      },
+      {
+        "path": "__pycache__/aikya_requirements.cpython-313.pyc",
+        "bytes": 17424
+      },
+      {
+        "path": "__pycache__/aikya_setup.cpython-310.pyc",
+        "bytes": 18027
+      },
+      {
+        "path": "__pycache__/aikya_setup.cpython-311.pyc",
+        "bytes": 38137
+      },
+      {
+        "path": "__pycache__/aikya_setup.cpython-312.pyc",
+        "bytes": 33157
+      },
+      {
+        "path": "__pycache__/aikya_setup.cpython-313.pyc",
+        "bytes": 34178
+      },
+      {
+        "path": "__pycache__/analysis_manifest.cpython-310.pyc",
+        "bytes": 4706
+      },
+      {
+        "path": "__pycache__/analysis_manifest.cpython-311.pyc",
+        "bytes": 8941
+      },
+      {
+        "path": "__pycache__/analysis_manifest.cpython-312.pyc",
+        "bytes": 7593
+      },
+      {
+        "path": "__pycache__/analysis_manifest.cpython-313.pyc",
+        "bytes": 7822
+      },
+      {
+        "path": "__pycache__/claude_templates.cpython-310.pyc",
+        "bytes": 7224
+      },
+      {
+        "path": "__pycache__/claude_templates.cpython-311.pyc",
+        "bytes": 11483
+      },
+      {
+        "path": "__pycache__/claude_templates.cpython-312.pyc",
+        "bytes": 10232
+      },
+      {
+        "path": "__pycache__/claude_templates.cpython-313.pyc",
+        "bytes": 10365
+      },
+      {
+        "path": "__pycache__/code_quality.cpython-313.pyc",
+        "bytes": 11672
+      },
+      {
+        "path": "__pycache__/command_workflows.cpython-310.pyc",
+        "bytes": 1526
+      },
+      {
+        "path": "__pycache__/command_workflows.cpython-311.pyc",
+        "bytes": 2394
+      },
+      {
+        "path": "__pycache__/command_workflows.cpython-312.pyc",
+        "bytes": 2037
+      },
+      {
+        "path": "__pycache__/command_workflows.cpython-313.pyc",
+        "bytes": 2026
+      },
+      {
+        "path": "__pycache__/doc_bootstrap.cpython-310.pyc",
+        "bytes": 9388
+      },
+      {
+        "path": "__pycache__/doc_bootstrap.cpython-311.pyc",
+        "bytes": 11850
+      },
+      {
+        "path": "__pycache__/doc_bootstrap.cpython-312.pyc",
+        "bytes": 10908
+      },
+      {
+        "path": "__pycache__/doc_bootstrap.cpython-313.pyc",
+        "bytes": 10985
+      },
+      {
+        "path": "__pycache__/docs_language.cpython-310.pyc",
+        "bytes": 3370
+      },
+      {
+        "path": "__pycache__/docs_language.cpython-311.pyc",
+        "bytes": 5754
+      },
+      {
+        "path": "__pycache__/docs_language.cpython-312.pyc",
+        "bytes": 4887
+      },
+      {
+        "path": "__pycache__/docs_language.cpython-313.pyc",
+        "bytes": 5048
+      },
+      {
+        "path": "__pycache__/docs_layout.cpython-310.pyc",
+        "bytes": 17632
+      },
+      {
+        "path": "__pycache__/docs_layout.cpython-311.pyc",
+        "bytes": 36326
+      },
+      {
+        "path": "__pycache__/docs_layout.cpython-312.pyc",
+        "bytes": 30501
+      },
+      {
+        "path": "__pycache__/docs_layout.cpython-313.pyc",
+        "bytes": 31424
+      },
+      {
+        "path": "__pycache__/docs_migration_hashes.cpython-310.pyc",
+        "bytes": 43018
+      },
+      {
+        "path": "__pycache__/docs_migration_hashes.cpython-311.pyc",
+        "bytes": 45238
+      },
+      {
+        "path": "__pycache__/docs_migration_hashes.cpython-312.pyc",
+        "bytes": 44277
+      },
+      {
+        "path": "__pycache__/docs_migration_hashes.cpython-313.pyc",
+        "bytes": 44281
+      },
+      {
+        "path": "__pycache__/docs_templates_en.cpython-310.pyc",
+        "bytes": 11072
+      },
+      {
+        "path": "__pycache__/docs_templates_en.cpython-311.pyc",
+        "bytes": 14714
+      },
+      {
+        "path": "__pycache__/docs_templates_en.cpython-312.pyc",
+        "bytes": 13568
+      },
+      {
+        "path": "__pycache__/docs_templates_en.cpython-313.pyc",
+        "bytes": 13511
+      },
+      {
+        "path": "__pycache__/docs_templates_es.cpython-313.pyc",
+        "bytes": 21125
+      },
+      {
+        "path": "__pycache__/documentation_templates.cpython-310.pyc",
+        "bytes": 14006
+      },
+      {
+        "path": "__pycache__/documentation_templates.cpython-311.pyc",
+        "bytes": 26246
+      },
+      {
+        "path": "__pycache__/documentation_templates.cpython-312.pyc",
+        "bytes": 22954
+      },
+      {
+        "path": "__pycache__/documentation_templates.cpython-313.pyc",
+        "bytes": 23563
+      },
+      {
+        "path": "__pycache__/documentation_workflows.cpython-310.pyc",
+        "bytes": 18118
+      },
+      {
+        "path": "__pycache__/documentation_workflows.cpython-311.pyc",
+        "bytes": 32747
+      },
+      {
+        "path": "__pycache__/documentation_workflows.cpython-312.pyc",
+        "bytes": 28636
+      },
+      {
+        "path": "__pycache__/documentation_workflows.cpython-313.pyc",
+        "bytes": 28985
+      },
+      {
+        "path": "__pycache__/durable_io.cpython-310.pyc",
+        "bytes": 1276
+      },
+      {
+        "path": "__pycache__/durable_io.cpython-311.pyc",
+        "bytes": 2919
+      },
+      {
+        "path": "__pycache__/durable_io.cpython-312.pyc",
+        "bytes": 2588
+      },
+      {
+        "path": "__pycache__/durable_io.cpython-313.pyc",
+        "bytes": 2695
+      },
+      {
+        "path": "__pycache__/engineering_catalog.cpython-310.pyc",
+        "bytes": 12935
+      },
+      {
+        "path": "__pycache__/engineering_catalog.cpython-311.pyc",
+        "bytes": 25578
+      },
+      {
+        "path": "__pycache__/engineering_catalog.cpython-312.pyc",
+        "bytes": 21522
+      },
+      {
+        "path": "__pycache__/engineering_catalog.cpython-313.pyc",
+        "bytes": 22210
+      },
+      {
+        "path": "__pycache__/execution_config.cpython-310.pyc",
+        "bytes": 2869
+      },
+      {
+        "path": "__pycache__/execution_config.cpython-311.pyc",
+        "bytes": 5654
+      },
+      {
+        "path": "__pycache__/execution_config.cpython-312.pyc",
+        "bytes": 4924
+      },
+      {
+        "path": "__pycache__/execution_config.cpython-313.pyc",
+        "bytes": 5051
+      },
+      {
+        "path": "__pycache__/execution_state.cpython-310.pyc",
+        "bytes": 13337
+      },
+      {
+        "path": "__pycache__/execution_state.cpython-311.pyc",
+        "bytes": 30990
+      },
+      {
+        "path": "__pycache__/execution_state.cpython-312.pyc",
+        "bytes": 25383
+      },
+      {
+        "path": "__pycache__/execution_state.cpython-313.pyc",
+        "bytes": 26433
+      },
+      {
+        "path": "__pycache__/external_skills.cpython-310.pyc",
+        "bytes": 16520
+      },
+      {
+        "path": "__pycache__/external_skills.cpython-311.pyc",
+        "bytes": 32542
+      },
+      {
+        "path": "__pycache__/external_skills.cpython-312.pyc",
+        "bytes": 28372
+      },
+      {
+        "path": "__pycache__/external_skills.cpython-313.pyc",
+        "bytes": 29459
+      },
+      {
+        "path": "__pycache__/infrastructure_profile.cpython-310.pyc",
+        "bytes": 4665
+      },
+      {
+        "path": "__pycache__/infrastructure_profile.cpython-311.pyc",
+        "bytes": 8418
+      },
+      {
+        "path": "__pycache__/infrastructure_profile.cpython-312.pyc",
+        "bytes": 7179
+      },
+      {
+        "path": "__pycache__/infrastructure_profile.cpython-313.pyc",
+        "bytes": 7498
+      },
+      {
+        "path": "__pycache__/install.cpython-310.pyc",
+        "bytes": 61059
+      },
+      {
+        "path": "__pycache__/install.cpython-311.pyc",
+        "bytes": 118879
+      },
+      {
+        "path": "__pycache__/install.cpython-312.pyc",
+        "bytes": 101088
+      },
+      {
+        "path": "__pycache__/install.cpython-313.pyc",
+        "bytes": 104338
+      },
+      {
+        "path": "__pycache__/memory_store.cpython-310.pyc",
+        "bytes": 3086
+      },
+      {
+        "path": "__pycache__/memory_store.cpython-311.pyc",
+        "bytes": 5926
+      },
+      {
+        "path": "__pycache__/memory_store.cpython-312.pyc",
+        "bytes": 5121
+      },
+      {
+        "path": "__pycache__/memory_store.cpython-313.pyc",
+        "bytes": 5322
+      },
+      {
+        "path": "__pycache__/methodology.cpython-310.pyc",
+        "bytes": 3787
+      },
+      {
+        "path": "__pycache__/methodology.cpython-311.pyc",
+        "bytes": 7299
+      },
+      {
+        "path": "__pycache__/methodology.cpython-312.pyc",
+        "bytes": 6117
+      },
+      {
+        "path": "__pycache__/methodology.cpython-313.pyc",
+        "bytes": 6284
+      },
+      {
+        "path": "__pycache__/odd_engine.cpython-313.pyc",
+        "bytes": 35706
+      },
+      {
+        "path": "__pycache__/profile_builder.cpython-310.pyc",
+        "bytes": 3777
+      },
+      {
+        "path": "__pycache__/profile_builder.cpython-311.pyc",
+        "bytes": 6423
+      },
+      {
+        "path": "__pycache__/profile_builder.cpython-312.pyc",
+        "bytes": 5326
+      },
+      {
+        "path": "__pycache__/profile_builder.cpython-313.pyc",
+        "bytes": 5484
+      },
+      {
+        "path": "__pycache__/project_discovery.cpython-310.pyc",
+        "bytes": 6602
+      },
+      {
+        "path": "__pycache__/project_discovery.cpython-311.pyc",
+        "bytes": 13032
+      },
+      {
+        "path": "__pycache__/project_discovery.cpython-312.pyc",
+        "bytes": 11231
+      },
+      {
+        "path": "__pycache__/project_discovery.cpython-313.pyc",
+        "bytes": 11844
+      },
+      {
+        "path": "__pycache__/sdd_assets.cpython-313.pyc",
+        "bytes": 4203
+      },
+      {
+        "path": "__pycache__/sdd_engine.cpython-310.pyc",
+        "bytes": 32370
+      },
+      {
+        "path": "__pycache__/sdd_engine.cpython-311.pyc",
+        "bytes": 70607
+      },
+      {
+        "path": "__pycache__/sdd_engine.cpython-312.pyc",
+        "bytes": 58169
+      },
+      {
+        "path": "__pycache__/sdd_engine.cpython-313.pyc",
+        "bytes": 58933
+      },
+      {
+        "path": "__pycache__/sdd_localization.cpython-313.pyc",
+        "bytes": 3610
+      },
+      {
+        "path": "__pycache__/sdd_templates.cpython-310.pyc",
+        "bytes": 7922
+      },
+      {
+        "path": "__pycache__/sdd_templates.cpython-311.pyc",
+        "bytes": 11194
+      },
+      {
+        "path": "__pycache__/sdd_templates.cpython-312.pyc",
+        "bytes": 9899
+      },
+      {
+        "path": "__pycache__/sdd_templates.cpython-313.pyc",
+        "bytes": 10026
+      },
+      {
+        "path": "__pycache__/skills_registry.cpython-310.pyc",
+        "bytes": 8609
+      },
+      {
+        "path": "__pycache__/skills_registry.cpython-311.pyc",
+        "bytes": 15956
+      },
+      {
+        "path": "__pycache__/skills_registry.cpython-312.pyc",
+        "bytes": 13889
+      },
+      {
+        "path": "__pycache__/skills_registry.cpython-313.pyc",
+        "bytes": 14474
+      },
+      {
+        "path": "__pycache__/token_policy.cpython-310.pyc",
+        "bytes": 5079
+      },
+      {
+        "path": "__pycache__/token_policy.cpython-311.pyc",
+        "bytes": 8816
+      },
+      {
+        "path": "__pycache__/token_policy.cpython-312.pyc",
+        "bytes": 7560
+      },
+      {
+        "path": "__pycache__/token_policy.cpython-313.pyc",
+        "bytes": 7789
+      },
+      {
+        "path": "__pycache__/token_report.cpython-310.pyc",
+        "bytes": 8925
+      },
+      {
+        "path": "__pycache__/token_report.cpython-311.pyc",
+        "bytes": 17589
+      },
+      {
+        "path": "__pycache__/token_report.cpython-312.pyc",
+        "bytes": 14730
+      },
+      {
+        "path": "__pycache__/token_report.cpython-313.pyc",
+        "bytes": 15092
+      },
+      {
+        "path": "scripts/ci/__pycache__/agent_loop_smoke.cpython-313.pyc",
+        "bytes": 6352
+      },
+      {
+        "path": "scripts/ci/__pycache__/catalog_review.cpython-313.pyc",
+        "bytes": 4969
+      },
+      {
+        "path": "scripts/ci/__pycache__/check_assets.cpython-313.pyc",
+        "bytes": 7737
+      },
+      {
+        "path": "scripts/ci/__pycache__/github_tag.cpython-310.pyc",
+        "bytes": 4597
+      },
+      {
+        "path": "scripts/ci/__pycache__/github_tag.cpython-311.pyc",
+        "bytes": 7957
+      },
+      {
+        "path": "scripts/ci/__pycache__/github_tag.cpython-312.pyc",
+        "bytes": 6833
+      },
+      {
+        "path": "scripts/ci/__pycache__/github_tag.cpython-313.pyc",
+        "bytes": 7011
+      },
+      {
+        "path": "scripts/ci/__pycache__/prepare_release.cpython-310.pyc",
+        "bytes": 2918
+      },
+      {
+        "path": "scripts/ci/__pycache__/prepare_release.cpython-311.pyc",
+        "bytes": 5344
+      },
+      {
+        "path": "scripts/ci/__pycache__/prepare_release.cpython-312.pyc",
+        "bytes": 4634
+      },
+      {
+        "path": "scripts/ci/__pycache__/prepare_release.cpython-313.pyc",
+        "bytes": 4687
+      },
+      {
+        "path": "scripts/ci/__pycache__/release_contract.cpython-310.pyc",
+        "bytes": 7698
+      },
+      {
+        "path": "scripts/ci/__pycache__/release_contract.cpython-311.pyc",
+        "bytes": 13636
+      },
+      {
+        "path": "scripts/ci/__pycache__/release_contract.cpython-312.pyc",
+        "bytes": 11625
+      },
+      {
+        "path": "scripts/ci/__pycache__/release_contract.cpython-313.pyc",
+        "bytes": 11871
+      },
+      {
+        "path": "scripts/ci/__pycache__/smoke_profiles.cpython-313.pyc",
+        "bytes": 6757
+      },
+      {
+        "path": "scripts/ci/__pycache__/validate_agent_assets.cpython-313.pyc",
+        "bytes": 9948
+      },
+      {
+        "path": "template/.claude/hooks/__pycache__/check_edit.cpython-313.pyc",
+        "bytes": 3871
+      },
+      {
+        "path": "template/.claude/hooks/__pycache__/welcome.cpython-313.pyc",
+        "bytes": 8182
+      },
+      {
+        "path": "template/scripts/harness/__pycache__/docs_guard.cpython-310.pyc",
+        "bytes": 15670
+      },
+      {
+        "path": "template/scripts/harness/__pycache__/docs_guard.cpython-311.pyc",
+        "bytes": 29186
+      },
+      {
+        "path": "template/scripts/harness/__pycache__/docs_guard.cpython-312.pyc",
+        "bytes": 24750
+      },
+      {
+        "path": "template/scripts/harness/__pycache__/docs_guard.cpython-313.pyc",
+        "bytes": 25621
+      },
+      {
+        "path": "template/scripts/harness/__pycache__/external_skills.cpython-313.pyc",
+        "bytes": 29376
+      },
+      {
+        "path": "template/scripts/harness/__pycache__/infrastructure.cpython-310.pyc",
+        "bytes": 19051
+      },
+      {
+        "path": "template/scripts/harness/__pycache__/infrastructure.cpython-311.pyc",
+        "bytes": 33384
+      },
+      {
+        "path": "template/scripts/harness/__pycache__/infrastructure.cpython-312.pyc",
+        "bytes": 29235
+      },
+      {
+        "path": "template/scripts/harness/__pycache__/infrastructure.cpython-313.pyc",
+        "bytes": 29887
+      },
+      {
+        "path": "template/scripts/harness/__pycache__/run_checks.cpython-313.pyc",
+        "bytes": 4652
+      },
+      {
+        "path": "template/scripts/harness/__pycache__/scaffold.cpython-310.pyc",
+        "bytes": 12049
+      },
+      {
+        "path": "template/scripts/harness/__pycache__/scaffold.cpython-311.pyc",
+        "bytes": 23678
+      },
+      {
+        "path": "template/scripts/harness/__pycache__/scaffold.cpython-312.pyc",
+        "bytes": 20083
+      },
+      {
+        "path": "template/scripts/harness/__pycache__/scaffold.cpython-313.pyc",
+        "bytes": 20375
+      },
+      {
+        "path": "template/scripts/harness/__pycache__/skills_lint.cpython-310.pyc",
+        "bytes": 3101
+      },
+      {
+        "path": "template/scripts/harness/__pycache__/skills_lint.cpython-311.pyc",
+        "bytes": 5977
+      },
+      {
+        "path": "template/scripts/harness/__pycache__/skills_lint.cpython-312.pyc",
+        "bytes": 5134
+      },
+      {
+        "path": "template/scripts/harness/__pycache__/skills_lint.cpython-313.pyc",
+        "bytes": 5263
+      },
+      {
+        "path": "template/scripts/harness/__pycache__/skills_registry.cpython-313.pyc",
+        "bytes": 14499
+      },
+      {
+        "path": "tests/__pycache__/agent_loop_support.cpython-310.pyc",
+        "bytes": 2162
+      },
+      {
+        "path": "tests/__pycache__/agent_loop_support.cpython-311.pyc",
+        "bytes": 3614
+      },
+      {
+        "path": "tests/__pycache__/agent_loop_support.cpython-312.pyc",
+        "bytes": 3267
+      },
+      {
+        "path": "tests/__pycache__/agent_loop_support.cpython-313.pyc",
+        "bytes": 3136
+      },
+      {
+        "path": "tests/__pycache__/sdk_agent_loop_contract.cpython-313.pyc",
+        "bytes": 3553
+      },
+      {
+        "path": "tests/__pycache__/test_agent_loop.cpython-310.pyc",
+        "bytes": 5513
+      },
+      {
+        "path": "tests/__pycache__/test_agent_loop.cpython-311.pyc",
+        "bytes": 11053
+      },
+      {
+        "path": "tests/__pycache__/test_agent_loop.cpython-312.pyc",
+        "bytes": 9336
+      },
+      {
+        "path": "tests/__pycache__/test_agent_loop.cpython-313.pyc",
+        "bytes": 9291
+      },
+      {
+        "path": "tests/__pycache__/test_agent_loop_adversarial.cpython-310.pyc",
+        "bytes": 12591
+      },
+      {
+        "path": "tests/__pycache__/test_agent_loop_adversarial.cpython-311.pyc",
+        "bytes": 26882
+      },
+      {
+        "path": "tests/__pycache__/test_agent_loop_adversarial.cpython-312.pyc",
+        "bytes": 21647
+      },
+      {
+        "path": "tests/__pycache__/test_agent_loop_adversarial.cpython-313.pyc",
+        "bytes": 21640
+      },
+      {
+        "path": "tests/__pycache__/test_agent_loop_installation.cpython-310.pyc",
+        "bytes": 4418
+      },
+      {
+        "path": "tests/__pycache__/test_agent_loop_installation.cpython-311.pyc",
+        "bytes": 8949
+      },
+      {
+        "path": "tests/__pycache__/test_agent_loop_installation.cpython-312.pyc",
+        "bytes": 7578
+      },
+      {
+        "path": "tests/__pycache__/test_agent_loop_installation.cpython-313.pyc",
+        "bytes": 7577
+      },
+      {
+        "path": "tests/__pycache__/test_agent_loop_recovery.cpython-310.pyc",
+        "bytes": 8502
+      },
+      {
+        "path": "tests/__pycache__/test_agent_loop_recovery.cpython-311.pyc",
+        "bytes": 17243
+      },
+      {
+        "path": "tests/__pycache__/test_agent_loop_recovery.cpython-312.pyc",
+        "bytes": 13865
+      },
+      {
+        "path": "tests/__pycache__/test_agent_loop_recovery.cpython-313.pyc",
+        "bytes": 13912
+      },
+      {
+        "path": "tests/__pycache__/test_agent_loop_runtime.cpython-310.pyc",
+        "bytes": 4264
+      },
+      {
+        "path": "tests/__pycache__/test_agent_loop_runtime.cpython-311.pyc",
+        "bytes": 8154
+      },
+      {
+        "path": "tests/__pycache__/test_agent_loop_runtime.cpython-312.pyc",
+        "bytes": 6897
+      },
+      {
+        "path": "tests/__pycache__/test_agent_loop_runtime.cpython-313.pyc",
+        "bytes": 6538
+      },
+      {
+        "path": "tests/__pycache__/test_agent_memory.cpython-310.pyc",
+        "bytes": 3804
+      },
+      {
+        "path": "tests/__pycache__/test_agent_memory.cpython-311.pyc",
+        "bytes": 7810
+      },
+      {
+        "path": "tests/__pycache__/test_agent_memory.cpython-312.pyc",
+        "bytes": 6255
+      },
+      {
+        "path": "tests/__pycache__/test_agent_memory.cpython-313.pyc",
+        "bytes": 6214
+      },
+      {
+        "path": "tests/__pycache__/test_architecture_languages.cpython-310.pyc",
+        "bytes": 7797
+      },
+      {
+        "path": "tests/__pycache__/test_architecture_languages.cpython-311.pyc",
+        "bytes": 16047
+      },
+      {
+        "path": "tests/__pycache__/test_architecture_languages.cpython-312.pyc",
+        "bytes": 13523
+      },
+      {
+        "path": "tests/__pycache__/test_architecture_languages.cpython-313.pyc",
+        "bytes": 13584
+      },
+      {
+        "path": "tests/__pycache__/test_claude_templates.cpython-310.pyc",
+        "bytes": 6698
+      },
+      {
+        "path": "tests/__pycache__/test_claude_templates.cpython-311.pyc",
+        "bytes": 13120
+      },
+      {
+        "path": "tests/__pycache__/test_claude_templates.cpython-312.pyc",
+        "bytes": 11562
+      },
+      {
+        "path": "tests/__pycache__/test_claude_templates.cpython-313.pyc",
+        "bytes": 11610
+      },
+      {
+        "path": "tests/__pycache__/test_code_quality.cpython-310.pyc",
+        "bytes": 5129
+      },
+      {
+        "path": "tests/__pycache__/test_code_quality.cpython-311.pyc",
+        "bytes": 10217
+      },
+      {
+        "path": "tests/__pycache__/test_code_quality.cpython-312.pyc",
+        "bytes": 8224
+      },
+      {
+        "path": "tests/__pycache__/test_code_quality.cpython-313.pyc",
+        "bytes": 8330
+      },
+      {
+        "path": "tests/__pycache__/test_command_renames.cpython-310.pyc",
+        "bytes": 6876
+      },
+      {
+        "path": "tests/__pycache__/test_command_renames.cpython-311.pyc",
+        "bytes": 15415
+      },
+      {
+        "path": "tests/__pycache__/test_command_renames.cpython-312.pyc",
+        "bytes": 12457
+      },
+      {
+        "path": "tests/__pycache__/test_command_renames.cpython-313.pyc",
+        "bytes": 12325
+      },
+      {
+        "path": "tests/__pycache__/test_docs_layout.cpython-310.pyc",
+        "bytes": 21554
+      },
+      {
+        "path": "tests/__pycache__/test_docs_layout.cpython-311.pyc",
+        "bytes": 44274
+      },
+      {
+        "path": "tests/__pycache__/test_docs_layout.cpython-312.pyc",
+        "bytes": 36614
+      },
+      {
+        "path": "tests/__pycache__/test_docs_layout.cpython-313.pyc",
+        "bytes": 36857
+      },
+      {
+        "path": "tests/__pycache__/test_documentation_templates.cpython-310.pyc",
+        "bytes": 13761
+      },
+      {
+        "path": "tests/__pycache__/test_documentation_templates.cpython-311.pyc",
+        "bytes": 28712
+      },
+      {
+        "path": "tests/__pycache__/test_documentation_templates.cpython-312.pyc",
+        "bytes": 24506
+      },
+      {
+        "path": "tests/__pycache__/test_documentation_templates.cpython-313.pyc",
+        "bytes": 24579
+      },
+      {
+        "path": "tests/__pycache__/test_engineering_catalog.cpython-310.pyc",
+        "bytes": 6751
+      },
+      {
+        "path": "tests/__pycache__/test_engineering_catalog.cpython-311.pyc",
+        "bytes": 13731
+      },
+      {
+        "path": "tests/__pycache__/test_engineering_catalog.cpython-312.pyc",
+        "bytes": 11822
+      },
+      {
+        "path": "tests/__pycache__/test_engineering_catalog.cpython-313.pyc",
+        "bytes": 11929
+      },
+      {
+        "path": "tests/__pycache__/test_execution_integration.cpython-310.pyc",
+        "bytes": 9865
+      },
+      {
+        "path": "tests/__pycache__/test_execution_integration.cpython-311.pyc",
+        "bytes": 21407
+      },
+      {
+        "path": "tests/__pycache__/test_execution_integration.cpython-312.pyc",
+        "bytes": 18817
+      },
+      {
+        "path": "tests/__pycache__/test_execution_integration.cpython-313.pyc",
+        "bytes": 18910
+      },
+      {
+        "path": "tests/__pycache__/test_execution_state.cpython-310.pyc",
+        "bytes": 10413
+      },
+      {
+        "path": "tests/__pycache__/test_execution_state.cpython-311.pyc",
+        "bytes": 21281
+      },
+      {
+        "path": "tests/__pycache__/test_execution_state.cpython-312.pyc",
+        "bytes": 17901
+      },
+      {
+        "path": "tests/__pycache__/test_execution_state.cpython-313.pyc",
+        "bytes": 17919
+      },
+      {
+        "path": "tests/__pycache__/test_execution_ui.cpython-310.pyc",
+        "bytes": 5943
+      },
+      {
+        "path": "tests/__pycache__/test_execution_ui.cpython-311.pyc",
+        "bytes": 12160
+      },
+      {
+        "path": "tests/__pycache__/test_execution_ui.cpython-312.pyc",
+        "bytes": 10513
+      },
+      {
+        "path": "tests/__pycache__/test_execution_ui.cpython-313.pyc",
+        "bytes": 10521
+      },
+      {
+        "path": "tests/__pycache__/test_foundations_composition.cpython-310.pyc",
+        "bytes": 15717
+      },
+      {
+        "path": "tests/__pycache__/test_foundations_composition.cpython-311.pyc",
+        "bytes": 31743
+      },
+      {
+        "path": "tests/__pycache__/test_foundations_composition.cpython-312.pyc",
+        "bytes": 28208
+      },
+      {
+        "path": "tests/__pycache__/test_foundations_composition.cpython-313.pyc",
+        "bytes": 28106
+      },
+      {
+        "path": "tests/__pycache__/test_generated_documents.cpython-310.pyc",
+        "bytes": 13786
+      },
+      {
+        "path": "tests/__pycache__/test_generated_documents.cpython-311.pyc",
+        "bytes": 30246
+      },
+      {
+        "path": "tests/__pycache__/test_generated_documents.cpython-312.pyc",
+        "bytes": 24266
+      },
+      {
+        "path": "tests/__pycache__/test_generated_documents.cpython-313.pyc",
+        "bytes": 24570
+      },
+      {
+        "path": "tests/__pycache__/test_github_tag.cpython-310.pyc",
+        "bytes": 8091
+      },
+      {
+        "path": "tests/__pycache__/test_github_tag.cpython-311.pyc",
+        "bytes": 13910
+      },
+      {
+        "path": "tests/__pycache__/test_github_tag.cpython-312.pyc",
+        "bytes": 11812
+      },
+      {
+        "path": "tests/__pycache__/test_github_tag.cpython-313.pyc",
+        "bytes": 11952
+      },
+      {
+        "path": "tests/__pycache__/test_installer.cpython-310.pyc",
+        "bytes": 9686
+      },
+      {
+        "path": "tests/__pycache__/test_installer.cpython-311.pyc",
+        "bytes": 20967
+      },
+      {
+        "path": "tests/__pycache__/test_installer.cpython-312.pyc",
+        "bytes": 16605
+      },
+      {
+        "path": "tests/__pycache__/test_installer.cpython-313.pyc",
+        "bytes": 16800
+      },
+      {
+        "path": "tests/__pycache__/test_memory_extraction.cpython-310.pyc",
+        "bytes": 6478
+      },
+      {
+        "path": "tests/__pycache__/test_memory_extraction.cpython-311.pyc",
+        "bytes": 13987
+      },
+      {
+        "path": "tests/__pycache__/test_memory_extraction.cpython-312.pyc",
+        "bytes": 11171
+      },
+      {
+        "path": "tests/__pycache__/test_memory_extraction.cpython-313.pyc",
+        "bytes": 11274
+      },
+      {
+        "path": "tests/__pycache__/test_memory_lifecycle.cpython-310.pyc",
+        "bytes": 8207
+      },
+      {
+        "path": "tests/__pycache__/test_memory_lifecycle.cpython-311.pyc",
+        "bytes": 18436
+      },
+      {
+        "path": "tests/__pycache__/test_memory_lifecycle.cpython-312.pyc",
+        "bytes": 15038
+      },
+      {
+        "path": "tests/__pycache__/test_memory_lifecycle.cpython-313.pyc",
+        "bytes": 15162
+      },
+      {
+        "path": "tests/__pycache__/test_methodology_migration.cpython-310.pyc",
+        "bytes": 7698
+      },
+      {
+        "path": "tests/__pycache__/test_methodology_migration.cpython-311.pyc",
+        "bytes": 17659
+      },
+      {
+        "path": "tests/__pycache__/test_methodology_migration.cpython-312.pyc",
+        "bytes": 14638
+      },
+      {
+        "path": "tests/__pycache__/test_methodology_migration.cpython-313.pyc",
+        "bytes": 14710
+      },
+      {
+        "path": "tests/__pycache__/test_milkeles_only.cpython-310.pyc",
+        "bytes": 6335
+      },
+      {
+        "path": "tests/__pycache__/test_milkeles_only.cpython-311.pyc",
+        "bytes": 12138
+      },
+      {
+        "path": "tests/__pycache__/test_milkeles_only.cpython-312.pyc",
+        "bytes": 10245
+      },
+      {
+        "path": "tests/__pycache__/test_milkeles_only.cpython-313.pyc",
+        "bytes": 10365
+      },
+      {
+        "path": "tests/__pycache__/test_odd_engine.cpython-310.pyc",
+        "bytes": 7387
+      },
+      {
+        "path": "tests/__pycache__/test_odd_engine.cpython-311.pyc",
+        "bytes": 15600
+      },
+      {
+        "path": "tests/__pycache__/test_odd_engine.cpython-312.pyc",
+        "bytes": 13584
+      },
+      {
+        "path": "tests/__pycache__/test_odd_engine.cpython-313.pyc",
+        "bytes": 13647
+      },
+      {
+        "path": "tests/__pycache__/test_odd_observability_integration.cpython-310.pyc",
+        "bytes": 3238
+      },
+      {
+        "path": "tests/__pycache__/test_odd_observability_integration.cpython-311.pyc",
+        "bytes": 6707
+      },
+      {
+        "path": "tests/__pycache__/test_odd_observability_integration.cpython-312.pyc",
+        "bytes": 5703
+      },
+      {
+        "path": "tests/__pycache__/test_odd_observability_integration.cpython-313.pyc",
+        "bytes": 5746
+      },
+      {
+        "path": "tests/__pycache__/test_release_workflows.cpython-310.pyc",
+        "bytes": 9612
+      },
+      {
+        "path": "tests/__pycache__/test_release_workflows.cpython-311.pyc",
+        "bytes": 20563
+      },
+      {
+        "path": "tests/__pycache__/test_release_workflows.cpython-312.pyc",
+        "bytes": 16724
+      },
+      {
+        "path": "tests/__pycache__/test_release_workflows.cpython-313.pyc",
+        "bytes": 16933
+      },
+      {
+        "path": "tests/__pycache__/test_runtime_metrics.cpython-310.pyc",
+        "bytes": 5481
+      },
+      {
+        "path": "tests/__pycache__/test_runtime_metrics.cpython-311.pyc",
+        "bytes": 10348
+      },
+      {
+        "path": "tests/__pycache__/test_runtime_metrics.cpython-312.pyc",
+        "bytes": 8775
+      },
+      {
+        "path": "tests/__pycache__/test_runtime_metrics.cpython-313.pyc",
+        "bytes": 8841
+      },
+      {
+        "path": "tests/__pycache__/test_runtime_payload.cpython-310.pyc",
+        "bytes": 7548
+      },
+      {
+        "path": "tests/__pycache__/test_runtime_payload.cpython-311.pyc",
+        "bytes": 16501
+      },
+      {
+        "path": "tests/__pycache__/test_runtime_payload.cpython-312.pyc",
+        "bytes": 13953
+      },
+      {
+        "path": "tests/__pycache__/test_runtime_payload.cpython-313.pyc",
+        "bytes": 13989
+      },
+      {
+        "path": "tests/__pycache__/test_sdd_integration.cpython-310.pyc",
+        "bytes": 19519
+      },
+      {
+        "path": "tests/__pycache__/test_sdd_integration.cpython-311.pyc",
+        "bytes": 40527
+      },
+      {
+        "path": "tests/__pycache__/test_sdd_integration.cpython-312.pyc",
+        "bytes": 34259
+      },
+      {
+        "path": "tests/__pycache__/test_sdd_integration.cpython-313.pyc",
+        "bytes": 34709
+      },
+      {
+        "path": "tests/__pycache__/test_sdd_templates.cpython-310.pyc",
+        "bytes": 13726
+      },
+      {
+        "path": "tests/__pycache__/test_sdd_templates.cpython-311.pyc",
+        "bytes": 28360
+      },
+      {
+        "path": "tests/__pycache__/test_sdd_templates.cpython-312.pyc",
+        "bytes": 25526
+      },
+      {
+        "path": "tests/__pycache__/test_sdd_templates.cpython-313.pyc",
+        "bytes": 25707
+      },
+      {
+        "path": "tests/__pycache__/test_sdd_v60.cpython-310.pyc",
+        "bytes": 15519
+      },
+      {
+        "path": "tests/__pycache__/test_sdd_v60.cpython-311.pyc",
+        "bytes": 35384
+      },
+      {
+        "path": "tests/__pycache__/test_sdd_v60.cpython-312.pyc",
+        "bytes": 30825
+      },
+      {
+        "path": "tests/__pycache__/test_sdd_v60.cpython-313.pyc",
+        "bytes": 31210
+      },
+      {
+        "path": "tests/__pycache__/test_token_efficiency.cpython-310.pyc",
+        "bytes": 5378
+      },
+      {
+        "path": "tests/__pycache__/test_token_efficiency.cpython-311.pyc",
+        "bytes": 9639
+      },
+      {
+        "path": "tests/__pycache__/test_token_efficiency.cpython-312.pyc",
+        "bytes": 7948
+      },
+      {
+        "path": "tests/__pycache__/test_token_efficiency.cpython-313.pyc",
+        "bytes": 8063
+      },
+      {
+        "path": "tests/__pycache__/test_v3.cpython-310.pyc",
+        "bytes": 10293
+      },
+      {
+        "path": "tests/__pycache__/test_v3.cpython-311.pyc",
+        "bytes": 19850
+      },
+      {
+        "path": "tests/__pycache__/test_v3.cpython-312.pyc",
+        "bytes": 17713
+      },
+      {
+        "path": "tests/__pycache__/test_v3.cpython-313.pyc",
+        "bytes": 17492
+      },
+      {
+        "path": "tests/__pycache__/test_v4.cpython-310.pyc",
+        "bytes": 9044
+      },
+      {
+        "path": "tests/__pycache__/test_v4.cpython-311.pyc",
+        "bytes": 17954
+      },
+      {
+        "path": "tests/__pycache__/test_v4.cpython-312.pyc",
+        "bytes": 15770
+      },
+      {
+        "path": "tests/__pycache__/test_v4.cpython-313.pyc",
+        "bytes": 15827
+      },
+      {
+        "path": "tests/__pycache__/test_v5.cpython-310.pyc",
+        "bytes": 10194
+      },
+      {
+        "path": "tests/__pycache__/test_v5.cpython-311.pyc",
+        "bytes": 21673
+      },
+      {
+        "path": "tests/__pycache__/test_v5.cpython-312.pyc",
+        "bytes": 17544
+      },
+      {
+        "path": "tests/__pycache__/test_v5.cpython-313.pyc",
+        "bytes": 17837
+      },
+      {
+        "path": "tests/__pycache__/test_v51.cpython-313.pyc",
+        "bytes": 8545
+      },
+      {
+        "path": "tests/__pycache__/test_v52.cpython-313.pyc",
+        "bytes": 15754
+      },
+      {
+        "path": "tests/__pycache__/test_v54.cpython-313.pyc",
+        "bytes": 10331
+      },
+      {
+        "path": "tests/fixtures/agent-loop/__pycache__/worker.cpython-313.pyc",
+        "bytes": 3102
+      }
+    ],
+    "unsafe_paths_preserved": []
+  },
+  "release": {
+    "version": "6.1.1",
+    "tag_exists": false,
+    "published": false
+  },
+  "limitations": [
+    "Authenticated Claude SDK acceptance remains assigned to another environment by the user.",
+    "The separate package restructuring and broader documentation path enforcement/migration plans remain proposed.",
+    "Pinned illustrative ADR targets and the historical synthetic fixture log are intentionally unresolved; no evidence was invented.",
+    "install.py still exceeds the 1,000-line source-quality limit."
+  ]
+}

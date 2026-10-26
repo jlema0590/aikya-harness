@@ -8,9 +8,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-import engineering_catalog as catalog
-import install
-import aikya_setup
+from aikya.catalogs import engineering as catalog
+from aikya.installation import facade as install
+from aikya.installation import registration as aikya_setup
 
 EXCLUDED = {'digital-law-coordinator','ecommerce-platform-lawyer',
             'legal-quality-reviewer','privacy-dpa-lawyer','saas-contract-lawyer',
@@ -26,11 +26,11 @@ class EngineeringCatalogTests(unittest.TestCase):
         self.assertEqual(29,len(catalog.SKILLS))
         self.assertFalse((catalog.AGENTS|catalog.SKILLS)&EXCLUDED)
         self.assertNotIn('security-reviewer', catalog.AGENTS)
-        for path in (ROOT/'engineering').rglob('*.md'):
+        for path in (ROOT/'src/aikya/resources/engineering').rglob('*.md'):
             text=path.read_text(encoding='utf8').lower()
             for bad in ('linkedin','derecho digital','propiedad intelectual','saas contract'):
                 self.assertNotIn(bad,text,path)
-        self.assertFalse((ROOT/'engineering/agents/security-reviewer.md').exists())
+        self.assertFalse((ROOT/'src/aikya/resources/engineering/agents/security-reviewer.md').exists())
 
     def test_core_and_stack_selection(self):
         base={'ci':'none','deployment':'none','architecture':'layered','backend':'java',
@@ -66,7 +66,7 @@ class EngineeringCatalogTests(unittest.TestCase):
             self.assertFalse((root/'.claude/agents/flutter-developer.md').exists())
             self.assertFalse((root/'.claude/skills/flutter-architecture/SKILL.md').exists())
             self.assertTrue((root/'.claude/agents/security-reviewer.md').exists())
-            for name in ('aikya/docs/agents.md','aikya/docs/skills.md','.harness/engineering-catalog.json'):
+            for name in ('aikya/docs/tools/agents.md','aikya/docs/skills.md','.harness/engineering-catalog.json'):
                 self.assertTrue((root/name).is_file(),name)
             doc=(root/'aikya/docs/skills.md').read_text()
             self.assertIn('Aikya Engineering',doc)
@@ -91,7 +91,7 @@ class EngineeringCatalogTests(unittest.TestCase):
             catalog.install_selected(root,choices)
             path=root/'.claude/agents/node-backend-developer.md'
             path.write_text(path.read_text()+'\n# personalizado\n')
-            docs=root/'aikya/docs/agents.md';docs.write_text('custom team doc\n')
+            docs=root/'aikya/docs/tools/agents.md';docs.write_text('custom team doc\n')
             logs=catalog.install_selected(root,choices)
             self.assertIn('# personalizado',path.read_text())
             self.assertEqual('custom team doc\n',docs.read_text())

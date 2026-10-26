@@ -1,8 +1,0 @@
-# Architecture rules
-
-- Reuse verified existing layers before introducing additional abstractions.
-- Preserve domain, application and infrastructure boundaries where applicable.
-- Document public API, database schema and inter-service contract changes.
-- Justify new external dependencies with versions, alternatives and impact.
-- Do not impose DDD, hexagonal architecture, CQRS or microservices without
-  an observed problem, requirements and sound trade-offs.

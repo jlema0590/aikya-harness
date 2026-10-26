@@ -1,3 +1,4 @@
+import runtime_support
 import importlib.util
 import json
 import os
@@ -10,18 +11,18 @@ from unittest.mock import patch
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
-import install
-from doc_bootstrap import pages,infra_files
+from aikya.installation import facade as install
+from aikya.documentation.bootstrap import pages,infra_files
 
 
 def import_from(path,name):
-    spec=importlib.util.spec_from_file_location(name,path)
+    spec=runtime_support.module_spec(name,path)
     mod=importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(mod)
-    return mod
+    spec.loader.exec_module(mod);mod=getattr(mod,'_module',mod)
+    return getattr(mod, '_module', mod)
 
-GUARD=import_from(ROOT/'template/scripts/harness/docs_guard.py','docs_guard_v3')
-SCAFFOLD=import_from(ROOT/'template/scripts/harness/scaffold.py','scaffold_v3')
+GUARD=import_from(ROOT/'src/aikya/resources/project_template/scripts/harness/docs_guard.py','docs_guard_v3')
+SCAFFOLD=import_from(ROOT/'src/aikya/resources/project_template/scripts/harness/scaffold.py','scaffold_v3')
 
 
 def profile(mode='new',**changes):
@@ -84,8 +85,9 @@ class V3Tests(unittest.TestCase):
         self.assertTrue(any('aikya/docs/plan/roadmap.md' in m for m in errors))
         self.assertTrue(any('REQ-' in m for m in errors))
         for doc in ('aikya/docs/features/index.md','aikya/docs/plan/roadmap.md'):
+            (self.root/doc).parent.mkdir(parents=True,exist_ok=True)
             with (self.root/doc).open('a') as f:
-                f.write('\nSe añade endpoint catálogo con criterios de aceptación y regresión.\n')
+                f.write('\nSe añade endpoint catálogo con criterios de aceptación y regresión; el alcance confirmado incluye la ruta y los resultados de pruebas.\n')
         req=self.root/'aikya/docs/changes'/f'{state["request_id"]}.md'
         req.write_text(f'''# {state["request_id"]} — catálogo\n\n## Cambios\n- `apps/api/server.ts`: se implementa endpoint catálogo.\n\n## Evidencias\n- No ejecutado: falta SDK de la aplicación, pendiente de configurar.\n\n## Documentos actualizados\n- `aikya/docs/features/index.md`: nueva ruta.\n- `aikya/docs/plan/roadmap.md`: nueva tarea.\n''')
         ok,messages=GUARD.validate_request(state)
@@ -98,7 +100,7 @@ class V3Tests(unittest.TestCase):
         (self.root/'apps/api/index.ts').write_text('export const login = ()=> true;')
         ok,msgs=GUARD.validate_request(state)
         self.assertFalse(ok)
-        self.assertTrue(any('aikya/docs/bugs/index.md' in m for m in msgs))
+        self.assertTrue(any('aikya/docs/bugs/bugs.md' in m for m in msgs))
 
     def test_security_path_requires_security_page(self):
         self.install()

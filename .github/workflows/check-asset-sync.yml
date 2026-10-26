@@ -2,23 +2,25 @@ name: Aikya | Catalog and skills contracts
 
 on:
   push:
-    branches: [develop, main, 'feat/**', 'fix/**', 'release/**']
+    branches: [develop, main, 'feat/**', 'fix/**', 'release/**', 'refactor/**']
     paths:
-      - 'engineering/**'
-      - 'aikya-skills/**'
+      - 'src/aikya/catalogs/**'
+      - 'src/aikya/installation/**'
+      - 'src/aikya/cli/**'
       - 'aikya_setup.py'
       - 'engineering_catalog.py'
-      - 'template/.claude/**'
+      - 'src/aikya/resources/**'
       - 'scripts/ci/check_assets.py'
       - '.github/workflows/check-asset-sync.yml'
   pull_request:
     branches: [develop, main]
     paths:
-      - 'engineering/**'
-      - 'aikya-skills/**'
+      - 'src/aikya/catalogs/**'
+      - 'src/aikya/installation/**'
+      - 'src/aikya/cli/**'
       - 'aikya_setup.py'
       - 'engineering_catalog.py'
-      - 'template/.claude/**'
+      - 'src/aikya/resources/**'
       - 'scripts/ci/check_assets.py'
       - '.github/workflows/check-asset-sync.yml'
   workflow_dispatch:
@@ -42,5 +44,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Install contributor package and build tools
+        run: |
+          python -m pip install 'setuptools>=77' wheel build
+          python -m pip install --no-build-isolation --no-deps -e .
       - name: Check source tree contracts and specialist frontmatter
         run: python scripts/ci/check_assets.py

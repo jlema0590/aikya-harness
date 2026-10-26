@@ -30,3 +30,6 @@ coverage/
 .aikya/runtime/
 .aikya/answers.json
 .aikya/bootstrap.json
+
+# Python distribution metadata
+*.egg-info/

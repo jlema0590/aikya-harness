@@ -1,0 +1,13 @@
+{
+  "title": "Synthetic decision example",
+  "sections": {
+    "context-and-problem-statement": "Synthetic local catalogue: context and problem statement. This bounded example does not assert a deployed system, measured target or approval.",
+    "decision-drivers": "Synthetic local catalogue: decision drivers. This bounded example does not assert a deployed system, measured target or approval.",
+    "considered-options": "Synthetic local catalogue: considered options. This bounded example does not assert a deployed system, measured target or approval.",
+    "decision": "Synthetic local catalogue: decision. This bounded example does not assert a deployed system, measured target or approval.",
+    "consequences": "Synthetic local catalogue: consequences. This bounded example does not assert a deployed system, measured target or approval.",
+    "options-in-detail": "Synthetic local catalogue: options in detail. This bounded example does not assert a deployed system, measured target or approval.",
+    "confirmation": "Synthetic local catalogue: confirmation. This bounded example does not assert a deployed system, measured target or approval.",
+    "more-information": "Synthetic local catalogue: more information. This bounded example does not assert a deployed system, measured target or approval."
+  }
+}

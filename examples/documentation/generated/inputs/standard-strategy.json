@@ -1,0 +1,15 @@
+{
+  "title": "Synthetic strategy example",
+  "sections": {
+    "what-we-are-protecting": "Synthetic local catalogue: what we are protecting. This bounded example does not assert a deployed system, measured target or approval.",
+    "cost-and-confidence-at-each-level": "Synthetic local catalogue: cost and confidence at each level. This bounded example does not assert a deployed system, measured target or approval.",
+    "what-we-test-where": "Synthetic local catalogue: what we test where. This bounded example does not assert a deployed system, measured target or approval.",
+    "what-we-do-not-test": "Synthetic local catalogue: what we do not test. This bounded example does not assert a deployed system, measured target or approval.",
+    "entry-and-exit-conditions": "Synthetic local catalogue: entry and exit conditions. This bounded example does not assert a deployed system, measured target or approval.",
+    "coverage": "Synthetic local catalogue: coverage. This bounded example does not assert a deployed system, measured target or approval.",
+    "flaky-tests": "Synthetic local catalogue: flaky tests. This bounded example does not assert a deployed system, measured target or approval.",
+    "non-functional-testing": "Synthetic local catalogue: non-functional testing. This bounded example does not assert a deployed system, measured target or approval.",
+    "environments-and-data": "Synthetic local catalogue: environments and data. This bounded example does not assert a deployed system, measured target or approval.",
+    "who-does-what": "Synthetic local catalogue: who does what. This bounded example does not assert a deployed system, measured target or approval."
+  }
+}

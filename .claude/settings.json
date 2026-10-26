@@ -7,7 +7,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"${CLAUDE_PROJECT_DIR}/template/.claude/hooks/welcome.py\"",
+            "command": "python3 \"${CLAUDE_PROJECT_DIR}/src/aikya/resources/project_template/.claude/hooks/welcome.py\"",
             "timeout": 5
           }
         ]

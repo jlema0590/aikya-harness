@@ -1,4 +1,5 @@
 """Regression contracts for SDD integration with current develop."""
+import runtime_support
 import importlib.util
 import json
 from pathlib import Path
@@ -8,16 +9,17 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-import sdd_engine as sdd
-import install
-import doc_bootstrap
-import aikya_setup
+from aikya.workflows.sdd import engine as sdd
+from aikya.installation import facade as install
+from aikya.documentation import bootstrap as doc_bootstrap
+from aikya.installation import registration as aikya_setup
 
 
 def module(name, relative):
-    spec = importlib.util.spec_from_file_location(name, ROOT / relative)
+    from aikya.resource_paths import source_path
+    spec = runtime_support.module_spec(name, source_path(ROOT,relative))
     result = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(result)
+    spec.loader.exec_module(result);result=getattr(result,'_module',result)
     return result
 
 
@@ -119,9 +121,9 @@ class SddIntegrationTests(unittest.TestCase):
         path.write_text(json.dumps(data))
         self.assertEqual(2, sdd.main(['status', '--root', str(self.root), '--id', 'SPEC-001']))
 
-    def test_standard_is_default_and_unknown_methodology_rejected(self):
+    def test_odd_is_default_and_unknown_methodology_rejected(self):
         raw = json.loads((ROOT / 'examples/next-react/answers.json').read_text())
-        self.assertEqual('standard', install.validated(raw, self.root).get('methodology'))
+        self.assertEqual('odd', install.validated(raw, self.root).get('methodology'))
         with self.assertRaises(ValueError):
             install.validated({**raw, 'methodology': 'unknown'}, self.root)
 
@@ -151,7 +153,7 @@ class SddIntegrationTests(unittest.TestCase):
 
 class SddAdoptionTests(unittest.TestCase):
     def test_analyze_explicit_opt_in_and_refresh_preserve_methodology(self):
-        from aikya_analyze import execute
+        from aikya.discovery.analyze import execute
         import inspect
         self.assertIn('methodology', inspect.signature(execute).parameters)
         with tempfile.TemporaryDirectory() as d:
@@ -172,12 +174,12 @@ class SddAdoptionTests(unittest.TestCase):
             self.assertEqual('sdd', json.loads((root / '.harness/project-profile.json').read_text())['decisions']['methodology'])
 
     def test_analyze_can_upgrade_owned_standard_profile_without_losing_decisions(self):
-        from aikya_analyze import execute
+        from aikya.discovery.analyze import execute
         import inspect
         self.assertIn('methodology', inspect.signature(execute).parameters)
         with tempfile.TemporaryDirectory() as d:
             root = Path(d); (root / 'pom.xml').write_text('<project/>')
-            execute(root, approved=True, docs_lang='en')
+            execute(root, approved=True, docs_lang='en',methodology='odd')
             p = root / '.harness/project-profile.json'
             old = json.loads(p.read_text()); old['decisions']['notes'] = 'Team convention'
             p.write_text(json.dumps(old))
@@ -239,7 +241,8 @@ class SddLanguageAndExecutionTests(unittest.TestCase):
             sdd.initialize(root, spec)
             folder = root/'aikya/docs/specs/development/SPEC-001'
             self.assertIn('## Objetivo', (folder/'spec.md').read_text())
-            self.assertIn('NOT_VERIFIED', (folder/'verification.md').read_text())
+            self.assertFalse((folder/'verification.md').exists())
+            self.assertIsNone(json.loads((folder/'state.json').read_text())['verification'])
             self.assertEqual('development', json.loads((folder/'state.json').read_text())['kind'])
 
     def test_global_runtime_can_register_and_run_sdd_without_source_imports(self):

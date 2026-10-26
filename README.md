@@ -20,23 +20,42 @@ third-party downloads, SDK installation or external operations.
 
 ## 1. Quick start
 
-Open Claude Code in your target directory and paste:
+Install the **latest published stable release** without cloning the repository or entering a version number. These installers become available when v7.0.1 is published.
 
-```text
-Install Aikya Harness from https://github.com/jlema0590/aikya-harness.git --scope global
+**Linux and macOS** — Python 3.10–3.13 with `venv`/pip is required:
+
+```sh
+curl --fail --location --proto '=https' --proto-redir '=https' \
+  "https://github.com/jlema0590/aikya-harness/releases/latest/download/install.sh" \
+  -o install-aikya.sh
+sh ./install-aikya.sh --scope global
+# Project registration: sh ./install-aikya.sh --scope project --target /absolute/path/to/project
 ```
 
-> **Installation scope:** request `global` for your Claude Code user, or `project` for the current repository.
-> This block is a natural-language request to Claude Code. The internal registration script,
-> `aikya_setup.py`, accepts `--scope global` or `--scope project`; `scope=global` is not a CLI argument.
-> Installation scope is separate from `/aikya-analyze --scope <relative-path>`, which selects a directory to inspect.
+**Windows** — PowerShell 5.1+ or 7 and Python 3.10–3.13 with `venv`/pip:
 
-| Value | Where it is registered | When to choose it |
+```powershell
+Invoke-WebRequest -Uri 'https://github.com/jlema0590/aikya-harness/releases/latest/download/install.ps1' -OutFile install-aikya.ps1
+.\install-aikya.ps1 -Scope global
+# Project registration: .\install-aikya.ps1 -Scope project -Target 'C:\work\project'
+```
+
+Download and inspect the script before running it. Each online run selects GitHub's latest published stable release, including when reusing a previously downloaded script. Drafts and prereleases are excluded. It verifies its pinned bootstrap and the selected release wheel, creates an isolated application environment and prints the command directory to add to your user PATH. No Git clone, administrator privileges or environment activation is required. Missing Python prerequisites are reported; the installer does not install Python or change system package managers or execution policy.
+
+| Scope | Registration | When to choose it |
 |---|---|---|
-| `global` | For the current Claude Code user, using a shared runtime. Projects are initialized separately. | You want Aikya commands available across your projects. |
-| `project` | In the current repository, with a local runtime under `.aikya/runtime/`. | You want registration limited to one repository. |
+| `global` | Current user's Claude configuration and shared runtime. | Make commands available across your projects. |
+| `project` | Explicit target's Claude configuration and `.aikya/runtime/`. | Limit registration to one repository. |
 
-Start a new Claude Code session, then choose the onboarding command below.
+Both scopes store the application per user. Scope is separate from `/aikya-analyze --scope <relative-path>`, which selects a directory to inspect. Installation does not initialize a project or choose ODD/SDD.
+
+Use `aikya-manage update --scope global` to update to the latest stable release, `aikya-manage doctor` for local installation state, and `aikya-manage uninstall --scope global` to remove unchanged owned registration assets. Add `--target` with project scope. To select a specific release, pass `--version X.Y.Z` to the shell installer or manager, or `-Version X.Y.Z` to the Windows installer. A failed latest-release lookup stops installation without falling back to an older version.
+
+For offline installation, download one release's entry script, wheel, `SHA256SUMS` and bootstrap, then pass `--offline-dir` (`-OfflineDir` on Windows). The entry script uses its own release version offline; direct bootstrap/manager calls also require `--version X.Y.Z`. Edited assets are preserved; environments referenced by initialized projects are retained. On Windows, use the standalone bootstrap to finish cleanup of an in-use management executable.
+
+**Contributors:** from a source checkout, create a virtual environment, install `build`, `setuptools>=77` and `wheel`, then run `python -m pip install --no-build-isolation --no-deps -e .`. Use `aikya`, `aikya-setup` or `python -m aikya`; source-root scripts such as `python install.py` are retired. This contributor path is separate from the release installation above.
+
+Start a new Claude Code session, then choose the onboarding command below. Native host-session compatibility and authenticated model execution are separate from installer smoke tests.
 
 ## 2. Onboarding
 
@@ -68,7 +87,7 @@ plan before approving changes. Then check prerequisites and plan scaffolding:
 /aikya-scaffold plan
 ```
 
-For infrastructure or DevOps generation, start with `/aikya-infra-project plan`.
+For infrastructure or DevOps generation, start with `/aikya-infra plan`.
 Generators, downloads and external operations require their applicable approvals.
 
 ### Existing projects → `/aikya-analyze`
@@ -76,7 +95,7 @@ Generators, downloads and external operations require their applicable approvals
 Start with a read-only preview:
 
 ```text
-/aikya-analyze --dry-run --docs-lang en
+/aikya-analyze --dry-run --methodology odd --docs-lang en
 ```
 
 Aikya detects the existing stack and architecture without a technical interview.
@@ -93,7 +112,7 @@ It previews Aikya-owned changes before adoption. Ambiguous repositories return
 | `--focus infrastructure` | Focus on infrastructure evidence. |
 | `--focus operations` | Focus on operational evidence. |
 | `--scope <relative-path>` | Limit discovery to a component, such as a monorepo workspace. |
-| `--methodology sdd` | Explicitly opt into SDD with a reviewed adoption plan. |
+| `--methodology odd` or `--methodology sdd` | Choose Organic Driven Development or Spec-Driven Development before initial adoption. |
 | `--refresh` | Refresh only verifiably managed analysis assets. |
 | `--docs-lang en` or `--docs-lang es` | Choose the living documentation language. |
 
@@ -108,18 +127,23 @@ Examples—run each separately as needed:
 Discovery does not build applications, execute application scripts or deploy
 infrastructure. Adoption preserves application code and customized configurations.
 
-### Optional Spec-Driven Development (SDD)
+### Choose ODD or SDD
 
-Keep `standard` for the existing workflow, or explicitly select `sdd` during the
-new-project interview. For an existing repository, preview adoption first:
+**Both `/aikya-init` and `/aikya-analyze` offer ODD and SDD.** ODD is recommended;
+the initial choice is required before writing project files. ODD keeps contained
+changes in the existing request audit and adds a reviewed, resumable worklist for
+substantial work. SDD uses separate specification, plan and task approvals.
+For an existing repository, preview the selected methodology first:
 
 ```text
 /aikya-analyze --dry-run --methodology sdd --docs-lang en
 ```
 
 Review the file plan, generator upgrades and quality-gate backup before approving
-adoption. Without an explicit choice, new profiles remain standard and existing
-SDD selections are retained. Disabling SDD requires a separately reviewed migration.
+adoption. Without an initial choice the CLI returns `NEEDS_METHODOLOGY` and writes
+nothing. Confirmed profiles retain their methodology on refresh; legacy `standard`
+inputs normalize to `odd` with conservative managed-file backups. Disabling SDD
+requires a separately reviewed migration. See [ODD continuity](docs/ODD.md).
 
 The SDD workflow is:
 
@@ -156,10 +180,14 @@ reviewed migration.
 
 | Path | Purpose |
 |---|---|
-| `aikya-skills/` | Source of the 27 public Claude Code slash commands. |
-| `engineering/agents/` | Curated specialist agent definitions. |
-| `engineering/skills/` | Curated technical skills. |
-| `template/` | Base project agents, skills, rules and harness utilities. |
+| `src/aikya/resources/commands/` | Source of the 28 public Claude Code slash commands. |
+| `src/aikya/resources/engineering/agents/` | Curated specialist agent definitions. |
+| `src/aikya/resources/engineering/skills/` | Curated technical skills. |
+| `src/aikya/resources/project_template/` | Base project agents, skills, rules and harness utilities. |
+
+Python code lives in `src/aikya/`, grouped into core, tools, middleware, memory, installation, discovery, workflows, documentation, catalogs, routing and quality. `pyproject.toml` defines the package; installed script entry points remain compatible and are generated from one template. Only `setup.py` remains as a root Python build file.
+
+All Aikya-generated plans, bugs and features stay inside `aikya/docs/`: `plan/`, `bugs/` and `features/`. SDD plans remain in their authoritative specification dossier under `aikya/docs/specs/`.
 
 ### Project artifacts
 
@@ -189,30 +217,34 @@ Existing projects are not reorganized automatically.
 | /aikya-analyze | Discover and adopt an existing repository |
 | /aikya-answers | Apply a validated declarative technical profile |
 | /aikya-doctor | Diagnose SDK and runtime prerequisites locally |
-| /aikya-project-init | Plan a new project or module |
-| /aikya-infra-project | Plan, generate with approval and validate infrastructure |
+| /aikya-project | Plan a new project or module |
+| /aikya-infra | Plan, generate with approval and validate infrastructure |
 | /aikya-scaffold | Plan and execute approved application generators for new projects |
 | /aikya-feature | Implement a scoped feature with tests |
 | /aikya-bugfix | Investigate defects and add regression evidence |
-| /aikya-architecture-review | Review architecture and propose ADRs |
+| /aikya-arc-review | Review architecture and propose ADRs |
 | /aikya-mobile-feature | Deliver validated mobile features |
 | /aikya-skills-status | Inspect registered Agent Skills |
 | /aikya-skills-plan | Assess external skill sources and installation impact |
-| /aikya-skills-install | Install reviewed external skills after approval |
+| /aikya-install-skill | Install reviewed external skills after explicit approval and record actual comparisons |
 | /aikya-quality | Run available quality gates |
 | /aikya-docs | Maintain evidence-backed living documentation |
 | /aikya-tests | Run focused and regression tests |
-| /aikya-documentation-sync | Synchronize impacted docs and request traceability |
+| /aikya-docs-sync | Synchronize impacted docs and request traceability |
 | /aikya-verify | Validate technical changes and results |
 | /aikya-models | Review optional model routing policy |
 | /aikya-tokens | Inspect token usage and estimated API costs |
-
+| /aikya-memory | Browse project-local memory and code in an offline HTML graph, or watch changes live |
 | /aikya-specify | Create a draft specification and acceptance criteria |
 | /aikya-clarify | Resolve specification questions and record explicit approval |
 | /aikya-plan | Draft a technical design and testing plan |
 | /aikya-tasks | Define requirement-linked tasks and dependencies |
 | /aikya-implement | Execute the active approved specification/task with scoped consent |
 | /aikya-sdd-status | Inspect SDD state, traceability and recorded evidence |
+
+Managed upgrades back up verified old commands and retire them only after their
+replacements are available. Customized legacy commands are preserved and reported
+for review.
 
 The project-local skills architecture also includes base feature, bugfix,
 verification, documentation and architecture-review workflows. Do not invoke
@@ -232,6 +264,61 @@ and create a `changes/REQ-*.md` record with **Changes**, **Evidence** and
 When committed with the project, these files provide reviewable history and diffs
 for audits and version tracking. Read-only consultations do not require artificial
 records; full prompts, secrets and private data must not be recorded.
+
+Every Markdown document generated by Aikya ends with the exact line
+`GENERATED BY AIKYA HARNESS`, wherever it is saved. This includes analysis reports,
+infrastructure README files, `CLAUDE.md`, agents and skills. `indice.md` lists the
+Markdown files that actually exist; reports without supporting data are omitted.
+Initialization guidance and toolchain findings belong in `overview.md`.
+
+| Path under `aikya/docs/` | Content |
+|---|---|
+| `features/<lowercase-feature>/` | Actual feature scope and implementation records |
+| `architecture/architecture-overview.md` | Main architecture for both init and analyze |
+| `plan/testing.md` | Selected test plan or observed testing evidence |
+| `tools/agents.md` | Agents actually available in the project |
+| `tools/token-policy.md` | Context and token policy |
+| `tools/skill-comparison.md` | Actual external installation results; created only through `/aikya-install-skill` |
+
+Existing managed documents migrate with backups under `.harness/backup-docs-layout/`.
+Customized conflicts require review. Runtime `.harness/` and `aikya/scripts/harness/`
+retain their existing names.
+
+### Local code memory and HTML
+
+Approved initialization/adoption configures a project-local incremental index and
+automatic updates. Session hooks start the local observer for configured projects;
+session end stops it when no other session remains. For editors outside Claude Code,
+keep an explicit observer running:
+
+```text
+/aikya-memory
+/aikya-memory --refresh --open
+/aikya-memory --watch --open
+/aikya-memory --dry-run
+```
+
+The observer detects saved code, new classes, renames and deletions. It updates
+SQLite in `.harness/state/code-index/`, then regenerates
+`aikya/docs/memory/view/index.html` and its matching `report.md`. `--watch --open`
+also refreshes the open page through a temporary loopback viewer. The exported
+HTML remains a self-contained offline snapshot. No system service is installed.
+
+The report uses the version 2 navy theme by default, with a light-theme switch.
+Its source sidebar, central explorer and source inspector combine a knowledge
+graph, a path-based architecture hierarchy and a searchable inventory. Source
+colors distinguish folders, files, declarations and documents/notes. Filters,
+selection and zoom survive live updates; reduced motion is supported. See the
+[generated example](aikya/docs/examples/aikya-memory-generated.html). Architecture
+shows verified source structure; runtime request-flow analysis remains future work.
+
+Indexing and export call no model and consume no API tokens; they use local CPU
+and disk. Later AI queries retain their normal context usage. Python declarations
+work without dependencies; the optional pinned `code-index` extra adds Java,
+JavaScript/JSX, TypeScript/TSX, C# and Go. Other languages retain file inventory.
+Source changes invalidate note eligibility without rewriting decisions or approvals.
+Existing-project adoption preserves custom ignore files. See
+[configuration, limits and lifecycle](aikya/docs/architecture/local-memory.md).
 
 ## 6. Engineering agents and Agent Skills
 
@@ -256,7 +343,7 @@ Review availability and installation impact from Claude Code:
 /aikya-skills-plan
 ```
 
-After reviewing the plan, use `/aikya-skills-install` with explicit approval.
+After reviewing the plan, use `/aikya-install-skill` with explicit approval.
 Review source provenance, license, tools, network access and version/commit before
 installation. Third-party installer hooks must not run silently.
 
@@ -307,3 +394,46 @@ secure or replace project-specific security review.
 - [Security policy](SECURITY.md)
 - [Code of conduct](CODE_OF_CONDUCT.md)
 - [GitHub workflow contracts](.github/workflows.md)
+
+
+### Aikya templates for SDD
+
+SDD composes nine roles from the pinned [Aikya template library](src/aikya/resources/aikya-template/docs/README.md): feature, API, database, specification, design, tasks, evidence, review and engineering rules. Aikya retains its acceptance criteria, traceability and separate approvals. Only supplied reviewed content creates documents. See [SDD template usage](docs/SDD_TEMPLATES.md) and the [complete generated-example gallery](examples/documentation/generated/README.es.md).
+
+## Project-specific CLAUDE.md
+
+Aikya selects English instructions for development, infrastructure or DevOps, then adds only the recorded stack, layout and methodology guidance. Existing CLAUDE.md files are preserved. See [template selection and examples](docs/CLAUDE_TEMPLATES.md).
+
+## Documentation template library
+
+120 pinned Aikya templates are available offline; Upstream attribution is retained in THIRD_PARTY_LICENSES.md. Architecture uses `aikya/docs/architecture/architecture-overview.md`; actual bugs append to `aikya/docs/bugs/bugs.md`. Documents require reviewed facts and authorization. See [selection, examples, license and compatibility](docs/DOCUMENTATION_TEMPLATES.md).
+
+Aikya now combines its generated documents with selected Aikya reference templates foundations by command, methodology and project profile. ODD features include observable acceptance criteria; optional design/test sections use actual supplied facts. See [contextual template composition](docs/CONTEXTUAL_TEMPLATE_COMPOSITION.md).
+
+
+## Execution phases and usage
+
+All public commands share **Explore → Plan → Implement → Validate → Security → Review**,
+with proportional applicability and separate English status labels. The local bar
+shows the active action, observed model/executor, context and optional account
+5h/7d limits. Missing data stays N/D. Recorded session tokens use explicitly selected
+transcripts; account quotas are never inferred from them. Read-only queries write
+no project documents. Custom bars/hooks are preserved with a reviewable proposal.
+See [visibility, evidence and configuration](docs/EXECUTION_VISIBILITY.md) and the
+[complete Spanish implementation plan](aikya/docs/plan/archive/harness-development/2026-10-23-odd-observabilidad.es.md).
+
+## Optional agent loop
+
+Explicitly enable bounded execution for /aikya-feature, /aikya-bugfix or
+/aikya-implement. The optional Claude Agent SDK runs the task; Aikya enforces the
+reviewed file scope, ODD/SDD gates, local checks, read-only review and durable limits.
+It never starts during onboarding or installs the SDK automatically. See
+[setup, permissions, recovery and controlled live testing](docs/AGENT_LOOP.md).
+
+Optional project/private memory supports explicit review, checkout migration and
+bounded model proposals that remain pending until approved. The source-quality
+gate requires modularization above 1,000 lines per changed source file; Python
+long functions and repeated bodies receive review warnings. See the
+[security and quality controls](docs/SECURITY_CONTROLS.md) for what is enforced.
+
+GENERATED BY AIKYA HARNESS

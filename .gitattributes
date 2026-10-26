@@ -1,0 +1,3 @@
+# Shipped templates, migration catalogs and viewer assets are byte-verified.
+# Preserve their committed bytes even when a checkout enables core.autocrlf.
+src/aikya/resources/** -text

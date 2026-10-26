@@ -1,0 +1,9 @@
+{
+  "title": "Límite de consulta simulado",
+  "sections": {
+    "1-purpose-and-scope": {
+      "heading": "Propósito y alcance",
+      "body": "Ilustración simulada: el componente solo consulta registros."
+    }
+  }
+}

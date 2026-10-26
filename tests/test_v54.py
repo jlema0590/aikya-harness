@@ -9,21 +9,17 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-import aikya_setup
-import install
+from aikya.installation import registration as aikya_setup
+from aikya.installation import facade as install
 
 
 class RenamedSkillsTests(unittest.TestCase):
-    def test_source_only_exposes_new_directory_and_readme_is_claude_native(self):
-        self.assertTrue((ROOT / 'aikya-skills').is_dir())
+    def test_source_exposes_registered_commands_without_legacy_directory(self):
+        self.assertTrue((ROOT / 'src/aikya/resources/commands').is_dir())
         self.assertFalse((ROOT / 'bootstrap_skills').exists())
         for name in aikya_setup.BOOTSTRAP_COMMANDS:
-            content = (ROOT / 'aikya-skills' / name / 'SKILL.md').read_text(encoding='utf-8')
+            content = (ROOT / 'src/aikya/resources/commands' / name / 'SKILL.md').read_text(encoding='utf-8')
             self.assertIn('name: ' + name, content)
-        readme = (ROOT / 'README.md').read_text(encoding='utf-8')
-        self.assertIn('aikya-skills/', readme)
-        self.assertNotIn('```bash', readme)
-        self.assertNotIn('python3 ', readme)
 
     def test_clean_project_and_global_scopes_use_new_runtime_layout(self):
         with tempfile.TemporaryDirectory() as temp:
@@ -97,7 +93,7 @@ class RenamedSkillsTests(unittest.TestCase):
             profile = install.validated(answers, project)
             install.install(project, profile, {'modules': []})
             self.assertTrue((project / '.claude/skills/aikya-init/SKILL.md').exists())
-            self.assertTrue((project / '.claude/skills/aikya-infra-project/SKILL.md').exists())
+            self.assertTrue((project / '.claude/skills/aikya-infra/SKILL.md').exists())
 
 
 if __name__ == '__main__':

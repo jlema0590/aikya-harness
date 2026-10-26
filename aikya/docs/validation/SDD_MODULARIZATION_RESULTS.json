@@ -1,0 +1,763 @@
+{
+  "schema": 1,
+  "version": "6.1.1",
+  "published_before_modularization": "e3ca08d3c3174e392d1d4420016ccd5d7d081c11",
+  "original_engine_lines": 658,
+  "current_engine_lines": 282,
+  "largest_implementation_module": {
+    "path": "src/aikya/tools/infrastructure.py",
+    "physical_lines": 404
+  },
+  "sdd_modules": {
+    "rendering.py": {
+      "physical_lines": 76,
+      "sha256": "a7f328898c5979b12f0ba137081f30ff3d7d4ee5e2bc9b42c9b1bc9711e2eb81"
+    },
+    "__init__.py": {
+      "physical_lines": 1,
+      "sha256": "99c4e46160b2a2d69a27ce881466c26c3c74cb2b173574043976040d5799286a"
+    },
+    "localization.py": {
+      "physical_lines": 47,
+      "sha256": "63d438a66f7eb484bb1982d25d145d793c9063c63e3f70d980412c65f7242392"
+    },
+    "templates.py": {
+      "physical_lines": 120,
+      "sha256": "64c6db487298641003aebdc069fd55770fb5eeacaef3f01b50550fb681936743"
+    },
+    "engine.py": {
+      "physical_lines": 282,
+      "sha256": "64499d48473fa0526405abed39156ac8ec3e4d64e2ce00237bc4cdedeafe2408"
+    },
+    "cli.py": {
+      "physical_lines": 84,
+      "sha256": "f169e30f280540aedb846e9e00ea30b24824a63ca08c50a9c330d89193da0f35"
+    },
+    "assets.py": {
+      "physical_lines": 73,
+      "sha256": "06666657fa25db46c991f484d9383771fc9070f81583d261c47251efe100c88d"
+    },
+    "contracts.py": {
+      "physical_lines": 95,
+      "sha256": "6db1deb751315a8a110ead62d28fd94db3ddd828ecf3d63fb3232ea3b9f526c9"
+    },
+    "state.py": {
+      "physical_lines": 69,
+      "sha256": "81ea6d507a69b7f7349915f42a921169dae0545aafd48b031a94d47ac16ad7fc"
+    },
+    "validation.py": {
+      "physical_lines": 93,
+      "sha256": "74eaada0723963893a477068a5a4529d15ddb422ddb0ebc08a11f4d1f815808e"
+    }
+  },
+  "implementation_python_files": 97,
+  "preserved_exported_definitions": 34,
+  "moved_function_asts_unchanged": true,
+  "characterization": {
+    "fixture": "tests/fixtures/sdd-lifecycle-contracts.json",
+    "type_locale_cases": 6,
+    "lifecycle_fingerprints": 78,
+    "result": "passed"
+  },
+  "python_matrix": {
+    "3.10": {
+      "tests": 496,
+      "seconds": 280.907,
+      "result": "passed",
+      "log_sha256": "fa308b2236ffa1546b8e9f11f13e9df5936ae674cc9a7459c226b207a7d8463e"
+    },
+    "3.11": {
+      "tests": 496,
+      "seconds": 267.147,
+      "result": "passed",
+      "log_sha256": "b97719acf5aa88a9b6d102eac087d2f221fe703b38cb51e81fb32d071735c255"
+    },
+    "3.12": {
+      "tests": 496,
+      "seconds": 315.954,
+      "result": "passed",
+      "log_sha256": "686de4b604c47da05c584b98d36eac916d68cdd2cc124cfd84ce1337a3483800"
+    },
+    "3.13": {
+      "tests": 496,
+      "seconds": 301.911,
+      "result": "passed",
+      "log_sha256": "369f3f41015e17a3e375df5df62bcb4c85e61a038021f787af8640088dd7ebbb"
+    }
+  },
+  "command_acceptance": {
+    "mode": "offline executable command contracts",
+    "valid": true,
+    "command_count": 27,
+    "process_checks": 49,
+    "live_model_execution": false,
+    "inventory_reference": "COMMAND_ACCEPTANCE_RESULTS.json#projects",
+    "inventory_matches_original": true,
+    "commands": {
+      "aikya-init": {
+        "process_checks": 5,
+        "results": [
+          {
+            "support": "aikya_cli.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "a3e96e954593d68862d0f204590d65b44339fb44f69496742f4f0701aabf663f"
+          },
+          {
+            "support": "aikya_cli.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "fc0ba3b424af87911c403b6343926783de8765f6a8276c6ae1274686c453c30d"
+          },
+          {
+            "support": "aikya_cli.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "ff7f08d658aba7aecd6b21f36eec32cce5b66c80d327cecc5dcc1ff7b2d84196"
+          },
+          {
+            "support": "aikya_cli.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "235530e70c80114ffe7e062743772dab034f53e589fc42c46a3ef4397df66997"
+          },
+          {
+            "support": "aikya_cli.py",
+            "exit": 2,
+            "expected_exit": 2,
+            "output_sha256": "944988a183f3f07c9829c79b085b382ac1bb21612bcc7503c8fb10ba14c55ec4"
+          }
+        ]
+      },
+      "aikya-analyze": {
+        "process_checks": 1,
+        "results": [
+          {
+            "support": "aikya_cli.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "fe706eefccc69ded1cd6d3f60880e998eb5880833c91e45ddc4a95db14af0b71"
+          }
+        ]
+      },
+      "aikya-answers": {
+        "process_checks": 1,
+        "results": [
+          {
+            "support": "aikya_cli.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "9b2a0a1a895255fba0c6f902c9de02d0d1c002cc03a196ec879db0c529818f6a"
+          }
+        ]
+      },
+      "aikya-doctor": {
+        "process_checks": 1,
+        "results": [
+          {
+            "support": "aikya_cli.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "bd19baf40f7e84dc7aa3c24452a3f56bde75c5ddc22248d18900b033adfb0040"
+          }
+        ]
+      },
+      "aikya-project": {
+        "process_checks": 1,
+        "results": [
+          {
+            "support": "scaffold.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "81c21dc9c2359e5439733a1259a2082ffdd50dc91bb5dd959325bec4642acc85"
+          }
+        ]
+      },
+      "aikya-infra": {
+        "process_checks": 2,
+        "results": [
+          {
+            "support": "infrastructure.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "b6f44a91dab71eae4a910c265c5819e1f9bceed74f377798d647e118fb6779ef"
+          },
+          {
+            "support": "infrastructure.py",
+            "exit": 2,
+            "expected_exit": 2,
+            "output_sha256": "233643f6da414de3745ae92ad0b503dcc3b1e3d8011c6992f0bcf3ff1df230c2"
+          }
+        ]
+      },
+      "aikya-scaffold": {
+        "process_checks": 1,
+        "results": [
+          {
+            "support": "scaffold.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "81c21dc9c2359e5439733a1259a2082ffdd50dc91bb5dd959325bec4642acc85"
+          }
+        ]
+      },
+      "aikya-feature": {
+        "process_checks": 2,
+        "results": [
+          {
+            "support": "documentation_workflows.py",
+            "exit": 2,
+            "expected_exit": 2,
+            "output_sha256": "0f1d80b310ff4568091fc090ed4437887d85018c580567e168063ac0700135eb"
+          },
+          {
+            "support": "documentation_workflows.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "69825250e5e6ab7137533595c1d03614fe0b317c77c518b373c21e2a174bf71f"
+          }
+        ]
+      },
+      "aikya-bugfix": {
+        "process_checks": 2,
+        "results": [
+          {
+            "support": "documentation_templates.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "9313dd0ffcf020e455caed7471bb6575e7e44159d9c40935b41a1a9ae9d26bad"
+          },
+          {
+            "support": "documentation_templates.py",
+            "exit": 2,
+            "expected_exit": 2,
+            "output_sha256": "cd648830fb4fa931c6ceb4243821ed8d6b9334f100a4c2ad650d1523ff8544f7"
+          }
+        ]
+      },
+      "aikya-arc-review": {
+        "process_checks": 1,
+        "results": [
+          {
+            "support": "documentation_workflows.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "257c34d3a640b7f7cc261fd668ddf1d3d3bdf411e3216cbe8ae54051f37fb2a4"
+          }
+        ]
+      },
+      "aikya-mobile-feature": {
+        "process_checks": 2,
+        "results": [
+          {
+            "support": "documentation_workflows.py",
+            "exit": 2,
+            "expected_exit": 2,
+            "output_sha256": "0f1d80b310ff4568091fc090ed4437887d85018c580567e168063ac0700135eb"
+          },
+          {
+            "support": "documentation_workflows.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "ef6cd8a510acf30abbadb04f4c7fe230bc5d4d4a5efcba8be384bd4a07223985"
+          }
+        ]
+      },
+      "aikya-skills-status": {
+        "process_checks": 1,
+        "results": [
+          {
+            "support": "external_skills.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "a616eb30b4aa3f9a8b3856f0d46e1bad2a75584e7df1785587ad49d5f7071e87"
+          }
+        ]
+      },
+      "aikya-skills-plan": {
+        "process_checks": 1,
+        "results": [
+          {
+            "support": "external_skills.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "51fd855a9071465a64aacc71a94abc6a7d1a7b8b1a2af0761e4798166a491a32"
+          }
+        ]
+      },
+      "aikya-quality": {
+        "process_checks": 1,
+        "results": [
+          {
+            "support": "skills_lint.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "fbb67cd74adb45969bdb3a2e993f05c4f6879fa3139c7212e8ec316f276d81a4"
+          }
+        ]
+      },
+      "aikya-docs": {
+        "process_checks": 3,
+        "results": [
+          {
+            "support": "docs_layout.py",
+            "exit": 2,
+            "expected_exit": 2,
+            "output_sha256": "c4445c88b672e6ea040bb0c08bd321414f7061b8a75536049989856be6212898"
+          },
+          {
+            "support": "docs_layout.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "0c73d92f6833a3da78152718addba4a359022fb95d5963cb22033e2517731257"
+          },
+          {
+            "support": "docs_layout.py",
+            "exit": 2,
+            "expected_exit": 2,
+            "output_sha256": "bfc9c0a43ad1ee3a2324e6ea02f492d5f5bf14fb40a40df897ab1e9809a8428b"
+          }
+        ]
+      },
+      "aikya-tests": {
+        "process_checks": 2,
+        "results": [
+          {
+            "support": "run_checks.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "71d0cca43ee18b8682ce8d9b21c0c61b051f8bf9d74d9abcbb2bcbadcb0fdba2"
+          },
+          {
+            "support": "run_checks.py",
+            "exit": 1,
+            "expected_exit": 1,
+            "output_sha256": "b93c5cbaf10660ca45dd4b7020a38f4a6ec9918953b76aa3f687dec9f7f0e40f"
+          }
+        ]
+      },
+      "aikya-docs-sync": {
+        "process_checks": 1,
+        "results": [
+          {
+            "support": "docs_layout.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      "aikya-verify": {
+        "process_checks": 2,
+        "results": [
+          {
+            "support": "run_checks.py",
+            "exit": 1,
+            "expected_exit": 1,
+            "output_sha256": "ef3616b7525c78472320aacc71c4a65f5ad61f35c159c8864aae1e2e07ef6320"
+          },
+          {
+            "support": "docs_guard.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "6b827a5ca9e2740dedd90d13e4e713f343115796ed2d67df14c9add929a0e5bd"
+          }
+        ]
+      },
+      "aikya-models": {
+        "process_checks": 1,
+        "results": [
+          {
+            "support": "inspect_model.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "671138f9c448a793b31dd1994e495c85cf48638c1c93a4c5732f4b287f53b8cd"
+          }
+        ]
+      },
+      "aikya-tokens": {
+        "process_checks": 2,
+        "results": [
+          {
+            "support": "token_report.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "7be3c80f3fd083127f660395a480f7803c959edd63c2496dd31c9bd0c5f4e526"
+          },
+          {
+            "support": "token_report.py",
+            "exit": 2,
+            "expected_exit": 2,
+            "output_sha256": "d5120ab0ed72ce86a102f95d1c77ec70ed5936119839498f2614540ef75b3842"
+          }
+        ]
+      },
+      "aikya-install-skill": {
+        "process_checks": 1,
+        "results": [
+          {
+            "support": "external_skills.py",
+            "exit": 2,
+            "expected_exit": 2,
+            "output_sha256": "d1d7517e21e36e189e5e3cb3836661ae423e89138bcece65a6ae701ebfd258c2"
+          }
+        ]
+      },
+      "aikya-specify": {
+        "process_checks": 1,
+        "results": [
+          {
+            "support": "sdd_engine.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "421be2cdd2bd1ffb9f45396371954284de328e9c4c76d1aaa427a4dcbdfdb455"
+          }
+        ]
+      },
+      "aikya-clarify": {
+        "process_checks": 2,
+        "results": [
+          {
+            "support": "sdd_engine.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "0c8dc74a72af14efe46c4224e2258d5b7f8dd741b05490b7d3e64742c297fa9f"
+          },
+          {
+            "support": "sdd_engine.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "d8b9976ba788ebb9a1113c185ef6ce7067c6152cb286574e331a3d2fd2505bd4"
+          }
+        ]
+      },
+      "aikya-plan": {
+        "process_checks": 3,
+        "results": [
+          {
+            "support": "sdd_engine.py",
+            "exit": 2,
+            "expected_exit": 2,
+            "output_sha256": "bc5d341f4bd455ef0307bdbe2fb32f41dc2052a94eedd720f9a378a8207918cd"
+          },
+          {
+            "support": "sdd_engine.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "ef1bff0b07c5594343871faf6c1464c212f0921171b9173a557054855b91401e"
+          },
+          {
+            "support": "sdd_engine.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "8aef5636a5893fd00068cc463f796133ab982ac63a8ae2be4460e8e9fcf68abe"
+          }
+        ]
+      },
+      "aikya-tasks": {
+        "process_checks": 2,
+        "results": [
+          {
+            "support": "sdd_engine.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "74fc5e08caa7c84918b524703c38b50b5f7e01d00746884eac80b7957fa4668a"
+          },
+          {
+            "support": "sdd_engine.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "5a125b7aa9dfb990514a5cca9daa5564e2bb6c438f4aee13877629b617e33255"
+          }
+        ]
+      },
+      "aikya-implement": {
+        "process_checks": 3,
+        "results": [
+          {
+            "support": "sdd_engine.py",
+            "exit": 2,
+            "expected_exit": 2,
+            "output_sha256": "0c67c0078108ecf2e3a42a33693e1af3c1c9087f34e761089bec8f2a29c99e9d"
+          },
+          {
+            "support": "sdd_engine.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "6ed1a262cc218b3328b258929ddbfdc1f0b02e474ea587da8d32c284359f0ead"
+          },
+          {
+            "support": "sdd_engine.py",
+            "exit": 2,
+            "expected_exit": 2,
+            "output_sha256": "750ac8f555e6021b9d4b86417e7223ad8f404526b8fd22012ed4398ca0b89aa3"
+          }
+        ]
+      },
+      "aikya-sdd-status": {
+        "process_checks": 4,
+        "results": [
+          {
+            "support": "sdd_engine.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "5a125b7aa9dfb990514a5cca9daa5564e2bb6c438f4aee13877629b617e33255"
+          },
+          {
+            "support": "sdd_engine.py",
+            "exit": 0,
+            "expected_exit": 0,
+            "output_sha256": "d0070c389fddee3b95e82198c0a41c328bb91c187d627eb59c569b657fcf54d4"
+          },
+          {
+            "support": "sdd_engine.py",
+            "exit": 1,
+            "expected_exit": 1,
+            "output_sha256": "5ae002e6badf0d7c2086957dc43da3e692c68c97b3a26d4cda0ae227afb9483b"
+          },
+          {
+            "support": "aikya_cli.py",
+            "exit": 2,
+            "expected_exit": 2,
+            "output_sha256": "38b4bb83d9fd006ba9bd37dfae6bb10869bcacc1d10c775982105450528de225"
+          }
+        ]
+      }
+    }
+  },
+  "quality": {
+    "files": 248,
+    "errors": [],
+    "warnings": [
+      {
+        "path": "scripts/ci/command_acceptance.py",
+        "line": 66,
+        "function": "exercise",
+        "code": "long_function",
+        "message": "101 lines: review cohesion and extract focused helpers where justified."
+      },
+      {
+        "path": "src/aikya/catalogs/engineering.py",
+        "line": 58,
+        "function": "discover",
+        "code": "long_function",
+        "message": "111 lines: review cohesion and extract focused helpers where justified."
+      },
+      {
+        "path": "src/aikya/cli/main.py",
+        "line": 25,
+        "function": "main",
+        "code": "long_function",
+        "message": "140 lines: review cohesion and extract focused helpers where justified."
+      },
+      {
+        "path": "src/aikya/core/loop.py",
+        "line": 127,
+        "function": "run",
+        "code": "long_function",
+        "message": "147 lines: review cohesion and extract focused helpers where justified."
+      },
+      {
+        "path": "src/aikya/discovery/analyze.py",
+        "line": 86,
+        "function": "installation_preview",
+        "code": "long_function",
+        "message": "122 lines: review cohesion and extract focused helpers where justified."
+      },
+      {
+        "path": "src/aikya/discovery/scanner.py",
+        "line": 50,
+        "function": "scan",
+        "code": "long_function",
+        "message": "126 lines: review cohesion and extract focused helpers where justified."
+      },
+      {
+        "path": "src/aikya/documentation/bootstrap.py",
+        "line": 30,
+        "function": "_infra_files",
+        "code": "long_function",
+        "message": "134 lines: review cohesion and extract focused helpers where justified."
+      },
+      {
+        "path": "src/aikya/documentation/pages_en.py",
+        "line": 11,
+        "function": "pages",
+        "code": "long_function",
+        "message": "254 lines: review cohesion and extract focused helpers where justified."
+      },
+      {
+        "path": "src/aikya/documentation/pages_es.py",
+        "line": 8,
+        "function": "pages",
+        "code": "long_function",
+        "message": "337 lines: review cohesion and extract focused helpers where justified."
+      },
+      {
+        "path": "src/aikya/tools/infrastructure.py",
+        "line": 142,
+        "function": "specs",
+        "code": "long_function",
+        "message": "137 lines: review cohesion and extract focused helpers where justified."
+      },
+      {
+        "code": "duplicate_python_body",
+        "message": "Repeated nontrivial Python function body; review a shared implementation.",
+        "locations": [
+          {
+            "path": "src/aikya/documentation/guard.py",
+            "line": 131,
+            "function": "start_request"
+          },
+          {
+            "path": "tests/fixtures/v3_docs_guard.py",
+            "line": 95,
+            "function": "start_request"
+          }
+        ]
+      },
+      {
+        "code": "duplicate_python_body",
+        "message": "Repeated nontrivial Python function body; review a shared implementation.",
+        "locations": [
+          {
+            "path": "src/aikya/documentation/guard.py",
+            "line": 292,
+            "function": "main"
+          },
+          {
+            "path": "tests/fixtures/v3_docs_guard.py",
+            "line": 230,
+            "function": "main"
+          }
+        ]
+      },
+      {
+        "code": "duplicate_python_body",
+        "message": "Repeated nontrivial Python function body; review a shared implementation.",
+        "locations": [
+          {
+            "path": "src/aikya/installation/requirements.py",
+            "line": 42,
+            "function": "expected_versions"
+          },
+          {
+            "path": "tests/fixtures/v56_aikya_requirements.py",
+            "line": 33,
+            "function": "expected_versions"
+          }
+        ]
+      }
+    ],
+    "duplicates": [
+      [
+        {
+          "path": "src/aikya/documentation/guard.py",
+          "line": 131,
+          "function": "start_request"
+        },
+        {
+          "path": "tests/fixtures/v3_docs_guard.py",
+          "line": 95,
+          "function": "start_request"
+        }
+      ],
+      [
+        {
+          "path": "src/aikya/documentation/guard.py",
+          "line": 292,
+          "function": "main"
+        },
+        {
+          "path": "tests/fixtures/v3_docs_guard.py",
+          "line": 230,
+          "function": "main"
+        }
+      ],
+      [
+        {
+          "path": "src/aikya/installation/requirements.py",
+          "line": 42,
+          "function": "expected_versions"
+        },
+        {
+          "path": "tests/fixtures/v56_aikya_requirements.py",
+          "line": 33,
+          "function": "expected_versions"
+        }
+      ]
+    ]
+  },
+  "wheel_acceptance": {
+    "wheel": "aikya_harness-6.1.1-py3-none-any.whl",
+    "source_imports": false,
+    "sdk_installed": false,
+    "cases": [
+      {
+        "scope": "global",
+        "methodology": "odd",
+        "command": "init",
+        "result": "passed"
+      },
+      {
+        "scope": "global",
+        "methodology": "odd",
+        "command": "analyze",
+        "result": "passed"
+      },
+      {
+        "scope": "global",
+        "methodology": "sdd",
+        "command": "init",
+        "result": "passed"
+      },
+      {
+        "scope": "global",
+        "methodology": "sdd",
+        "command": "analyze",
+        "result": "passed"
+      },
+      {
+        "scope": "project",
+        "methodology": "odd",
+        "command": "init",
+        "result": "passed"
+      },
+      {
+        "scope": "project",
+        "methodology": "odd",
+        "command": "analyze",
+        "result": "passed"
+      },
+      {
+        "scope": "project",
+        "methodology": "sdd",
+        "command": "init",
+        "result": "passed"
+      },
+      {
+        "scope": "project",
+        "methodology": "sdd",
+        "command": "analyze",
+        "result": "passed"
+      }
+    ]
+  },
+  "cold_imports": {
+    "wheel": "aikya_harness-6.1.1-py3-none-any.whl",
+    "cold_modules": 96,
+    "independent_orders": 2,
+    "source_checkout_imports": false,
+    "result": "passed"
+  },
+  "artifacts": {
+    "aikya_harness-6.1.1.tar.gz": {
+      "bytes": 833645,
+      "sha256": "744da712997d77ce90609290c568a7172d8d84182552d769d2bab7a9bb464473"
+    },
+    "aikya_harness-6.1.1-py3-none-any.whl": {
+      "bytes": 1144443,
+      "sha256": "458a53188b65410cfbe8bbd64f76cf036005f3c14652a35d176b889110f37b2a"
+    }
+  },
+  "live_model_execution": false
+}

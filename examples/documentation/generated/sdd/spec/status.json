@@ -1,0 +1,14 @@
+{
+  "id": "SPEC-001",
+  "project_type": "development",
+  "phase": "EVIDENCE_RECORDED",
+  "approved": [
+    "plan",
+    "spec",
+    "tasks"
+  ],
+  "outstanding_questions": 0,
+  "total_tasks": 1,
+  "completed_tasks": 1,
+  "requirements": 1
+}

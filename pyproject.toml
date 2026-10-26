@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aikya-harness"
+dynamic = ["version"]
+description = "Aikya: reviewed ODD/SDD workflows and a bounded Claude Code harness"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE", "THIRD_PARTY_LICENSES.md"]
+dependencies = []
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+]
+
+[project.optional-dependencies]
+agent-loop = ["claude-agent-sdk==0.2.173"]
+code-index = ["tree-sitter==0.25.2", "tree-sitter-java==0.23.5",
+  "tree-sitter-javascript==0.25.0", "tree-sitter-typescript==0.23.2",
+  "tree-sitter-c-sharp==0.23.1", "tree-sitter-go==0.25.0"]
+
+[project.scripts]
+aikya = "aikya.cli.main:main"
+aikya-setup = "aikya.installation.registration:main"
+aikya-manage = "aikya.installation.bootstrap.cli:main"
+
+[project.urls]
+Repository = "https://github.com/jlema0590/aikya-harness"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = false
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["aikya", "aikya.*"]
+namespaces = false
+
+[tool.setuptools.dynamic]
+version = {file = ["VERSION"]}
+
+[tool.setuptools.package-data]
+aikya = ["module_map.json"]

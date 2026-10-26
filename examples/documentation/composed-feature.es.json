@@ -1,0 +1,13 @@
+{
+  "title": "Consulta de pedidos simulada",
+  "objective": "Ejemplo simulado: mantener estable la respuesta para pedidos inexistentes.",
+  "acceptance": [
+    "Un identificador de pedido simulado inexistente devuelve la respuesta de ausencia acordada."
+  ],
+  "sections": {
+    "context-and-scope": "Ejemplo simulado: solo se modifica el límite de consulta.",
+    "non-goals": "No se añade comportamiento de pagos ni envíos.",
+    "the-design": "Se reutiliza el adaptador de consulta simulado.",
+    "alternatives-considered": "Un servicio independiente añadiría estado innecesario a este ejemplo."
+  }
+}

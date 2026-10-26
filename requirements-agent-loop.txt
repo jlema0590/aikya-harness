@@ -1,0 +1,2 @@
+# Optional runtime only; normal Aikya installation remains standard-library-only.
+claude-agent-sdk==0.2.173

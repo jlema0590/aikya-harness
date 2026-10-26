@@ -1,0 +1,6 @@
+{
+  "synthetic_project": true,
+  "check": "Two actual lookup assertions",
+  "exit_code": 0,
+  "scope": "Only this synthetic example; no application audit"
+}

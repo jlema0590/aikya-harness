@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "docs_language": "en",
+  "id": "SPEC-001",
+  "kind": "development",
+  "spec": {
+    "id": "SPEC-001",
+    "title": "Synthetic spec contract",
+    "objective": "Preserve the synthetic missing-item response.",
+    "requirements": [
+      {
+        "id": "REQ-001",
+        "description": "The missing-item response is stable.",
+        "acceptance": [
+          "A nonexistent fixture ID returns the agreed response without mutations."
+        ]
+      }
+    ],
+    "nonfunctional": [],
+    "questions": [
+      "Which fixture response is in scope?"
+    ],
+    "template": "spec",
+    "sections": {
+      "context": "Synthetic task boundary: preserve local catalogue errors."
+    }
+  },
+  "clarifications": {
+    "Which fixture response is in scope?": "Only the documented synthetic missing-item response."
+  },
+  "approvals": {
+    "spec": {
+      "actor": "Synthetic gallery reviewer",
+      "approved": true
+    },
+    "plan": {
+      "actor": "Synthetic gallery reviewer",
+      "approved": true
+    },
+    "tasks": {
+      "actor": "Synthetic gallery reviewer",
+      "approved": true
+    }
+  },
+  "plan": {
+    "design": "Reuse the synthetic catalogue adapter.",
+    "decisions": [
+      "Keep the local interface stable."
+    ],
+    "risks": [
+      "Fixture examples do not prove production behavior."
+    ],
+    "testing": "Retain explicitly labeled fixture evidence; no real application command is run.",
+    "sections": {
+      "goals": "Preserve the example contract.",
+      "non_goals": "No deployment or unrelated behavior."
+    }
+  },
+  "tasks": [
+    {
+      "id": "TASK-001",
+      "description": "Document the synthetic lookup contract.",
+      "requirements": [
+        "REQ-001"
+      ],
+      "depends_on": [],
+      "status": "done",
+      "evidence": [
+        "fixture-evidence.log"
+      ],
+      "sections": {
+        "allowed_files": "Synthetic example artifacts only.",
+        "done_when": "The example contract and clearly labeled fixture evidence exist.",
+        "out_of_scope": "No application implementation or external changes."
+      }
+    }
+  ],
+  "verification": {
+    "status": "EVIDENCE_RECORDED",
+    "requirements": [
+      {
+        "id": "REQ-001",
+        "command": "synthetic fixture observation; not an executed application check",
+        "result": "passed",
+        "evidence": "fixture-evidence.log"
+      }
+    ],
+    "independently_executed": false,
+    "sections": {
+      "assessment": "Synthetic recorded outcome only; application behavior is not verified.",
+      "known_gaps": "No application or production checks were executed.",
+      "residual_risk": "Example artifacts do not provide release approval."
+    }
+  }
+}

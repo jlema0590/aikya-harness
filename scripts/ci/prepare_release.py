@@ -10,6 +10,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 from release_contract import parse_version, ReleaseError, read_version
+from aikya.documentation.layout import stamp
 
 TAG=re.compile(r"v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\Z")
 
@@ -40,7 +41,7 @@ def prepare(root:Path, name:str, date:str|None=None) -> tuple[str,str]:
     revised=content[:heading.start()]+replacement+content[heading.end():]
     from release_contract import notes_from_changelog
     notes_from_changelog(revised,next_version)
-    changelog.write_text(revised,encoding="utf-8")
+    changelog.write_text(stamp(revised),encoding="utf-8")
     (root/"VERSION").write_text(next_version+"\n",encoding="utf-8")
     return name,today
 

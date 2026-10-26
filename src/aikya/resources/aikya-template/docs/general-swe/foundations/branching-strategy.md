@@ -1,0 +1,129 @@
+# Branching Strategy
+
+> Which branches exist, how long they live, and how a change reaches production.
+>
+> **Also called:** branching model, Git workflow.
+>
+> **This is a coordination decision, not a technical one.** The named strategies are reasoned positions published by vendors and practitioners, not findings from studies. They disagree with each other, and two of the four most-cited ones have been quietly changed or withdrawn by their own publishers. "Evidence behind branching strategies" at the end covers what is actually measured.
+>
+> **Write it down because the cost of ambiguity is merge conflicts and failed releases**, both of which are expensive and both of which a half-page document prevents.
+>
+> **There is no standard section set for this document.** The headings below are a proposal. Rename or drop them freely.
+>
+> **Where it lives.** In the repository it governs, next to the branch protection rules and CI config it describes. It changes when the pipeline changes.
+>
+> **Delete this block before publishing.**
+
+*Italic text is guidance. Delete it as you fill each section in.*
+
+---
+
+## 1. Release model
+
+*State how you release, then pick the strategy that follows from it. Choose by your release model, not by what is popular.*
+
+| If you release | Then you need | Which points to |
+|---|---|---|
+| Continuously, many times a day, one version in production | One long-lived branch, very short branches off it | Trunk-based, or GitHub Flow |
+| On a cadence, one version in production at a time | One long-lived branch plus a release branch per release | Trunk-based with release branches |
+| Explicit versions your users choose to install, several supported at once | A maintained branch per supported version | git-flow, or a release-branch-per-version scheme |
+| To fixed environments you promote through | Environment branches merged downstream only | GitLab Flow's environment-branch pattern |
+
+```
+   TRUNK-BASED                        RELEASE-BRANCH
+
+   o---o---o---o---o---o  main        o---o---o---o---o---o  main
+        \     \     \                      \           \
+         o     o     o   <2 days            o-o-o       o-o-o
+        (merged same or next day)          release/1.4  release/1.5
+                                                |            |
+   deploy from main                        deploy, then cherry-pick
+                                           fixes back to main
+```
+
+*The second shape costs you one thing the first does not: every fix now has to land in two places, and the discipline about which direction it flows is the whole game. Pick it only if you genuinely support more than one version at a time.*
+
+---
+
+## 2. Branches
+
+*One table. If it takes longer than a table, the scheme is too complicated.*
+
+| Branch | Purpose | Lifetime | Who may push | Protected |
+|---|---|---|---|---|
+| `main` | Always releasable | Permanent | Nobody directly | Yes |
+| `feature/*` | One change by one person | 2 days | The author | No |
+| `release/x.y` | Stabilise and ship a version | Until end of support | Release owner | Yes |
+| `hotfix/*` | Production fix that cannot wait | Hours | Whoever is on call | No |
+
+*State the naming convention and the deletion rule in one line each. Branches nobody deletes become the archaeology that makes a repository unreadable.*
+
+---
+
+## 3. Branch lifetime
+
+*The single most useful line in this document is a number, because "short-lived" is not enforceable and "two days" is.*
+
+*Trunk-based development states the operational test plainly: "the branch should only last a couple of days. Any longer than two days, and there is a risk of the branch becoming a long-lived feature branch", and "the developer count should stay at one (or two if pair-programming)". Two days, one developer. If a change cannot be finished in that window, it needs to be split, or hidden behind a flag and merged incomplete.*
+
+*Below roughly sixteen developers, trunk-based advocates committing straight to the trunk. Above it, they advocate short-lived branches with CI on every one. Write down which side of that line your team is on.*
+
+*For long-lived branches the corresponding rule is a merge cadence. If you keep a release branch, say how often it takes changes from `main` and in which direction fixes flow. GitLab's environment-branch pattern permits merges downstream only, so nothing exists in production that was never in `main`.*
+
+---
+
+## 4. Merging and protection
+
+*Four decisions, each one line.*
+
+- **Merge method.** *Merge commit, squash, or rebase. Squash gives one commit per change and a readable history; merge commits preserve the working history. Pick one and configure the host to enforce it, because a repository with all three is a repository with no history at all.*
+- **Required checks.** *Which CI jobs must pass. This is where the strategy becomes real; everything above it is naming.*
+- **Required reviews.** *How many, and whether code owners are required. Link the [code review guidelines](code-review-guidelines.md) rather than restating them.*
+- **Push access to protected branches.** *Who has it, and what the break-glass procedure is when production is down.*
+
+---
+
+## 5. Hotfix path
+
+*The path most teams have never written down and always need at the worst moment.*
+
+*State where the hotfix branches from, what the minimum review is, whether checks can be skipped and who may authorise that, and how the fix gets back into `main` so the next release does not reintroduce the bug. That last step is the one teams forget, and it is how a fixed bug reappears two weeks later.*
+
+---
+
+## Notes on using this template
+
+*Delete this section too.*
+
+**Match branches to teams before you pick a named strategy.** A long-lived branch that two teams both work in is the shape that reliably goes wrong, whatever the workflow is called. Getting that right matters more than the choice between git-flow, GitHub Flow and trunk-based development, and it is the decision most teams never consciously make.
+
+**Treat the named strategies as positions, not verdicts.** They are proposals published by practitioners and vendors, and each was written with a particular release model in mind. Git-flow's own author has said as much: teams doing continuous delivery want something simpler, and teams supporting several shipped versions at once may still want git-flow. Nobody deprecated it. Pick by your release model, and expect somebody to argue from authority — the authority does not exist.
+
+**Quote the current text, or none of it.** These workflows are documented on vendor pages that change without notice. The two deployment rules that originally defined GitHub Flow are no longer in GitHub's version of it, and GitLab has withdrawn its GitLab Flow documentation entirely. If your strategy cites an external workflow, link it and date the link, or restate the rules in your own words here where you control them.
+
+**Short-lived branches are the one thing worth pushing for.** Teams that integrate in hours rather than days do better on every measure anyone has collected. The relationship is a correlation, so do not promise that shortening branch lifetime causes anything — but it is cheap to try, and the mechanism is not mysterious. Long branches diverge, and divergence is paid for at merge time.
+
+---
+
+## Common failures in this document
+
+- **A named strategy copied without the release model behind it.** git-flow on a team that deploys twice a day is pure overhead.
+- **"Short-lived" with no number.** Write two days, or three, or one. An adjective enforces nothing.
+- **No hotfix path.** Written during the incident, at the worst possible time.
+- **No rule for merging fixes back to `main`.** This is how a fixed bug ships again.
+- **Three merge methods enabled.** The history becomes unreadable and the strategy is fiction.
+- **A branch per team on a component every team edits.** The one pattern with measured failure data behind it.
+- **Cited as evidence-based.** These are reasoned positions. Say so.
+
+---
+
+## Related documents
+
+- [`code-review-guidelines.md`](code-review-guidelines.md). What has to happen on the pull request before the merge
+- [`contributing-guide.md`](contributing-guide.md). Where an outside contributor learns this scheme exists
+- [`changelog.md`](changelog.md). What each release branch produces
+- [`release-notes.md`](release-notes.md). The same release, for people who do not read the changelog
+- [`test-strategy.md`](test-strategy.md). Which checks are required, and why those
+- [`runbook.md`](runbook.md). Where a rollback procedure belongs, and it is not here
+
+GENERATED BY AIKYA HARNESS

@@ -15,10 +15,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-import aikya_requirements
-import doc_bootstrap
-import engineering_catalog
-import install
+from aikya.installation import requirements as aikya_requirements
+from aikya.documentation import bootstrap as doc_bootstrap
+from aikya.catalogs import engineering as engineering_catalog
+from aikya.installation import facade as install
 
 
 def load_module(path: Path, name: str):
@@ -27,11 +27,11 @@ def load_module(path: Path, name: str):
         raise RuntimeError(f"Module not readable: {path}")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
-    return module
+    return getattr(module, '_module', module)
 
 
-SCAFFOLD = load_module(ROOT / "template/scripts/harness/scaffold.py", "aikya_smoke_scaffold")
-INFRA = load_module(ROOT / "template/scripts/harness/infrastructure.py", "aikya_smoke_infra")
+from aikya.tools import scaffold as SCAFFOLD
+from aikya.tools import infrastructure as INFRA
 
 
 def verify_one(path: Path) -> tuple[str, int, int]:

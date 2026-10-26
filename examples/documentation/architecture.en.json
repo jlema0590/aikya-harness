@@ -1,0 +1,6 @@
+{
+  "title": "Synthetic lookup boundary",
+  "sections": {
+    "1-purpose-and-scope": "Fixture illustration: the lookup boundary owns read-only record retrieval."
+  }
+}

@@ -1,0 +1,4 @@
+Source: https://github.com/Milkeles/software-doc-templates
+Commit: 35fc8e29be1f0093b8ef13a9762de67dc99b6882
+Copyright (c) 2025 Hristo Hristov. MIT License; see LICENSE.
+Aikya adds its terminal Markdown footer and removes trailing whitespace in three source files; reference content remains upstream guidance, not project evidence.

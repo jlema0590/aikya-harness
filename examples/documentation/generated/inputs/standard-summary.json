@@ -1,0 +1,14 @@
+{
+  "title": "Synthetic summary example",
+  "sections": {
+    "recommendation": "Synthetic local catalogue: recommendation. This bounded example does not assert a deployed system, measured target or approval.",
+    "assessment": "This is an illustration of recording an outcome, not proof of an executed test.",
+    "what-was-tested": "Only the supplied synthetic fixture record is in scope; no application check was executed.",
+    "exploratory-sessions": "Synthetic local catalogue: exploratory sessions. This bounded example does not assert a deployed system, measured target or approval.",
+    "defects": "Synthetic local catalogue: defects. This bounded example does not assert a deployed system, measured target or approval.",
+    "residual-risk": "Synthetic local catalogue: residual risk. This bounded example does not assert a deployed system, measured target or approval."
+  },
+  "evidence": [
+    "fixture-evidence.log"
+  ]
+}

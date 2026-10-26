@@ -1,0 +1,17 @@
+{
+  "title": "Synthetic architecture example",
+  "sections": {
+    "1-purpose-and-scope": "Synthetic local catalogue: 1. purpose and scope. This bounded example does not assert a deployed system, measured target or approval.",
+    "2-quality-attributes": "Synthetic local catalogue: 2. quality attributes. This bounded example does not assert a deployed system, measured target or approval.",
+    "3-constraints": "Synthetic local catalogue: 3. constraints. This bounded example does not assert a deployed system, measured target or approval.",
+    "4-context": "Synthetic local catalogue: 4. context. This bounded example does not assert a deployed system, measured target or approval.",
+    "5-containers": "Synthetic local catalogue: 5. containers. This bounded example does not assert a deployed system, measured target or approval.",
+    "6-runtime-behaviour": "Synthetic local catalogue: 6. runtime behaviour. This bounded example does not assert a deployed system, measured target or approval.",
+    "7-data": "Synthetic local catalogue: 7. data. This bounded example does not assert a deployed system, measured target or approval.",
+    "8-deployment": "Synthetic local catalogue: 8. deployment. This bounded example does not assert a deployed system, measured target or approval.",
+    "9-cross-cutting-concerns": "Synthetic local catalogue: 9. cross-cutting concerns. This bounded example does not assert a deployed system, measured target or approval.",
+    "10-architecture-decisions": "Synthetic local catalogue: 10. architecture decisions. This bounded example does not assert a deployed system, measured target or approval.",
+    "11-known-problems-and-direction": "Synthetic local catalogue: 11. known problems and direction. This bounded example does not assert a deployed system, measured target or approval.",
+    "12-glossary": "Synthetic local catalogue: 12. glossary. This bounded example does not assert a deployed system, measured target or approval."
+  }
+}

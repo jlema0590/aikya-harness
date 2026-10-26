@@ -2,17 +2,20 @@ name: Aikya | Example profiles smoke
 
 on:
   push:
-    branches: [develop, main, 'feat/**', 'fix/**', 'release/**']
+    branches: [develop, main, 'feat/**', 'fix/**', 'release/**', 'refactor/**']
     paths:
       - 'examples/**'
       - 'install.py'
+      - 'src/aikya/installation/**'
+      - 'src/aikya/cli/**'
+      - 'src/aikya/resources/**'
       - 'aikya_layout.py'
       - 'infrastructure_profile.py'
       - 'engineering_catalog.py'
       - 'aikya_requirements.py'
       - 'doc_bootstrap.py'
-      - 'template/scripts/harness/scaffold.py'
-      - 'template/scripts/harness/infrastructure.py'
+      - 'src/aikya/tools/**'
+      - 'src/aikya/discovery/**'
       - 'scripts/ci/smoke_profiles.py'
       - '.github/workflows/smoke-stacks.yml'
   pull_request:
@@ -20,13 +23,16 @@ on:
     paths:
       - 'examples/**'
       - 'install.py'
+      - 'src/aikya/installation/**'
+      - 'src/aikya/cli/**'
+      - 'src/aikya/resources/**'
       - 'aikya_layout.py'
       - 'infrastructure_profile.py'
       - 'engineering_catalog.py'
       - 'aikya_requirements.py'
       - 'doc_bootstrap.py'
-      - 'template/scripts/harness/scaffold.py'
-      - 'template/scripts/harness/infrastructure.py'
+      - 'src/aikya/tools/**'
+      - 'src/aikya/discovery/**'
       - 'scripts/ci/smoke_profiles.py'
       - '.github/workflows/smoke-stacks.yml'
   workflow_dispatch:
@@ -52,5 +58,9 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Install contributor package and build tools
+        run: |
+          python -m pip install 'setuptools>=77' wheel build
+          python -m pip install --no-build-isolation --no-deps -e .
       - name: Check all Development / Infrastructure / DevOps profiles
         run: python scripts/ci/smoke_profiles.py

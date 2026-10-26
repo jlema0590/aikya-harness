@@ -21,23 +21,42 @@ recursos de terceros, instalar SDK o realizar operaciones externas.
 
 ## 1. Inicio rápido
 
-Abre Claude Code en el directorio de destino y pega:
+Instala la **última versión estable publicada** sin clonar el repositorio ni indicar un número de versión. Estos instaladores estarán disponibles cuando se publique v7.0.1.
 
-```text
-Instala Aikya Harness desde https://github.com/jlema0590/aikya-harness.git --scope global
+**Linux y macOS** — requiere Python 3.10–3.13 con `venv`/pip:
+
+```sh
+curl --fail --location --proto '=https' --proto-redir '=https' \
+  "https://github.com/jlema0590/aikya-harness/releases/latest/download/install.sh" \
+  -o install-aikya.sh
+sh ./install-aikya.sh --scope global
+# Registro de proyecto: sh ./install-aikya.sh --scope project --target /ruta/absoluta/al/proyecto
 ```
 
-> **Ámbito de instalación:** solicita `global` para tu usuario de Claude Code o `project` para el repositorio actual.
-> Este bloque es una petición en lenguaje natural a Claude Code. El script interno de registro,
-> `aikya_setup.py`, acepta `--scope global` o `--scope project`; `scope=global` no es un argumento de CLI.
-> El ámbito de instalación es independiente de `/aikya-analyze --scope <relative-path>`, que selecciona el directorio que se analiza.
+**Windows** — PowerShell 5.1+ o 7 y Python 3.10–3.13 con `venv`/pip:
 
-| Valor | Dónde se registra | Cuándo elegirlo |
+```powershell
+Invoke-WebRequest -Uri 'https://github.com/jlema0590/aikya-harness/releases/latest/download/install.ps1' -OutFile install-aikya.ps1
+.\install-aikya.ps1 -Scope global
+# Registro de proyecto: .\install-aikya.ps1 -Scope project -Target 'C:\work\proyecto'
+```
+
+Descarga y revisa el script antes de ejecutarlo. Cada ejecución con conexión selecciona la última versión estable publicada en GitHub, incluso si reutilizas un script descargado anteriormente. Se excluyen los borradores y las versiones preliminares. Verifica su bootstrap y el paquete de la versión seleccionada, crea un entorno aislado y muestra la carpeta de comandos que puedes añadir al PATH de tu usuario. No requiere clonar el repositorio, permisos de administrador ni activar el entorno. Si falta Python, lo indica sin instalarlo ni modificar los gestores de paquetes del sistema o la política de ejecución.
+
+| Scope | Registro | Cuándo elegirlo |
 |---|---|---|
-| `global` | Para el usuario actual de Claude Code, con un entorno de ejecución compartido. Los proyectos se inicializan por separado. | Quieres disponer de los comandos de Aikya en distintos proyectos. |
-| `project` | En el repositorio actual, con un entorno de ejecución local en `.aikya/runtime/`. | Quieres limitar el registro a un único repositorio. |
+| `global` | Configuración de Claude y runtime compartido del usuario actual. | Tener los comandos disponibles en varios proyectos. |
+| `project` | Configuración de Claude y `.aikya/runtime/` del destino explícito. | Limitar el registro a un repositorio. |
 
-Inicia una nueva sesión de Claude Code y elige el comando de incorporación correspondiente.
+En ambos casos, la aplicación se instala por usuario. Este scope es independiente de `/aikya-analyze --scope <ruta-relativa>`, que selecciona una carpeta para analizar. Instalar no inicializa el proyecto ni selecciona ODD/SDD.
+
+Utiliza `aikya-manage update --scope global` para actualizar a la última versión estable, `aikya-manage doctor` para consultar el estado local y `aikya-manage uninstall --scope global` para retirar los archivos de registro propios que no se hayan modificado. En scope project, añade `--target`. Para elegir una versión concreta, utiliza `--version X.Y.Z` en el instalador de Linux/macOS o en el gestor, o `-Version X.Y.Z` en Windows. Si falla la consulta de la última versión, la instalación se detiene sin recurrir a una versión anterior.
+
+Para instalar sin conexión, descarga el script de instalación, el wheel, `SHA256SUMS` y el bootstrap de una misma versión, y utiliza `--offline-dir` (`-OfflineDir` en Windows). El script utiliza su propia versión sin conexión; al ejecutar directamente el bootstrap o el gestor, también debes indicar `--version X.Y.Z`. Se conservan los archivos personalizados y los entornos referenciados por proyectos inicializados. En Windows, el bootstrap independiente permite completar la limpieza si el ejecutable de gestión está en uso.
+
+**Contribuidores:** desde una copia del código, crea un entorno virtual, instala `build`, `setuptools>=77` y `wheel`, y ejecuta `python -m pip install --no-build-isolation --no-deps -e .`. Utiliza `aikya`, `aikya-setup` o `python -m aikya`; se retiran las invocaciones de raíz como `python install.py`. Este procedimiento de desarrollo es independiente de la instalación mediante una versión publicada.
+
+Abre una sesión nueva de Claude Code y elige el comando de incorporación correspondiente. La compatibilidad de una sesión real del cliente y la ejecución autenticada del modelo se validan por separado de las pruebas del instalador.
 
 ## 2. Incorporación de proyectos
 
@@ -70,7 +89,7 @@ planifica la generación de la estructura:
 /aikya-scaffold plan
 ```
 
-Para infraestructura o DevOps, empieza con `/aikya-infra-project plan`.
+Para infraestructura o DevOps, empieza con `/aikya-infra plan`.
 Los generadores, las descargas y las operaciones externas requieren las aprobaciones correspondientes.
 
 ### Proyectos existentes → `/aikya-analyze`
@@ -78,7 +97,7 @@ Los generadores, las descargas y las operaciones externas requieren las aprobaci
 Empieza con una vista previa de solo lectura:
 
 ```text
-/aikya-analyze --dry-run --docs-lang en
+/aikya-analyze --dry-run --methodology odd --docs-lang en
 ```
 
 Aikya detecta las tecnologías y la arquitectura existentes sin una entrevista técnica.
@@ -95,7 +114,7 @@ ambiguos devuelven `PARTIAL` o `NEEDS_REVIEW` y requieren revisión antes de con
 | `--focus infrastructure` | Centrarse en evidencias de infraestructura. |
 | `--focus operations` | Centrarse en evidencias operativas. |
 | `--scope <relative-path>` | Limitar la detección a un componente, como un espacio de trabajo de un monorepo. |
-| `--methodology sdd` | Activar SDD explícitamente mediante un plan de incorporación revisado. |
+| `--methodology odd` o `--methodology sdd` | Elegir ODD o SDD antes de la incorporación inicial. |
 | `--refresh` | Actualizar únicamente los recursos de análisis cuya gestión por Aikya pueda verificarse. |
 | `--docs-lang en` o `--docs-lang es` | Elegir el idioma de la documentación viva. |
 
@@ -110,19 +129,24 @@ Ejemplos: ejecuta cada uno por separado según lo necesites.
 La detección no compila aplicaciones, ejecuta scripts de la aplicación ni despliega
 infraestructura. La incorporación conserva el código de la aplicación y las configuraciones personalizadas.
 
-### Desarrollo guiado por especificaciones (SDD), opcional
+### Elegir ODD o SDD
 
-Mantén `standard` para el flujo actual o selecciona explícitamente `sdd` durante la
-entrevista de un proyecto nuevo. En repositorios existentes, empieza por una vista previa:
+**Tanto `/aikya-init` como `/aikya-analyze` ofrecen ODD y SDD.** ODD es la
+recomendación; hay que confirmar la elección inicial antes de escribir. ODD
+mantiene los cambios acotados en la auditoría de petición existente y añade tareas
+y continuidad para trabajos sustanciales. SDD conserva sus aprobaciones separadas
+de especificación, plan y tareas. En repositorios existentes, empieza por una vista previa:
 
 ```text
 /aikya-analyze --dry-run --methodology sdd --docs-lang en
 ```
 
 Revisa el plan de archivos, la actualización de generadores y la copia de seguridad
-de los controles de calidad antes de aprobar la incorporación. Los perfiles nuevos
-siguen en modo estándar sin elección explícita, y las selecciones SDD existentes se
-conservan. Desactivar SDD requiere una migración revisada por separado.
+de los controles de calidad antes de aprobar la incorporación. Sin elección inicial,
+la CLI devuelve `NEEDS_METHODOLOGY` sin escribir. Los perfiles confirmados conservan
+su metodología; `standard` se acepta como alias antiguo de `odd`, con respaldos de
+los archivos gestionados. Desactivar SDD requiere una migración revisada por separado.
+Consulta la [guía de ODD](docs/ODD.md).
 
 El flujo SDD es:
 
@@ -160,10 +184,14 @@ requiere una migración revisada por separado.
 
 | Ruta | Finalidad |
 |---|---|
-| `aikya-skills/` | Fuente de los 27 comandos públicos de Claude Code. |
-| `engineering/agents/` | Definiciones del catálogo de agentes especialistas. |
-| `engineering/skills/` | Catálogo de skills técnicas. |
-| `template/` | Agentes base, skills, reglas y utilidades del harness para los proyectos. |
+| `src/aikya/resources/commands/` | Fuente de los 28 comandos públicos de Claude Code. |
+| `src/aikya/resources/engineering/agents/` | Definiciones del catálogo de agentes especialistas. |
+| `src/aikya/resources/engineering/skills/` | Catálogo de skills técnicas. |
+| `src/aikya/resources/project_template/` | Agentes base, skills, reglas y utilidades del harness para los proyectos. |
+
+El código Python está organizado en `src/aikya/`: núcleo, herramientas, middleware, memoria, instalación, análisis, workflows, documentación, catálogos, routing y calidad. `pyproject.toml` define el paquete; los lanzadores instalados se generan desde una sola plantilla y mantienen su compatibilidad. En la raíz solo permanece `setup.py` como archivo Python de construcción.
+
+Todos los planes, bugs y features generados por Aikya se guardan dentro de `aikya/docs/`: `plan/`, `bugs/` y `features/`. Los planes SDD permanecen en el dossier de su especificación dentro de `aikya/docs/specs/`.
 
 ### Archivos y directorios del proyecto
 
@@ -193,30 +221,34 @@ Los proyectos existentes no se reorganizan automáticamente.
 | /aikya-analyze | Analizar e incorporar un repositorio existente |
 | /aikya-answers | Aplicar un perfil técnico declarativo validado |
 | /aikya-doctor | Diagnosticar localmente los requisitos de SDK y del entorno de ejecución |
-| /aikya-project-init | Planificar un proyecto o módulo nuevo |
-| /aikya-infra-project | Planificar, generar con aprobación y validar infraestructura |
+| /aikya-project | Planificar un proyecto o módulo nuevo |
+| /aikya-infra | Planificar, generar con aprobación y validar infraestructura |
 | /aikya-scaffold | Planificar y ejecutar generadores de aplicaciones aprobados para proyectos nuevos |
 | /aikya-feature | Implementar una funcionalidad de alcance definido con pruebas |
 | /aikya-bugfix | Investigar errores y aportar evidencias de regresión |
-| /aikya-architecture-review | Revisar la arquitectura y proponer ADR |
+| /aikya-arc-review | Revisar la arquitectura y proponer ADR |
 | /aikya-mobile-feature | Entregar funcionalidades móviles validadas |
 | /aikya-skills-status | Consultar las Agent Skills registradas |
 | /aikya-skills-plan | Evaluar las fuentes de skills externas y el impacto de su instalación |
-| /aikya-skills-install | Instalar skills externas revisadas tras su aprobación |
+| /aikya-install-skill | Instalar skills externas revisadas con aprobación explícita y registrar la comparación real |
 | /aikya-quality | Ejecutar los controles de calidad disponibles |
 | /aikya-docs | Mantener documentación viva respaldada por evidencias |
 | /aikya-tests | Ejecutar pruebas específicas y de regresión |
-| /aikya-documentation-sync | Sincronizar los documentos afectados y la trazabilidad por petición |
+| /aikya-docs-sync | Sincronizar los documentos afectados y la trazabilidad por petición |
 | /aikya-verify | Validar los cambios técnicos y sus resultados |
 | /aikya-models | Revisar la política opcional de selección de modelos |
 | /aikya-tokens | Consultar el consumo de tokens y los costes estimados de API |
-
+| /aikya-memory | Explorar memoria y código locales en un grafo HTML o mantener una vista en vivo |
 | /aikya-specify | Crear una especificación y criterios de aceptación |
 | /aikya-clarify | Resolver dudas y registrar aprobación explícita |
 | /aikya-plan | Preparar el diseño técnico y la estrategia de pruebas |
 | /aikya-tasks | Definir tareas vinculadas a requisitos y dependencias |
 | /aikya-implement | Implementar la especificación y tarea activas con aprobación y alcance definido |
 | /aikya-sdd-status | Consultar el estado SDD, la trazabilidad y las evidencias registradas |
+
+Las actualizaciones respaldan los comandos antiguos verificados y los retiran
+solo cuando sus sustitutos están disponibles. Los comandos personalizados se
+conservan con un aviso para su revisión.
 
 Las skills locales del proyecto también incluyen flujos base de funcionalidades,
 corrección de errores, verificación, documentación y revisión de arquitectura.
@@ -237,6 +269,63 @@ Al incluirlos en los commits del proyecto, estos archivos aportan un historial y
 diferencias revisables para auditorías y seguimiento de versiones.
 Las consultas de solo lectura no requieren registros artificiales; no deben
 registrarse prompts completos, secretos ni datos privados.
+
+Todos los documentos Markdown generados por Aikya terminan con la línea exacta
+`GENERATED BY AIKYA HARNESS`, independientemente de su ubicación. Esto incluye
+informes de análisis, README de infraestructura, `CLAUDE.md`, agentes y skills. `indice.md`
+enumera los Markdown que existen; se omiten informes sin datos que los respalden.
+La guía de inicialización y el diagnóstico de herramientas quedan en `overview.md`.
+
+| Ruta dentro de `aikya/docs/` | Contenido |
+|---|---|
+| `features/<funcionalidad-en-minusculas>/` | Alcance e implementación reales |
+| `architecture/architecture-overview.md` | Arquitectura principal tanto para init como para analyze |
+| `plan/testing.md` | Plan de pruebas seleccionado o evidencia de pruebas observadas |
+| `tools/agents.md` | Agentes realmente disponibles en el proyecto |
+| `tools/token-policy.md` | Política de contexto y tokens |
+| `tools/skill-comparison.md` | Resultados reales de instalación externa; se crea únicamente mediante `/aikya-install-skill` |
+
+Los documentos gestionados anteriores se migran con copias en `.harness/backup-docs-layout/`.
+Los conflictos con documentos personalizados requieren revisión. Las rutas de ejecución
+`.harness/` y `aikya/scripts/harness/` conservan sus nombres.
+
+### Memoria de código local y HTML
+
+La inicialización e incorporación aprobadas configuran el índice incremental y su
+actualización automática por proyecto. Los hooks de sesión arrancan el observador
+local en proyectos configurados; se detiene al terminar la última sesión. Para
+trabajar con otros editores, mantén un observador explícito activo:
+
+```text
+/aikya-memory
+/aikya-memory --refresh --open
+/aikya-memory --watch --open
+/aikya-memory --dry-run
+```
+
+El observador detecta archivos guardados, clases nuevas, renombrados y borrados.
+Actualiza SQLite en `.harness/state/code-index/` y regenera
+`aikya/docs/memory/view/index.html` junto con su `report.md`. Con `--watch --open`
+también refresca la página mediante un visor temporal en localhost. El archivo
+exportado sigue siendo una instantánea autónoma sin internet. No instala servicios
+del sistema.
+
+El informe utiliza por defecto el tema azul marino de la versión 2 y permite
+cambiar a tema claro. El panel de fuentes, el explorador central y el inspector
+combinan un grafo de conocimiento, una jerarquía de arquitectura basada en rutas
+y un inventario con búsqueda. Los colores distinguen carpetas, archivos,
+declaraciones y documentos/notas. Conserva filtros, selección y zoom al actualizarse
+y respeta el movimiento reducido. Consulta el
+[ejemplo generado](aikya/docs/examples/aikya-memory-generated.html). La arquitectura
+muestra estructura verificable; el análisis de flujos de ejecución queda pendiente.
+
+Indexar y exportar no llama a modelos ni consume tokens de API; utiliza CPU y disco
+locales. Las consultas posteriores a la IA conservan su consumo habitual. Python
+funciona sin dependencias adicionales; el extra opcional fijado `code-index` añade
+Java, JavaScript/JSX, TypeScript/TSX, C# y Go. Los demás lenguajes mantienen el
+inventario por archivo. Un cambio de fuente invalida su vigencia sin reescribir
+decisiones ni aprobaciones. La adopción preserva el `.gitignore` personalizado.
+Consulta la [configuración, límites y ciclo de vida](aikya/docs/architecture/local-memory.md).
 
 ## 6. Agentes de ingeniería y Agent Skills
 
@@ -261,7 +350,7 @@ Consulta la disponibilidad y el impacto de la instalación desde Claude Code:
 /aikya-skills-plan
 ```
 
-Tras revisar el plan, utiliza `/aikya-skills-install` con aprobación explícita.
+Tras revisar el plan, utiliza `/aikya-install-skill` con aprobación explícita.
 Antes de instalar, revisa la procedencia, licencia, herramientas, acceso a red y
 versión o commit. Los hooks de instalación de terceros no deben ejecutarse de forma silenciosa.
 
@@ -313,3 +402,48 @@ de una aplicación ni sustituyen la revisión de seguridad específica de cada p
 - [Política de seguridad](SECURITY.md)
 - [Código de conducta](CODE_OF_CONDUCT.md)
 - [Contratos de los workflows de GitHub](.github/workflows.md)
+
+
+### Plantillas de Aikya para SDD
+
+SDD compone nueve roles a partir de la [biblioteca de Aikya](src/aikya/resources/aikya-template/docs/README.md): funcionalidad, API, base de datos, especificación, diseño, tareas, evidencias, revisión y reglas de ingeniería. Aikya conserva sus criterios de aceptación, trazabilidad y aprobaciones independientes. Los documentos se crean con contenido revisado. Consulta la [guía de plantillas SDD](docs/SDD_TEMPLATES.md) y la [galería completa de ejemplos generados](examples/documentation/generated/README.es.md).
+
+## CLAUDE.md según el proyecto
+
+Aikya selecciona instrucciones en inglés para desarrollo, infraestructura o DevOps y añade únicamente las guías del stack, estructura y metodología registrados. Los CLAUDE.md existentes se conservan. Consulta la [selección de plantillas y ejemplos](docs/CLAUDE_TEMPLATES.md).
+
+## Biblioteca de plantillas de documentación
+
+Hay 120 plantillas de Aikya fijadas a un commit disponibles sin conexión; la atribución original se conserva en THIRD_PARTY_LICENSES.md. La arquitectura utiliza `aikya/docs/architecture/architecture-overview.md`; los errores reales se añaden a `aikya/docs/bugs/bugs.md`. Los documentos requieren datos revisados y autorización. Consulta la [selección, ejemplos, licencia y compatibilidad](docs/DOCUMENTATION_TEMPLATES.md).
+
+Aikya combina sus documentos generados con las plantillas de Aikya adecuadas según el comando, la metodología y el perfil del proyecto. Las features estándar incluyen criterios de aceptación observables; las secciones opcionales de diseño y pruebas utilizan datos reales aportados. Consulta la [composición contextual de plantillas](docs/CONTEXTUAL_TEMPLATE_COMPOSITION.md).
+
+
+## Fases de ejecución y consumo
+
+Todos los comandos comparten **Explore → Plan → Implement → Validate → Security → Review**,
+con aplicabilidad proporcional y estados separados en inglés. La barra local muestra
+la acción, modelo o ejecutor observado, contexto y cuotas opcionales de cuenta de
+5 horas y 7 días. Los datos ausentes aparecen como N/D. Los tokens registrados usan
+rutas de sesión autorizadas; no permiten calcular cuotas de cuenta. Las consultas
+no crean documentos del proyecto. Se conservan las barras y hooks personalizados,
+con una propuesta revisable cuando hay conflicto. Consulta la
+[visibilidad de ejecución](docs/EXECUTION_VISIBILITY.md) y el
+[plan completo en español](aikya/docs/plan/archive/harness-development/2026-10-23-odd-observabilidad.es.md).
+
+## Agent loop opcional
+
+Puedes activar explícitamente la ejecución acotada en /aikya-feature,
+/aikya-bugfix o /aikya-implement. El SDK opcional de Claude ejecuta la tarea y Aikya
+controla archivos autorizados, gates ODD/SDD, pruebas locales, revisión de solo
+lectura y límites persistentes. No se inicia durante el onboarding ni instala el
+SDK automáticamente. Consulta la [guía del agent loop](docs/AGENT_LOOP.md).
+
+La memoria opcional project/private incorpora revisión explícita, migración de
+checkout y extracción acotada de propuestas pendientes de aprobación. El control
+de calidad exige modularizar los archivos de código modificados de más de 1.000
+líneas; las funciones Python largas y los cuerpos repetidos generan avisos de
+revisión. Consulta los [controles de seguridad y calidad](docs/SECURITY_CONTROLS.md)
+para conocer qué se aplica automáticamente.
+
+GENERATED BY AIKYA HARNESS

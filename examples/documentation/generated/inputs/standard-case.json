@@ -1,0 +1,11 @@
+{
+  "title": "Synthetic case example",
+  "sections": {
+    "before-you-write-any-of-these": "Synthetic local catalogue: before you write any of these. This bounded example does not assert a deployed system, measured target or approval.",
+    "the-case-list": "Synthetic local catalogue: the case list. This bounded example does not assert a deployed system, measured target or approval.",
+    "each-case": "Synthetic local catalogue: each case. This bounded example does not assert a deployed system, measured target or approval.",
+    "abstraction-level": "Synthetic local catalogue: abstraction level. This bounded example does not assert a deployed system, measured target or approval.",
+    "guard-against-false-positives": "Synthetic local catalogue: guard against false positives. This bounded example does not assert a deployed system, measured target or approval.",
+    "what-these-cases-do-not-cover": "Synthetic local catalogue: what these cases do not cover. This bounded example does not assert a deployed system, measured target or approval."
+  }
+}

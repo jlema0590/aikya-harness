@@ -13,6 +13,9 @@ import subprocess
 import sys
 from pathlib import Path
 
+sys.path.insert(0,str(Path(__file__).resolve().parents[2]))
+from aikya.documentation.layout import stamp
+
 VERSION_RE = re.compile(r"(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\Z")
 TAG_RE = re.compile(r"v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\Z")
 HEADER_RE = re.compile(r"(?m)^##\s+v([0-9]+\.[0-9]+\.[0-9]+)(?=\s|$)[^\n]*$")
@@ -56,7 +59,7 @@ def notes_from_changelog(changelog: str, version: str) -> str:
         raise ReleaseError("Release notes must contain at least one list item describing a change.")
     if FILLER_RE.search(body):
         raise ReleaseError("Release notes still contain unresolved placeholder text.")
-    return "# Aikya Harness v" + version + "\n\n" + body + "\n"
+    return stamp("# Aikya Harness v" + version + "\n\n" + body)
 
 
 def run_git(root: Path, *args: str, allow_missing: bool = False) -> str | None:

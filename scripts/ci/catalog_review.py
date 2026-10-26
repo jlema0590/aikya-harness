@@ -8,10 +8,15 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0,str(ROOT))
+from aikya.resource_paths import source_path
+sys.path.insert(0,str(ROOT))
+from aikya.documentation.layout import stamp
 
 
 def main() -> int:
@@ -26,7 +31,7 @@ def main() -> int:
         ("skill", "engineering/skills/*/SKILL.md"),
         ("aikya-command", "aikya-skills/*/SKILL.md"),
     ):
-        for path in sorted(ROOT.glob(glob)):
+        for path in sorted(source_path(ROOT,glob.split('/')[0]).glob('/'.join(glob.split('/')[1:]))):
             if path.is_symlink():
                 raise ValueError(f"Symlinked catalog asset not reviewed: {path}")
             components.append({
@@ -63,8 +68,8 @@ def main() -> int:
         "",
         "No files are modified by this review, other than the report in the output directory.",
     ]
-    (out / "REVIEW.md").write_text("\n".join(report) + "\n", encoding="utf-8")
-    print("\n".join(report))
+    (out / "REVIEW.md").write_text(stamp("\n".join(report)), encoding="utf-8")
+    print(stamp("\n".join(report)))
     return 0
 
 

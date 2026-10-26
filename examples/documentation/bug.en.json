@@ -1,0 +1,12 @@
+{
+  "id": "BUG-001",
+  "title": "Synthetic lookup error",
+  "sections": {
+    "summary": "Controlled fixture: lookup returns an unhandled exception for an absent record.",
+    "environment": "Synthetic fixture build 1; no deployed application.",
+    "steps-to-reproduce": "1. Invoke the lookup fixture with a nonexistent ID.",
+    "expected-result": "The documented missing-record response.",
+    "actual-result": "The fixture throws an unhandled exception.",
+    "evidence": "Fixture illustration only; no application test was run."
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "generated_by": "aikya-odd",
+  "id": "lookup",
+  "revision": 2,
+  "project_type": "development",
+  "history": [
+    {
+      "task": "TASK-001",
+      "previous": "todo",
+      "result": "done",
+      "recorded_at": 1792745369.007195,
+      "evidence": []
+    }
+  ],
+  "doc_hash": "8d415226515472d4b6ccedae18b785bb1c9d6482852b6a866c74d7c98377689a",
+  "docs_language": "en",
+  "title": "Synthetic lookup example",
+  "objective": "Return the stored value for a known ID and None for a missing ID.",
+  "acceptance": [
+    "A known ID returns its stored value.",
+    "A missing ID returns None."
+  ],
+  "tasks": [
+    {
+      "id": "TASK-001",
+      "description": "Implement and check the synthetic lookup.",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "depends_on": [],
+      "files": [
+        "src/lookup.py"
+      ],
+      "checks": [
+        "Run the two explicit lookup assertions and record their actual result."
+      ],
+      "status": "done",
+      "evidence": [
+        "checks/lookup.json"
+      ],
+      "fingerprints": {
+        "checks/lookup.json": "fa0fb4ded49346415839f9ccb6145b3bb36f6c0a43c4d7839b89948514d31e39"
+      },
+      "file_fingerprints": {
+        "src/lookup.py": "56d0a70eff6b118a99ae5f2d30a350c4509d77cac4985fac0e3011a24b22e051"
+      }
+    }
+  ],
+  "sections": {}
+}

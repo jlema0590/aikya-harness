@@ -1,3 +1,4 @@
+import runtime_support
 import importlib.util
 import json
 from pathlib import Path
@@ -8,9 +9,9 @@ import unittest
 from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
-spec = importlib.util.spec_from_file_location('harness_installer', ROOT / 'install.py')
+spec = runtime_support.module_spec('harness_installer', ROOT / 'install.py')
 installer = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(installer)
+spec.loader.exec_module(installer);installer=getattr(installer,'_module',installer)
 
 
 def profile(**overrides):
@@ -90,10 +91,10 @@ class InstallerTests(unittest.TestCase):
             self.assertTrue((target/'.claude/agents/mobile-engineer.md').exists())
             self.assertTrue((target/'.claude/skills/project-init/SKILL.md').exists())
             self.assertIn('kotlin', (target/'.claude/rules/00-project-profile.md').read_text())
-            self.assertIn('dotnet new webapi', (target/'aikya/docs/harness/bootstrap.md').read_text())
-            self.assertIn('Vue', (target/'aikya/docs/harness/bootstrap.md').read_text())
-            self.assertIn('Android', (target/'aikya/docs/harness/bootstrap.md').read_text())
-            self.assertIn('iOS', (target/'aikya/docs/harness/bootstrap.md').read_text())
+            self.assertIn('dotnet new webapi', (target/'aikya/docs/overview.md').read_text())
+            self.assertIn('Vue', (target/'aikya/docs/overview.md').read_text())
+            self.assertIn('Android', (target/'aikya/docs/overview.md').read_text())
+            self.assertIn('iOS', (target/'aikya/docs/overview.md').read_text())
             self.assertTrue(any(x.startswith('CREADO') for x in actions))
             installed=json.loads((target/'.harness/project-profile.json').read_text())
             self.assertEqual('both', installed['decisions']['mobile'])
@@ -115,7 +116,7 @@ class InstallerTests(unittest.TestCase):
             settings=json.loads((target/'.claude/settings.json').read_text())
             self.assertIn('Read(./private.txt)',settings['permissions']['deny'])
             self.assertTrue(settings['custom']['feature'])
-            self.assertEqual(2,len(settings['hooks']['PreToolUse']))
+            self.assertEqual(3,len(settings['hooks']['PreToolUse']))
 
     def test_runner_rejects_cwd_traversal(self):
         with tempfile.TemporaryDirectory() as d:
@@ -123,7 +124,7 @@ class InstallerTests(unittest.TestCase):
             p=temp/'harness.json'
             p.write_text(json.dumps({'checks':[{'name':'bad','required':True,'cwd':'/etc','command':['python3','--version']}]}))
             # Runner lives in template and uses the template root, but config path is arbitrary.
-            spec2=importlib.util.spec_from_file_location('r',ROOT/'template/scripts/harness/run_checks.py')
+            spec2=runtime_support.module_spec('r',ROOT/'src/aikya/resources/project_template/scripts/harness/run_checks.py')
             runner=importlib.util.module_from_spec(spec2)
             spec2.loader.exec_module(runner)
             self.assertEqual(1,runner.run(p))
@@ -131,7 +132,7 @@ class InstallerTests(unittest.TestCase):
     def test_example_cli_install(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d)/'demo'
-            proc=subprocess.run([sys.executable,str(ROOT/'install.py'),'--target',str(root),'--answers',str(ROOT/'examples/new-fullstack-mobile.json')],capture_output=True,text=True)
+            proc=subprocess.run([sys.executable,str(ROOT / 'src/aikya/installation/facade.py'),'--target',str(root),'--answers',str(ROOT/'examples/new-fullstack-mobile.json')],capture_output=True,text=True)
             self.assertEqual(0,proc.returncode,proc.stderr)
             self.assertTrue((root/'.claude/settings.json').is_file())
             self.assertTrue((root/'.harness/project-profile.json').is_file())
@@ -140,7 +141,7 @@ class InstallerTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d)
             (root/'README.md').write_text('existing project')
-            proc=subprocess.run([sys.executable,str(ROOT/'install.py'),'--target',str(root),'--answers',str(ROOT/'examples/new-next-react.json')],capture_output=True,text=True)
+            proc=subprocess.run([sys.executable,str(ROOT / 'src/aikya/installation/facade.py'),'--target',str(root),'--answers',str(ROOT/'examples/new-next-react.json')],capture_output=True,text=True)
             self.assertEqual(2,proc.returncode)
             self.assertFalse((root/'.harness').exists())
 

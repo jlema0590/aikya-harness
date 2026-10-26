@@ -5,11 +5,11 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from token_policy import (DEFAULT, HAIKU_45, HAIKU_55, validated,
+from aikya.routing.policy import (DEFAULT, HAIKU_45, HAIKU_55, validated,
                           resolved_agent_model, auxiliary_ready)
-from model_capabilities import parse_cli_version, capability_status
-from aikya_router import route, semantic_advice
-import engineering_catalog
+from aikya.routing.models import parse_cli_version, capability_status
+from aikya.routing.router import route, semantic_advice
+from aikya.catalogs import engineering as engineering_catalog
 
 def enabled_policy(**overrides):
     return {**DEFAULT, "auxiliary_enabled": True, "user_approved": True,
@@ -125,7 +125,7 @@ class RouterTests(unittest.TestCase):
 
     def test_haiku_only_advises_under_approved_policy(self):
         self.assertIsNone(route("Ayúdame a revisar esto")["auxiliary_agent"])
-        with patch("model_capabilities.inspect_cli", return_value={"version":"2.1.293"}):
+        with patch("aikya.routing.models.inspect_cli", return_value={"version":"2.1.293"}):
             enabled = route("Ayúdame a revisar esto", enabled_policy())
         self.assertEqual(enabled["auxiliary_agent"], "aikya-auxiliary-analyzer")
         self.assertEqual(enabled["auxiliary_task"], "classification")
@@ -134,7 +134,7 @@ class RouterTests(unittest.TestCase):
     def test_ambiguous_low_risk_semantic_advice(self):
         advice = {"category": "testing", "confidence": .94,
                   "suggested_role": "test-engineer", "requires_planning": False}
-        with patch("model_capabilities.inspect_cli", return_value={"version":"2.1.293"}):
+        with patch("aikya.routing.models.inspect_cli", return_value={"version":"2.1.293"}):
             r = route("Ayúdame con esto", enabled_policy(), semantic=advice)
         self.assertEqual(r["recommended_role"], "test-engineer")
         self.assertTrue(r["semantic_advice_accepted"])
@@ -157,7 +157,7 @@ class CatalogTests(unittest.TestCase):
             root = Path(tmp)
             (root/".aikya").mkdir()
             (root/".aikya/model-policy.json").write_text(json.dumps(enabled_policy()))
-            with patch("model_capabilities.inspect_cli",
+            with patch("aikya.routing.models.inspect_cli",
                        return_value={"version":"2.1.293"}):
                 selected = engineering_catalog.discover(root, {"backend":"java"}, [])
             for name in ("aikya-auxiliary-analyzer", "aikya-docs-assistant",
@@ -169,7 +169,7 @@ class CatalogTests(unittest.TestCase):
             root = Path(tmp)
             (root/".aikya").mkdir()
             (root/".aikya/model-policy.json").write_text(json.dumps(enabled_policy()))
-            with patch("model_capabilities.inspect_cli",
+            with patch("aikya.routing.models.inspect_cli",
                        return_value={"version":None}):
                 selected = engineering_catalog.discover(root, {"backend":"java"}, [])
             self.assertNotIn("aikya-auxiliary-analyzer", selected["agents"])

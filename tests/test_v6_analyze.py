@@ -5,13 +5,13 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-import aikya_cli
-import install
-from aikya_analyze import execute
-from project_discovery import scan, safe_scope
-from profile_builder import build
-from token_policy import HAIKU_45
-from aikya_router import route
+from aikya.cli import main as aikya_cli
+from aikya.installation import facade as install
+from aikya.discovery.analyze import execute
+from aikya.discovery.scanner import scan, safe_scope
+from aikya.discovery.profiles import build
+from aikya.routing.policy import HAIKU_45
+from aikya.routing.router import route
 
 class AnalyzeV6Tests(unittest.TestCase):
     def test_analysis_only_router_suggests_frontend_security_and_docker(self):
@@ -44,7 +44,7 @@ class AnalyzeV6Tests(unittest.TestCase):
     def test_empty_repository_redirects_to_init_without_writes(self):
         with tempfile.TemporaryDirectory() as d:
             p = Path(d)
-            result = execute(p, approved=True)
+            result = execute(p, approved=True,methodology='odd')
             self.assertEqual(result["status"], "EMPTY")
             self.assertFalse(result["writes"])
             self.assertEqual(list(p.iterdir()), [])
@@ -72,7 +72,7 @@ class AnalyzeV6Tests(unittest.TestCase):
             self.assertEqual(profile["profile"]["backend"], "java")
             self.assertEqual(profile["profile"]["mode"], "existing")
             self.assertEqual(profile["profile"]["deployment"], "docker")
-            result = execute(root, dry_run=True)
+            result = execute(root, dry_run=True,methodology='odd')
             self.assertFalse(result["writes"])
             self.assertFalse((root/".aikya").exists())
 
@@ -127,7 +127,7 @@ class AnalyzeV6Tests(unittest.TestCase):
             self.assertEqual(len([m for m in inv["modules"] if m["role"]=="backend"]),2)
             projection=build(root,inv)
             self.assertEqual(projection["status"],"PARTIAL")
-            report=execute(root,approved=True)
+            report=execute(root,approved=True,methodology='odd')
             self.assertFalse(report["writes"])
             self.assertEqual(report["status"],"PARTIAL")
 
@@ -135,7 +135,7 @@ class AnalyzeV6Tests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d)
             (root/"pom.xml").write_text("<project/>")
-            report=execute(root)
+            report=execute(root,methodology='odd')
             self.assertEqual(report["status"],"READY")
             self.assertFalse(report["writes"])
             self.assertTrue(report["approval_required"])
@@ -156,7 +156,7 @@ class AnalyzeV6Tests(unittest.TestCase):
                 target=root/name
                 target.parent.mkdir(parents=True,exist_ok=True)
                 target.write_text(contents)
-            report=execute(root,approved=True)
+            report=execute(root,approved=True,methodology='odd')
             self.assertEqual(report["status"],"READY")
             self.assertTrue(report["writes"])
             for name, data in original.items():
@@ -171,11 +171,11 @@ class AnalyzeV6Tests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d)
             (root/"pom.xml").write_text("<project/>")
-            self.assertEqual(execute(root,approved=True)["status"],"READY")
+            self.assertEqual(execute(root,approved=True,methodology='odd')["status"],"READY")
             report=root/".aikya/analysis/report.md"
             manifest=root/".aikya/analysis/manifest.json"
             before=(report.read_bytes(),manifest.read_bytes())
-            result=execute(root,approved=True,refresh=True)
+            result=execute(root,approved=True,refresh=True,methodology='odd')
             self.assertEqual(result["status"],"READY")
             self.assertEqual(before,(report.read_bytes(),manifest.read_bytes()))
 
@@ -183,10 +183,10 @@ class AnalyzeV6Tests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d)
             (root/"pom.xml").write_text("<project/>")
-            execute(root,approved=True)
+            execute(root,approved=True,methodology='odd')
             report=root/".aikya/analysis/report.md"
             report.write_text("CUSTOM USER REPORT")
-            response=execute(root,approved=True,refresh=True)
+            response=execute(root,approved=True,refresh=True,methodology='odd')
             self.assertEqual(response["status"],"NEEDS_REVIEW")
             self.assertFalse(response["writes"])
             self.assertEqual(report.read_text(),"CUSTOM USER REPORT")
@@ -200,7 +200,7 @@ class AnalyzeV6Tests(unittest.TestCase):
             policy.write_text(json.dumps({"schema_version":1,"auxiliary_enabled":True,
                                           "user_approved":True,"auxiliary_model":HAIKU_45}))
             old=policy.read_bytes()
-            self.assertEqual(execute(root,approved=True)["status"],"READY")
+            self.assertEqual(execute(root,approved=True,methodology='odd')["status"],"READY")
             self.assertEqual(policy.read_bytes(),old)
 
     def test_existing_init_cli_fails_without_write(self):
@@ -217,7 +217,7 @@ class AnalyzeV6Tests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d)
             (root/"pom.xml").write_text("<project/>")
-            result=execute(root,report_only=True,approved=True,focus="security")
+            result=execute(root,report_only=True,approved=True,focus="security",methodology='odd')
             self.assertFalse(result["writes"])
             self.assertFalse((root/".aikya").exists())
 

@@ -1,0 +1,398 @@
+{
+  "schema": 1,
+  "baseline_commit": "08db4879ae3a8697c91adb0cc46bd76e333c693b",
+  "implementation_applied": true,
+  "version": "6.1.1",
+  "python_matrix": [
+    {
+      "python": "3.10",
+      "tests": 490,
+      "seconds": 265.608,
+      "result": "OK"
+    },
+    {
+      "python": "3.11",
+      "tests": 490,
+      "seconds": 253.133,
+      "result": "OK"
+    },
+    {
+      "python": "3.12",
+      "tests": 490,
+      "seconds": 295.39,
+      "result": "OK"
+    },
+    {
+      "python": "3.13",
+      "tests": 490,
+      "seconds": 283.817,
+      "result": "OK"
+    }
+  ],
+  "onboarding_matrix": {
+    "cases": 48,
+    "types": [
+      "development",
+      "infrastructure",
+      "devops"
+    ],
+    "methods": [
+      "odd",
+      "sdd"
+    ],
+    "locales": [
+      "en",
+      "es"
+    ],
+    "scopes": [
+      "global",
+      "project"
+    ],
+    "commands": [
+      "init",
+      "analyze"
+    ],
+    "result": "passed inside every full regression run"
+  },
+  "example_profiles": {
+    "passed": 14,
+    "total": 14
+  },
+  "wheel_acceptance": {
+    "wheel": "aikya_harness-6.1.1-py3-none-any.whl",
+    "source_imports": false,
+    "sdk_installed": false,
+    "cases": [
+      {
+        "scope": "global",
+        "methodology": "odd",
+        "command": "init",
+        "result": "passed"
+      },
+      {
+        "scope": "global",
+        "methodology": "odd",
+        "command": "analyze",
+        "result": "passed"
+      },
+      {
+        "scope": "global",
+        "methodology": "sdd",
+        "command": "init",
+        "result": "passed"
+      },
+      {
+        "scope": "global",
+        "methodology": "sdd",
+        "command": "analyze",
+        "result": "passed"
+      },
+      {
+        "scope": "project",
+        "methodology": "odd",
+        "command": "init",
+        "result": "passed"
+      },
+      {
+        "scope": "project",
+        "methodology": "odd",
+        "command": "analyze",
+        "result": "passed"
+      },
+      {
+        "scope": "project",
+        "methodology": "sdd",
+        "command": "init",
+        "result": "passed"
+      },
+      {
+        "scope": "project",
+        "methodology": "sdd",
+        "command": "analyze",
+        "result": "passed"
+      }
+    ]
+  },
+  "cold_imports": {
+    "wheel": "aikya_harness-6.1.1-py3-none-any.whl",
+    "cold_modules": 91,
+    "independent_orders": 2,
+    "source_checkout_imports": false,
+    "result": "passed"
+  },
+  "baseline_upgrades": {
+    "baseline": "08db487",
+    "cases": [
+      {
+        "kind": "registration",
+        "scope": "global",
+        "result": "passed"
+      },
+      {
+        "kind": "registration",
+        "scope": "project",
+        "result": "passed"
+      },
+      {
+        "kind": "initialized",
+        "methodology": "odd",
+        "custom_adapter": "preserved",
+        "result": "passed"
+      },
+      {
+        "kind": "initialized",
+        "methodology": "sdd",
+        "custom_adapter": "preserved",
+        "result": "passed"
+      }
+    ]
+  },
+  "distribution_artifacts": {
+    "aikya_harness-6.1.1.tar.gz": {
+      "bytes": 823417,
+      "files": 594,
+      "sha256": "f2ef906d054a8e1c67ff59ce666e9033f2b8d9e77259a9531a089c22c3eaf82a",
+      "gallery_and_live_records_excluded": true,
+      "catalog_license_present": true,
+      "host_settings_template_present": true
+    },
+    "aikya_harness-6.1.1-py3-none-any.whl": {
+      "bytes": 1135543,
+      "files": 452,
+      "sha256": "1e06760a85c6d0800919313994295a75db0619458261365cf5737471e86005f9",
+      "gallery_and_live_records_excluded": true,
+      "catalog_license_present": true,
+      "host_settings_template_present": true
+    }
+  },
+  "source": {
+    "package_python_files": 92,
+    "max_package_module_lines": 658,
+    "installer_compatibility_facade_lines": 191,
+    "legacy_root_installer_lines": 16,
+    "installer_public_signatures_preserved": 28,
+    "moved_resource_files": 296,
+    "registered_runtime_files": 513,
+    "registered_runtime_source_bytes": 2605973,
+    "retired_command_hash_records_preserved": [
+      ".claude/skills/aikya-project-init/SKILL.md",
+      ".claude/skills/aikya-infra-project/SKILL.md",
+      ".claude/skills/aikya-architecture-review/SKILL.md",
+      ".claude/skills/aikya-skills-install/SKILL.md",
+      ".claude/skills/aikya-documentation-sync/SKILL.md"
+    ],
+    "hash_catalog_unchanged": true
+  },
+  "source_quality": {
+    "files": 239,
+    "errors": [],
+    "warnings": [
+      {
+        "path": "src/aikya/catalogs/engineering.py",
+        "line": 58,
+        "function": "discover",
+        "code": "long_function",
+        "message": "111 lines: review cohesion and extract focused helpers where justified."
+      },
+      {
+        "path": "src/aikya/cli/main.py",
+        "line": 25,
+        "function": "main",
+        "code": "long_function",
+        "message": "140 lines: review cohesion and extract focused helpers where justified."
+      },
+      {
+        "path": "src/aikya/core/loop.py",
+        "line": 127,
+        "function": "run",
+        "code": "long_function",
+        "message": "147 lines: review cohesion and extract focused helpers where justified."
+      },
+      {
+        "path": "src/aikya/discovery/analyze.py",
+        "line": 86,
+        "function": "installation_preview",
+        "code": "long_function",
+        "message": "122 lines: review cohesion and extract focused helpers where justified."
+      },
+      {
+        "path": "src/aikya/discovery/scanner.py",
+        "line": 50,
+        "function": "scan",
+        "code": "long_function",
+        "message": "126 lines: review cohesion and extract focused helpers where justified."
+      },
+      {
+        "path": "src/aikya/documentation/bootstrap.py",
+        "line": 30,
+        "function": "_infra_files",
+        "code": "long_function",
+        "message": "134 lines: review cohesion and extract focused helpers where justified."
+      },
+      {
+        "path": "src/aikya/documentation/pages_en.py",
+        "line": 11,
+        "function": "pages",
+        "code": "long_function",
+        "message": "254 lines: review cohesion and extract focused helpers where justified."
+      },
+      {
+        "path": "src/aikya/documentation/pages_es.py",
+        "line": 8,
+        "function": "pages",
+        "code": "long_function",
+        "message": "337 lines: review cohesion and extract focused helpers where justified."
+      },
+      {
+        "path": "src/aikya/tools/infrastructure.py",
+        "line": 142,
+        "function": "specs",
+        "code": "long_function",
+        "message": "137 lines: review cohesion and extract focused helpers where justified."
+      },
+      {
+        "code": "duplicate_python_body",
+        "message": "Repeated nontrivial Python function body; review a shared implementation.",
+        "locations": [
+          {
+            "path": "src/aikya/documentation/guard.py",
+            "line": 131,
+            "function": "start_request"
+          },
+          {
+            "path": "tests/fixtures/v3_docs_guard.py",
+            "line": 95,
+            "function": "start_request"
+          }
+        ]
+      },
+      {
+        "code": "duplicate_python_body",
+        "message": "Repeated nontrivial Python function body; review a shared implementation.",
+        "locations": [
+          {
+            "path": "src/aikya/documentation/guard.py",
+            "line": 292,
+            "function": "main"
+          },
+          {
+            "path": "tests/fixtures/v3_docs_guard.py",
+            "line": 230,
+            "function": "main"
+          }
+        ]
+      },
+      {
+        "code": "duplicate_python_body",
+        "message": "Repeated nontrivial Python function body; review a shared implementation.",
+        "locations": [
+          {
+            "path": "src/aikya/installation/requirements.py",
+            "line": 42,
+            "function": "expected_versions"
+          },
+          {
+            "path": "tests/fixtures/v56_aikya_requirements.py",
+            "line": 33,
+            "function": "expected_versions"
+          }
+        ]
+      }
+    ],
+    "duplicates": [
+      [
+        {
+          "path": "src/aikya/documentation/guard.py",
+          "line": 131,
+          "function": "start_request"
+        },
+        {
+          "path": "tests/fixtures/v3_docs_guard.py",
+          "line": 95,
+          "function": "start_request"
+        }
+      ],
+      [
+        {
+          "path": "src/aikya/documentation/guard.py",
+          "line": 292,
+          "function": "main"
+        },
+        {
+          "path": "tests/fixtures/v3_docs_guard.py",
+          "line": 230,
+          "function": "main"
+        }
+      ],
+      [
+        {
+          "path": "src/aikya/installation/requirements.py",
+          "line": 42,
+          "function": "expected_versions"
+        },
+        {
+          "path": "tests/fixtures/v56_aikya_requirements.py",
+          "line": 33,
+          "function": "expected_versions"
+        }
+      ]
+    ]
+  },
+  "asset_catalog": {
+    "agents": 30,
+    "skills": 29,
+    "public_commands": 27,
+    "metadata_valid": true
+  },
+  "milkeles_catalog": {
+    "templates": 120,
+    "reference_files": 155,
+    "valid": true,
+    "commit": "35fc8e29be1f0093b8ef13a9762de67dc99b6882"
+  },
+  "documentation_policy": {
+    "plans": "aikya/docs/plan/",
+    "bugs": "aikya/docs/bugs/",
+    "features": "aikya/docs/features/",
+    "sdd_dossiers": "aikya/docs/specs/<project_type>/SPEC-NNN/",
+    "owned_project_docs_preserved": true,
+    "managed_runtime_reference_assets": "manifest-verified exception"
+  },
+  "limitations": [
+    "Live authenticated Claude SDK acceptance remains assigned to the separate environment selected by the user.",
+    "Historical first-party guides/images under root docs/ remain until their separate consolidation; new plans, bugs and features use aikya/docs/.",
+    "The doc guard validates paths, ownership and structure; it does not certify prose accuracy or model compliance."
+  ],
+  "committed": false,
+  "pushed": false,
+  "published": false,
+  "final_document_checks": {
+    "canonical_layout": "valid",
+    "footer_errors": [],
+    "unexpected_broken_links": 0,
+    "documented_link_exceptions": [
+      {
+        "source": "examples/documentation/generated/standard/summary.md",
+        "target": "examples/documentation/generated/standard/../../../../fixture-evidence.log"
+      },
+      {
+        "source": "src/aikya/resources/documentation_templates/milkeles/general-swe/foundations/architecture-decision-record.md",
+        "target": "src/aikya/resources/documentation_templates/milkeles/general-swe/foundations/0012-{slug}.md"
+      },
+      {
+        "source": "src/aikya/resources/documentation_templates/milkeles/general-swe/foundations/architecture-overview.md",
+        "target": "src/aikya/resources/documentation_templates/milkeles/general-swe/foundations/decisions/0007-use-postgres-for-the-ledger.md"
+      }
+    ],
+    "current_wheel_entries_verified": 389,
+    "legacy_parameter_kinds_defaults_annotations": "preserved"
+  },
+  "follow_up": {
+    "report": "SDD_MODULARIZATION.md",
+    "published_structure_and_template_checkpoint": "e3ca08d",
+    "version": "6.1.1",
+    "current_engine_lines": 282,
+    "current_largest_implementation_module_lines": 404,
+    "note": "Original fields preserve the initial observed structure checkpoint. The linked report records the subsequent SDD split and its own verification."
+  }
+}

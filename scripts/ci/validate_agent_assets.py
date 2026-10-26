@@ -7,6 +7,8 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0,str(ROOT))
+from aikya.resource_paths import source_path
 NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 ALLOWED_MODELS = {"inherit", "opus", "sonnet", "haiku"}
 ALLOWED_PERMISSIONS = {"default", "plan", "acceptEdits", "dontAsk"}
@@ -116,13 +118,13 @@ def inspect_agent(path: Path, skill_names: set[str]) -> list[str]:
 
 def validate(root: Path = ROOT) -> list[str]:
     sets = (
-        (root / "aikya-skills").glob("*/SKILL.md"),
-        (root / "engineering/skills").glob("*/SKILL.md"),
-        (root / "template/.claude/skills").glob("*/SKILL.md"),
+        (source_path(root,"aikya-skills")).glob("*/SKILL.md"),
+        (source_path(root,"engineering/skills")).glob("*/SKILL.md"),
+        (source_path(root,"template/.claude/skills")).glob("*/SKILL.md"),
     )
     skills = [path for files in sets for path in files]
-    agents = list((root / "engineering/agents").glob("*.md")) + list(
-        (root / "template/.claude/agents").glob("*.md"))
+    agents = list((source_path(root,"engineering/agents")).glob("*.md")) + list(
+        (source_path(root,"template/.claude/agents")).glob("*.md"))
     known = {path.parent.name for path in skills}
     issues = []
     for path in skills:

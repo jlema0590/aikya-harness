@@ -1,4 +1,5 @@
 """v5.2: comandos públicos, instalación selectiva y documentación de skills."""
+import runtime_support
 from pathlib import Path
 from unittest.mock import patch
 import json
@@ -10,18 +11,18 @@ import sys
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
-import aikya_setup
-import install
-import external_skills as ext
-from skills_registry import render,write_inventory
+from aikya.installation import registration as aikya_setup
+from aikya.installation import facade as install
+from aikya.catalogs import external as ext
+from aikya.catalogs.skills import render,write_inventory
 
 class V52(unittest.TestCase):
     def test_new_commands_and_removed_source_aliases(self):
-        expected={'aikya-infra-project','aikya-skills-status','aikya-skills-plan','aikya-skills-install'}
+        expected={'aikya-infra','aikya-skills-status','aikya-skills-plan','aikya-install-skill'}
         self.assertTrue(expected.issubset(aikya_setup.BOOTSTRAP_COMMANDS))
         self.assertFalse({'aikya-project-bootstrap','aikya-skills'} & set(aikya_setup.BOOTSTRAP_COMMANDS))
         for name in expected:
-            body=(ROOT/'aikya-skills'/name/'SKILL.md').read_text()
+            body=(ROOT/'src/aikya/resources/commands'/name/'SKILL.md').read_text()
             self.assertIn(f'name: {name}\n',body)
             self.assertIn('AIKYA BOOTSTRAP MANAGED',body)
 
@@ -31,11 +32,11 @@ class V52(unittest.TestCase):
             p=install.validated(json.loads((ROOT/'examples/new-next-react.json').read_text()),root)
             install.install(root,p,{'modules':[]})
             inv=(root/'aikya/docs/skills.md').read_text()
-            self.assertIn('aikya-infra-project',inv)
-            self.assertIn('aikya-skills-install',inv)
+            self.assertIn('aikya-infra',inv)
+            self.assertIn('aikya-install-skill',inv)
             self.assertIn('aikya-feature',inv)
             self.assertIn('not a history of model invocations',inv.lower())
-            self.assertIn('skills.md',(root/'aikya/docs/README.md').read_text())
+            self.assertIn('skills.md',(root/'aikya/docs/indice.md').read_text())
             self.assertFalse((root/'.claude/skills/aikya-project-bootstrap').exists())
             self.assertFalse((root/'.claude/skills/aikya-skills').exists())
             self.assertTrue((root/'aikya/scripts/harness/skills_registry.py').is_file())
@@ -130,15 +131,15 @@ class V52(unittest.TestCase):
             self.assertTrue(custom.exists())
             self.assertFalse((root/'.claude/skills/aikya-project-bootstrap').exists())
             self.assertTrue(any('RETIRADO' in x for x in log))
-            self.assertTrue((root/'.claude/skills/aikya-infra-project/SKILL.md').is_file())
+            self.assertTrue((root/'.claude/skills/aikya-infra/SKILL.md').is_file())
 
     def test_skill_docs_required_for_skill_changes(self):
         import importlib.util
-        path=ROOT/'template/scripts/harness/docs_guard.py'
-        spec=importlib.util.spec_from_file_location('aikya_guard_skills',path)
-        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        path=ROOT/'src/aikya/resources/project_template/scripts/harness/docs_guard.py'
+        spec=runtime_support.module_spec('aikya_guard_skills',path)
+        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module);module=getattr(module,'_module',module)
         self.assertTrue(module.is_source('.claude/skills/new-skill/SKILL.md'))
         self.assertIn('aikya/docs/skills.md',module.affected_docs('feature',['.claude/skills/new-skill/SKILL.md']))
-        self.assertIn('aikya/docs/skills.md',module.DOCS_REQUIRED)
+        self.assertNotIn('aikya/docs/skills.md',module.DOCS_REQUIRED)
 
 if __name__=='__main__': unittest.main()

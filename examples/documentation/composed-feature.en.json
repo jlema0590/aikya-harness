@@ -1,0 +1,13 @@
+{
+  "title": "Synthetic order lookup",
+  "objective": "Fixture example: keep the missing-order response stable.",
+  "acceptance": [
+    "Given an absent fixture order ID, return the documented not-found response."
+  ],
+  "sections": {
+    "context-and-scope": "Synthetic fixture: only the lookup boundary is in scope.",
+    "non-goals": "Do not introduce payment or shipping behavior.",
+    "the-design": "Use the existing fixture lookup adapter.",
+    "alternatives-considered": "A separate service would add unnecessary state to this fixture."
+  }
+}

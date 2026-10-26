@@ -9,8 +9,8 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
-import engineering_catalog as catalog
-import install
+from aikya.catalogs import engineering as catalog
+from aikya.installation import facade as install
 
 LANGUAGES={
     'java': ('java-developer','java-engineering'),
@@ -30,20 +30,20 @@ class SpecialistIntegrationTests(unittest.TestCase):
     def test_catalog_has_expected_names_and_disallows_prohibited_material(self):
         self.assertEqual(27, len(catalog.AGENTS - {'log-summarizer','aikya-auxiliary-analyzer','aikya-docs-assistant'}))
         self.assertEqual(29, len(catalog.SKILLS))
-        self.assertEqual(30,len(list((ROOT/'engineering/agents').glob('*.md'))))
-        self.assertEqual(29,len(list((ROOT/'engineering/skills').glob('*/SKILL.md'))))
-        for entry in (ROOT/'engineering').rglob('*.md'):
+        self.assertEqual(30,len(list((ROOT/'src/aikya/resources/engineering/agents').glob('*.md'))))
+        self.assertEqual(29,len(list((ROOT/'src/aikya/resources/engineering/skills').glob('*/SKILL.md'))))
+        for entry in (ROOT/'src/aikya/resources/engineering').rglob('*.md'):
             body=entry.read_text(encoding='utf8')
             for prohibited in ('linkedin','derecho digital','propiedad intelectual','saas contract'):
                 self.assertNotIn(prohibited,body.lower())
             self.assertTrue(body.startswith('---\n'),entry)
             self.assertRegex(body,r'(?m)^name:\s*[a-z0-9-]+')
             self.assertRegex(body,r'(?m)^description:')
-        for agent in (ROOT/'engineering/agents').glob('*.md'):
+        for agent in (ROOT/'src/aikya/resources/engineering/agents').glob('*.md'):
             body=agent.read_text(encoding='utf8')
             match=re.search(r'(?m)^skills:\n- ([a-z0-9-]+)',body)
             if match:
-                self.assertTrue((ROOT/'engineering/skills'/match.group(1)/'SKILL.md').is_file(),agent)
+                self.assertTrue((ROOT/'src/aikya/resources/engineering/skills'/match.group(1)/'SKILL.md').is_file(),agent)
 
     def test_language_selected_separately_from_architecture(self):
         for tech,(agent,skill) in LANGUAGES.items():
@@ -114,7 +114,7 @@ class SpecialistIntegrationTests(unittest.TestCase):
                 self.assertTrue((root/'.claude/skills'/name/'SKILL.md').is_file(),name)
             self.assertFalse((root/'.claude/agents/angular-developer.md').exists())
             self.assertTrue((root/'aikya/scripts/harness/engineering/agents/angular-developer.md').exists())
-            report=(root/'aikya/docs/agents.md').read_text()
+            report=(root/'aikya/docs/tools/agents.md').read_text()
             self.assertIn('java-developer',report)
             source=root/'.claude/agents/java-developer.md'
             source.write_text(source.read_text()+'\n# equipo: personalización\n')

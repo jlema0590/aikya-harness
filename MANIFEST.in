@@ -1,0 +1,12 @@
+include VERSION LICENSE THIRD_PARTY_LICENSES.md README.md README.es.md
+include setup.py requirements-agent-loop.txt
+include docs/AGENT_LOOP.md docs/SECURITY_CONTROLS.md
+recursive-include src/aikya *.py
+include src/aikya/module_map.json
+recursive-include src/aikya/resources * .*
+global-exclude __pycache__ *.py[cod] .DS_Store
+global-exclude .env .env.*
+recursive-include src/aikya/resources .env.example
+prune tests
+prune examples
+prune aikya/docs

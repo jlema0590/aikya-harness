@@ -1,0 +1,1420 @@
+{
+  "schema": 1,
+  "version": "6.1.1",
+  "files": [
+    {
+      "previous_runtime_path": "documentation-templates/manifest.json",
+      "current_runtime_path": "aikya-template/manifest.json",
+      "current_source_path": "src/aikya/resources/aikya-template/manifest.json",
+      "predecessor_sha256": [
+        "3a675c4d9203b93e6be275a61cde38ee10e7251f95c6d12513ac45cb916ef83b"
+      ],
+      "current_sha256": "c62deebbf2950abaffcc194f0fb4a887e4f43c08d9c682b4fbff891ec6b3dc56"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/LICENSE",
+      "current_runtime_path": "aikya-template/docs/LICENSE",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/LICENSE",
+      "predecessor_sha256": [
+        "6491951e72306022aa1d276d8adb0fae45780bac2e4559c58a520f8ee093031b"
+      ],
+      "current_sha256": "6491951e72306022aa1d276d8adb0fae45780bac2e4559c58a520f8ee093031b"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/README.md",
+      "current_runtime_path": "aikya-template/docs/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/README.md",
+      "predecessor_sha256": [
+        "42c4cba72f54209897f7f43b70ac394de2a7e990101e74da9578311ab95847ce"
+      ],
+      "current_sha256": "42c4cba72f54209897f7f43b70ac394de2a7e990101e74da9578311ab95847ce"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/NOTICE.txt",
+      "current_runtime_path": "aikya-template/docs/NOTICE.txt",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/NOTICE.txt",
+      "predecessor_sha256": [
+        "f83492065e3115f4c42925d45418c28907c594deaf8136bfcd8ac43da57c0124"
+      ],
+      "current_sha256": "f83492065e3115f4c42925d45418c28907c594deaf8136bfcd8ac43da57c0124"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/INDEX.md",
+      "current_runtime_path": "aikya-template/docs/INDEX.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/INDEX.md",
+      "predecessor_sha256": [
+        "7e56f584759bea4cd798b9756a661c9ebc040a04f7dcd29f997bb89ea45e201d"
+      ],
+      "current_sha256": "7e56f584759bea4cd798b9756a661c9ebc040a04f7dcd29f997bb89ea45e201d"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/CONTRIBUTING.md",
+      "current_runtime_path": "aikya-template/docs/CONTRIBUTING.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/CONTRIBUTING.md",
+      "predecessor_sha256": [
+        "dd3c6de3b1e783d8a9e890d9c41a0479237870bc02aaa2516ec67174188e7a8f"
+      ],
+      "current_sha256": "dd3c6de3b1e783d8a9e890d9c41a0479237870bc02aaa2516ec67174188e7a8f"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/platform-engineering/README.md",
+      "current_runtime_path": "aikya-template/docs/platform-engineering/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/platform-engineering/README.md",
+      "predecessor_sha256": [
+        "35ca43ec53cad36bae39b4b940de8ad6bf500cc30aa4b617d31d82e6cb6e7692"
+      ],
+      "current_sha256": "35ca43ec53cad36bae39b4b940de8ad6bf500cc30aa4b617d31d82e6cb6e7692"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/README.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/README.md",
+      "predecessor_sha256": [
+        "1264e1e440074880c44f07ee7b492e93f3650a92b406efe3dff59ed58e32455f"
+      ],
+      "current_sha256": "1264e1e440074880c44f07ee7b492e93f3650a92b406efe3dff59ed58e32455f"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/ai-assisted-development/README.md",
+      "current_runtime_path": "aikya-template/docs/ai-assisted-development/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/ai-assisted-development/README.md",
+      "predecessor_sha256": [
+        "0ad991a971317b4e5b72fa519ac1cfbd45896bec003747d06363e6f3f63ec18e"
+      ],
+      "current_sha256": "0ad991a971317b4e5b72fa519ac1cfbd45896bec003747d06363e6f3f63ec18e"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/data-engineering/README.md",
+      "current_runtime_path": "aikya-template/docs/data-engineering/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/data-engineering/README.md",
+      "predecessor_sha256": [
+        "93bd0b5fe5af4dc304190d6d69dca4d573a5880be8afa5fcc35f46620a1b51d2"
+      ],
+      "current_sha256": "93bd0b5fe5af4dc304190d6d69dca4d573a5880be8afa5fcc35f46620a1b51d2"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/web-development/README.md",
+      "current_runtime_path": "aikya-template/docs/web-development/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/web-development/README.md",
+      "predecessor_sha256": [
+        "ce35a6fa112e91d07171275be0e09949961bf55859c8fe7c289d55882b984e21"
+      ],
+      "current_sha256": "ce35a6fa112e91d07171275be0e09949961bf55859c8fe7c289d55882b984e21"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/game-development/README.md",
+      "current_runtime_path": "aikya-template/docs/game-development/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/game-development/README.md",
+      "predecessor_sha256": [
+        "b4b217a276ec4fec8bc6863a5c827023be969cfc8b5021629830c0adcf292836"
+      ],
+      "current_sha256": "b4b217a276ec4fec8bc6863a5c827023be969cfc8b5021629830c0adcf292836"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/game-development/live-operations/release-notes.md",
+      "current_runtime_path": "aikya-template/docs/game-development/live-operations/release-notes.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/game-development/live-operations/release-notes.md",
+      "predecessor_sha256": [
+        "ed73747f67a45524b51dcba470bb2881231047423829970d8509c79f1aad98b5"
+      ],
+      "current_sha256": "ed73747f67a45524b51dcba470bb2881231047423829970d8509c79f1aad98b5"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/game-development/live-operations/privacy-ledger.md",
+      "current_runtime_path": "aikya-template/docs/game-development/live-operations/privacy-ledger.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/game-development/live-operations/privacy-ledger.md",
+      "predecessor_sha256": [
+        "08b4b04c8aa7e8981f92e9ad6695428754d6c47048e34fdf4c23d19eedd9f5c6"
+      ],
+      "current_sha256": "08b4b04c8aa7e8981f92e9ad6695428754d6c47048e34fdf4c23d19eedd9f5c6"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/game-development/live-operations/balance-log.md",
+      "current_runtime_path": "aikya-template/docs/game-development/live-operations/balance-log.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/game-development/live-operations/balance-log.md",
+      "predecessor_sha256": [
+        "df3e892dad626ebe7a0cf6cbaa6a5b0afe2ed8ac99d03a3092b48bc24547185e"
+      ],
+      "current_sha256": "df3e892dad626ebe7a0cf6cbaa6a5b0afe2ed8ac99d03a3092b48bc24547185e"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/game-development/live-operations/deployment-plan.md",
+      "current_runtime_path": "aikya-template/docs/game-development/live-operations/deployment-plan.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/game-development/live-operations/deployment-plan.md",
+      "predecessor_sha256": [
+        "846e71cbd1db4683ee727ea51a4c62c39e04a94646947314b3f253debedc15a1"
+      ],
+      "current_sha256": "846e71cbd1db4683ee727ea51a4c62c39e04a94646947314b3f253debedc15a1"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/game-development/live-operations/README.md",
+      "current_runtime_path": "aikya-template/docs/game-development/live-operations/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/game-development/live-operations/README.md",
+      "predecessor_sha256": [
+        "b70adf968a2ffd83fa7177c27f4cd63292cf3672b336f1615ca30de8b66e9fb5"
+      ],
+      "current_sha256": "b70adf968a2ffd83fa7177c27f4cd63292cf3672b336f1615ca30de8b66e9fb5"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/game-development/live-operations/live-ops-plan.md",
+      "current_runtime_path": "aikya-template/docs/game-development/live-operations/live-ops-plan.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/game-development/live-operations/live-ops-plan.md",
+      "predecessor_sha256": [
+        "8ca9f19147ca9523e2c9828793fcb15a87e955ff3e242956e593946f4c9ccf3b"
+      ],
+      "current_sha256": "8ca9f19147ca9523e2c9828793fcb15a87e955ff3e242956e593946f4c9ccf3b"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/game-development/live-operations/age-rating-compliance-record.md",
+      "current_runtime_path": "aikya-template/docs/game-development/live-operations/age-rating-compliance-record.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/game-development/live-operations/age-rating-compliance-record.md",
+      "predecessor_sha256": [
+        "98101f113cb706d19c51f79366833d14b405615eff4decc2c23532e28a593b4a"
+      ],
+      "current_sha256": "98101f113cb706d19c51f79366833d14b405615eff4decc2c23532e28a593b4a"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/game-development/foundations/business-plan.md",
+      "current_runtime_path": "aikya-template/docs/game-development/foundations/business-plan.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/game-development/foundations/business-plan.md",
+      "predecessor_sha256": [
+        "a59e44b09e1c83d1fbc2f516a215caac0f64be3e3e3d8943737f3ee9228bde74"
+      ],
+      "current_sha256": "a59e44b09e1c83d1fbc2f516a215caac0f64be3e3e3d8943737f3ee9228bde74"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/game-development/foundations/art-bible.md",
+      "current_runtime_path": "aikya-template/docs/game-development/foundations/art-bible.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/game-development/foundations/art-bible.md",
+      "predecessor_sha256": [
+        "17b1c6348c3d764804a2df3e6d8c3a83154261e361f0d432ee113cffac9ccdfa"
+      ],
+      "current_sha256": "17b1c6348c3d764804a2df3e6d8c3a83154261e361f0d432ee113cffac9ccdfa"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/game-development/foundations/README.md",
+      "current_runtime_path": "aikya-template/docs/game-development/foundations/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/game-development/foundations/README.md",
+      "predecessor_sha256": [
+        "fdc834dd46fca939678a92ce5cf7e53389ab38d81d5c32caf38110613fad1bc1"
+      ],
+      "current_sha256": "fdc834dd46fca939678a92ce5cf7e53389ab38d81d5c32caf38110613fad1bc1"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/game-development/foundations/game-design-document.md",
+      "current_runtime_path": "aikya-template/docs/game-development/foundations/game-design-document.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/game-development/foundations/game-design-document.md",
+      "predecessor_sha256": [
+        "22f27baa8502a3ab8534a76ff768960b4ca77e7f1396b4d4ac8f6b34d15d2a6f"
+      ],
+      "current_sha256": "22f27baa8502a3ab8534a76ff768960b4ca77e7f1396b4d4ac8f6b34d15d2a6f"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/game-development/production/cycle-retrospective.md",
+      "current_runtime_path": "aikya-template/docs/game-development/production/cycle-retrospective.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/game-development/production/cycle-retrospective.md",
+      "predecessor_sha256": [
+        "6db36d1657f458159e93c052f53634802ba9c744bde0311c29f5f452ec1394ee"
+      ],
+      "current_sha256": "6db36d1657f458159e93c052f53634802ba9c744bde0311c29f5f452ec1394ee"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/game-development/production/asset-and-contribution-log.md",
+      "current_runtime_path": "aikya-template/docs/game-development/production/asset-and-contribution-log.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/game-development/production/asset-and-contribution-log.md",
+      "predecessor_sha256": [
+        "0f2f8e2c34ddcaf22bb554a651cefe1e49f6e0c4dc4eb8dec6495ddbad4ac2d0"
+      ],
+      "current_sha256": "0f2f8e2c34ddcaf22bb554a651cefe1e49f6e0c4dc4eb8dec6495ddbad4ac2d0"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/game-development/production/README.md",
+      "current_runtime_path": "aikya-template/docs/game-development/production/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/game-development/production/README.md",
+      "predecessor_sha256": [
+        "55ec3b321e7650dffbd7a64c2c241571c52fec0f5adbc4013a2d5e52c53f11be"
+      ],
+      "current_sha256": "55ec3b321e7650dffbd7a64c2c241571c52fec0f5adbc4013a2d5e52c53f11be"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/web-development/foundations/rollout-plan.md",
+      "current_runtime_path": "aikya-template/docs/web-development/foundations/rollout-plan.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/web-development/foundations/rollout-plan.md",
+      "predecessor_sha256": [
+        "312fa885bd9e181fd504c8a8bdb665b097694602856a99c9e3db93e61eedd787"
+      ],
+      "current_sha256": "312fa885bd9e181fd504c8a8bdb665b097694602856a99c9e3db93e61eedd787"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/web-development/foundations/browser-support-policy.md",
+      "current_runtime_path": "aikya-template/docs/web-development/foundations/browser-support-policy.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/web-development/foundations/browser-support-policy.md",
+      "predecessor_sha256": [
+        "65a0751a87aa0818850133eacfe0ba1cd3bc42edbf5996e4aa3e102605587534"
+      ],
+      "current_sha256": "65a0751a87aa0818850133eacfe0ba1cd3bc42edbf5996e4aa3e102605587534"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/web-development/foundations/README.md",
+      "current_runtime_path": "aikya-template/docs/web-development/foundations/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/web-development/foundations/README.md",
+      "predecessor_sha256": [
+        "c86d26ba55f5eeb85f5a5d54dc11c2c852cb520a0d78d2b50d7e89f047b42c68"
+      ],
+      "current_sha256": "c86d26ba55f5eeb85f5a5d54dc11c2c852cb520a0d78d2b50d7e89f047b42c68"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/web-development/foundations/frontend-architecture.md",
+      "current_runtime_path": "aikya-template/docs/web-development/foundations/frontend-architecture.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/web-development/foundations/frontend-architecture.md",
+      "predecessor_sha256": [
+        "1895f20e50d8ffaa2e358493404a8c924970dc3861d20431f32d4144a849fced"
+      ],
+      "current_sha256": "1895f20e50d8ffaa2e358493404a8c924970dc3861d20431f32d4144a849fced"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/web-development/foundations/api-design-guide.md",
+      "current_runtime_path": "aikya-template/docs/web-development/foundations/api-design-guide.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/web-development/foundations/api-design-guide.md",
+      "predecessor_sha256": [
+        "7d8d55c15d4a0282909b3f0b2227083921461e47ceae2a8e4e50c3434c97658c"
+      ],
+      "current_sha256": "7d8d55c15d4a0282909b3f0b2227083921461e47ceae2a8e4e50c3434c97658c"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/web-development/foundations/brand-and-visual-guidelines.md",
+      "current_runtime_path": "aikya-template/docs/web-development/foundations/brand-and-visual-guidelines.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/web-development/foundations/brand-and-visual-guidelines.md",
+      "predecessor_sha256": [
+        "6d32d740ccba75d7c24f87b3083806433f236b16b4c7d0f928cdd0c34aabc8c6"
+      ],
+      "current_sha256": "6d32d740ccba75d7c24f87b3083806433f236b16b4c7d0f928cdd0c34aabc8c6"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/web-development/foundations/design-system-guide.md",
+      "current_runtime_path": "aikya-template/docs/web-development/foundations/design-system-guide.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/web-development/foundations/design-system-guide.md",
+      "predecessor_sha256": [
+        "598a9c4cbcf1906e2d9ff0fb1a342e095b61d0bade07a9c87955a13ef687bd52"
+      ],
+      "current_sha256": "598a9c4cbcf1906e2d9ff0fb1a342e095b61d0bade07a9c87955a13ef687bd52"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/web-development/performance/README.md",
+      "current_runtime_path": "aikya-template/docs/web-development/performance/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/web-development/performance/README.md",
+      "predecessor_sha256": [
+        "7a0e5b4547d08db74c06b0cc037a99d72e6f1bf149d3f38f9b6c728d6800c7a3"
+      ],
+      "current_sha256": "7a0e5b4547d08db74c06b0cc037a99d72e6f1bf149d3f38f9b6c728d6800c7a3"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/web-development/performance/performance-budget.md",
+      "current_runtime_path": "aikya-template/docs/web-development/performance/performance-budget.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/web-development/performance/performance-budget.md",
+      "predecessor_sha256": [
+        "34651575eab747a5268fb6e48caa43ad2c3fc8fec4efde0583dce283cc25d008"
+      ],
+      "current_sha256": "34651575eab747a5268fb6e48caa43ad2c3fc8fec4efde0583dce283cc25d008"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/web-development/performance/performance-review.md",
+      "current_runtime_path": "aikya-template/docs/web-development/performance/performance-review.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/web-development/performance/performance-review.md",
+      "predecessor_sha256": [
+        "9602efb6b884bb016bd00b88930aa55631592dbee7aff6731c158211388fc8ff"
+      ],
+      "current_sha256": "9602efb6b884bb016bd00b88930aa55631592dbee7aff6731c158211388fc8ff"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/web-development/accessibility/README.md",
+      "current_runtime_path": "aikya-template/docs/web-development/accessibility/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/web-development/accessibility/README.md",
+      "predecessor_sha256": [
+        "46b5c5f68134e688e6c1673e6fe8a9a7bd708b2521ce39d67d39d49ded10a871"
+      ],
+      "current_sha256": "46b5c5f68134e688e6c1673e6fe8a9a7bd708b2521ce39d67d39d49ded10a871"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/web-development/accessibility/accessibility-statement.md",
+      "current_runtime_path": "aikya-template/docs/web-development/accessibility/accessibility-statement.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/web-development/accessibility/accessibility-statement.md",
+      "predecessor_sha256": [
+        "fd496d9bd74390bd5580c20a4a47a28864a7aecac0b27ea357fd9a61bd708c09"
+      ],
+      "current_sha256": "fd496d9bd74390bd5580c20a4a47a28864a7aecac0b27ea357fd9a61bd708c09"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/web-development/accessibility/accessibility-conformance-report.md",
+      "current_runtime_path": "aikya-template/docs/web-development/accessibility/accessibility-conformance-report.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/web-development/accessibility/accessibility-conformance-report.md",
+      "predecessor_sha256": [
+        "646f27782f6731263d481d91a0a86b18fd4401167e82216566f8b4c21d310d88"
+      ],
+      "current_sha256": "646f27782f6731263d481d91a0a86b18fd4401167e82216566f8b4c21d310d88"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/web-development/accessibility/accessibility-test-plan.md",
+      "current_runtime_path": "aikya-template/docs/web-development/accessibility/accessibility-test-plan.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/web-development/accessibility/accessibility-test-plan.md",
+      "predecessor_sha256": [
+        "9359d8a3aa823f2444f4b431209c6c01092b2ec4194c44bd2f8eb5c4935c3478"
+      ],
+      "current_sha256": "9359d8a3aa823f2444f4b431209c6c01092b2ec4194c44bd2f8eb5c4935c3478"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/data-engineering/operations/pipeline-runbook.md",
+      "current_runtime_path": "aikya-template/docs/data-engineering/operations/pipeline-runbook.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/data-engineering/operations/pipeline-runbook.md",
+      "predecessor_sha256": [
+        "4fa893af4532dee9b95b5e0e6639ed070958cdffbb25901b06a5f972b3f23b61"
+      ],
+      "current_sha256": "4fa893af4532dee9b95b5e0e6639ed070958cdffbb25901b06a5f972b3f23b61"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/data-engineering/operations/backfill-and-reprocessing-plan.md",
+      "current_runtime_path": "aikya-template/docs/data-engineering/operations/backfill-and-reprocessing-plan.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/data-engineering/operations/backfill-and-reprocessing-plan.md",
+      "predecessor_sha256": [
+        "98b5e5268874b29b520b09ef55006ba22ff16f1e19e2aafefdeef162a53f20bf"
+      ],
+      "current_sha256": "98b5e5268874b29b520b09ef55006ba22ff16f1e19e2aafefdeef162a53f20bf"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/data-engineering/operations/README.md",
+      "current_runtime_path": "aikya-template/docs/data-engineering/operations/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/data-engineering/operations/README.md",
+      "predecessor_sha256": [
+        "e4a64ede8a3c02bb0d78b6e22d22961232cc2495692fdab1c5c9eff36955efb8"
+      ],
+      "current_sha256": "e4a64ede8a3c02bb0d78b6e22d22961232cc2495692fdab1c5c9eff36955efb8"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/data-engineering/operations/freshness-and-sla-log.md",
+      "current_runtime_path": "aikya-template/docs/data-engineering/operations/freshness-and-sla-log.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/data-engineering/operations/freshness-and-sla-log.md",
+      "predecessor_sha256": [
+        "55392fb25a7aa5349c04f6cc769f2735627d8cd21d28feeeb03e7d1b6f999f7a"
+      ],
+      "current_sha256": "55392fb25a7aa5349c04f6cc769f2735627d8cd21d28feeeb03e7d1b6f999f7a"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/data-engineering/foundations/data-contract.md",
+      "current_runtime_path": "aikya-template/docs/data-engineering/foundations/data-contract.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/data-engineering/foundations/data-contract.md",
+      "predecessor_sha256": [
+        "5d9ef11dcee8468c5c1c022f88c834e02d59969e0a2020568481fe9af12aa9fd"
+      ],
+      "current_sha256": "5d9ef11dcee8468c5c1c022f88c834e02d59969e0a2020568481fe9af12aa9fd"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/data-engineering/foundations/data-pipeline-design-document.md",
+      "current_runtime_path": "aikya-template/docs/data-engineering/foundations/data-pipeline-design-document.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/data-engineering/foundations/data-pipeline-design-document.md",
+      "predecessor_sha256": [
+        "c062614fa4a31cb6323026fb2c631c0aafa9264bbb788065bcd28ba757866b59"
+      ],
+      "current_sha256": "c062614fa4a31cb6323026fb2c631c0aafa9264bbb788065bcd28ba757866b59"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/data-engineering/foundations/README.md",
+      "current_runtime_path": "aikya-template/docs/data-engineering/foundations/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/data-engineering/foundations/README.md",
+      "predecessor_sha256": [
+        "43b97c66a1b97b524ef8cc9d80cde52c4a7d8a1c9b8ebf9df1f2c581e4d72a30"
+      ],
+      "current_sha256": "43b97c66a1b97b524ef8cc9d80cde52c4a7d8a1c9b8ebf9df1f2c581e4d72a30"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/data-engineering/foundations/dataset-catalog-entry.md",
+      "current_runtime_path": "aikya-template/docs/data-engineering/foundations/dataset-catalog-entry.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/data-engineering/foundations/dataset-catalog-entry.md",
+      "predecessor_sha256": [
+        "8d4048cf864f1d6a23d32334c0cb46d361563e868382604253c7bc549a337c7a"
+      ],
+      "current_sha256": "8d4048cf864f1d6a23d32334c0cb46d361563e868382604253c7bc549a337c7a"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/data-engineering/governance/data-classification-and-access-policy.md",
+      "current_runtime_path": "aikya-template/docs/data-engineering/governance/data-classification-and-access-policy.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/data-engineering/governance/data-classification-and-access-policy.md",
+      "predecessor_sha256": [
+        "ac4673e820e12e2a3bdee2ebc05feaef246382bdf15844a5c48e590bc288f345"
+      ],
+      "current_sha256": "ac4673e820e12e2a3bdee2ebc05feaef246382bdf15844a5c48e590bc288f345"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/data-engineering/governance/data-lineage-record.md",
+      "current_runtime_path": "aikya-template/docs/data-engineering/governance/data-lineage-record.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/data-engineering/governance/data-lineage-record.md",
+      "predecessor_sha256": [
+        "e698e72f9d8050787addec78518aa8c90b3b7f1d4495868f36e11d3f17e62883"
+      ],
+      "current_sha256": "e698e72f9d8050787addec78518aa8c90b3b7f1d4495868f36e11d3f17e62883"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/data-engineering/governance/README.md",
+      "current_runtime_path": "aikya-template/docs/data-engineering/governance/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/data-engineering/governance/README.md",
+      "predecessor_sha256": [
+        "3889afb31ef301632c4c712917d3da5b8c37347a8f303229c1175ea5af9fce2a"
+      ],
+      "current_sha256": "3889afb31ef301632c4c712917d3da5b8c37347a8f303229c1175ea5af9fce2a"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/data-engineering/governance/data-quality-specification.md",
+      "current_runtime_path": "aikya-template/docs/data-engineering/governance/data-quality-specification.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/data-engineering/governance/data-quality-specification.md",
+      "predecessor_sha256": [
+        "23efaf2a07bd1d7705084beda929236b9b85f32fd1304e65609f9e57042899c1"
+      ],
+      "current_sha256": "23efaf2a07bd1d7705084beda929236b9b85f32fd1304e65609f9e57042899c1"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/ai-assisted-development/specification/agent-task-specification.md",
+      "current_runtime_path": "aikya-template/docs/ai-assisted-development/specification/agent-task-specification.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/ai-assisted-development/specification/agent-task-specification.md",
+      "predecessor_sha256": [
+        "1bdb2b50d3b3dd5ae6f83a6e1869b00b5a1b82fa284fb85ca414820bf799338b"
+      ],
+      "current_sha256": "1bdb2b50d3b3dd5ae6f83a6e1869b00b5a1b82fa284fb85ca414820bf799338b"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/ai-assisted-development/specification/README.md",
+      "current_runtime_path": "aikya-template/docs/ai-assisted-development/specification/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/ai-assisted-development/specification/README.md",
+      "predecessor_sha256": [
+        "b9d8959b11d215c0dd74fb3c0c48eaccb7ff7f1068dec124f81a6db36b04f0aa"
+      ],
+      "current_sha256": "b9d8959b11d215c0dd74fb3c0c48eaccb7ff7f1068dec124f81a6db36b04f0aa"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/ai-assisted-development/foundations/task-plan.md",
+      "current_runtime_path": "aikya-template/docs/ai-assisted-development/foundations/task-plan.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/ai-assisted-development/foundations/task-plan.md",
+      "predecessor_sha256": [
+        "ec8d07ee94f8d1c4a84e2202926d6f631bc13fe053b0a833322a0cd77af15b35"
+      ],
+      "current_sha256": "ec8d07ee94f8d1c4a84e2202926d6f631bc13fe053b0a833322a0cd77af15b35"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/ai-assisted-development/foundations/agent-instructions-file.md",
+      "current_runtime_path": "aikya-template/docs/ai-assisted-development/foundations/agent-instructions-file.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/ai-assisted-development/foundations/agent-instructions-file.md",
+      "predecessor_sha256": [
+        "ec717d70d93e10adedc0fc0d3b00bd30cbc61072cdd00b796a04df82ac96429b"
+      ],
+      "current_sha256": "ec717d70d93e10adedc0fc0d3b00bd30cbc61072cdd00b796a04df82ac96429b"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/ai-assisted-development/foundations/README.md",
+      "current_runtime_path": "aikya-template/docs/ai-assisted-development/foundations/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/ai-assisted-development/foundations/README.md",
+      "predecessor_sha256": [
+        "982eb76fec4158e5afd4895ff5e6426482b93822cebaf0f31e5ce4701e44a89f"
+      ],
+      "current_sha256": "982eb76fec4158e5afd4895ff5e6426482b93822cebaf0f31e5ce4701e44a89f"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/ai-assisted-development/evaluation/evaluation-plan.md",
+      "current_runtime_path": "aikya-template/docs/ai-assisted-development/evaluation/evaluation-plan.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/ai-assisted-development/evaluation/evaluation-plan.md",
+      "predecessor_sha256": [
+        "d878a258b0f05f35f713468c1d6dee7f1e62026a7f307c27093e9ad226f1f74c"
+      ],
+      "current_sha256": "d878a258b0f05f35f713468c1d6dee7f1e62026a7f307c27093e9ad226f1f74c"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/ai-assisted-development/evaluation/README.md",
+      "current_runtime_path": "aikya-template/docs/ai-assisted-development/evaluation/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/ai-assisted-development/evaluation/README.md",
+      "predecessor_sha256": [
+        "fd7d4b5f8667fdc0a03704d441bbdb65e740fee76a560795333ecd7c24c5ed0b"
+      ],
+      "current_sha256": "fd7d4b5f8667fdc0a03704d441bbdb65e740fee76a560795333ecd7c24c5ed0b"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/ai-assisted-development/evaluation/eval-run-log.md",
+      "current_runtime_path": "aikya-template/docs/ai-assisted-development/evaluation/eval-run-log.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/ai-assisted-development/evaluation/eval-run-log.md",
+      "predecessor_sha256": [
+        "338679fe28f9e6d5772f34eb22ab16dc399b47bd21d663ecfdf5c307e99eb28b"
+      ],
+      "current_sha256": "338679fe28f9e6d5772f34eb22ab16dc399b47bd21d663ecfdf5c307e99eb28b"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/lean/experiment-record.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/lean/experiment-record.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/lean/experiment-record.md",
+      "predecessor_sha256": [
+        "b01b512d200b97001ed28a201c6a509b26ce5b8c1b94b43d4bbe32229b85ea9c"
+      ],
+      "current_sha256": "b01b512d200b97001ed28a201c6a509b26ce5b8c1b94b43d4bbe32229b85ea9c"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/lean/value-stream-map.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/lean/value-stream-map.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/lean/value-stream-map.md",
+      "predecessor_sha256": [
+        "c6178a47cb3104d163ad1ae080234dae328e0413585de3c04556516e6f4cc74c"
+      ],
+      "current_sha256": "c6178a47cb3104d163ad1ae080234dae328e0413585de3c04556516e6f4cc74c"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/lean/a3.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/lean/a3.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/lean/a3.md",
+      "predecessor_sha256": [
+        "572be90b74f6e2655c069616bca0e7105bbb34c9735604be980040aa8f38b3ec"
+      ],
+      "current_sha256": "572be90b74f6e2655c069616bca0e7105bbb34c9735604be980040aa8f38b3ec"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/lean/README.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/lean/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/lean/README.md",
+      "predecessor_sha256": [
+        "45e0d5185072282a8e30a303af71967b5fda564932b5c3f5d295abad09eb6348"
+      ],
+      "current_sha256": "45e0d5185072282a8e30a303af71967b5fda564932b5c3f5d295abad09eb6348"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/lean/improvement-kata.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/lean/improvement-kata.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/lean/improvement-kata.md",
+      "predecessor_sha256": [
+        "eceb3c5dabeac7b06f627ec1d4ce9e9720a9962e3e01974b873e047feb79802b"
+      ],
+      "current_sha256": "eceb3c5dabeac7b06f627ec1d4ce9e9720a9962e3e01974b873e047feb79802b"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/agile-scrum/sprint-review-notes.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/agile-scrum/sprint-review-notes.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/agile-scrum/sprint-review-notes.md",
+      "predecessor_sha256": [
+        "356000ee7d0cbb6ff79305d4ca6fdb794c9348e006b73da74509d113150d9047"
+      ],
+      "current_sha256": "356000ee7d0cbb6ff79305d4ca6fdb794c9348e006b73da74509d113150d9047"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/agile-scrum/sprint-retrospective.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/agile-scrum/sprint-retrospective.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/agile-scrum/sprint-retrospective.md",
+      "predecessor_sha256": [
+        "8dcf26606230f4a95be24bc87f99c91ba0a586f07d19445093b967aaf2334e0a"
+      ],
+      "current_sha256": "8dcf26606230f4a95be24bc87f99c91ba0a586f07d19445093b967aaf2334e0a"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/agile-scrum/sprint-backlog.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/agile-scrum/sprint-backlog.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/agile-scrum/sprint-backlog.md",
+      "predecessor_sha256": [
+        "1ec0e34d0e23634dc30fe63eeeb5d51835eaae3d55da790639d916ede9e98ee2"
+      ],
+      "current_sha256": "1ec0e34d0e23634dc30fe63eeeb5d51835eaae3d55da790639d916ede9e98ee2"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/agile-scrum/README.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/agile-scrum/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/agile-scrum/README.md",
+      "predecessor_sha256": [
+        "db1dd605e43b284aebcc2392bf801fd04f198fed066f307d171e68706c877d25"
+      ],
+      "current_sha256": "db1dd605e43b284aebcc2392bf801fd04f198fed066f307d171e68706c877d25"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/agile-scrum/team-working-agreement.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/agile-scrum/team-working-agreement.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/agile-scrum/team-working-agreement.md",
+      "predecessor_sha256": [
+        "1fc22126c55887e36d104d62716e2a0c02809516b3daedddc2422df8adb41cb5"
+      ],
+      "current_sha256": "1fc22126c55887e36d104d62716e2a0c02809516b3daedddc2422df8adb41cb5"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/agile-scrum/product-backlog-item.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/agile-scrum/product-backlog-item.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/agile-scrum/product-backlog-item.md",
+      "predecessor_sha256": [
+        "d5a447f248b90f5ccd2b416218e53cb4d8370518df15a63cb66be5fb15fbbc44"
+      ],
+      "current_sha256": "d5a447f248b90f5ccd2b416218e53cb4d8370518df15a63cb66be5fb15fbbc44"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/agile-scrum/product-goal.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/agile-scrum/product-goal.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/agile-scrum/product-goal.md",
+      "predecessor_sha256": [
+        "fdd9c1ca300357ff0c4450b90813966fe118e28ad92c7cb69199be6622c7f2b6"
+      ],
+      "current_sha256": "fdd9c1ca300357ff0c4450b90813966fe118e28ad92c7cb69199be6622c7f2b6"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/agile-scrum/definition-of-done.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/agile-scrum/definition-of-done.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/agile-scrum/definition-of-done.md",
+      "predecessor_sha256": [
+        "7eba51913e43d85b07db7051e12c644efaa2de221f0c76354cde96174d3d4e26"
+      ],
+      "current_sha256": "7eba51913e43d85b07db7051e12c644efaa2de221f0c76354cde96174d3d4e26"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/waterfall/phase-gate-review.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/waterfall/phase-gate-review.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/waterfall/phase-gate-review.md",
+      "predecessor_sha256": [
+        "fb7e2ac015df62d02f80f18692c2d6105df6f917ef53e5df72e56831d35791d6"
+      ],
+      "current_sha256": "fb7e2ac015df62d02f80f18692c2d6105df6f917ef53e5df72e56831d35791d6"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/waterfall/README.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/waterfall/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/waterfall/README.md",
+      "predecessor_sha256": [
+        "e1252899c66abdbcc61702a5f415424c9bb2a82dc0faf4ab6a8b3249ed7c7c85"
+      ],
+      "current_sha256": "e1252899c66abdbcc61702a5f415424c9bb2a82dc0faf4ab6a8b3249ed7c7c85"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/waterfall/software-requirements-specification.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/waterfall/software-requirements-specification.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/waterfall/software-requirements-specification.md",
+      "predecessor_sha256": [
+        "af6606aebb091ba409c2d0b26bfa89673bc1c205d8ce7a17fd71899dc8adb4f5"
+      ],
+      "current_sha256": "af6606aebb091ba409c2d0b26bfa89673bc1c205d8ce7a17fd71899dc8adb4f5"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/waterfall/master-test-plan.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/waterfall/master-test-plan.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/waterfall/master-test-plan.md",
+      "predecessor_sha256": [
+        "9168038946f2467f16d6c06194233794ca28500cdd416172875927dfb47d8860"
+      ],
+      "current_sha256": "9168038946f2467f16d6c06194233794ca28500cdd416172875927dfb47d8860"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/waterfall/change-request.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/waterfall/change-request.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/waterfall/change-request.md",
+      "predecessor_sha256": [
+        "54bd892e571b5d548dd8e5dc930aaa259fa4809eaf228491e069cfab42cde7ab"
+      ],
+      "current_sha256": "54bd892e571b5d548dd8e5dc930aaa259fa4809eaf228491e069cfab42cde7ab"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/waterfall/software-design-description.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/waterfall/software-design-description.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/waterfall/software-design-description.md",
+      "predecessor_sha256": [
+        "3fb66d93f9aae54a42bac0247e600f74ef7fba4217bfdcb13294da69e7f7e5e8"
+      ],
+      "current_sha256": "3fb66d93f9aae54a42bac0247e600f74ef7fba4217bfdcb13294da69e7f7e5e8"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/waterfall/user-acceptance-test-plan.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/waterfall/user-acceptance-test-plan.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/waterfall/user-acceptance-test-plan.md",
+      "predecessor_sha256": [
+        "536c15beb56fc051a9898343639c24ad35dfe6e8cf1d5577349464bb0f22fc80"
+      ],
+      "current_sha256": "536c15beb56fc051a9898343639c24ad35dfe6e8cf1d5577349464bb0f22fc80"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/waterfall/requirements-traceability-matrix.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/waterfall/requirements-traceability-matrix.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/waterfall/requirements-traceability-matrix.md",
+      "predecessor_sha256": [
+        "c68d1cfc6f220c758f442351eb2e3a45f5b53b5fd970fecdebf441481c660f84"
+      ],
+      "current_sha256": "c68d1cfc6f220c758f442351eb2e3a45f5b53b5fd970fecdebf441481c660f84"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/user-documentation/troubleshooting-guide.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/user-documentation/troubleshooting-guide.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/user-documentation/troubleshooting-guide.md",
+      "predecessor_sha256": [
+        "cf1063251d0a3b2901ee2a0f98d94f641aa9f100578ebe92247b05ec916e3789"
+      ],
+      "current_sha256": "cf1063251d0a3b2901ee2a0f98d94f641aa9f100578ebe92247b05ec916e3789"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/user-documentation/how-to-guide.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/user-documentation/how-to-guide.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/user-documentation/how-to-guide.md",
+      "predecessor_sha256": [
+        "bb9fdcaded1f8df8b9fd002fbd2f667d1c4bf49c41a8daa875552c4314a65a2a"
+      ],
+      "current_sha256": "bb9fdcaded1f8df8b9fd002fbd2f667d1c4bf49c41a8daa875552c4314a65a2a"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/user-documentation/explanation.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/user-documentation/explanation.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/user-documentation/explanation.md",
+      "predecessor_sha256": [
+        "dbdb9e063b34d8508bd26c61369cb67539daca0eeda468660e877f2f46c53cd8"
+      ],
+      "current_sha256": "dbdb9e063b34d8508bd26c61369cb67539daca0eeda468660e877f2f46c53cd8"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/user-documentation/installation-guide.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/user-documentation/installation-guide.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/user-documentation/installation-guide.md",
+      "predecessor_sha256": [
+        "fbb14a66325d8d2095b4bd16f86df0bb583b464fd5bbdb7d1b685df18b5966d7"
+      ],
+      "current_sha256": "fbb14a66325d8d2095b4bd16f86df0bb583b464fd5bbdb7d1b685df18b5966d7"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/user-documentation/README.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/user-documentation/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/user-documentation/README.md",
+      "predecessor_sha256": [
+        "d69101933a7fe34231db6ac3b32280153540217bcf18e52a62541fcbbdc1ac36"
+      ],
+      "current_sha256": "d69101933a7fe34231db6ac3b32280153540217bcf18e52a62541fcbbdc1ac36"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/user-documentation/tutorial.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/user-documentation/tutorial.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/user-documentation/tutorial.md",
+      "predecessor_sha256": [
+        "4561baecf89a3adbb9ce0dc9fef1877985b09b44512079109b43986355c99f29"
+      ],
+      "current_sha256": "4561baecf89a3adbb9ce0dc9fef1877985b09b44512079109b43986355c99f29"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/user-documentation/reference-page.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/user-documentation/reference-page.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/user-documentation/reference-page.md",
+      "predecessor_sha256": [
+        "9a12807f288182bce0a48339fc5d9a526d02acbcad5ec7a74eb187190e4a6514"
+      ],
+      "current_sha256": "9a12807f288182bce0a48339fc5d9a526d02acbcad5ec7a74eb187190e4a6514"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/user-documentation/documentation-style-guide.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/user-documentation/documentation-style-guide.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/user-documentation/documentation-style-guide.md",
+      "predecessor_sha256": [
+        "dc27a7578798d32de2c99468632a8c4d17a4b163ca288852de06cbc084095fd9"
+      ],
+      "current_sha256": "dc27a7578798d32de2c99468632a8c4d17a4b163ca288852de06cbc084095fd9"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/project-management/stakeholder-register.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/project-management/stakeholder-register.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/project-management/stakeholder-register.md",
+      "predecessor_sha256": [
+        "d87ea5170a5a853e7888f1d6fd8c845d99558bf41d620c124a535e63d48c8678"
+      ],
+      "current_sha256": "d87ea5170a5a853e7888f1d6fd8c845d99558bf41d620c124a535e63d48c8678"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/project-management/README.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/project-management/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/project-management/README.md",
+      "predecessor_sha256": [
+        "30d9c3ad1c4c471135251fced3a3ada376998f6afa24953d8c2ca399a56ed6de"
+      ],
+      "current_sha256": "30d9c3ad1c4c471135251fced3a3ada376998f6afa24953d8c2ca399a56ed6de"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/project-management/project-charter.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/project-management/project-charter.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/project-management/project-charter.md",
+      "predecessor_sha256": [
+        "224ffd80cb53a01f1048c5dcbfd8f59ee2df70b06f1c091584a740ff5a54a1fb"
+      ],
+      "current_sha256": "224ffd80cb53a01f1048c5dcbfd8f59ee2df70b06f1c091584a740ff5a54a1fb"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/project-management/project-brief.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/project-management/project-brief.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/project-management/project-brief.md",
+      "predecessor_sha256": [
+        "8b022911139ed98bf595d159c44d447e60b0f8b2776dc305ad066ec1915e11ee"
+      ],
+      "current_sha256": "8b022911139ed98bf595d159c44d447e60b0f8b2776dc305ad066ec1915e11ee"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/project-management/risk-register.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/project-management/risk-register.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/project-management/risk-register.md",
+      "predecessor_sha256": [
+        "379f0c869774e57be0864e340a45f3dba128c43a32af2a71bd5a6d43d66bff50"
+      ],
+      "current_sha256": "379f0c869774e57be0864e340a45f3dba128c43a32af2a71bd5a6d43d66bff50"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/requirements/vision-and-scope.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/requirements/vision-and-scope.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/requirements/vision-and-scope.md",
+      "predecessor_sha256": [
+        "0ab9b5eb51d5c7522ab522cf0348c39ad30574ae57edaaed9b1bf74428caec30"
+      ],
+      "current_sha256": "0ab9b5eb51d5c7522ab522cf0348c39ad30574ae57edaaed9b1bf74428caec30"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/requirements/use-case-specification.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/requirements/use-case-specification.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/requirements/use-case-specification.md",
+      "predecessor_sha256": [
+        "2d407248c50bb17e1e9f8f63eaad2a36f548b1b3f302382f9d9b3bb1678afaed"
+      ],
+      "current_sha256": "2d407248c50bb17e1e9f8f63eaad2a36f548b1b3f302382f9d9b3bb1678afaed"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/requirements/README.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/requirements/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/requirements/README.md",
+      "predecessor_sha256": [
+        "c26945cea71753a76a8b57b4ef15f69e89a18a804edf0f1d52b1a9872aa99185"
+      ],
+      "current_sha256": "c26945cea71753a76a8b57b4ef15f69e89a18a804edf0f1d52b1a9872aa99185"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/requirements/product-requirements-document.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/requirements/product-requirements-document.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/requirements/product-requirements-document.md",
+      "predecessor_sha256": [
+        "0d5ab6bb13408d02ff34066c32e8d5867bfbb18bad699b31f9aefcccbb0dc967"
+      ],
+      "current_sha256": "0d5ab6bb13408d02ff34066c32e8d5867bfbb18bad699b31f9aefcccbb0dc967"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/requirements/non-functional-requirements.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/requirements/non-functional-requirements.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/requirements/non-functional-requirements.md",
+      "predecessor_sha256": [
+        "055a434cbd1c222939ff77f815a615514a39bca7d22d38f10a3af0931e94beb7"
+      ],
+      "current_sha256": "055a434cbd1c222939ff77f815a615514a39bca7d22d38f10a3af0931e94beb7"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/shape-up/scope-map.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/shape-up/scope-map.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/shape-up/scope-map.md",
+      "predecessor_sha256": [
+        "4577ce21fb9d87630b260cb3fa2bebbe739db18773302e151c805b41f8e22c0a"
+      ],
+      "current_sha256": "4577ce21fb9d87630b260cb3fa2bebbe739db18773302e151c805b41f8e22c0a"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/shape-up/pitch.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/shape-up/pitch.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/shape-up/pitch.md",
+      "predecessor_sha256": [
+        "466809eb4c82281cd85bc0ca2143f58c8f47eb80ad27a41d7d39fb3c9fdc29e7"
+      ],
+      "current_sha256": "466809eb4c82281cd85bc0ca2143f58c8f47eb80ad27a41d7d39fb3c9fdc29e7"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/shape-up/kick-off-message.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/shape-up/kick-off-message.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/shape-up/kick-off-message.md",
+      "predecessor_sha256": [
+        "b2f17eed4571a3a9de2da17f5b9798b76c5c95f5efce980c5a7b895b53cf5974"
+      ],
+      "current_sha256": "b2f17eed4571a3a9de2da17f5b9798b76c5c95f5efce980c5a7b895b53cf5974"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/shape-up/README.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/shape-up/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/shape-up/README.md",
+      "predecessor_sha256": [
+        "6f72dbf9cdedf0534b2fe48b892a3c9107a6674be1416365cbc2049329f41ae5"
+      ],
+      "current_sha256": "6f72dbf9cdedf0534b2fe48b892a3c9107a6674be1416365cbc2049329f41ae5"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/shape-up/cool-down-guide.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/shape-up/cool-down-guide.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/shape-up/cool-down-guide.md",
+      "predecessor_sha256": [
+        "e9d84303f3348284bb34bda0b36a29ac6193849f0696c75b33758d3b012e6908"
+      ],
+      "current_sha256": "e9d84303f3348284bb34bda0b36a29ac6193849f0696c75b33758d3b012e6908"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/test-case-specification.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/test-case-specification.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/test-case-specification.md",
+      "predecessor_sha256": [
+        "653863ed295bc359f3b92ad3f80fee2f9861d2789d4373d65eff4e5cd675ed1b"
+      ],
+      "current_sha256": "653863ed295bc359f3b92ad3f80fee2f9861d2789d4373d65eff4e5cd675ed1b"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/technical-design-document.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/technical-design-document.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/technical-design-document.md",
+      "predecessor_sha256": [
+        "0d9c8d0732ae7e8fc2d74ba3833da91c203504675848b05f6a5afbfa74625cf1"
+      ],
+      "current_sha256": "0d9c8d0732ae7e8fc2d74ba3833da91c203504675848b05f6a5afbfa74625cf1"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/onboarding-guide.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/onboarding-guide.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/onboarding-guide.md",
+      "predecessor_sha256": [
+        "d62c246b4d271aea379688607f16f6bca7d6510db249273445ee760ebbe904fe"
+      ],
+      "current_sha256": "d62c246b4d271aea379688607f16f6bca7d6510db249273445ee760ebbe904fe"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/service-readme.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/service-readme.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/service-readme.md",
+      "predecessor_sha256": [
+        "e3ad780796aa9f12c746ad72e2bac69f80e7bdef458d0beafc0c126340c5c764"
+      ],
+      "current_sha256": "e3ad780796aa9f12c746ad72e2bac69f80e7bdef458d0beafc0c126340c5c764"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/release-notes.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/release-notes.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/release-notes.md",
+      "predecessor_sha256": [
+        "f6c6615a2c1b5058956768d6cde88c7239354fee11b6e2153768067d7503c990"
+      ],
+      "current_sha256": "f6c6615a2c1b5058956768d6cde88c7239354fee11b6e2153768067d7503c990"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/incident-postmortem.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/incident-postmortem.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/incident-postmortem.md",
+      "predecessor_sha256": [
+        "ae03464b3659fa3ea2bd82788d63b5d01aafa247e57afbf8ebb8c00a5d3e92b7"
+      ],
+      "current_sha256": "ae03464b3659fa3ea2bd82788d63b5d01aafa247e57afbf8ebb8c00a5d3e92b7"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/threat-model.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/threat-model.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/threat-model.md",
+      "predecessor_sha256": [
+        "fc8a71e5f1076d39297204cd3a6be50d7953adaf3335f5b75bd2d300e24091ae"
+      ],
+      "current_sha256": "fc8a71e5f1076d39297204cd3a6be50d7953adaf3335f5b75bd2d300e24091ae"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/rfc.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/rfc.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/rfc.md",
+      "predecessor_sha256": [
+        "dd3eabc6d553484a8e25fabdb3a470f774d5da841cd7b87819958fcd91786aeb"
+      ],
+      "current_sha256": "dd3eabc6d553484a8e25fabdb3a470f774d5da841cd7b87819958fcd91786aeb"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/changelog.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/changelog.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/changelog.md",
+      "predecessor_sha256": [
+        "7b177dfc8608a57476d4f29f3b464098e77c4874716b8988e82452785ea56f43"
+      ],
+      "current_sha256": "7b177dfc8608a57476d4f29f3b464098e77c4874716b8988e82452785ea56f43"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/feature-request.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/feature-request.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/feature-request.md",
+      "predecessor_sha256": [
+        "e4760471ff4370d737a34bf4b31943588b7be2e36ec3304bd2083f82c43c6255"
+      ],
+      "current_sha256": "e4760471ff4370d737a34bf4b31943588b7be2e36ec3304bd2083f82c43c6255"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/pull-request-template.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/pull-request-template.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/pull-request-template.md",
+      "predecessor_sha256": [
+        "3753835f59704d9c2cc5bb7739c27c90c5e49bc0e941867ec58ce01c223e6bf6"
+      ],
+      "current_sha256": "3753835f59704d9c2cc5bb7739c27c90c5e49bc0e941867ec58ce01c223e6bf6"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/interface-control-document.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/interface-control-document.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/interface-control-document.md",
+      "predecessor_sha256": [
+        "27679f7bd121a67f23e4eabe57cd9303c8078b31a4bfe27d94d83eff14361571"
+      ],
+      "current_sha256": "27679f7bd121a67f23e4eabe57cd9303c8078b31a4bfe27d94d83eff14361571"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/glossary.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/glossary.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/glossary.md",
+      "predecessor_sha256": [
+        "201ffb763f827d39d9b02d2780ff21b861261d40c9844070f038c809cd12814b"
+      ],
+      "current_sha256": "201ffb763f827d39d9b02d2780ff21b861261d40c9844070f038c809cd12814b"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/governance.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/governance.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/governance.md",
+      "predecessor_sha256": [
+        "6c13a4076dc03cc26f219e17041732018592aa10d4b784fa9e5286641b707746"
+      ],
+      "current_sha256": "6c13a4076dc03cc26f219e17041732018592aa10d4b784fa9e5286641b707746"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/configuration-management-plan.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/configuration-management-plan.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/configuration-management-plan.md",
+      "predecessor_sha256": [
+        "3940bb14ecada969a3e808409abeb927480fedb4ec55a6843a1e5d098000d866"
+      ],
+      "current_sha256": "3940bb14ecada969a3e808409abeb927480fedb4ec55a6843a1e5d098000d866"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/contributing-guide.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/contributing-guide.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/contributing-guide.md",
+      "predecessor_sha256": [
+        "f6ebafdad74f5178ac86e33e665852218905f9c3d08101f93d4d4e51673d6785"
+      ],
+      "current_sha256": "f6ebafdad74f5178ac86e33e665852218905f9c3d08101f93d4d4e51673d6785"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/test-strategy.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/test-strategy.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/test-strategy.md",
+      "predecessor_sha256": [
+        "2f2ff92b5c6793bdb8512c5cdd5993a720bf7cd4211727fcb58db61ebe4e6793"
+      ],
+      "current_sha256": "2f2ff92b5c6793bdb8512c5cdd5993a720bf7cd4211727fcb58db61ebe4e6793"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/runbook.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/runbook.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/runbook.md",
+      "predecessor_sha256": [
+        "b31308932eb04edac91fe17572d49e3092af8de17f1e9f52b434c3e8b15ff7d8"
+      ],
+      "current_sha256": "b31308932eb04edac91fe17572d49e3092af8de17f1e9f52b434c3e8b15ff7d8"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/branching-strategy.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/branching-strategy.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/branching-strategy.md",
+      "predecessor_sha256": [
+        "18f16afcca33861409d078d6c72cdef4a10256af852a694df68b9ca805d41719"
+      ],
+      "current_sha256": "18f16afcca33861409d078d6c72cdef4a10256af852a694df68b9ca805d41719"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/code-review-guidelines.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/code-review-guidelines.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/code-review-guidelines.md",
+      "predecessor_sha256": [
+        "75b354f601b9db831e92d851340e23fea4971e589cb7d88c7174f77551b48237"
+      ],
+      "current_sha256": "75b354f601b9db831e92d851340e23fea4971e589cb7d88c7174f77551b48237"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/deployment-plan.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/deployment-plan.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/deployment-plan.md",
+      "predecessor_sha256": [
+        "cfb68ef7533ff242a63dc81d53d653067e5933398bfcdd0048c7515706a47317"
+      ],
+      "current_sha256": "cfb68ef7533ff242a63dc81d53d653067e5933398bfcdd0048c7515706a47317"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/bug-report.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/bug-report.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/bug-report.md",
+      "predecessor_sha256": [
+        "5b03660db55f7121e6c66e37dd0664d70bd1829e3da20328578ff903edc21f98"
+      ],
+      "current_sha256": "5b03660db55f7121e6c66e37dd0664d70bd1829e3da20328578ff903edc21f98"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/README.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/README.md",
+      "predecessor_sha256": [
+        "6fd6dc714b652300d4087241fa3b89d592e4649d1292948de6dfb60093170202"
+      ],
+      "current_sha256": "6fd6dc714b652300d4087241fa3b89d592e4649d1292948de6dfb60093170202"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/support.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/support.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/support.md",
+      "predecessor_sha256": [
+        "72a322590fe7354bd54f6ffd5ab49f951557916d3b924cc423a489bf6030cc0e"
+      ],
+      "current_sha256": "72a322590fe7354bd54f6ffd5ab49f951557916d3b924cc423a489bf6030cc0e"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/coding-standards.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/coding-standards.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/coding-standards.md",
+      "predecessor_sha256": [
+        "9d1f4ebf6b454ffaab6e2f70f58700c9f283be3bde13277173e10af4ab98abe5"
+      ],
+      "current_sha256": "9d1f4ebf6b454ffaab6e2f70f58700c9f283be3bde13277173e10af4ab98abe5"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/architecture-overview.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/architecture-overview.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/architecture-overview.md",
+      "predecessor_sha256": [
+        "e3f30e6ee6ef19c64a8016e524569f385c24e79bac5943b843526277541410fa"
+      ],
+      "current_sha256": "e3f30e6ee6ef19c64a8016e524569f385c24e79bac5943b843526277541410fa"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/test-summary-report.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/test-summary-report.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/test-summary-report.md",
+      "predecessor_sha256": [
+        "a796696370ff3e1a3125d1e2ab5652767963130a7d82d5a1630cff7f60a092e1"
+      ],
+      "current_sha256": "a796696370ff3e1a3125d1e2ab5652767963130a7d82d5a1630cff7f60a092e1"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/data-model.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/data-model.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/data-model.md",
+      "predecessor_sha256": [
+        "f3533ac558e3573b5d32dc8bc17089354aee31528333e845afd40a4064adcaa9"
+      ],
+      "current_sha256": "f3533ac558e3573b5d32dc8bc17089354aee31528333e845afd40a4064adcaa9"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/deprecation-plan.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/deprecation-plan.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/deprecation-plan.md",
+      "predecessor_sha256": [
+        "643f4cb6d3f5ab1ae4d552395ec752a2b14b5547a43d99ed59a1a50dd3abd68d"
+      ],
+      "current_sha256": "643f4cb6d3f5ab1ae4d552395ec752a2b14b5547a43d99ed59a1a50dd3abd68d"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/security.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/security.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/security.md",
+      "predecessor_sha256": [
+        "0a3e1f795ecdc4ec562175654b2261b0f71caa2e3f30da249ecd99caf7f1ce5c"
+      ],
+      "current_sha256": "0a3e1f795ecdc4ec562175654b2261b0f71caa2e3f30da249ecd99caf7f1ce5c"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/foundations/architecture-decision-record.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/foundations/architecture-decision-record.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/foundations/architecture-decision-record.md",
+      "predecessor_sha256": [
+        "c9fde39d5b8999854e9a2737978daccbb6e07a07dc96d15cadf9e87510a21e7e"
+      ],
+      "current_sha256": "c9fde39d5b8999854e9a2737978daccbb6e07a07dc96d15cadf9e87510a21e7e"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/security-and-compliance/incident-response-plan.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/security-and-compliance/incident-response-plan.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/security-and-compliance/incident-response-plan.md",
+      "predecessor_sha256": [
+        "128a3559d864b71cbadf6e1972fb99bfb1d45d810a5b1de048c948b142b476fd"
+      ],
+      "current_sha256": "128a3559d864b71cbadf6e1972fb99bfb1d45d810a5b1de048c948b142b476fd"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/security-and-compliance/data-protection-impact-assessment.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/security-and-compliance/data-protection-impact-assessment.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/security-and-compliance/data-protection-impact-assessment.md",
+      "predecessor_sha256": [
+        "165e9fa29118b29d064d8b5a42e7ef4f530d694e092cabf8d9a8f857a44b92ad"
+      ],
+      "current_sha256": "165e9fa29118b29d064d8b5a42e7ef4f530d694e092cabf8d9a8f857a44b92ad"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/security-and-compliance/record-of-processing-activities.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/security-and-compliance/record-of-processing-activities.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/security-and-compliance/record-of-processing-activities.md",
+      "predecessor_sha256": [
+        "e5820e5d8a452de31b2b4974fe54c50f1a454f5ae6f772573a5e0d734c9bc38a"
+      ],
+      "current_sha256": "e5820e5d8a452de31b2b4974fe54c50f1a454f5ae6f772573a5e0d734c9bc38a"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/security-and-compliance/README.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/security-and-compliance/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/security-and-compliance/README.md",
+      "predecessor_sha256": [
+        "72516fc06399746a43f5bd9f572d2527b30de7a72af4f4871affa814e5eea819"
+      ],
+      "current_sha256": "72516fc06399746a43f5bd9f572d2527b30de7a72af4f4871affa814e5eea819"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/security-and-compliance/security-review-checklist.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/security-and-compliance/security-review-checklist.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/security-and-compliance/security-review-checklist.md",
+      "predecessor_sha256": [
+        "b6ff2e0b315eacc8d429755ad1712526f8200cd36c197f10519814e549fe1621"
+      ],
+      "current_sha256": "b6ff2e0b315eacc8d429755ad1712526f8200cd36c197f10519814e549fe1621"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/security-and-compliance/data-retention-policy.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/security-and-compliance/data-retention-policy.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/security-and-compliance/data-retention-policy.md",
+      "predecessor_sha256": [
+        "af765aa2cdc84ddaae27e8f6db7d89d7f1f6179599520d1f148995fa7a56d992"
+      ],
+      "current_sha256": "af765aa2cdc84ddaae27e8f6db7d89d7f1f6179599520d1f148995fa7a56d992"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/kanban/work-item-types.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/kanban/work-item-types.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/kanban/work-item-types.md",
+      "predecessor_sha256": [
+        "4068e19705aba6c574db638b307cee0d108e1a14d3151810c72d81b861aafed1"
+      ],
+      "current_sha256": "4068e19705aba6c574db638b307cee0d108e1a14d3151810c72d81b861aafed1"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/kanban/blocker-log.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/kanban/blocker-log.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/kanban/blocker-log.md",
+      "predecessor_sha256": [
+        "bdf4eb72a967cbb7a4f47031042fc4f2990879450eeb41515ef5f24387ab60a9"
+      ],
+      "current_sha256": "bdf4eb72a967cbb7a4f47031042fc4f2990879450eeb41515ef5f24387ab60a9"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/kanban/README.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/kanban/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/kanban/README.md",
+      "predecessor_sha256": [
+        "06179bb4c5760b5a45511651342abc4596ae195e3b6a584b58e43c1d49e2a715"
+      ],
+      "current_sha256": "06179bb4c5760b5a45511651342abc4596ae195e3b6a584b58e43c1d49e2a715"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/kanban/flow-review.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/kanban/flow-review.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/kanban/flow-review.md",
+      "predecessor_sha256": [
+        "c91415bd44a9c7a47e9c0db4a9ee9a15a590166d704a86ee7c57f3e16469ce03"
+      ],
+      "current_sha256": "c91415bd44a9c7a47e9c0db4a9ee9a15a590166d704a86ee7c57f3e16469ce03"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/kanban/kanban-system-design.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/kanban/kanban-system-design.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/kanban/kanban-system-design.md",
+      "predecessor_sha256": [
+        "2578360875551e51a173c5be25e33bd7af89ba716a0c73aadca5a1afde0d5a14"
+      ],
+      "current_sha256": "2578360875551e51a173c5be25e33bd7af89ba716a0c73aadca5a1afde0d5a14"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/general-swe/kanban/definition-of-workflow.md",
+      "current_runtime_path": "aikya-template/docs/general-swe/kanban/definition-of-workflow.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/general-swe/kanban/definition-of-workflow.md",
+      "predecessor_sha256": [
+        "f9ff7b9bfcf88a553aa80872f85d63cb7a5bf22f4e21c002ad8fa68b7c5b2571"
+      ],
+      "current_sha256": "f9ff7b9bfcf88a553aa80872f85d63cb7a5bf22f4e21c002ad8fa68b7c5b2571"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/platform-engineering/foundations/README.md",
+      "current_runtime_path": "aikya-template/docs/platform-engineering/foundations/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/platform-engineering/foundations/README.md",
+      "predecessor_sha256": [
+        "ef0963bf5680620b09b9159126ef3757f5350e303fc1ab8347b4f5dcad1647c8"
+      ],
+      "current_sha256": "ef0963bf5680620b09b9159126ef3757f5350e303fc1ab8347b4f5dcad1647c8"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/platform-engineering/foundations/platform-onboarding-guide.md",
+      "current_runtime_path": "aikya-template/docs/platform-engineering/foundations/platform-onboarding-guide.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/platform-engineering/foundations/platform-onboarding-guide.md",
+      "predecessor_sha256": [
+        "bd3b6708ced6e131d385a9497fcb9eb567ff6a4ac1319b40737abb8a216d4281"
+      ],
+      "current_sha256": "bd3b6708ced6e131d385a9497fcb9eb567ff6a4ac1319b40737abb8a216d4281"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/platform-engineering/foundations/service-catalog-entry.md",
+      "current_runtime_path": "aikya-template/docs/platform-engineering/foundations/service-catalog-entry.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/platform-engineering/foundations/service-catalog-entry.md",
+      "predecessor_sha256": [
+        "68a058a46da42021b882496ec5ca8030ef2485e478081edc64f0fcd5ccbda980"
+      ],
+      "current_sha256": "68a058a46da42021b882496ec5ca8030ef2485e478081edc64f0fcd5ccbda980"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/platform-engineering/resilience/disaster-recovery-plan.md",
+      "current_runtime_path": "aikya-template/docs/platform-engineering/resilience/disaster-recovery-plan.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/platform-engineering/resilience/disaster-recovery-plan.md",
+      "predecessor_sha256": [
+        "551db0c4061a619a1077c3feea258353f0a8afb83ff494d17f8790033b26ad0e"
+      ],
+      "current_sha256": "551db0c4061a619a1077c3feea258353f0a8afb83ff494d17f8790033b26ad0e"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/platform-engineering/resilience/README.md",
+      "current_runtime_path": "aikya-template/docs/platform-engineering/resilience/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/platform-engineering/resilience/README.md",
+      "predecessor_sha256": [
+        "8bacadd234f67ecfce8d50d4ddd914f349e1bc09d230c41e840f0c3b43b6df3c"
+      ],
+      "current_sha256": "8bacadd234f67ecfce8d50d4ddd914f349e1bc09d230c41e840f0c3b43b6df3c"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/platform-engineering/resilience/capacity-plan.md",
+      "current_runtime_path": "aikya-template/docs/platform-engineering/resilience/capacity-plan.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/platform-engineering/resilience/capacity-plan.md",
+      "predecessor_sha256": [
+        "0bb52b49522e55d4a0e83b1414a979c857adf96720ecb35a8bd5320b2631ac18"
+      ],
+      "current_sha256": "0bb52b49522e55d4a0e83b1414a979c857adf96720ecb35a8bd5320b2631ac18"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/platform-engineering/reliability/error-budget-policy.md",
+      "current_runtime_path": "aikya-template/docs/platform-engineering/reliability/error-budget-policy.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/platform-engineering/reliability/error-budget-policy.md",
+      "predecessor_sha256": [
+        "6102b53b7eb338d9f43795095415656d6b5355cc1703956dfd8caf3841675834"
+      ],
+      "current_sha256": "6102b53b7eb338d9f43795095415656d6b5355cc1703956dfd8caf3841675834"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/platform-engineering/reliability/README.md",
+      "current_runtime_path": "aikya-template/docs/platform-engineering/reliability/README.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/platform-engineering/reliability/README.md",
+      "predecessor_sha256": [
+        "88fe13327900c1a03d5521c8f49976304e2aa6c06f22125d5606fc290805a95c"
+      ],
+      "current_sha256": "88fe13327900c1a03d5521c8f49976304e2aa6c06f22125d5606fc290805a95c"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/platform-engineering/reliability/slo-document.md",
+      "current_runtime_path": "aikya-template/docs/platform-engineering/reliability/slo-document.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/platform-engineering/reliability/slo-document.md",
+      "predecessor_sha256": [
+        "20f72635354176d225a39d21ba4d78cf83c2666d85fd45fe12238faaeb05d86b"
+      ],
+      "current_sha256": "20f72635354176d225a39d21ba4d78cf83c2666d85fd45fe12238faaeb05d86b"
+    },
+    {
+      "previous_runtime_path": "documentation-templates/milkeles/platform-engineering/reliability/toil-log.md",
+      "current_runtime_path": "aikya-template/docs/platform-engineering/reliability/toil-log.md",
+      "current_source_path": "src/aikya/resources/aikya-template/docs/platform-engineering/reliability/toil-log.md",
+      "predecessor_sha256": [
+        "9e36a845ffcb1dc04d72e66a32d55770d05111e3502874f80200f2ef4793b349"
+      ],
+      "current_sha256": "9e36a845ffcb1dc04d72e66a32d55770d05111e3502874f80200f2ef4793b349"
+    }
+  ],
+  "attribution": "Original copyright, MIT license, upstream provenance and historical receipts are retained. Public output references use the Aikya template namespace."
+}

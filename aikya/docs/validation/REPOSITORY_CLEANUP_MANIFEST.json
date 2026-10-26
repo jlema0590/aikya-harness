@@ -1,0 +1,194 @@
+{
+  "schema": 1,
+  "baseline_commit": "08db4879ae3a8697c91adb0cc46bd76e333c693b",
+  "applied": true,
+  "backup_directory": "/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/aikya-cleanup-source-backup-hhzads5d",
+  "removed": [
+    {
+      "path": "Aikya-Harness.png",
+      "sha256": "40a17b102c9aa7cb0fa89840b0efb91ae6a3dc27cf339b01b8042f8e77897432",
+      "bytes": 1057227,
+      "retained_duplicate": "docs/images/aikya-harness.png"
+    }
+  ],
+  "moved": [
+    {
+      "source": "docs/images/aikya-components.prompt.txt",
+      "destination": "aikya/docs/images/archive/aikya-components.prompt.txt",
+      "original_sha256": "be65f7e38aa9af7075ef5f1c661cec78ae9b9dbcd1162e4d611a595772d4914d",
+      "destination_sha256": "be65f7e38aa9af7075ef5f1c661cec78ae9b9dbcd1162e4d611a595772d4914d",
+      "original_bytes": 344
+    },
+    {
+      "source": "docs/images/trazabilidad-documental.png",
+      "destination": "aikya/docs/images/archive/trazabilidad-documental.png",
+      "original_sha256": "ea2fe45e6cf7fd8fbb83d382c67ee2abfd7fe99e41f9202f98eccf9bb0a40524",
+      "destination_sha256": "ea2fe45e6cf7fd8fbb83d382c67ee2abfd7fe99e41f9202f98eccf9bb0a40524",
+      "original_bytes": 1473743
+    },
+    {
+      "source": "docs/plans/2026-10-22-claude-project-templates.md",
+      "destination": "aikya/docs/plan/archive/docs-plans/2026-10-22-claude-project-templates.md",
+      "original_sha256": "d9a4fb9c68cf918f26bdbee39276817eee471e2a965ca6e692c43a7cf33c4f61",
+      "destination_sha256": "a01241bab77d7f11eb476d572dc3fcd4d01647059b32804b222c99046f9f1e6c",
+      "original_bytes": 3264
+    },
+    {
+      "source": "docs/plans/2026-10-22-document-template-catalog.md",
+      "destination": "aikya/docs/plan/archive/docs-plans/2026-10-22-document-template-catalog.md",
+      "original_sha256": "43748ff505edf54d064a99c5fcca1f925aaa4c0531441480cbae03d4c41c213f",
+      "destination_sha256": "94007373a0b3ea2d2f26e5c00afad697e4a8a15f0d981c258c399536ac378fbc",
+      "original_bytes": 3218
+    },
+    {
+      "source": "docs/plans/2026-10-22-documentation-layout.md",
+      "destination": "aikya/docs/plan/archive/docs-plans/2026-10-22-documentation-layout.md",
+      "original_sha256": "c982207684a050e20e67968f053fb30b97c7f9bea37c1de1bf9099da156e1863",
+      "destination_sha256": "61ce03bdb689755b98e96d72589ec0642b344e2cf3d54a64ff84b0b7bf650bc7",
+      "original_bytes": 6979
+    },
+    {
+      "source": "docs/plans/2026-10-22-foundations-composition.md",
+      "destination": "aikya/docs/plan/archive/docs-plans/2026-10-22-foundations-composition.md",
+      "original_sha256": "3ff86c410955dc771459ca7d0e782c35f085fe111521e88776cfd0238f44d75c",
+      "destination_sha256": "50b187c7e5180f1c46ab4fa1237ff478e7c0cf739baeff9668b32646687e626c",
+      "original_bytes": 2801
+    },
+    {
+      "source": "docs/plans/2026-10-22-spec-coding-templates.md",
+      "destination": "aikya/docs/plan/archive/docs-plans/2026-10-22-spec-coding-templates.md",
+      "original_sha256": "733acfd2193440ad8e49fa101fc5ee4e5fa847354d553312edf10f42e09492d3",
+      "destination_sha256": "3107faa537be9d1b2ddab4dbbdb9f8b89c6322b04921037b5b99b94b4bd26c52",
+      "original_bytes": 2528
+    },
+    {
+      "source": "docs/plans/MULTIPLATFORM_CODEX_COPILOT.md",
+      "destination": "aikya/docs/plan/archive/docs-plans/MULTIPLATFORM_CODEX_COPILOT.md",
+      "original_sha256": "88472ad0c72dc743059b8080130f1eadf3b86f4ce13480f1cb0850daa48fbe3f",
+      "destination_sha256": "05d04f187b899c1027da4a6ce7b37c3d4d279b48138f1512616e55051f2048b1",
+      "original_bytes": 1893
+    },
+    {
+      "source": "docs/plans/SDD_V6_0_0_IMPLEMENTATION.md",
+      "destination": "aikya/docs/plan/archive/docs-plans/SDD_V6_0_0_IMPLEMENTATION.md",
+      "original_sha256": "161212673ae2c97539ae87c8290ef534fe1c4a39ac55b52b7e6e24461fb69af8",
+      "destination_sha256": "a974c0b523da8345dfade0bad202cfe5e5d820364d647fba2a6a6389099b52a8",
+      "original_bytes": 1387
+    },
+    {
+      "source": "docs/validation/AGENT_LOOP.md",
+      "destination": "aikya/docs/validation/archive/2026-10-22/AGENT_LOOP.md",
+      "original_sha256": "ead320af2d19ac640078fcf0644c03cc295b37fd7d896f9fc5ae3bd732a77510",
+      "destination_sha256": "183526195f0f4dd2cbd7ef5856562e2f9b5e011bacf94a71f5d6ef0b8e13f93f",
+      "original_bytes": 6562
+    },
+    {
+      "source": "docs/validation/COMMAND_RENAMES.md",
+      "destination": "aikya/docs/validation/archive/2026-10-22/COMMAND_RENAMES.md",
+      "original_sha256": "dad3f289cfc6bd993cbb43ead007647ef1902afe58c03c62ec6b5f7b872e1dbf",
+      "destination_sha256": "521aab3a1eabb3b9b16d630496437aae2754e453d57743f160826004267ec8f0",
+      "original_bytes": 4129
+    },
+    {
+      "source": "docs/validation/DOCUMENTATION_TEMPLATES.md",
+      "destination": "aikya/docs/validation/archive/2026-10-22/DOCUMENTATION_TEMPLATES.md",
+      "original_sha256": "b6ac87edecf39da0674f5c1c01897702b58caf7f24f53e88b28e521968fcef66",
+      "destination_sha256": "95efdc67015deb778f5d1ec02c5d7f5590920b21888e6463a332ba9e7dd56373",
+      "original_bytes": 2650
+    },
+    {
+      "source": "docs/validation/FOUNDATIONS_COMPOSITION.md",
+      "destination": "aikya/docs/validation/archive/2026-10-22/FOUNDATIONS_COMPOSITION.md",
+      "original_sha256": "79bc08a8166eaaa41aa485d5156e860d96ddbba2b5d55ff5c6ad990324470762",
+      "destination_sha256": "70cb960a3eecbd6744c6a55423100b317cc7d601e41f97f620bf5d4aeb0ec4fa",
+      "original_bytes": 2900
+    },
+    {
+      "source": "docs/validation/MILKELES_LINKS.json",
+      "destination": "aikya/docs/validation/archive/2026-10-22/MILKELES_LINKS.json",
+      "original_sha256": "1baebbfdcbb2e1f2584d259f15803d3c3f588098f663e91b5b2993f6163801d9",
+      "destination_sha256": "1baebbfdcbb2e1f2584d259f15803d3c3f588098f663e91b5b2993f6163801d9",
+      "original_bytes": 402
+    },
+    {
+      "source": "docs/validation/MILKELES_ONLY.md",
+      "destination": "aikya/docs/validation/archive/2026-10-22/MILKELES_ONLY.md",
+      "original_sha256": "7d73071c3069f5b06a36b5e9b9740b5627944bc877865f93bf91b2b6748db010",
+      "destination_sha256": "0ebb04ce936ad104e70ce4579c2d77c485b655569521eec5c1721bbd90f3abea",
+      "original_bytes": 3815
+    },
+    {
+      "source": "docs/validation/ODD_EXECUTION.md",
+      "destination": "aikya/docs/validation/archive/2026-10-22/ODD_EXECUTION.md",
+      "original_sha256": "d82f25c45dd817fd2812687ef160f832f04f06308084299070b5ec3e5eafa473",
+      "destination_sha256": "e7e440e7b37875ac27215afa3eb95223ebe4d8cf83983c6e2e3edd76138cd4d2",
+      "original_bytes": 5588
+    },
+    {
+      "source": "docs/validation/OPENHARNESS_ADOPTION.es.md",
+      "destination": "aikya/docs/validation/archive/2026-10-22/OPENHARNESS_ADOPTION.es.md",
+      "original_sha256": "11d88a494e5b9123d913503a1086d6f06b61a47005f60ed480f2197d5ed4fe1d",
+      "destination_sha256": "a1df00cc8b33a599ee0318fb1ebc38260fbe7fe0fe1721cbaa7b6ae16407c370",
+      "original_bytes": 7442
+    },
+    {
+      "source": "docs/validation/SDD_6_1_1.md",
+      "destination": "aikya/docs/validation/archive/2026-10-22/SDD_6_1_1.md",
+      "original_sha256": "93bb44f9fa04872815d93d68027d47432e3b9382a4c2931484dd739be5607333",
+      "destination_sha256": "dbce20cf485360042e421af7b35efcd342401bcd7820c2bd8fcd534ff41f2ace",
+      "original_bytes": 4686
+    },
+    {
+      "source": "docs/validation/SPEC_CODING_TEMPLATES.md",
+      "destination": "aikya/docs/validation/archive/2026-10-22/SPEC_CODING_TEMPLATES.md",
+      "original_sha256": "59dc7837f41e8e52e0d0a524791fa9c207f76198c442bd83ff16b85989225a9e",
+      "destination_sha256": "a98475253c2b85f06e3f36d46e405764ee37f8f130c746714ef46043c886969a",
+      "original_bytes": 1708
+    }
+  ],
+  "footers_normalized": [
+    ".github/PULL_REQUEST_TEMPLATE.md",
+    ".github/workflows.md",
+    "CODE_OF_CONDUCT.md",
+    "CONTRIBUTING.md",
+    "SECURITY.md",
+    "aikya/docs/plan/archive/docs-plans/MULTIPLATFORM_CODEX_COPILOT.md",
+    "aikya/docs/plan/archive/docs-plans/SDD_V6_0_0_IMPLEMENTATION.md",
+    "aikya/docs/validation/archive/2026-10-22/SDD_6_1_1.md",
+    "examples/README.md",
+    "examples/sdd/development/order-api/README.md",
+    "examples/sdd/devops/kubernetes-release/README.md",
+    "examples/sdd/infrastructure/aws-network/README.md"
+  ],
+  "links_or_archive_status_updated": [
+    ".github/PULL_REQUEST_TEMPLATE.md",
+    ".github/workflows.md",
+    "CODE_OF_CONDUCT.md",
+    "CONTRIBUTING.md",
+    "SECURITY.md",
+    "aikya/docs/plan/archive/harness-development/2026-10-23-odd-observabilidad.es.md",
+    "aikya/docs/plan/archive/docs-plans/2026-10-22-claude-project-templates.md",
+    "aikya/docs/plan/archive/docs-plans/2026-10-22-document-template-catalog.md",
+    "aikya/docs/plan/archive/docs-plans/2026-10-22-documentation-layout.md",
+    "aikya/docs/plan/archive/docs-plans/2026-10-22-foundations-composition.md",
+    "aikya/docs/plan/archive/docs-plans/2026-10-22-spec-coding-templates.md",
+    "aikya/docs/plan/archive/docs-plans/MULTIPLATFORM_CODEX_COPILOT.md",
+    "aikya/docs/plan/archive/docs-plans/SDD_V6_0_0_IMPLEMENTATION.md",
+    "docs/research/OPENHARNESS_COMPARISON.es.md",
+    "aikya/docs/validation/archive/2026-10-22/AGENT_LOOP.md",
+    "aikya/docs/validation/archive/2026-10-22/COMMAND_RENAMES.md",
+    "aikya/docs/validation/archive/2026-10-22/DOCUMENTATION_TEMPLATES.md",
+    "aikya/docs/validation/archive/2026-10-22/FOUNDATIONS_COMPOSITION.md",
+    "aikya/docs/validation/archive/2026-10-22/MILKELES_ONLY.md",
+    "aikya/docs/validation/archive/2026-10-22/ODD_EXECUTION.md",
+    "aikya/docs/validation/archive/2026-10-22/OPENHARNESS_ADOPTION.es.md",
+    "aikya/docs/validation/archive/2026-10-22/SDD_6_1_1.md",
+    "aikya/docs/validation/archive/2026-10-22/SPEC_CODING_TEMPLATES.md",
+    "examples/README.md",
+    "examples/sdd/development/order-api/README.md",
+    "examples/sdd/devops/kubernetes-release/README.md",
+    "examples/sdd/infrastructure/aws-network/README.md"
+  ],
+  "gallery_checksummed_outputs_modified": false,
+  "scope": "Repository cleanup only; broader guide/path enforcement and Python package restructuring remain separate plans."
+}

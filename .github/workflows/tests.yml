@@ -2,7 +2,7 @@ name: Aikya | Python tests
 
 on:
   push:
-    branches: [develop, main, 'feat/**', 'fix/**', 'release/**']
+    branches: [develop, main, 'feat/**', 'fix/**', 'release/**', 'refactor/**']
   pull_request:
     branches: [develop, main]
   workflow_dispatch:
@@ -18,7 +18,7 @@ jobs:
   unittest:
     name: Unit tests | Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:
@@ -28,24 +28,76 @@ jobs:
         uses: actions/checkout@v4
         with:
           persist-credentials: false
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Install contributor package and build tools
+        run: |
+          python -m pip install 'setuptools>=77' wheel build
+          python -m pip install --no-build-isolation --no-deps -e .
 
       - name: Python syntax checks
         run: |
-          python -m compileall -q \
-            aikya_cli.py aikya_layout.py aikya_requirements.py \
-            aikya_session.py aikya_setup.py doc_bootstrap.py \
-            engineering_catalog.py external_skills.py \
-            infrastructure_profile.py install.py skills_registry.py sdd_engine.py sdd_assets.py sdd_localization.py \
-            docs_language.py docs_templates_en.py docs_templates_es.py \
-            template/scripts/harness scripts/ci
+          python -m compileall -q src scripts/ci
 
       - name: Validate bundled Claude Code agents and Agent Skills
         run: python scripts/ci/validate_agent_assets.py
 
+      - name: Validate pinned documentation templates
+        run: python -m aikya.documentation.templates check
+
+      - name: Check changed source size and report Python duplication
+        env:
+          AIKYA_QUALITY_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          python - <<'PY'
+          import os, subprocess, sys
+          base = os.environ.get('AIKYA_QUALITY_BASE') or 'HEAD'
+          if subprocess.run(['git', 'cat-file', '-e', base + '^{commit}'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode:
+              base = 'HEAD'
+          sys.exit(subprocess.call([sys.executable, '-m', 'aikya.quality.source', '--changed', '--base', base]))
+          PY
+
       - name: Run Aikya regression tests
         run: python -m unittest discover -s tests -p 'test_*.py' -v
+
+      - name: Build isolated Python distributions
+        run: |
+          python -m pip install build 'setuptools>=77' wheel
+          python -m build --no-isolation
+
+      - name: Verify installed wheel without checkout imports or optional SDK
+        run: python scripts/ci/package_smoke.py --wheel dist/aikya_harness-$(cat VERSION)-py3-none-any.whl
+
+  local-memory:
+    name: Local memory | ${{ matrix.os }} | Python ${{ matrix.python }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python: ['3.10', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install package and reviewed binary parser extras
+        run: python -m pip install ".[code-index]" --only-binary=tree-sitter,tree-sitter-java,tree-sitter-javascript,tree-sitter-typescript,tree-sitter-c-sharp,tree-sitter-go
+      - name: Verify indexing, observation, local serving and installed assets
+        shell: bash
+        run: |
+          python -B -m unittest discover -s tests -p test_asset_line_endings.py -v
+          python -B -m unittest discover -s tests -p test_code_index.py -v
+          python -B -m unittest discover -s tests -p test_code_index_languages.py -v
+          python -B -m unittest discover -s tests -p test_memory_viewer.py -v
+          python -B -m unittest discover -s tests -p test_memory_watch.py -v
+          python -B -m unittest discover -s tests -p test_memory_live.py -v
+          python -B -m unittest discover -s tests -p test_runtime_transport.py -v
+          python -B -m unittest discover -s tests -p test_memory_integration.py -v

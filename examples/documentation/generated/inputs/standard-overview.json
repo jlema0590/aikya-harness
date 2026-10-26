@@ -1,0 +1,12 @@
+{
+  "title": "Synthetic overview example",
+  "sections": {
+    "day-one": "Synthetic local catalogue: day one. This bounded example does not assert a deployed system, measured target or approval.",
+    "first-change": "Synthetic local catalogue: first change. This bounded example does not assert a deployed system, measured target or approval.",
+    "what-we-build-and-why": "Synthetic local catalogue: what we build and why. This bounded example does not assert a deployed system, measured target or approval.",
+    "how-we-work": "Synthetic local catalogue: how we work. This bounded example does not assert a deployed system, measured target or approval.",
+    "on-call": "Synthetic local catalogue: on-call. This bounded example does not assert a deployed system, measured target or approval.",
+    "where-things-are": "Synthetic local catalogue: where things are. This bounded example does not assert a deployed system, measured target or approval.",
+    "first-30-60-90-days": "Synthetic local catalogue: first 30, 60, 90 days. This bounded example does not assert a deployed system, measured target or approval."
+  }
+}

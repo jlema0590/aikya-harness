@@ -1,0 +1,3487 @@
+{
+  "schema": 1,
+  "provider": "aikya",
+  "commit": "35fc8e29be1f0093b8ef13a9762de67dc99b6882",
+  "license": "MIT",
+  "files": {
+    "docs/CONTRIBUTING.md": {
+      "upstream_sha256": "3e49fed82cdd447427c367b4a53ead15de94f033a6ea91c84cec64aa31b17610",
+      "installed_sha256": "dd3c6de3b1e783d8a9e890d9c41a0479237870bc02aaa2516ec67174188e7a8f",
+      "source": "aikya-template/docs/CONTRIBUTING.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/CONTRIBUTING.md"
+    },
+    "docs/INDEX.md": {
+      "upstream_sha256": "3658ba6813db8349d57d09eb7269ce223b2ad19ca8f38a92257bb2a82fb3f4c7",
+      "installed_sha256": "7e56f584759bea4cd798b9756a661c9ebc040a04f7dcd29f997bb89ea45e201d",
+      "source": "aikya-template/docs/INDEX.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/INDEX.md"
+    },
+    "docs/LICENSE": {
+      "upstream_sha256": "6491951e72306022aa1d276d8adb0fae45780bac2e4559c58a520f8ee093031b",
+      "installed_sha256": "6491951e72306022aa1d276d8adb0fae45780bac2e4559c58a520f8ee093031b",
+      "source": "aikya-template/docs/LICENSE",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/LICENSE"
+    },
+    "docs/README.md": {
+      "upstream_sha256": "74eb9c622fd99f549d062be1943b548d8980f7017e38b197d5a8dd222b2c425b",
+      "installed_sha256": "42c4cba72f54209897f7f43b70ac394de2a7e990101e74da9578311ab95847ce",
+      "source": "aikya-template/docs/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/README.md"
+    },
+    "docs/ai-assisted-development/README.md": {
+      "upstream_sha256": "21f5241641142c8cc8fd747bc884ef4d0d88f897cb00c2a9f864e8179ee4f329",
+      "installed_sha256": "0ad991a971317b4e5b72fa519ac1cfbd45896bec003747d06363e6f3f63ec18e",
+      "source": "aikya-template/docs/ai-assisted-development/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/ai-assisted-development/README.md"
+    },
+    "docs/ai-assisted-development/evaluation/README.md": {
+      "upstream_sha256": "dbf1ed10a12b6532bdc6a98278826a11350aaf42cb3d329616b1d4fa94ebc4a8",
+      "installed_sha256": "fd7d4b5f8667fdc0a03704d441bbdb65e740fee76a560795333ecd7c24c5ed0b",
+      "source": "aikya-template/docs/ai-assisted-development/evaluation/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/ai-assisted-development/evaluation/README.md"
+    },
+    "docs/ai-assisted-development/evaluation/eval-run-log.md": {
+      "upstream_sha256": "8e85af947c331e80416c05727e4d38a2b4854f3922ca38d9fc8d2caeb6070351",
+      "installed_sha256": "338679fe28f9e6d5772f34eb22ab16dc399b47bd21d663ecfdf5c307e99eb28b",
+      "source": "aikya-template/docs/ai-assisted-development/evaluation/eval-run-log.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/ai-assisted-development/evaluation/eval-run-log.md"
+    },
+    "docs/ai-assisted-development/evaluation/evaluation-plan.md": {
+      "upstream_sha256": "0f5f39e6c6192ef35cfc89f2eaa527043e82bb21269ee6784e5f4a800c1a2503",
+      "installed_sha256": "d878a258b0f05f35f713468c1d6dee7f1e62026a7f307c27093e9ad226f1f74c",
+      "source": "aikya-template/docs/ai-assisted-development/evaluation/evaluation-plan.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/ai-assisted-development/evaluation/evaluation-plan.md"
+    },
+    "docs/ai-assisted-development/foundations/README.md": {
+      "upstream_sha256": "a4fe202924d24f5282113505cd410f5e1a63a4ea251b845908d85e3127951384",
+      "installed_sha256": "982eb76fec4158e5afd4895ff5e6426482b93822cebaf0f31e5ce4701e44a89f",
+      "source": "aikya-template/docs/ai-assisted-development/foundations/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/ai-assisted-development/foundations/README.md"
+    },
+    "docs/ai-assisted-development/foundations/agent-instructions-file.md": {
+      "upstream_sha256": "c7b8c8b4bd796eb45275ac821dad8cc88d05bee684cc8cef3162085852f4fb5b",
+      "installed_sha256": "ec717d70d93e10adedc0fc0d3b00bd30cbc61072cdd00b796a04df82ac96429b",
+      "source": "aikya-template/docs/ai-assisted-development/foundations/agent-instructions-file.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/ai-assisted-development/foundations/agent-instructions-file.md"
+    },
+    "docs/ai-assisted-development/foundations/task-plan.md": {
+      "upstream_sha256": "2336b2c41cd35e431a6fa0adc20cfb55c6646bc68e0a05815e8c13bfb36f1a26",
+      "installed_sha256": "ec8d07ee94f8d1c4a84e2202926d6f631bc13fe053b0a833322a0cd77af15b35",
+      "source": "aikya-template/docs/ai-assisted-development/foundations/task-plan.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/ai-assisted-development/foundations/task-plan.md"
+    },
+    "docs/ai-assisted-development/specification/README.md": {
+      "upstream_sha256": "f86af7682067316d12f3b6b13fa4e15870f5781feb8b986000a21ab669176201",
+      "installed_sha256": "b9d8959b11d215c0dd74fb3c0c48eaccb7ff7f1068dec124f81a6db36b04f0aa",
+      "source": "aikya-template/docs/ai-assisted-development/specification/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/ai-assisted-development/specification/README.md"
+    },
+    "docs/ai-assisted-development/specification/agent-task-specification.md": {
+      "upstream_sha256": "e887fac4da89cee8819a1f5578ac2113b831ed75d5d785289db1f0dd47a54e95",
+      "installed_sha256": "1bdb2b50d3b3dd5ae6f83a6e1869b00b5a1b82fa284fb85ca414820bf799338b",
+      "source": "aikya-template/docs/ai-assisted-development/specification/agent-task-specification.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/ai-assisted-development/specification/agent-task-specification.md"
+    },
+    "docs/data-engineering/README.md": {
+      "upstream_sha256": "841c255ea136d21b42b3dc0d9a84835da12e9f4d1c0dfc9d2a137516ddfbfd5b",
+      "installed_sha256": "93bd0b5fe5af4dc304190d6d69dca4d573a5880be8afa5fcc35f46620a1b51d2",
+      "source": "aikya-template/docs/data-engineering/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/README.md"
+    },
+    "docs/data-engineering/foundations/README.md": {
+      "upstream_sha256": "2d19697527a4f63fce01a3566a70435e1047fdd7c1b140db9e5bd5dde0fa75ab",
+      "installed_sha256": "43b97c66a1b97b524ef8cc9d80cde52c4a7d8a1c9b8ebf9df1f2c581e4d72a30",
+      "source": "aikya-template/docs/data-engineering/foundations/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/foundations/README.md"
+    },
+    "docs/data-engineering/foundations/data-contract.md": {
+      "upstream_sha256": "6697ea64b8aa563567fdf3bba4884552fd6cb086c996b3534e740363db4b41d7",
+      "installed_sha256": "5d9ef11dcee8468c5c1c022f88c834e02d59969e0a2020568481fe9af12aa9fd",
+      "source": "aikya-template/docs/data-engineering/foundations/data-contract.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/foundations/data-contract.md"
+    },
+    "docs/data-engineering/foundations/data-pipeline-design-document.md": {
+      "upstream_sha256": "c41aa3745d513d506ef2cf528b6611cbba4986d4683a05cba628852f5d247ea1",
+      "installed_sha256": "c062614fa4a31cb6323026fb2c631c0aafa9264bbb788065bcd28ba757866b59",
+      "source": "aikya-template/docs/data-engineering/foundations/data-pipeline-design-document.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/foundations/data-pipeline-design-document.md"
+    },
+    "docs/data-engineering/foundations/dataset-catalog-entry.md": {
+      "upstream_sha256": "599731736ca722d2658b54eb6c25ead525ff4e159d0729d30b3cc28cb3ec66d0",
+      "installed_sha256": "8d4048cf864f1d6a23d32334c0cb46d361563e868382604253c7bc549a337c7a",
+      "source": "aikya-template/docs/data-engineering/foundations/dataset-catalog-entry.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/foundations/dataset-catalog-entry.md"
+    },
+    "docs/data-engineering/governance/README.md": {
+      "upstream_sha256": "727e763f841c4e3448072fbd10fbd360a911032c42f95de186c7ea5c193f677d",
+      "installed_sha256": "3889afb31ef301632c4c712917d3da5b8c37347a8f303229c1175ea5af9fce2a",
+      "source": "aikya-template/docs/data-engineering/governance/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/governance/README.md"
+    },
+    "docs/data-engineering/governance/data-classification-and-access-policy.md": {
+      "upstream_sha256": "b5caf2939751a8ca34520c38873b80afe34088c7b7a3dbf3d45617c6d7f59081",
+      "installed_sha256": "ac4673e820e12e2a3bdee2ebc05feaef246382bdf15844a5c48e590bc288f345",
+      "source": "aikya-template/docs/data-engineering/governance/data-classification-and-access-policy.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/governance/data-classification-and-access-policy.md"
+    },
+    "docs/data-engineering/governance/data-lineage-record.md": {
+      "upstream_sha256": "05e5aa7556d1fc44cc3f28f6dc0ed95aac380692e3f464d83ecda8c8434d88e8",
+      "installed_sha256": "e698e72f9d8050787addec78518aa8c90b3b7f1d4495868f36e11d3f17e62883",
+      "source": "aikya-template/docs/data-engineering/governance/data-lineage-record.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/governance/data-lineage-record.md"
+    },
+    "docs/data-engineering/governance/data-quality-specification.md": {
+      "upstream_sha256": "f0f80040b497e4fcf113088105011a475793e89f5e3249c93068194ef9260606",
+      "installed_sha256": "23efaf2a07bd1d7705084beda929236b9b85f32fd1304e65609f9e57042899c1",
+      "source": "aikya-template/docs/data-engineering/governance/data-quality-specification.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/governance/data-quality-specification.md"
+    },
+    "docs/data-engineering/operations/README.md": {
+      "upstream_sha256": "2db661b232e983e7722eb40fd2026942434247546b76ca4fc2085ed086c16686",
+      "installed_sha256": "e4a64ede8a3c02bb0d78b6e22d22961232cc2495692fdab1c5c9eff36955efb8",
+      "source": "aikya-template/docs/data-engineering/operations/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/operations/README.md"
+    },
+    "docs/data-engineering/operations/backfill-and-reprocessing-plan.md": {
+      "upstream_sha256": "b4d03f86154c30ddc075d3f7c13772281e0fc70ec58d304091776d01b21c8980",
+      "installed_sha256": "98b5e5268874b29b520b09ef55006ba22ff16f1e19e2aafefdeef162a53f20bf",
+      "source": "aikya-template/docs/data-engineering/operations/backfill-and-reprocessing-plan.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/operations/backfill-and-reprocessing-plan.md"
+    },
+    "docs/data-engineering/operations/freshness-and-sla-log.md": {
+      "upstream_sha256": "2d9d9c7f8002bae1d7e5ec87688717d169c99c2599f36a9f79d3195afd3dd692",
+      "installed_sha256": "55392fb25a7aa5349c04f6cc769f2735627d8cd21d28feeeb03e7d1b6f999f7a",
+      "source": "aikya-template/docs/data-engineering/operations/freshness-and-sla-log.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/operations/freshness-and-sla-log.md"
+    },
+    "docs/data-engineering/operations/pipeline-runbook.md": {
+      "upstream_sha256": "4dd5bcf8fe7765e8e5f99a5d646244078f36107f860c5d4b000b577d0d6c3a5e",
+      "installed_sha256": "4fa893af4532dee9b95b5e0e6639ed070958cdffbb25901b06a5f972b3f23b61",
+      "source": "aikya-template/docs/data-engineering/operations/pipeline-runbook.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/operations/pipeline-runbook.md"
+    },
+    "docs/game-development/README.md": {
+      "upstream_sha256": "437033aa7dc28fdabf35b56b41a428dbaf63249686bfbe37ddf1baafddc80328",
+      "installed_sha256": "b4b217a276ec4fec8bc6863a5c827023be969cfc8b5021629830c0adcf292836",
+      "source": "aikya-template/docs/game-development/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/README.md"
+    },
+    "docs/game-development/foundations/README.md": {
+      "upstream_sha256": "dc393a5aa8c83282d51507ac2c71d20b749f0573f2dd03aef44ab052480d8eaa",
+      "installed_sha256": "fdc834dd46fca939678a92ce5cf7e53389ab38d81d5c32caf38110613fad1bc1",
+      "source": "aikya-template/docs/game-development/foundations/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/foundations/README.md"
+    },
+    "docs/game-development/foundations/art-bible.md": {
+      "upstream_sha256": "63c4e90ce43f0a6d6c20c77d4929fd45bc47d5b6a8af1d2fa18b9938d3ed7180",
+      "installed_sha256": "17b1c6348c3d764804a2df3e6d8c3a83154261e361f0d432ee113cffac9ccdfa",
+      "source": "aikya-template/docs/game-development/foundations/art-bible.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/foundations/art-bible.md"
+    },
+    "docs/game-development/foundations/business-plan.md": {
+      "upstream_sha256": "aede08624dc5704e6c4a54bde69cbb2dc4ed5bf7ab55123150cc4883e092d3be",
+      "installed_sha256": "a59e44b09e1c83d1fbc2f516a215caac0f64be3e3e3d8943737f3ee9228bde74",
+      "source": "aikya-template/docs/game-development/foundations/business-plan.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/foundations/business-plan.md"
+    },
+    "docs/game-development/foundations/game-design-document.md": {
+      "upstream_sha256": "7ad98319b3c375268506bbe6529c893da7faea80dfade5d0dcf5002fa3c8f8c5",
+      "installed_sha256": "22f27baa8502a3ab8534a76ff768960b4ca77e7f1396b4d4ac8f6b34d15d2a6f",
+      "source": "aikya-template/docs/game-development/foundations/game-design-document.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/foundations/game-design-document.md"
+    },
+    "docs/game-development/live-operations/README.md": {
+      "upstream_sha256": "4ead967f5ab5037b92142a8edc6bc1b899c22606c1388a4438f1be4e8fbffff1",
+      "installed_sha256": "b70adf968a2ffd83fa7177c27f4cd63292cf3672b336f1615ca30de8b66e9fb5",
+      "source": "aikya-template/docs/game-development/live-operations/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/live-operations/README.md"
+    },
+    "docs/game-development/live-operations/age-rating-compliance-record.md": {
+      "upstream_sha256": "6fbe41af0e703522c3a4c7e4f45fe0f98b40f6dd830bf68ba4b025547ac910c8",
+      "installed_sha256": "98101f113cb706d19c51f79366833d14b405615eff4decc2c23532e28a593b4a",
+      "source": "aikya-template/docs/game-development/live-operations/age-rating-compliance-record.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/live-operations/age-rating-compliance-record.md"
+    },
+    "docs/game-development/live-operations/balance-log.md": {
+      "upstream_sha256": "6cb80c05f048f5b257cdd3c9713bf9b5b766624a25ab0ac3980ba6bb08184a60",
+      "installed_sha256": "df3e892dad626ebe7a0cf6cbaa6a5b0afe2ed8ac99d03a3092b48bc24547185e",
+      "source": "aikya-template/docs/game-development/live-operations/balance-log.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/live-operations/balance-log.md"
+    },
+    "docs/game-development/live-operations/deployment-plan.md": {
+      "upstream_sha256": "27c4762257b34dfa016f5f89a3df2e5fcb74d525dbad1deed6fca4581786a70a",
+      "installed_sha256": "846e71cbd1db4683ee727ea51a4c62c39e04a94646947314b3f253debedc15a1",
+      "source": "aikya-template/docs/game-development/live-operations/deployment-plan.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/live-operations/deployment-plan.md"
+    },
+    "docs/game-development/live-operations/live-ops-plan.md": {
+      "upstream_sha256": "4a59f5b2b0e7cd287c167b7faf49012e66123e95beb795c9a35348c5c019511c",
+      "installed_sha256": "8ca9f19147ca9523e2c9828793fcb15a87e955ff3e242956e593946f4c9ccf3b",
+      "source": "aikya-template/docs/game-development/live-operations/live-ops-plan.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/live-operations/live-ops-plan.md"
+    },
+    "docs/game-development/live-operations/privacy-ledger.md": {
+      "upstream_sha256": "abad250bfc1f9e8f1f5ca9765918c4b9c23b7115e39caf01a3a8116e4912362f",
+      "installed_sha256": "08b4b04c8aa7e8981f92e9ad6695428754d6c47048e34fdf4c23d19eedd9f5c6",
+      "source": "aikya-template/docs/game-development/live-operations/privacy-ledger.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/live-operations/privacy-ledger.md"
+    },
+    "docs/game-development/live-operations/release-notes.md": {
+      "upstream_sha256": "26f9fa2637565cee8a303b386b5e5d679d8ab0f94d7914629f8a61c201a09924",
+      "installed_sha256": "ed73747f67a45524b51dcba470bb2881231047423829970d8509c79f1aad98b5",
+      "source": "aikya-template/docs/game-development/live-operations/release-notes.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/live-operations/release-notes.md"
+    },
+    "docs/game-development/production/README.md": {
+      "upstream_sha256": "3c4c5c03523db3f15ba7194f50d90fb2c6d169ca66b499322bc2fc0e03c1522f",
+      "installed_sha256": "55ec3b321e7650dffbd7a64c2c241571c52fec0f5adbc4013a2d5e52c53f11be",
+      "source": "aikya-template/docs/game-development/production/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/production/README.md"
+    },
+    "docs/game-development/production/asset-and-contribution-log.md": {
+      "upstream_sha256": "ae27263e482f59b80a7eb0800d3e863d11d0465558bdab9ea8ea20689fb4a958",
+      "installed_sha256": "0f2f8e2c34ddcaf22bb554a651cefe1e49f6e0c4dc4eb8dec6495ddbad4ac2d0",
+      "source": "aikya-template/docs/game-development/production/asset-and-contribution-log.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/production/asset-and-contribution-log.md"
+    },
+    "docs/game-development/production/cycle-retrospective.md": {
+      "upstream_sha256": "24fb22443e4eb48edda427ed50c0cc228ace6c7c24d0779af81ebc0ef9a7e72c",
+      "installed_sha256": "6db36d1657f458159e93c052f53634802ba9c744bde0311c29f5f452ec1394ee",
+      "source": "aikya-template/docs/game-development/production/cycle-retrospective.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/production/cycle-retrospective.md"
+    },
+    "docs/general-swe/README.md": {
+      "upstream_sha256": "21a148ef2d479aa2de39e98102188cfeb5e8038875d6556cec309b7a0ff145f0",
+      "installed_sha256": "1264e1e440074880c44f07ee7b492e93f3650a92b406efe3dff59ed58e32455f",
+      "source": "aikya-template/docs/general-swe/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/README.md"
+    },
+    "docs/general-swe/agile-scrum/README.md": {
+      "upstream_sha256": "150ce8ccffb72722e34af039f7724018003c2e404fcb0243682ae695c86657aa",
+      "installed_sha256": "db1dd605e43b284aebcc2392bf801fd04f198fed066f307d171e68706c877d25",
+      "source": "aikya-template/docs/general-swe/agile-scrum/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/agile-scrum/README.md"
+    },
+    "docs/general-swe/agile-scrum/definition-of-done.md": {
+      "upstream_sha256": "c652763c0a1f370db361f455921c8ada67a731feab40462d4ed28f8dee840417",
+      "installed_sha256": "7eba51913e43d85b07db7051e12c644efaa2de221f0c76354cde96174d3d4e26",
+      "source": "aikya-template/docs/general-swe/agile-scrum/definition-of-done.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/agile-scrum/definition-of-done.md"
+    },
+    "docs/general-swe/agile-scrum/product-backlog-item.md": {
+      "upstream_sha256": "ca59941f74486368f7c54a6fe23f36a0a763edd26312f764ed66f9343fcd55f8",
+      "installed_sha256": "d5a447f248b90f5ccd2b416218e53cb4d8370518df15a63cb66be5fb15fbbc44",
+      "source": "aikya-template/docs/general-swe/agile-scrum/product-backlog-item.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/agile-scrum/product-backlog-item.md"
+    },
+    "docs/general-swe/agile-scrum/product-goal.md": {
+      "upstream_sha256": "3f063118c3f48a43686a5c814456a62a5256feba009c283023501610a1b9dafc",
+      "installed_sha256": "fdd9c1ca300357ff0c4450b90813966fe118e28ad92c7cb69199be6622c7f2b6",
+      "source": "aikya-template/docs/general-swe/agile-scrum/product-goal.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/agile-scrum/product-goal.md"
+    },
+    "docs/general-swe/agile-scrum/sprint-backlog.md": {
+      "upstream_sha256": "64c7323e69625a573d683b5d4e83dc27bb7f02a07a02a09a6f609c458c555195",
+      "installed_sha256": "1ec0e34d0e23634dc30fe63eeeb5d51835eaae3d55da790639d916ede9e98ee2",
+      "source": "aikya-template/docs/general-swe/agile-scrum/sprint-backlog.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/agile-scrum/sprint-backlog.md"
+    },
+    "docs/general-swe/agile-scrum/sprint-retrospective.md": {
+      "upstream_sha256": "9e65e3a4bb5b626dee70964430003e7d9f8fb39f7e87b4f4945946be4a2ea638",
+      "installed_sha256": "8dcf26606230f4a95be24bc87f99c91ba0a586f07d19445093b967aaf2334e0a",
+      "source": "aikya-template/docs/general-swe/agile-scrum/sprint-retrospective.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/agile-scrum/sprint-retrospective.md"
+    },
+    "docs/general-swe/agile-scrum/sprint-review-notes.md": {
+      "upstream_sha256": "5946d851f481473e03744752a9bffa0c11c2b8ee284de3cc6c86c1454ba6bce8",
+      "installed_sha256": "356000ee7d0cbb6ff79305d4ca6fdb794c9348e006b73da74509d113150d9047",
+      "source": "aikya-template/docs/general-swe/agile-scrum/sprint-review-notes.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/agile-scrum/sprint-review-notes.md"
+    },
+    "docs/general-swe/agile-scrum/team-working-agreement.md": {
+      "upstream_sha256": "9e19b910ce577530021c6d3edf153af1d377cc7b9bb56e2edcbaa7a4a15617d2",
+      "installed_sha256": "1fc22126c55887e36d104d62716e2a0c02809516b3daedddc2422df8adb41cb5",
+      "source": "aikya-template/docs/general-swe/agile-scrum/team-working-agreement.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/agile-scrum/team-working-agreement.md"
+    },
+    "docs/general-swe/foundations/README.md": {
+      "upstream_sha256": "4b9a7cdd7e7e5d20f1c5f0b3d945bcc22ca84efee7a97f449f4872b34bbca99b",
+      "installed_sha256": "6fd6dc714b652300d4087241fa3b89d592e4649d1292948de6dfb60093170202",
+      "source": "aikya-template/docs/general-swe/foundations/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/README.md"
+    },
+    "docs/general-swe/foundations/architecture-decision-record.md": {
+      "upstream_sha256": "d4658d0c454d00f5fcb9e38b18064cf046489f45e443cca61ccf52443fea520a",
+      "installed_sha256": "c9fde39d5b8999854e9a2737978daccbb6e07a07dc96d15cadf9e87510a21e7e",
+      "source": "aikya-template/docs/general-swe/foundations/architecture-decision-record.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/architecture-decision-record.md"
+    },
+    "docs/general-swe/foundations/architecture-overview.md": {
+      "upstream_sha256": "a62353e98edb307ea9ff1d51d58b0676ac5b5b1dbcebe78f672c5d5f077e097b",
+      "installed_sha256": "e3f30e6ee6ef19c64a8016e524569f385c24e79bac5943b843526277541410fa",
+      "source": "aikya-template/docs/general-swe/foundations/architecture-overview.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/architecture-overview.md"
+    },
+    "docs/general-swe/foundations/branching-strategy.md": {
+      "upstream_sha256": "98f16f24c7a06f9aa4f0bf969aa975fa8e666e7e94dc43f66fb37417779f1bb2",
+      "installed_sha256": "18f16afcca33861409d078d6c72cdef4a10256af852a694df68b9ca805d41719",
+      "source": "aikya-template/docs/general-swe/foundations/branching-strategy.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/branching-strategy.md"
+    },
+    "docs/general-swe/foundations/bug-report.md": {
+      "upstream_sha256": "ea22e9eac3e60a349b069dffda5361b70e764297a7796b8f2fa23c1965087d4f",
+      "installed_sha256": "5b03660db55f7121e6c66e37dd0664d70bd1829e3da20328578ff903edc21f98",
+      "source": "aikya-template/docs/general-swe/foundations/bug-report.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/bug-report.md"
+    },
+    "docs/general-swe/foundations/changelog.md": {
+      "upstream_sha256": "418c2aeb77177852dcde9cf5dd14f8f1d195b0dd0f40ee1667e99139ef8ca383",
+      "installed_sha256": "7b177dfc8608a57476d4f29f3b464098e77c4874716b8988e82452785ea56f43",
+      "source": "aikya-template/docs/general-swe/foundations/changelog.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/changelog.md"
+    },
+    "docs/general-swe/foundations/code-review-guidelines.md": {
+      "upstream_sha256": "40505718097c6301d634ac87773d6f1dd58eceacaf74b8b4877f9a1c1c511a46",
+      "installed_sha256": "75b354f601b9db831e92d851340e23fea4971e589cb7d88c7174f77551b48237",
+      "source": "aikya-template/docs/general-swe/foundations/code-review-guidelines.md",
+      "modification": "Aikya footer and trailing whitespace normalization",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/code-review-guidelines.md"
+    },
+    "docs/general-swe/foundations/coding-standards.md": {
+      "upstream_sha256": "205ab695702289e8bbb1d017bc023ec3f55d2716554f732b96d38f03ac3c5ddf",
+      "installed_sha256": "9d1f4ebf6b454ffaab6e2f70f58700c9f283be3bde13277173e10af4ab98abe5",
+      "source": "aikya-template/docs/general-swe/foundations/coding-standards.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/coding-standards.md"
+    },
+    "docs/general-swe/foundations/configuration-management-plan.md": {
+      "upstream_sha256": "32aed9d4401bb7c18f6f83876bac7400007bc4310e6656b94a835c25e3ef870f",
+      "installed_sha256": "3940bb14ecada969a3e808409abeb927480fedb4ec55a6843a1e5d098000d866",
+      "source": "aikya-template/docs/general-swe/foundations/configuration-management-plan.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/configuration-management-plan.md"
+    },
+    "docs/general-swe/foundations/contributing-guide.md": {
+      "upstream_sha256": "1b9899e2a1b7d592dff3bacbc24f78b884ca1d8bba4715894c2c96d2f47c5bf9",
+      "installed_sha256": "f6ebafdad74f5178ac86e33e665852218905f9c3d08101f93d4d4e51673d6785",
+      "source": "aikya-template/docs/general-swe/foundations/contributing-guide.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/contributing-guide.md"
+    },
+    "docs/general-swe/foundations/data-model.md": {
+      "upstream_sha256": "a8797a3aa16c4a588afb6d803a3f270f540b1f0df8d50410873cbb70a2a6de03",
+      "installed_sha256": "f3533ac558e3573b5d32dc8bc17089354aee31528333e845afd40a4064adcaa9",
+      "source": "aikya-template/docs/general-swe/foundations/data-model.md",
+      "modification": "Aikya footer and trailing whitespace normalization",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/data-model.md"
+    },
+    "docs/general-swe/foundations/deployment-plan.md": {
+      "upstream_sha256": "65ecba0eaba6904442c5729ee60ea0107e6305927945924e6d004c9a4ac1c6e3",
+      "installed_sha256": "cfb68ef7533ff242a63dc81d53d653067e5933398bfcdd0048c7515706a47317",
+      "source": "aikya-template/docs/general-swe/foundations/deployment-plan.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/deployment-plan.md"
+    },
+    "docs/general-swe/foundations/deprecation-plan.md": {
+      "upstream_sha256": "bbacd145eb8b17cfb02d6c4f2ba809e441552d1cf303812de0355178b0717389",
+      "installed_sha256": "643f4cb6d3f5ab1ae4d552395ec752a2b14b5547a43d99ed59a1a50dd3abd68d",
+      "source": "aikya-template/docs/general-swe/foundations/deprecation-plan.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/deprecation-plan.md"
+    },
+    "docs/general-swe/foundations/feature-request.md": {
+      "upstream_sha256": "52380c414070d4042f34214f49cd4b132301fad07124fd8892c2d3090f00dd3b",
+      "installed_sha256": "e4760471ff4370d737a34bf4b31943588b7be2e36ec3304bd2083f82c43c6255",
+      "source": "aikya-template/docs/general-swe/foundations/feature-request.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/feature-request.md"
+    },
+    "docs/general-swe/foundations/glossary.md": {
+      "upstream_sha256": "d5e9fceef288520ce38d59935c7984036b2db38b34ad4966072d3bb44b7c08c0",
+      "installed_sha256": "201ffb763f827d39d9b02d2780ff21b861261d40c9844070f038c809cd12814b",
+      "source": "aikya-template/docs/general-swe/foundations/glossary.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/glossary.md"
+    },
+    "docs/general-swe/foundations/governance.md": {
+      "upstream_sha256": "178793e67eea09c5b24cacbc4d2954f66ca48bea1a649dcd47d0a5cb4fb11bfe",
+      "installed_sha256": "6c13a4076dc03cc26f219e17041732018592aa10d4b784fa9e5286641b707746",
+      "source": "aikya-template/docs/general-swe/foundations/governance.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/governance.md"
+    },
+    "docs/general-swe/foundations/incident-postmortem.md": {
+      "upstream_sha256": "c8f08874fde31d7bcb80f423ea366d964b2f9323738317b3c498d07fab400c2c",
+      "installed_sha256": "ae03464b3659fa3ea2bd82788d63b5d01aafa247e57afbf8ebb8c00a5d3e92b7",
+      "source": "aikya-template/docs/general-swe/foundations/incident-postmortem.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/incident-postmortem.md"
+    },
+    "docs/general-swe/foundations/interface-control-document.md": {
+      "upstream_sha256": "617727b2c9291a4523935dec3888a1fb077e0646ceb7b01bd8dd9becc0b3139c",
+      "installed_sha256": "27679f7bd121a67f23e4eabe57cd9303c8078b31a4bfe27d94d83eff14361571",
+      "source": "aikya-template/docs/general-swe/foundations/interface-control-document.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/interface-control-document.md"
+    },
+    "docs/general-swe/foundations/onboarding-guide.md": {
+      "upstream_sha256": "172ef0de93f58762703358fd2791102c8c0fcf6dda72f123cfd6a67f9882ff85",
+      "installed_sha256": "d62c246b4d271aea379688607f16f6bca7d6510db249273445ee760ebbe904fe",
+      "source": "aikya-template/docs/general-swe/foundations/onboarding-guide.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/onboarding-guide.md"
+    },
+    "docs/general-swe/foundations/pull-request-template.md": {
+      "upstream_sha256": "75b26388b6b7afdd19d4131a210d3e21aa784fd7764249f8b6f5b776f230e4da",
+      "installed_sha256": "3753835f59704d9c2cc5bb7739c27c90c5e49bc0e941867ec58ce01c223e6bf6",
+      "source": "aikya-template/docs/general-swe/foundations/pull-request-template.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/pull-request-template.md"
+    },
+    "docs/general-swe/foundations/release-notes.md": {
+      "upstream_sha256": "1494c6bafd4623d4690b77d20091734410da344b098510318a49aa20c343f641",
+      "installed_sha256": "f6c6615a2c1b5058956768d6cde88c7239354fee11b6e2153768067d7503c990",
+      "source": "aikya-template/docs/general-swe/foundations/release-notes.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/release-notes.md"
+    },
+    "docs/general-swe/foundations/rfc.md": {
+      "upstream_sha256": "02644a13567d58912968dc7f6024eef94daf3ce2cf1fec34871e6b75594c8474",
+      "installed_sha256": "dd3eabc6d553484a8e25fabdb3a470f774d5da841cd7b87819958fcd91786aeb",
+      "source": "aikya-template/docs/general-swe/foundations/rfc.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/rfc.md"
+    },
+    "docs/general-swe/foundations/runbook.md": {
+      "upstream_sha256": "9d56e523a797b28aa16c0257540b533a2ad044df18946c39d8a715e7a839ca65",
+      "installed_sha256": "b31308932eb04edac91fe17572d49e3092af8de17f1e9f52b434c3e8b15ff7d8",
+      "source": "aikya-template/docs/general-swe/foundations/runbook.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/runbook.md"
+    },
+    "docs/general-swe/foundations/security.md": {
+      "upstream_sha256": "00f670caa1153dccde25466ca15d6332d0affb4a0c3a744c9f85c54b73cb8038",
+      "installed_sha256": "0a3e1f795ecdc4ec562175654b2261b0f71caa2e3f30da249ecd99caf7f1ce5c",
+      "source": "aikya-template/docs/general-swe/foundations/security.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/security.md"
+    },
+    "docs/general-swe/foundations/service-readme.md": {
+      "upstream_sha256": "27cdce04e36441d214fad5403ccf39e8ade0aa48864eb0b621f51aa65e64b474",
+      "installed_sha256": "e3ad780796aa9f12c746ad72e2bac69f80e7bdef458d0beafc0c126340c5c764",
+      "source": "aikya-template/docs/general-swe/foundations/service-readme.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/service-readme.md"
+    },
+    "docs/general-swe/foundations/support.md": {
+      "upstream_sha256": "17a289713d648a346f81acb2443cf3c53406ab4ab42828d8076877c2a6d1e498",
+      "installed_sha256": "72a322590fe7354bd54f6ffd5ab49f951557916d3b924cc423a489bf6030cc0e",
+      "source": "aikya-template/docs/general-swe/foundations/support.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/support.md"
+    },
+    "docs/general-swe/foundations/technical-design-document.md": {
+      "upstream_sha256": "d94964b7f3b9f5c13b6da967d71a615138b869dde81891e1f4313a626165a7ae",
+      "installed_sha256": "0d9c8d0732ae7e8fc2d74ba3833da91c203504675848b05f6a5afbfa74625cf1",
+      "source": "aikya-template/docs/general-swe/foundations/technical-design-document.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/technical-design-document.md"
+    },
+    "docs/general-swe/foundations/test-case-specification.md": {
+      "upstream_sha256": "dc96933986be69f153ed5a1369683ff9fdb30c77fdec422e8db90db24564c008",
+      "installed_sha256": "653863ed295bc359f3b92ad3f80fee2f9861d2789d4373d65eff4e5cd675ed1b",
+      "source": "aikya-template/docs/general-swe/foundations/test-case-specification.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/test-case-specification.md"
+    },
+    "docs/general-swe/foundations/test-strategy.md": {
+      "upstream_sha256": "8acb943f9ec4ded7be949fac641b51b195c19ce0a8923f9d532583973a862f33",
+      "installed_sha256": "2f2ff92b5c6793bdb8512c5cdd5993a720bf7cd4211727fcb58db61ebe4e6793",
+      "source": "aikya-template/docs/general-swe/foundations/test-strategy.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/test-strategy.md"
+    },
+    "docs/general-swe/foundations/test-summary-report.md": {
+      "upstream_sha256": "ab825f986ead259822df0683fdc2334c530f9de77d135604e7dc6164fdbc0bb9",
+      "installed_sha256": "a796696370ff3e1a3125d1e2ab5652767963130a7d82d5a1630cff7f60a092e1",
+      "source": "aikya-template/docs/general-swe/foundations/test-summary-report.md",
+      "modification": "Aikya footer and trailing whitespace normalization",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/test-summary-report.md"
+    },
+    "docs/general-swe/foundations/threat-model.md": {
+      "upstream_sha256": "2d418dcd72432bfdcd9ea165aa45914a8552dcef3361f5f75eb2da63777f6310",
+      "installed_sha256": "fc8a71e5f1076d39297204cd3a6be50d7953adaf3335f5b75bd2d300e24091ae",
+      "source": "aikya-template/docs/general-swe/foundations/threat-model.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/threat-model.md"
+    },
+    "docs/general-swe/kanban/README.md": {
+      "upstream_sha256": "e9673ac852618d20670e234203614205e5d5990633534de9c1f9fb0e9c1cf494",
+      "installed_sha256": "06179bb4c5760b5a45511651342abc4596ae195e3b6a584b58e43c1d49e2a715",
+      "source": "aikya-template/docs/general-swe/kanban/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/kanban/README.md"
+    },
+    "docs/general-swe/kanban/blocker-log.md": {
+      "upstream_sha256": "fa35767ab8a1b70552e78a289dd8423726f2d4153a6950137b62443b7d198941",
+      "installed_sha256": "bdf4eb72a967cbb7a4f47031042fc4f2990879450eeb41515ef5f24387ab60a9",
+      "source": "aikya-template/docs/general-swe/kanban/blocker-log.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/kanban/blocker-log.md"
+    },
+    "docs/general-swe/kanban/definition-of-workflow.md": {
+      "upstream_sha256": "4dd04be8eb2563b2b6c055d5787b8e752ff013d4987fe5dc546ee1092c179bf9",
+      "installed_sha256": "f9ff7b9bfcf88a553aa80872f85d63cb7a5bf22f4e21c002ad8fa68b7c5b2571",
+      "source": "aikya-template/docs/general-swe/kanban/definition-of-workflow.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/kanban/definition-of-workflow.md"
+    },
+    "docs/general-swe/kanban/flow-review.md": {
+      "upstream_sha256": "f79e0beb65a04d5061ef5d4bd0f11f51424ff49f50115a042bb221610e7fc7ff",
+      "installed_sha256": "c91415bd44a9c7a47e9c0db4a9ee9a15a590166d704a86ee7c57f3e16469ce03",
+      "source": "aikya-template/docs/general-swe/kanban/flow-review.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/kanban/flow-review.md"
+    },
+    "docs/general-swe/kanban/kanban-system-design.md": {
+      "upstream_sha256": "a72a891b19ac9d6e927986129ac9a9d78432366de0abb52d38e151130673b85c",
+      "installed_sha256": "2578360875551e51a173c5be25e33bd7af89ba716a0c73aadca5a1afde0d5a14",
+      "source": "aikya-template/docs/general-swe/kanban/kanban-system-design.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/kanban/kanban-system-design.md"
+    },
+    "docs/general-swe/kanban/work-item-types.md": {
+      "upstream_sha256": "0520ebff193e4c483bd365b09fadab5ccd58bc7d80a35f24df070c2e70d29623",
+      "installed_sha256": "4068e19705aba6c574db638b307cee0d108e1a14d3151810c72d81b861aafed1",
+      "source": "aikya-template/docs/general-swe/kanban/work-item-types.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/kanban/work-item-types.md"
+    },
+    "docs/general-swe/lean/README.md": {
+      "upstream_sha256": "f94fb6e11117ff4fd706a7b99b280bb56dc7229e717ee1f005780898a5101b89",
+      "installed_sha256": "45e0d5185072282a8e30a303af71967b5fda564932b5c3f5d295abad09eb6348",
+      "source": "aikya-template/docs/general-swe/lean/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/lean/README.md"
+    },
+    "docs/general-swe/lean/a3.md": {
+      "upstream_sha256": "e28dffd52659e236dbebeb2a9f977a9a9f494452f9d0b18048c291e4b6912856",
+      "installed_sha256": "572be90b74f6e2655c069616bca0e7105bbb34c9735604be980040aa8f38b3ec",
+      "source": "aikya-template/docs/general-swe/lean/a3.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/lean/a3.md"
+    },
+    "docs/general-swe/lean/experiment-record.md": {
+      "upstream_sha256": "03e1e43bd56b60889993af394a5ade44d8e0c2c04456f70dbcf0bfe7e95933cb",
+      "installed_sha256": "b01b512d200b97001ed28a201c6a509b26ce5b8c1b94b43d4bbe32229b85ea9c",
+      "source": "aikya-template/docs/general-swe/lean/experiment-record.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/lean/experiment-record.md"
+    },
+    "docs/general-swe/lean/improvement-kata.md": {
+      "upstream_sha256": "aedb7b5b6e85b34f41abbbf1d13d3b7dd4af7b7bb9a3aebcda9008279660a583",
+      "installed_sha256": "eceb3c5dabeac7b06f627ec1d4ce9e9720a9962e3e01974b873e047feb79802b",
+      "source": "aikya-template/docs/general-swe/lean/improvement-kata.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/lean/improvement-kata.md"
+    },
+    "docs/general-swe/lean/value-stream-map.md": {
+      "upstream_sha256": "57fa1be412688b700c757fc0aa224284b35f74379e82f345fa43f21fe281c466",
+      "installed_sha256": "c6178a47cb3104d163ad1ae080234dae328e0413585de3c04556516e6f4cc74c",
+      "source": "aikya-template/docs/general-swe/lean/value-stream-map.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/lean/value-stream-map.md"
+    },
+    "docs/general-swe/project-management/README.md": {
+      "upstream_sha256": "cd78494a10c0f189b65a57ef6902f622cedb7f4c570f0e7be5c62dc55dbe7e50",
+      "installed_sha256": "30d9c3ad1c4c471135251fced3a3ada376998f6afa24953d8c2ca399a56ed6de",
+      "source": "aikya-template/docs/general-swe/project-management/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/project-management/README.md"
+    },
+    "docs/general-swe/project-management/project-brief.md": {
+      "upstream_sha256": "5620ddaa7a32648b021dd77989fd43b85cb5bbdbd85d434866ab17ea703979d4",
+      "installed_sha256": "8b022911139ed98bf595d159c44d447e60b0f8b2776dc305ad066ec1915e11ee",
+      "source": "aikya-template/docs/general-swe/project-management/project-brief.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/project-management/project-brief.md"
+    },
+    "docs/general-swe/project-management/project-charter.md": {
+      "upstream_sha256": "86b8204ebd0551995f9a9694d6d5105ff533206bd178ee8c13d403aba0858ef3",
+      "installed_sha256": "224ffd80cb53a01f1048c5dcbfd8f59ee2df70b06f1c091584a740ff5a54a1fb",
+      "source": "aikya-template/docs/general-swe/project-management/project-charter.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/project-management/project-charter.md"
+    },
+    "docs/general-swe/project-management/risk-register.md": {
+      "upstream_sha256": "d535491a38dc4dd36b6d7abdaf37d4a2c143e2a05bd7dabb447559ed4167fa1b",
+      "installed_sha256": "379f0c869774e57be0864e340a45f3dba128c43a32af2a71bd5a6d43d66bff50",
+      "source": "aikya-template/docs/general-swe/project-management/risk-register.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/project-management/risk-register.md"
+    },
+    "docs/general-swe/project-management/stakeholder-register.md": {
+      "upstream_sha256": "133a13ead6cbef9dfb4638043074655a90a52dde43e595000772a270174bc941",
+      "installed_sha256": "d87ea5170a5a853e7888f1d6fd8c845d99558bf41d620c124a535e63d48c8678",
+      "source": "aikya-template/docs/general-swe/project-management/stakeholder-register.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/project-management/stakeholder-register.md"
+    },
+    "docs/general-swe/requirements/README.md": {
+      "upstream_sha256": "a33eab6dda73c088f5d2dedb83be6a6de8485b0ccffa2036aade2761b5b6e4eb",
+      "installed_sha256": "c26945cea71753a76a8b57b4ef15f69e89a18a804edf0f1d52b1a9872aa99185",
+      "source": "aikya-template/docs/general-swe/requirements/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/requirements/README.md"
+    },
+    "docs/general-swe/requirements/non-functional-requirements.md": {
+      "upstream_sha256": "9df6ba5489b08f1cdd5b4c03f0de408e60d93f1cea04a32f20739f27c7a897a5",
+      "installed_sha256": "055a434cbd1c222939ff77f815a615514a39bca7d22d38f10a3af0931e94beb7",
+      "source": "aikya-template/docs/general-swe/requirements/non-functional-requirements.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/requirements/non-functional-requirements.md"
+    },
+    "docs/general-swe/requirements/product-requirements-document.md": {
+      "upstream_sha256": "e16b7d134c195b47473d6f0a5f8fbd108032f62cf8752a41d1d008245c5fed31",
+      "installed_sha256": "0d5ab6bb13408d02ff34066c32e8d5867bfbb18bad699b31f9aefcccbb0dc967",
+      "source": "aikya-template/docs/general-swe/requirements/product-requirements-document.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/requirements/product-requirements-document.md"
+    },
+    "docs/general-swe/requirements/use-case-specification.md": {
+      "upstream_sha256": "18c4256a6439c24f0944d0878d5dc1fb2cf71de34d5ed621749f281a0b5a6a7e",
+      "installed_sha256": "2d407248c50bb17e1e9f8f63eaad2a36f548b1b3f302382f9d9b3bb1678afaed",
+      "source": "aikya-template/docs/general-swe/requirements/use-case-specification.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/requirements/use-case-specification.md"
+    },
+    "docs/general-swe/requirements/vision-and-scope.md": {
+      "upstream_sha256": "6243a288fa70c51881eb45978f5572a02f08d624294042a8f5c4068da8bc85a8",
+      "installed_sha256": "0ab9b5eb51d5c7522ab522cf0348c39ad30574ae57edaaed9b1bf74428caec30",
+      "source": "aikya-template/docs/general-swe/requirements/vision-and-scope.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/requirements/vision-and-scope.md"
+    },
+    "docs/general-swe/security-and-compliance/README.md": {
+      "upstream_sha256": "16a4e2c78497021a5eb91aa044269ed7d156a541d8f50e2f25716d32d00151a2",
+      "installed_sha256": "72516fc06399746a43f5bd9f572d2527b30de7a72af4f4871affa814e5eea819",
+      "source": "aikya-template/docs/general-swe/security-and-compliance/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/security-and-compliance/README.md"
+    },
+    "docs/general-swe/security-and-compliance/data-protection-impact-assessment.md": {
+      "upstream_sha256": "9830a87d193a4c21dae91890db4f886cfdf77b2e7609810625cc8a7a28110072",
+      "installed_sha256": "165e9fa29118b29d064d8b5a42e7ef4f530d694e092cabf8d9a8f857a44b92ad",
+      "source": "aikya-template/docs/general-swe/security-and-compliance/data-protection-impact-assessment.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/security-and-compliance/data-protection-impact-assessment.md"
+    },
+    "docs/general-swe/security-and-compliance/data-retention-policy.md": {
+      "upstream_sha256": "747ef89900fa0f2d3b1da1b59907f7cd885b9b55511d1c1467ad6de87a529743",
+      "installed_sha256": "af765aa2cdc84ddaae27e8f6db7d89d7f1f6179599520d1f148995fa7a56d992",
+      "source": "aikya-template/docs/general-swe/security-and-compliance/data-retention-policy.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/security-and-compliance/data-retention-policy.md"
+    },
+    "docs/general-swe/security-and-compliance/incident-response-plan.md": {
+      "upstream_sha256": "62015cb4d51c8542ebe3613d89a84d73ed0227f4a26dd72f3dd225f85b08b3c1",
+      "installed_sha256": "128a3559d864b71cbadf6e1972fb99bfb1d45d810a5b1de048c948b142b476fd",
+      "source": "aikya-template/docs/general-swe/security-and-compliance/incident-response-plan.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/security-and-compliance/incident-response-plan.md"
+    },
+    "docs/general-swe/security-and-compliance/record-of-processing-activities.md": {
+      "upstream_sha256": "f89fe164af0cfa21d148959e406ab45f1fca14d8bc68ea3016257d70d2b06053",
+      "installed_sha256": "e5820e5d8a452de31b2b4974fe54c50f1a454f5ae6f772573a5e0d734c9bc38a",
+      "source": "aikya-template/docs/general-swe/security-and-compliance/record-of-processing-activities.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/security-and-compliance/record-of-processing-activities.md"
+    },
+    "docs/general-swe/security-and-compliance/security-review-checklist.md": {
+      "upstream_sha256": "8a456fc36a2d2f2941bc3437ae8e1823943616614ed0ae019f9782ce7846b5b1",
+      "installed_sha256": "b6ff2e0b315eacc8d429755ad1712526f8200cd36c197f10519814e549fe1621",
+      "source": "aikya-template/docs/general-swe/security-and-compliance/security-review-checklist.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/security-and-compliance/security-review-checklist.md"
+    },
+    "docs/general-swe/shape-up/README.md": {
+      "upstream_sha256": "e0c31f6541f1b66ae0d07813a1355a1042b13c42134f60ace64da4d38c1198f5",
+      "installed_sha256": "6f72dbf9cdedf0534b2fe48b892a3c9107a6674be1416365cbc2049329f41ae5",
+      "source": "aikya-template/docs/general-swe/shape-up/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/shape-up/README.md"
+    },
+    "docs/general-swe/shape-up/cool-down-guide.md": {
+      "upstream_sha256": "244b6afa6de1d5e877234fbb36e4d5704dd77237bd4550e2a6c5be9aa8fcd390",
+      "installed_sha256": "e9d84303f3348284bb34bda0b36a29ac6193849f0696c75b33758d3b012e6908",
+      "source": "aikya-template/docs/general-swe/shape-up/cool-down-guide.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/shape-up/cool-down-guide.md"
+    },
+    "docs/general-swe/shape-up/kick-off-message.md": {
+      "upstream_sha256": "8b709a543871ee0fb20006062d88264ab1cc3bcdb068b455fa33ea8ebebbef95",
+      "installed_sha256": "b2f17eed4571a3a9de2da17f5b9798b76c5c95f5efce980c5a7b895b53cf5974",
+      "source": "aikya-template/docs/general-swe/shape-up/kick-off-message.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/shape-up/kick-off-message.md"
+    },
+    "docs/general-swe/shape-up/pitch.md": {
+      "upstream_sha256": "7d672b79cdeb4f0f977271c741d96e001626141bfe5451dccb42e7b3d4fcd376",
+      "installed_sha256": "466809eb4c82281cd85bc0ca2143f58c8f47eb80ad27a41d7d39fb3c9fdc29e7",
+      "source": "aikya-template/docs/general-swe/shape-up/pitch.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/shape-up/pitch.md"
+    },
+    "docs/general-swe/shape-up/scope-map.md": {
+      "upstream_sha256": "7fbbf2c378542f639806a9615d6c86a95c944f55818777276147112f81fbb3b2",
+      "installed_sha256": "4577ce21fb9d87630b260cb3fa2bebbe739db18773302e151c805b41f8e22c0a",
+      "source": "aikya-template/docs/general-swe/shape-up/scope-map.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/shape-up/scope-map.md"
+    },
+    "docs/general-swe/user-documentation/README.md": {
+      "upstream_sha256": "91625364de0c4b943b99a59bce7b9a32aa50ce510fc6b250eb6a374097fb0ad5",
+      "installed_sha256": "d69101933a7fe34231db6ac3b32280153540217bcf18e52a62541fcbbdc1ac36",
+      "source": "aikya-template/docs/general-swe/user-documentation/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/user-documentation/README.md"
+    },
+    "docs/general-swe/user-documentation/documentation-style-guide.md": {
+      "upstream_sha256": "6eebc088f1e5e6b1553798a24692f755e77af299cc9b51be14de7d802b97b880",
+      "installed_sha256": "dc27a7578798d32de2c99468632a8c4d17a4b163ca288852de06cbc084095fd9",
+      "source": "aikya-template/docs/general-swe/user-documentation/documentation-style-guide.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/user-documentation/documentation-style-guide.md"
+    },
+    "docs/general-swe/user-documentation/explanation.md": {
+      "upstream_sha256": "b346e291586bb35e973aafb75915d76c4465a5fbde2415009254d30bf652fe31",
+      "installed_sha256": "dbdb9e063b34d8508bd26c61369cb67539daca0eeda468660e877f2f46c53cd8",
+      "source": "aikya-template/docs/general-swe/user-documentation/explanation.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/user-documentation/explanation.md"
+    },
+    "docs/general-swe/user-documentation/how-to-guide.md": {
+      "upstream_sha256": "1e5538c897928ca8c61a75c65dbf106c0ab01f29443a38f94ecc118d1da522b1",
+      "installed_sha256": "bb9fdcaded1f8df8b9fd002fbd2f667d1c4bf49c41a8daa875552c4314a65a2a",
+      "source": "aikya-template/docs/general-swe/user-documentation/how-to-guide.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/user-documentation/how-to-guide.md"
+    },
+    "docs/general-swe/user-documentation/installation-guide.md": {
+      "upstream_sha256": "05b017cb5449ccb45f4c0de8d485a9522053e82b1187ea9936cd36a046af8b83",
+      "installed_sha256": "fbb14a66325d8d2095b4bd16f86df0bb583b464fd5bbdb7d1b685df18b5966d7",
+      "source": "aikya-template/docs/general-swe/user-documentation/installation-guide.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/user-documentation/installation-guide.md"
+    },
+    "docs/general-swe/user-documentation/reference-page.md": {
+      "upstream_sha256": "4b18d2208c98e2aea49e2100fa67bd6335489aa1c0b531042abcdb0d007403c9",
+      "installed_sha256": "9a12807f288182bce0a48339fc5d9a526d02acbcad5ec7a74eb187190e4a6514",
+      "source": "aikya-template/docs/general-swe/user-documentation/reference-page.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/user-documentation/reference-page.md"
+    },
+    "docs/general-swe/user-documentation/troubleshooting-guide.md": {
+      "upstream_sha256": "a96f3b11b078b290b9191cea9af7b7b186b29867275e3cc9cc051cae661dc9b1",
+      "installed_sha256": "cf1063251d0a3b2901ee2a0f98d94f641aa9f100578ebe92247b05ec916e3789",
+      "source": "aikya-template/docs/general-swe/user-documentation/troubleshooting-guide.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/user-documentation/troubleshooting-guide.md"
+    },
+    "docs/general-swe/user-documentation/tutorial.md": {
+      "upstream_sha256": "7e063ab4e75ec76f675143d9dd72c4bb854ff44fafc9fad62244d7c8f9e97e23",
+      "installed_sha256": "4561baecf89a3adbb9ce0dc9fef1877985b09b44512079109b43986355c99f29",
+      "source": "aikya-template/docs/general-swe/user-documentation/tutorial.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/user-documentation/tutorial.md"
+    },
+    "docs/general-swe/waterfall/README.md": {
+      "upstream_sha256": "d717805252f6cff011cfa308143f1c95e1e215e7a5af64aa20724cc036b3f189",
+      "installed_sha256": "e1252899c66abdbcc61702a5f415424c9bb2a82dc0faf4ab6a8b3249ed7c7c85",
+      "source": "aikya-template/docs/general-swe/waterfall/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/waterfall/README.md"
+    },
+    "docs/general-swe/waterfall/change-request.md": {
+      "upstream_sha256": "53495005b37cde0fc061682e0714b664c94be39c3dd774536a53f56e7da29b46",
+      "installed_sha256": "54bd892e571b5d548dd8e5dc930aaa259fa4809eaf228491e069cfab42cde7ab",
+      "source": "aikya-template/docs/general-swe/waterfall/change-request.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/waterfall/change-request.md"
+    },
+    "docs/general-swe/waterfall/master-test-plan.md": {
+      "upstream_sha256": "6a17e55a4008660bf52a6958d5099c950bf2dcf3ca5c97e6aca6db048018f448",
+      "installed_sha256": "9168038946f2467f16d6c06194233794ca28500cdd416172875927dfb47d8860",
+      "source": "aikya-template/docs/general-swe/waterfall/master-test-plan.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/waterfall/master-test-plan.md"
+    },
+    "docs/general-swe/waterfall/phase-gate-review.md": {
+      "upstream_sha256": "2398e552250cd77211cda979d3938768dfe72496764b12e2ae2395e69837e5b4",
+      "installed_sha256": "fb7e2ac015df62d02f80f18692c2d6105df6f917ef53e5df72e56831d35791d6",
+      "source": "aikya-template/docs/general-swe/waterfall/phase-gate-review.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/waterfall/phase-gate-review.md"
+    },
+    "docs/general-swe/waterfall/requirements-traceability-matrix.md": {
+      "upstream_sha256": "f16a953c292a15cecbccf55cc794965cc9a3ca398ffed99e16b08c21546715df",
+      "installed_sha256": "c68d1cfc6f220c758f442351eb2e3a45f5b53b5fd970fecdebf441481c660f84",
+      "source": "aikya-template/docs/general-swe/waterfall/requirements-traceability-matrix.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/waterfall/requirements-traceability-matrix.md"
+    },
+    "docs/general-swe/waterfall/software-design-description.md": {
+      "upstream_sha256": "550ccecdf2a313be5266704c9009804fce8e62004ccfe6001eb1e6bf52dd9266",
+      "installed_sha256": "3fb66d93f9aae54a42bac0247e600f74ef7fba4217bfdcb13294da69e7f7e5e8",
+      "source": "aikya-template/docs/general-swe/waterfall/software-design-description.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/waterfall/software-design-description.md"
+    },
+    "docs/general-swe/waterfall/software-requirements-specification.md": {
+      "upstream_sha256": "a3f824c5de2a185b6e2693360a3bdd9d3da0a04b10b6d44b7ded2031ce3828fa",
+      "installed_sha256": "af6606aebb091ba409c2d0b26bfa89673bc1c205d8ce7a17fd71899dc8adb4f5",
+      "source": "aikya-template/docs/general-swe/waterfall/software-requirements-specification.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/waterfall/software-requirements-specification.md"
+    },
+    "docs/general-swe/waterfall/user-acceptance-test-plan.md": {
+      "upstream_sha256": "3a1fdef1987a16bb8b52cf16d2cf4db5831d11c8a28f3ad933dd56bbd85df4f0",
+      "installed_sha256": "536c15beb56fc051a9898343639c24ad35dfe6e8cf1d5577349464bb0f22fc80",
+      "source": "aikya-template/docs/general-swe/waterfall/user-acceptance-test-plan.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/waterfall/user-acceptance-test-plan.md"
+    },
+    "docs/platform-engineering/README.md": {
+      "upstream_sha256": "0c2383595e6116b9f7328973144ea85672a50cf40844ad2d9b3a2098492d5688",
+      "installed_sha256": "35ca43ec53cad36bae39b4b940de8ad6bf500cc30aa4b617d31d82e6cb6e7692",
+      "source": "aikya-template/docs/platform-engineering/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/platform-engineering/README.md"
+    },
+    "docs/platform-engineering/foundations/README.md": {
+      "upstream_sha256": "30a3bf5fdbe46de85acdbb922c0e529be5af504d93dca2051397417c33eb1b55",
+      "installed_sha256": "ef0963bf5680620b09b9159126ef3757f5350e303fc1ab8347b4f5dcad1647c8",
+      "source": "aikya-template/docs/platform-engineering/foundations/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/platform-engineering/foundations/README.md"
+    },
+    "docs/platform-engineering/foundations/platform-onboarding-guide.md": {
+      "upstream_sha256": "d1f1830b79ad5a353575a9c46dd25fbbe0b8d20bc2fbd3d969b8e59372f2e700",
+      "installed_sha256": "bd3b6708ced6e131d385a9497fcb9eb567ff6a4ac1319b40737abb8a216d4281",
+      "source": "aikya-template/docs/platform-engineering/foundations/platform-onboarding-guide.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/platform-engineering/foundations/platform-onboarding-guide.md"
+    },
+    "docs/platform-engineering/foundations/service-catalog-entry.md": {
+      "upstream_sha256": "22c385a5e0dd9c90b7e5b950a5d5ada3f60a7b4c4299f0a8a4219d21b718c5e1",
+      "installed_sha256": "68a058a46da42021b882496ec5ca8030ef2485e478081edc64f0fcd5ccbda980",
+      "source": "aikya-template/docs/platform-engineering/foundations/service-catalog-entry.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/platform-engineering/foundations/service-catalog-entry.md"
+    },
+    "docs/platform-engineering/reliability/README.md": {
+      "upstream_sha256": "f5ba73c409aa8e8c5ec758f188b7542a62bbe18b9161add50b65cfb5becf6c05",
+      "installed_sha256": "88fe13327900c1a03d5521c8f49976304e2aa6c06f22125d5606fc290805a95c",
+      "source": "aikya-template/docs/platform-engineering/reliability/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/platform-engineering/reliability/README.md"
+    },
+    "docs/platform-engineering/reliability/error-budget-policy.md": {
+      "upstream_sha256": "c71c3dc676b5b0b9e4308115472a49ae070611612c73e1908f3c83244c316b91",
+      "installed_sha256": "6102b53b7eb338d9f43795095415656d6b5355cc1703956dfd8caf3841675834",
+      "source": "aikya-template/docs/platform-engineering/reliability/error-budget-policy.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/platform-engineering/reliability/error-budget-policy.md"
+    },
+    "docs/platform-engineering/reliability/slo-document.md": {
+      "upstream_sha256": "b9911cb339df542967bf1680e4c644945c6a228f1a0c5103f05e03230891eb55",
+      "installed_sha256": "20f72635354176d225a39d21ba4d78cf83c2666d85fd45fe12238faaeb05d86b",
+      "source": "aikya-template/docs/platform-engineering/reliability/slo-document.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/platform-engineering/reliability/slo-document.md"
+    },
+    "docs/platform-engineering/reliability/toil-log.md": {
+      "upstream_sha256": "93ef2e112ae8578df8350f16b7b3e5d1d5e2194fa748fad9948b74f91944b7b5",
+      "installed_sha256": "9e36a845ffcb1dc04d72e66a32d55770d05111e3502874f80200f2ef4793b349",
+      "source": "aikya-template/docs/platform-engineering/reliability/toil-log.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/platform-engineering/reliability/toil-log.md"
+    },
+    "docs/platform-engineering/resilience/README.md": {
+      "upstream_sha256": "50f4ef0d34dc96967068e54f7e10593962080d4e7940d2affe741d634a2966c4",
+      "installed_sha256": "8bacadd234f67ecfce8d50d4ddd914f349e1bc09d230c41e840f0c3b43b6df3c",
+      "source": "aikya-template/docs/platform-engineering/resilience/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/platform-engineering/resilience/README.md"
+    },
+    "docs/platform-engineering/resilience/capacity-plan.md": {
+      "upstream_sha256": "fc1c36391c2c07876c7a39de7284e7008c4b2171b19403a6cb531a2cb141a310",
+      "installed_sha256": "0bb52b49522e55d4a0e83b1414a979c857adf96720ecb35a8bd5320b2631ac18",
+      "source": "aikya-template/docs/platform-engineering/resilience/capacity-plan.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/platform-engineering/resilience/capacity-plan.md"
+    },
+    "docs/platform-engineering/resilience/disaster-recovery-plan.md": {
+      "upstream_sha256": "69d9e7f997bd188a9b8c3e75e347451cc5d45d6379571da3c4211c126ea00315",
+      "installed_sha256": "551db0c4061a619a1077c3feea258353f0a8afb83ff494d17f8790033b26ad0e",
+      "source": "aikya-template/docs/platform-engineering/resilience/disaster-recovery-plan.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/platform-engineering/resilience/disaster-recovery-plan.md"
+    },
+    "docs/web-development/README.md": {
+      "upstream_sha256": "7197043be5868eebdf7c011f64edaa8d6a95bb256fe01ad194957b2ac25f384f",
+      "installed_sha256": "ce35a6fa112e91d07171275be0e09949961bf55859c8fe7c289d55882b984e21",
+      "source": "aikya-template/docs/web-development/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/README.md"
+    },
+    "docs/web-development/accessibility/README.md": {
+      "upstream_sha256": "c43e028ac9b13aa1866b177c940fedf06a7d77c449771436b639dfc4dc2a62e4",
+      "installed_sha256": "46b5c5f68134e688e6c1673e6fe8a9a7bd708b2521ce39d67d39d49ded10a871",
+      "source": "aikya-template/docs/web-development/accessibility/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/accessibility/README.md"
+    },
+    "docs/web-development/accessibility/accessibility-conformance-report.md": {
+      "upstream_sha256": "1acc1ac79dc8173f41c0942f6143268c08263f096ca9ecc6c98fe221b60f4c22",
+      "installed_sha256": "646f27782f6731263d481d91a0a86b18fd4401167e82216566f8b4c21d310d88",
+      "source": "aikya-template/docs/web-development/accessibility/accessibility-conformance-report.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/accessibility/accessibility-conformance-report.md"
+    },
+    "docs/web-development/accessibility/accessibility-statement.md": {
+      "upstream_sha256": "aec53f7f7599e4198081f7f748ed61f6945e701603d6cb063a2c2a045a3271a5",
+      "installed_sha256": "fd496d9bd74390bd5580c20a4a47a28864a7aecac0b27ea357fd9a61bd708c09",
+      "source": "aikya-template/docs/web-development/accessibility/accessibility-statement.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/accessibility/accessibility-statement.md"
+    },
+    "docs/web-development/accessibility/accessibility-test-plan.md": {
+      "upstream_sha256": "10a260bb4e9b2df8027c2b522b180183fc7a43b414e07e1089117acab86ebcb4",
+      "installed_sha256": "9359d8a3aa823f2444f4b431209c6c01092b2ec4194c44bd2f8eb5c4935c3478",
+      "source": "aikya-template/docs/web-development/accessibility/accessibility-test-plan.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/accessibility/accessibility-test-plan.md"
+    },
+    "docs/web-development/foundations/README.md": {
+      "upstream_sha256": "5cf31bb96251cb36e60b4e4c830f376588f4aade98c0c1071bcff89cbd3294df",
+      "installed_sha256": "c86d26ba55f5eeb85f5a5d54dc11c2c852cb520a0d78d2b50d7e89f047b42c68",
+      "source": "aikya-template/docs/web-development/foundations/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/foundations/README.md"
+    },
+    "docs/web-development/foundations/api-design-guide.md": {
+      "upstream_sha256": "4ffe9289e42c0417fe9ebd59fe6e2e5ba3c8e751e8e75d4e259889be7d808b58",
+      "installed_sha256": "7d8d55c15d4a0282909b3f0b2227083921461e47ceae2a8e4e50c3434c97658c",
+      "source": "aikya-template/docs/web-development/foundations/api-design-guide.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/foundations/api-design-guide.md"
+    },
+    "docs/web-development/foundations/brand-and-visual-guidelines.md": {
+      "upstream_sha256": "bb8136b34bec840fc8d1f201eb8e9917c1e52062803c59996a752e1702e4e7c8",
+      "installed_sha256": "6d32d740ccba75d7c24f87b3083806433f236b16b4c7d0f928cdd0c34aabc8c6",
+      "source": "aikya-template/docs/web-development/foundations/brand-and-visual-guidelines.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/foundations/brand-and-visual-guidelines.md"
+    },
+    "docs/web-development/foundations/browser-support-policy.md": {
+      "upstream_sha256": "1cb6d15902d5e333e80f759f2810f083e92654af8389c429db3307707a33cbb5",
+      "installed_sha256": "65a0751a87aa0818850133eacfe0ba1cd3bc42edbf5996e4aa3e102605587534",
+      "source": "aikya-template/docs/web-development/foundations/browser-support-policy.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/foundations/browser-support-policy.md"
+    },
+    "docs/web-development/foundations/design-system-guide.md": {
+      "upstream_sha256": "f02bcf61fb424d7e7abca736504e08673d6d76cb3c36d7dc6dbd7b26ee30a091",
+      "installed_sha256": "598a9c4cbcf1906e2d9ff0fb1a342e095b61d0bade07a9c87955a13ef687bd52",
+      "source": "aikya-template/docs/web-development/foundations/design-system-guide.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/foundations/design-system-guide.md"
+    },
+    "docs/web-development/foundations/frontend-architecture.md": {
+      "upstream_sha256": "0172aaf92060d3021080aaac094abcf1b09113d869d5bc667246232f67b123a5",
+      "installed_sha256": "1895f20e50d8ffaa2e358493404a8c924970dc3861d20431f32d4144a849fced",
+      "source": "aikya-template/docs/web-development/foundations/frontend-architecture.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/foundations/frontend-architecture.md"
+    },
+    "docs/web-development/foundations/rollout-plan.md": {
+      "upstream_sha256": "119b5cfbd9d9d4ab6962740fe900b640151aa5eb0b8fe9d1dfbf106a26d47ed0",
+      "installed_sha256": "312fa885bd9e181fd504c8a8bdb665b097694602856a99c9e3db93e61eedd787",
+      "source": "aikya-template/docs/web-development/foundations/rollout-plan.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/foundations/rollout-plan.md"
+    },
+    "docs/web-development/performance/README.md": {
+      "upstream_sha256": "754f422c50f864fc097c7975fc758bca05b23f8361d1a6b6d4912556712193ff",
+      "installed_sha256": "7a0e5b4547d08db74c06b0cc037a99d72e6f1bf149d3f38f9b6c728d6800c7a3",
+      "source": "aikya-template/docs/web-development/performance/README.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/performance/README.md"
+    },
+    "docs/web-development/performance/performance-budget.md": {
+      "upstream_sha256": "57893b98957f00da4766981db30b1325666179ee49998e16e58296ea58afe9c4",
+      "installed_sha256": "34651575eab747a5268fb6e48caa43ad2c3fc8fec4efde0583dce283cc25d008",
+      "source": "aikya-template/docs/web-development/performance/performance-budget.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/performance/performance-budget.md"
+    },
+    "docs/web-development/performance/performance-review.md": {
+      "upstream_sha256": "2e4394883e90cf5cee1516dda52c865df30967bdf1e95cac145565b8520c80b4",
+      "installed_sha256": "9602efb6b884bb016bd00b88930aa55631592dbee7aff6731c158211388fc8ff",
+      "source": "aikya-template/docs/web-development/performance/performance-review.md",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/performance/performance-review.md"
+    }
+  },
+  "templates": {
+    "ai-assisted-development/evaluation/eval-run-log": {
+      "provider": "aikya",
+      "path": "docs/ai-assisted-development/evaluation/eval-run-log.md",
+      "source": "aikya-template/docs/ai-assisted-development/evaluation/eval-run-log.md",
+      "area": "ai-assisted-development",
+      "group": "evaluation",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "the-log": "The log",
+        "trend": "Trend",
+        "eval-set-changes": "Eval set changes"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/ai-assisted-development/evaluation/eval-run-log.md"
+    },
+    "ai-assisted-development/evaluation/evaluation-plan": {
+      "provider": "aikya",
+      "path": "docs/ai-assisted-development/evaluation/evaluation-plan.md",
+      "source": "aikya-template/docs/ai-assisted-development/evaluation/evaluation-plan.md",
+      "area": "ai-assisted-development",
+      "group": "evaluation",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-why-evaluation-not-just-tests": "1. Why evaluation, not just tests",
+        "2-what-s-being-measured": "2. What's being measured",
+        "3-eval-set": "3. Eval set",
+        "4-grading-method": "4. Grading method",
+        "5-cadence": "5. Cadence"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/ai-assisted-development/evaluation/evaluation-plan.md"
+    },
+    "ai-assisted-development/foundations/agent-instructions-file": {
+      "provider": "aikya",
+      "path": "docs/ai-assisted-development/foundations/agent-instructions-file.md",
+      "source": "aikya-template/docs/ai-assisted-development/foundations/agent-instructions-file.md",
+      "area": "ai-assisted-development",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-project-overview": "1. Project overview",
+        "2-commands": "2. Commands",
+        "3-code-style": "3. Code style",
+        "4-repository-conventions": "4. Repository conventions",
+        "5-boundaries": "5. Boundaries",
+        "6-gotchas-and-environment-quirks": "6. Gotchas and environment quirks"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/ai-assisted-development/foundations/agent-instructions-file.md"
+    },
+    "ai-assisted-development/foundations/task-plan": {
+      "provider": "aikya",
+      "path": "docs/ai-assisted-development/foundations/task-plan.md",
+      "source": "aikya-template/docs/ai-assisted-development/foundations/task-plan.md",
+      "area": "ai-assisted-development",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-the-queue": "1. The queue",
+        "p0": "P0",
+        "p1": "P1",
+        "2-dependencies": "2. Dependencies",
+        "3-completion": "3. Completion"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/ai-assisted-development/foundations/task-plan.md"
+    },
+    "ai-assisted-development/specification/agent-task-specification": {
+      "provider": "aikya",
+      "path": "docs/ai-assisted-development/specification/agent-task-specification.md",
+      "source": "aikya-template/docs/ai-assisted-development/specification/agent-task-specification.md",
+      "area": "ai-assisted-development",
+      "group": "specification",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-goal": "1. Goal",
+        "2-files-and-interfaces-involved": "2. Files and interfaces involved",
+        "3-out-of-scope": "3. Out of scope",
+        "4-constraints": "4. Constraints",
+        "5-verification": "5. Verification"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/ai-assisted-development/specification/agent-task-specification.md"
+    },
+    "data-engineering/foundations/data-contract": {
+      "provider": "aikya",
+      "path": "docs/data-engineering/foundations/data-contract.md",
+      "source": "aikya-template/docs/data-engineering/foundations/data-contract.md",
+      "area": "data-engineering",
+      "group": "foundations",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "1-schema": "1. Schema",
+        "2-quality-expectations": "2. Quality expectations",
+        "3-service-levels": "3. Service levels",
+        "4-change-management": "4. Change management"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/foundations/data-contract.md"
+    },
+    "data-engineering/foundations/data-pipeline-design-document": {
+      "provider": "aikya",
+      "path": "docs/data-engineering/foundations/data-pipeline-design-document.md",
+      "source": "aikya-template/docs/data-engineering/foundations/data-pipeline-design-document.md",
+      "area": "data-engineering",
+      "group": "foundations",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "1-what-this-pipeline-does": "1. What this pipeline does",
+        "2-sources-and-sinks": "2. Sources and sinks",
+        "3-idempotency-and-backfill": "3. Idempotency and backfill",
+        "4-schedule-and-dependencies": "4. Schedule and dependencies",
+        "5-failure-modes": "5. Failure modes",
+        "6-monitoring": "6. Monitoring"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/foundations/data-pipeline-design-document.md"
+    },
+    "data-engineering/foundations/dataset-catalog-entry": {
+      "provider": "aikya",
+      "path": "docs/data-engineering/foundations/dataset-catalog-entry.md",
+      "source": "aikya-template/docs/data-engineering/foundations/dataset-catalog-entry.md",
+      "area": "data-engineering",
+      "group": "foundations",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "1-what-this-dataset-is": "1. What this dataset is",
+        "2-ownership": "2. Ownership",
+        "3-lineage": "3. Lineage",
+        "4-trust-signals": "4. Trust signals"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/foundations/dataset-catalog-entry.md"
+    },
+    "data-engineering/governance/data-classification-and-access-policy": {
+      "provider": "aikya",
+      "path": "docs/data-engineering/governance/data-classification-and-access-policy.md",
+      "source": "aikya-template/docs/data-engineering/governance/data-classification-and-access-policy.md",
+      "area": "data-engineering",
+      "group": "governance",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "1-classification-tiers": "1. Classification tiers",
+        "2-dataset-classification": "2. Dataset classification",
+        "3-access-rules-by-tier": "3. Access rules by tier",
+        "4-review": "4. Review"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/governance/data-classification-and-access-policy.md"
+    },
+    "data-engineering/governance/data-lineage-record": {
+      "provider": "aikya",
+      "path": "docs/data-engineering/governance/data-lineage-record.md",
+      "source": "aikya-template/docs/data-engineering/governance/data-lineage-record.md",
+      "area": "data-engineering",
+      "group": "governance",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "1-upstream": "1. Upstream",
+        "2-downstream": "2. Downstream",
+        "3-column-level-notes": "3. Column-level notes"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/governance/data-lineage-record.md"
+    },
+    "data-engineering/governance/data-quality-specification": {
+      "provider": "aikya",
+      "path": "docs/data-engineering/governance/data-quality-specification.md",
+      "source": "aikya-template/docs/data-engineering/governance/data-quality-specification.md",
+      "area": "data-engineering",
+      "group": "governance",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "1-quality-dimensions-in-scope": "1. Quality dimensions in scope",
+        "2-checks": "2. Checks",
+        "3-what-happens-on-failure": "3. What happens on failure"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/governance/data-quality-specification.md"
+    },
+    "data-engineering/operations/backfill-and-reprocessing-plan": {
+      "provider": "aikya",
+      "path": "docs/data-engineering/operations/backfill-and-reprocessing-plan.md",
+      "source": "aikya-template/docs/data-engineering/operations/backfill-and-reprocessing-plan.md",
+      "area": "data-engineering",
+      "group": "operations",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "1-why-this-reprocessing-is-needed": "1. Why this reprocessing is needed",
+        "2-scope": "2. Scope",
+        "3-downstream-impact": "3. Downstream impact",
+        "4-execution": "4. Execution",
+        "5-rollback": "5. Rollback"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/operations/backfill-and-reprocessing-plan.md"
+    },
+    "data-engineering/operations/freshness-and-sla-log": {
+      "provider": "aikya",
+      "path": "docs/data-engineering/operations/freshness-and-sla-log.md",
+      "source": "aikya-template/docs/data-engineering/operations/freshness-and-sla-log.md",
+      "area": "data-engineering",
+      "group": "operations",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "the-log": "The log",
+        "recurring-misses": "Recurring misses"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/operations/freshness-and-sla-log.md"
+    },
+    "data-engineering/operations/pipeline-runbook": {
+      "provider": "aikya",
+      "path": "docs/data-engineering/operations/pipeline-runbook.md",
+      "source": "aikya-template/docs/data-engineering/operations/pipeline-runbook.md",
+      "area": "data-engineering",
+      "group": "operations",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "symptoms": "Symptoms",
+        "impact": "Impact",
+        "diagnose": "Diagnose",
+        "remediate": "Remediate",
+        "if-none-of-this-works": "If none of this works",
+        "after": "After"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/operations/pipeline-runbook.md"
+    },
+    "game-development/foundations/art-bible": {
+      "provider": "aikya",
+      "path": "docs/game-development/foundations/art-bible.md",
+      "source": "aikya-template/docs/game-development/foundations/art-bible.md",
+      "area": "game-development",
+      "group": "foundations",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "visual-pillars": "Visual pillars",
+        "palette": "Palette",
+        "proportions-and-silhouette": "Proportions and silhouette",
+        "per-category-standards": "Per-category standards",
+        "material-and-rendering-treatment": "Material and rendering treatment",
+        "reference-and-inspiration": "Reference and inspiration",
+        "do-and-don-t": "Do and don't",
+        "cultural-and-regional-review": "Cultural and regional review",
+        "what-is-currently-changing": "What is currently changing"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/foundations/art-bible.md"
+    },
+    "game-development/foundations/business-plan": {
+      "provider": "aikya",
+      "path": "docs/game-development/foundations/business-plan.md",
+      "source": "aikya-template/docs/game-development/foundations/business-plan.md",
+      "area": "game-development",
+      "group": "foundations",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "1-the-pitch": "1. The pitch",
+        "2-market-and-comparables": "2. Market and comparables",
+        "3-audience": "3. Audience",
+        "4-monetisation": "4. Monetisation",
+        "5-budget-and-milestones": "5. Budget and milestones",
+        "6-team": "6. Team",
+        "7-risks": "7. Risks",
+        "8-the-ask": "8. The ask"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/foundations/business-plan.md"
+    },
+    "game-development/foundations/game-design-document": {
+      "provider": "aikya",
+      "path": "docs/game-development/foundations/game-design-document.md",
+      "source": "aikya-template/docs/game-development/foundations/game-design-document.md",
+      "area": "game-development",
+      "group": "foundations",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "why-a-gdd-is-not-a-spec": "Why a GDD is not a spec",
+        "1-overview": "1. Overview",
+        "2-mechanics": "2. Mechanics",
+        "3-dynamics": "3. Dynamics",
+        "4-aesthetics": "4. Aesthetics",
+        "5-experience": "5. Experience",
+        "6-assumptions-and-constraints": "6. Assumptions and constraints",
+        "out-of-scope": "Out of scope"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/foundations/game-design-document.md"
+    },
+    "game-development/live-operations/age-rating-compliance-record": {
+      "provider": "aikya",
+      "path": "docs/game-development/live-operations/age-rating-compliance-record.md",
+      "source": "aikya-template/docs/game-development/live-operations/age-rating-compliance-record.md",
+      "area": "game-development",
+      "group": "live-operations",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "1-rating-submissions": "1. Rating submissions",
+        "2-in-game-purchases-and-random-items-label": "2. In-game purchases and random items label",
+        "3-loot-box-and-gambling-adjacent-mechanics-by-territory": "3. Loot box and gambling-adjacent mechanics by territory",
+        "4-re-rating-triggers": "4. Re-rating triggers"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/live-operations/age-rating-compliance-record.md"
+    },
+    "game-development/live-operations/balance-log": {
+      "provider": "aikya",
+      "path": "docs/game-development/live-operations/balance-log.md",
+      "source": "aikya-template/docs/game-development/live-operations/balance-log.md",
+      "area": "game-development",
+      "group": "live-operations",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "the-log": "The log",
+        "reasoning": "Reasoning",
+        "which-metrics-and-why-only-those": "Which metrics, and why only those",
+        "open-questions": "Open questions"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/live-operations/balance-log.md"
+    },
+    "game-development/live-operations/deployment-plan": {
+      "provider": "aikya",
+      "path": "docs/game-development/live-operations/deployment-plan.md",
+      "source": "aikya-template/docs/game-development/live-operations/deployment-plan.md",
+      "area": "game-development",
+      "group": "live-operations",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "what-certification-changes": "What certification changes",
+        "go-no-go": "Go / no-go",
+        "sequence": "Sequence",
+        "rollback": "Rollback",
+        "after": "After"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/live-operations/deployment-plan.md"
+    },
+    "game-development/live-operations/live-ops-plan": {
+      "provider": "aikya",
+      "path": "docs/game-development/live-operations/live-ops-plan.md",
+      "source": "aikya-template/docs/game-development/live-operations/live-ops-plan.md",
+      "area": "game-development",
+      "group": "live-operations",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "1-calendar": "1. Calendar",
+        "2-capacity-check": "2. Capacity check",
+        "3-change-control": "3. Change control"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/live-operations/live-ops-plan.md"
+    },
+    "game-development/live-operations/privacy-ledger": {
+      "provider": "aikya",
+      "path": "docs/game-development/live-operations/privacy-ledger.md",
+      "source": "aikya-template/docs/game-development/live-operations/privacy-ledger.md",
+      "area": "game-development",
+      "group": "live-operations",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "1-processing-activities": "1. Processing activities",
+        "2-children-and-teens": "2. Children and teens",
+        "3-per-sdk-data-inventory": "3. Per-SDK data inventory",
+        "4-data-subject-rights": "4. Data subject rights"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/live-operations/privacy-ledger.md"
+    },
+    "game-development/live-operations/release-notes": {
+      "provider": "aikya",
+      "path": "docs/game-development/live-operations/release-notes.md",
+      "source": "aikya-template/docs/game-development/live-operations/release-notes.md",
+      "area": "game-development",
+      "group": "live-operations",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "in-this-update": "In this update",
+        "new-content": "New content",
+        "balance-changes": "Balance changes",
+        "fixed": "Fixed",
+        "platform-notes": "Platform notes",
+        "known-issues": "Known issues"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/live-operations/release-notes.md"
+    },
+    "game-development/production/asset-and-contribution-log": {
+      "provider": "aikya",
+      "path": "docs/game-development/production/asset-and-contribution-log.md",
+      "source": "aikya-template/docs/game-development/production/asset-and-contribution-log.md",
+      "area": "game-development",
+      "group": "production",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "the-log": "The log",
+        "contributor-register": "Contributor register",
+        "flags": "Flags"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/production/asset-and-contribution-log.md"
+    },
+    "game-development/production/cycle-retrospective": {
+      "provider": "aikya",
+      "path": "docs/game-development/production/cycle-retrospective.md",
+      "source": "aikya-template/docs/game-development/production/cycle-retrospective.md",
+      "area": "game-development",
+      "group": "production",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "did-we-hit-the-milestone": "Did we hit the milestone",
+        "the-four-patterns": "The four patterns",
+        "cross-discipline-communication": "Cross-discipline communication",
+        "what-went-well": "What went well",
+        "changes-for-next-cycle": "Changes for next cycle"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/production/cycle-retrospective.md"
+    },
+    "general-swe/agile-scrum/definition-of-done": {
+      "provider": "aikya",
+      "path": "docs/general-swe/agile-scrum/definition-of-done.md",
+      "source": "aikya-template/docs/general-swe/agile-scrum/definition-of-done.md",
+      "area": "general-swe",
+      "group": "agile-scrum",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "the-criteria": "The criteria",
+        "not-yet-in-our-definition-of-done": "Not yet in our Definition of Done",
+        "what-this-is-not": "What this is not",
+        "amendment-process": "Amendment process"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/agile-scrum/definition-of-done.md"
+    },
+    "general-swe/agile-scrum/product-backlog-item": {
+      "provider": "aikya",
+      "path": "docs/general-swe/agile-scrum/product-backlog-item.md",
+      "source": "aikya-template/docs/general-swe/agile-scrum/product-backlog-item.md",
+      "area": "general-swe",
+      "group": "agile-scrum",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "what-and-why": "What and why",
+        "context": "Context",
+        "acceptance-criteria": "Acceptance criteria",
+        "out-of-scope": "Out of scope",
+        "dependencies": "Dependencies"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/agile-scrum/product-backlog-item.md"
+    },
+    "general-swe/agile-scrum/product-goal": {
+      "provider": "aikya",
+      "path": "docs/general-swe/agile-scrum/product-goal.md",
+      "source": "aikya-template/docs/general-swe/agile-scrum/product-goal.md",
+      "area": "general-swe",
+      "group": "agile-scrum",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "the-goal": "The goal",
+        "why-this-now": "Why this, now",
+        "how-we-will-know": "How we will know",
+        "not-this-goal": "Not this goal",
+        "what-has-to-be-true": "What has to be true",
+        "history": "History"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/agile-scrum/product-goal.md"
+    },
+    "general-swe/agile-scrum/sprint-backlog": {
+      "provider": "aikya",
+      "path": "docs/general-swe/agile-scrum/sprint-backlog.md",
+      "source": "aikya-template/docs/general-swe/agile-scrum/sprint-backlog.md",
+      "area": "general-swe",
+      "group": "agile-scrum",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "sprint-goal": "Sprint Goal",
+        "selected-items": "Selected items",
+        "the-plan": "The plan",
+        "changes-during-the-sprint": "Changes during the Sprint"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/agile-scrum/sprint-backlog.md"
+    },
+    "general-swe/agile-scrum/sprint-retrospective": {
+      "provider": "aikya",
+      "path": "docs/general-swe/agile-scrum/sprint-retrospective.md",
+      "source": "aikya-template/docs/general-swe/agile-scrum/sprint-retrospective.md",
+      "area": "general-swe",
+      "group": "agile-scrum",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "prime-directive": "Prime Directive",
+        "1-set-the-stage": "1. Set the stage",
+        "2-gather-data": "2. Gather data",
+        "3-generate-insights": "3. Generate insights",
+        "4-decide-what-to-do": "4. Decide what to do",
+        "5-close": "5. Close"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/agile-scrum/sprint-retrospective.md"
+    },
+    "general-swe/agile-scrum/sprint-review-notes": {
+      "provider": "aikya",
+      "path": "docs/general-swe/agile-scrum/sprint-review-notes.md",
+      "source": "aikya-template/docs/general-swe/agile-scrum/sprint-review-notes.md",
+      "area": "general-swe",
+      "group": "agile-scrum",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "did-we-meet-the-sprint-goal": "Did we meet the Sprint Goal",
+        "what-we-showed": "What we showed",
+        "what-stakeholders-said": "What stakeholders said",
+        "what-changed-as-a-result": "What changed as a result",
+        "context-we-gave": "Context we gave"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/agile-scrum/sprint-review-notes.md"
+    },
+    "general-swe/agile-scrum/team-working-agreement": {
+      "provider": "aikya",
+      "path": "docs/general-swe/agile-scrum/team-working-agreement.md",
+      "source": "aikya-template/docs/general-swe/agile-scrum/team-working-agreement.md",
+      "area": "general-swe",
+      "group": "agile-scrum",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "hours-and-availability": "Hours and availability",
+        "meetings": "Meetings",
+        "how-we-work": "How we work",
+        "being-stuck": "Being stuck",
+        "decisions-and-disagreement": "Decisions and disagreement",
+        "definition-of-interrupt": "Definition of interrupt",
+        "quality": "Quality",
+        "how-we-treat-each-other": "How we treat each other",
+        "changing-this": "Changing this"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/agile-scrum/team-working-agreement.md"
+    },
+    "general-swe/foundations/architecture-decision-record": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/architecture-decision-record.md",
+      "source": "aikya-template/docs/general-swe/foundations/architecture-decision-record.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "context-and-problem-statement": "Context and problem statement",
+        "decision-drivers": "Decision drivers",
+        "considered-options": "Considered options",
+        "decision": "Decision",
+        "consequences": "Consequences",
+        "options-in-detail": "Options in detail",
+        "confirmation": "Confirmation",
+        "more-information": "More information"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/architecture-decision-record.md"
+    },
+    "general-swe/foundations/architecture-overview": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/architecture-overview.md",
+      "source": "aikya-template/docs/general-swe/foundations/architecture-overview.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-purpose-and-scope": "1. Purpose and scope",
+        "2-quality-attributes": "2. Quality attributes",
+        "3-constraints": "3. Constraints",
+        "4-context": "4. Context",
+        "5-containers": "5. Containers",
+        "6-runtime-behaviour": "6. Runtime behaviour",
+        "7-data": "7. Data",
+        "8-deployment": "8. Deployment",
+        "9-cross-cutting-concerns": "9. Cross-cutting concerns",
+        "10-architecture-decisions": "10. Architecture decisions",
+        "11-known-problems-and-direction": "11. Known problems and direction",
+        "12-glossary": "12. Glossary"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/architecture-overview.md"
+    },
+    "general-swe/foundations/branching-strategy": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/branching-strategy.md",
+      "source": "aikya-template/docs/general-swe/foundations/branching-strategy.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-release-model": "1. Release model",
+        "2-branches": "2. Branches",
+        "3-branch-lifetime": "3. Branch lifetime",
+        "4-merging-and-protection": "4. Merging and protection",
+        "5-hotfix-path": "5. Hotfix path",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/branching-strategy.md"
+    },
+    "general-swe/foundations/bug-report": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/bug-report.md",
+      "source": "aikya-template/docs/general-swe/foundations/bug-report.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "summary": "Summary",
+        "environment": "Environment",
+        "steps-to-reproduce": "Steps to reproduce",
+        "expected-result": "Expected result",
+        "actual-result": "Actual result",
+        "evidence": "Evidence",
+        "scope-and-impact": "Scope and impact",
+        "workaround": "Workaround",
+        "suspected-cause": "Suspected cause"
+      },
+      "upstream_sections": {
+        "reproduction-details": "Reproduction details",
+        "everything-else": "Everything else",
+        "severity-and-priority-are-different-fields": "Severity and priority are different fields"
+      },
+      "adapter": "aikya-append-safe-bug-register",
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/bug-report.md"
+    },
+    "general-swe/foundations/changelog": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/changelog.md",
+      "source": "aikya-template/docs/general-swe/foundations/changelog.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "unreleased": "[Unreleased]",
+        "1-4-0-2025-03-12": "[1.4.0] - 2025-03-12",
+        "1-3-2-2025-02-28": "[1.3.2] - 2025-02-28"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/changelog.md"
+    },
+    "general-swe/foundations/code-review-guidelines": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/code-review-guidelines.md",
+      "source": "aikya-template/docs/general-swe/foundations/code-review-guidelines.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "the-standard": "The standard",
+        "response-time": "Response time",
+        "change-size": "Change size",
+        "what-to-look-for": "What to look for",
+        "review-comments": "Review comments",
+        "disagreement": "Disagreement",
+        "approving": "Approving",
+        "exceptions": "Exceptions"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/code-review-guidelines.md"
+    },
+    "general-swe/foundations/coding-standards": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/coding-standards.md",
+      "source": "aikya-template/docs/general-swe/foundations/coding-standards.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-scope": "1. Scope",
+        "2-base-guide-and-deviations": "2. Base guide and deviations",
+        "3-formatting": "3. Formatting",
+        "4-naming": "4. Naming",
+        "5-comments": "5. Comments",
+        "6-error-handling": "6. Error handling",
+        "7-structure-and-file-layout": "7. Structure and file layout",
+        "8-testing-conventions": "8. Testing conventions",
+        "9-consistency-local-or-global": "9. Consistency: local or global",
+        "10-waivers": "10. Waivers",
+        "11-enforcement": "11. Enforcement",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/coding-standards.md"
+    },
+    "general-swe/foundations/configuration-management-plan": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/configuration-management-plan.md",
+      "source": "aikya-template/docs/general-swe/foundations/configuration-management-plan.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "scope": "Scope",
+        "1-scope-and-limits": "1. Scope and limits",
+        "2-what-is-under-control": "2. What is under control",
+        "3-baselines": "3. Baselines",
+        "4-who-decides": "4. Who decides",
+        "5-status-accounting": "5. Status accounting",
+        "6-audits": "6. Audits",
+        "7-third-party-and-supplier-items": "7. Third-party and supplier items",
+        "8-releases": "8. Releases",
+        "9-maintaining-this-plan": "9. Maintaining this plan"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/configuration-management-plan.md"
+    },
+    "general-swe/foundations/contributing-guide": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/contributing-guide.md",
+      "source": "aikya-template/docs/general-swe/foundations/contributing-guide.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-where-to-get-help": "1. Where to get help",
+        "2-what-counts-as-a-contribution": "2. What counts as a contribution",
+        "3-reporting-a-bug": "3. Reporting a bug",
+        "4-proposing-a-change": "4. Proposing a change",
+        "5-submitting-a-pull-request": "5. Submitting a pull request",
+        "6-scope-of-issues-and-pull-requests": "6. Scope of issues and pull requests",
+        "7-licensing-and-sign-off": "7. Licensing and sign-off",
+        "8-ai-assisted-contributions": "8. AI-assisted contributions",
+        "9-code-of-conduct": "9. Code of conduct",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/contributing-guide.md"
+    },
+    "general-swe/foundations/data-model": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/data-model.md",
+      "source": "aikya-template/docs/general-swe/foundations/data-model.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "model-level": "Model level",
+        "1-the-entities": "1. The entities",
+        "2-relationships": "2. Relationships",
+        "3-identity-and-keys": "3. Identity and keys",
+        "4-ownership-and-boundaries": "4. Ownership and boundaries",
+        "5-what-is-currently-changing": "5. What is currently changing"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/data-model.md"
+    },
+    "general-swe/foundations/deployment-plan": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/deployment-plan.md",
+      "source": "aikya-template/docs/general-swe/foundations/deployment-plan.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "when-a-deployment-plan-is-needed": "When a deployment plan is needed",
+        "what-ships": "What ships",
+        "go-no-go": "Go / no-go",
+        "sequence": "Sequence",
+        "canary-evaluation": "Canary evaluation",
+        "rollback": "Rollback",
+        "after": "After"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/deployment-plan.md"
+    },
+    "general-swe/foundations/deprecation-plan": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/deprecation-plan.md",
+      "source": "aikya-template/docs/general-swe/foundations/deprecation-plan.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "why": "Why",
+        "who-is-affected": "Who is affected",
+        "what-breaks-if-you-do-nothing": "What breaks if you do nothing",
+        "how-to-migrate": "How to migrate",
+        "timeline": "Timeline",
+        "how-this-is-announced": "How this is announced",
+        "rollback": "Rollback",
+        "exit-criteria": "Exit criteria"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/deprecation-plan.md"
+    },
+    "general-swe/foundations/feature-request": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/feature-request.md",
+      "source": "aikya-template/docs/general-swe/foundations/feature-request.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "problem": "Problem",
+        "proposed-solution": "Proposed solution",
+        "current-workaround": "Current workaround",
+        "scope-and-prior-discussion": "Scope and prior discussion",
+        "additional-context": "Additional context"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/feature-request.md"
+    },
+    "general-swe/foundations/glossary": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/glossary.md",
+      "source": "aikya-template/docs/general-swe/foundations/glossary.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "domain-terms": "Domain terms",
+        "statuses-and-lifecycles": "Statuses and lifecycles",
+        "metrics": "Metrics",
+        "abbreviations-and-internal-names": "Abbreviations and internal names",
+        "terms-we-deliberately-do-not-use": "Terms we deliberately do not use"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/glossary.md"
+    },
+    "general-swe/foundations/governance": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/governance.md",
+      "source": "aikya-template/docs/general-swe/foundations/governance.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "roles-and-rights": "Roles and rights",
+        "decision-making": "Decision-making",
+        "appointment-and-removal": "Appointment and removal",
+        "escalation-and-appeals": "Escalation and appeals",
+        "conflicts-of-interest": "Conflicts of interest",
+        "emergency-powers": "Emergency powers",
+        "trademarks-and-assets": "Trademarks and assets",
+        "amendments": "Amendments"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/governance.md"
+    },
+    "general-swe/foundations/incident-postmortem": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/incident-postmortem.md",
+      "source": "aikya-template/docs/general-swe/foundations/incident-postmortem.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "summary": "Summary",
+        "impact": "Impact",
+        "timeline": "Timeline",
+        "trigger": "Trigger",
+        "contributing-factors": "Contributing factors",
+        "what-went-well": "What went well",
+        "what-went-badly": "What went badly",
+        "where-we-got-lucky": "Where we got lucky",
+        "action-items": "Action items",
+        "supporting-detail": "Supporting detail"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/incident-postmortem.md"
+    },
+    "general-swe/foundations/interface-control-document": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/interface-control-document.md",
+      "source": "aikya-template/docs/general-swe/foundations/interface-control-document.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "relationship-to-the-schema": "Relationship to the schema",
+        "1-parties-and-responsibilities": "1. Parties and responsibilities",
+        "2-the-interface": "2. The interface",
+        "3-behaviour-the-schema-cannot-express": "3. Behaviour the schema cannot express",
+        "4-change-control": "4. Change control",
+        "5-verification": "5. Verification"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/interface-control-document.md"
+    },
+    "general-swe/foundations/onboarding-guide": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/onboarding-guide.md",
+      "source": "aikya-template/docs/general-swe/foundations/onboarding-guide.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "day-one": "Day one",
+        "first-change": "First change",
+        "what-we-build-and-why": "What we build and why",
+        "how-we-work": "How we work",
+        "on-call": "On-call",
+        "where-things-are": "Where things are",
+        "first-30-60-90-days": "First 30, 60, 90 days"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/onboarding-guide.md"
+    },
+    "general-swe/foundations/pull-request-template": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/pull-request-template.md",
+      "source": "aikya-template/docs/general-swe/foundations/pull-request-template.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "summary": "Summary",
+        "testing": "Testing",
+        "breaking-changes-and-migration": "Breaking changes and migration",
+        "release-note": "Release note",
+        "ai-assistance": "AI assistance",
+        "checklist": "Checklist"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/pull-request-template.md"
+    },
+    "general-swe/foundations/release-notes": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/release-notes.md",
+      "source": "aikya-template/docs/general-swe/foundations/release-notes.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "in-this-release": "In this release",
+        "new": "New",
+        "improved": "Improved",
+        "fixed": "Fixed",
+        "action-needed": "Action needed",
+        "known-issues": "Known issues",
+        "availability": "Availability"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/release-notes.md"
+    },
+    "general-swe/foundations/rfc": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/rfc.md",
+      "source": "aikya-template/docs/general-swe/foundations/rfc.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "summary": "Summary",
+        "motivation": "Motivation",
+        "guide-level-explanation": "Guide-level explanation",
+        "detailed-design": "Detailed design",
+        "drawbacks": "Drawbacks",
+        "rationale-and-alternatives": "Rationale and alternatives",
+        "prior-art": "Prior art",
+        "unresolved-questions": "Unresolved questions",
+        "future-possibilities": "Future possibilities",
+        "decision-record": "Decision record"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/rfc.md"
+    },
+    "general-swe/foundations/runbook": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/runbook.md",
+      "source": "aikya-template/docs/general-swe/foundations/runbook.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "symptoms": "Symptoms",
+        "impact": "Impact",
+        "before-you-start": "Before you start",
+        "diagnose": "Diagnose",
+        "remediate": "Remediate",
+        "if-none-of-this-works": "If none of this works",
+        "roll-back": "Roll back",
+        "after": "After"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/runbook.md"
+    },
+    "general-swe/foundations/security": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/security.md",
+      "source": "aikya-template/docs/general-swe/foundations/security.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "reporting-a-vulnerability": "Reporting a vulnerability",
+        "report-contents": "Report contents",
+        "our-response": "Our response",
+        "supported-versions": "Supported versions",
+        "out-of-scope": "Out of scope",
+        "legal-safe-harbour": "Legal safe harbour",
+        "ai-assisted-reports": "AI-assisted reports"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/security.md"
+    },
+    "general-swe/foundations/service-readme": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/service-readme.md",
+      "source": "aikya-template/docs/general-swe/foundations/service-readme.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "local-setup": "Local setup",
+        "tests": "Tests",
+        "configuration": "Configuration",
+        "architecture-in-brief": "Architecture in brief",
+        "deployment-and-rollback": "Deployment and rollback",
+        "operations": "Operations",
+        "api": "API",
+        "contributing": "Contributing"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/service-readme.md"
+    },
+    "general-swe/foundations/support": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/support.md",
+      "source": "aikya-template/docs/general-swe/foundations/support.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "where-to-get-help": "Where to get help",
+        "what-the-issue-tracker-is-for": "What the issue tracker is for",
+        "what-is-supported": "What is supported",
+        "what-to-expect": "What to expect",
+        "what-paid-support-covers": "What paid support covers"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/support.md"
+    },
+    "general-swe/foundations/technical-design-document": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/technical-design-document.md",
+      "source": "aikya-template/docs/general-swe/foundations/technical-design-document.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "context-and-scope": "Context and scope",
+        "goals": "Goals",
+        "non-goals": "Non-goals",
+        "the-design": "The design",
+        "alternatives-considered": "Alternatives considered",
+        "cross-cutting-concerns": "Cross-cutting concerns",
+        "rollout-and-rollback": "Rollout and rollback",
+        "open-questions": "Open questions"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/technical-design-document.md"
+    },
+    "general-swe/foundations/test-case-specification": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/test-case-specification.md",
+      "source": "aikya-template/docs/general-swe/foundations/test-case-specification.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "before-you-write-any-of-these": "Before you write any of these",
+        "the-case-list": "The case list",
+        "each-case": "Each case",
+        "abstraction-level": "Abstraction level",
+        "guard-against-false-positives": "Guard against false positives",
+        "what-these-cases-do-not-cover": "What these cases do not cover"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/test-case-specification.md"
+    },
+    "general-swe/foundations/test-strategy": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/test-strategy.md",
+      "source": "aikya-template/docs/general-swe/foundations/test-strategy.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "what-we-are-protecting": "What we are protecting",
+        "cost-and-confidence-at-each-level": "Cost and confidence at each level",
+        "what-we-test-where": "What we test where",
+        "what-we-do-not-test": "What we do not test",
+        "entry-and-exit-conditions": "Entry and exit conditions",
+        "coverage": "Coverage",
+        "flaky-tests": "Flaky tests",
+        "non-functional-testing": "Non-functional testing",
+        "environments-and-data": "Environments and data",
+        "who-does-what": "Who does what"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/test-strategy.md"
+    },
+    "general-swe/foundations/test-summary-report": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/test-summary-report.md",
+      "source": "aikya-template/docs/general-swe/foundations/test-summary-report.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "recommendation": "Recommendation",
+        "assessment": "Assessment",
+        "what-was-tested": "What was tested",
+        "exploratory-sessions": "Exploratory sessions",
+        "defects": "Defects",
+        "residual-risk": "Residual risk"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/test-summary-report.md"
+    },
+    "general-swe/foundations/threat-model": {
+      "provider": "aikya",
+      "path": "docs/general-swe/foundations/threat-model.md",
+      "source": "aikya-template/docs/general-swe/foundations/threat-model.md",
+      "area": "general-swe",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-what-are-we-working-on": "1. What are we working on",
+        "2-what-can-go-wrong": "2. What can go wrong",
+        "3-what-are-we-going-to-do-about-it": "3. What are we going to do about it",
+        "4-did-we-do-a-good-enough-job": "4. Did we do a good enough job"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/threat-model.md"
+    },
+    "general-swe/kanban/blocker-log": {
+      "provider": "aikya",
+      "path": "docs/general-swe/kanban/blocker-log.md",
+      "source": "aikya-template/docs/general-swe/kanban/blocker-log.md",
+      "area": "general-swe",
+      "group": "kanban",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "what-counts-as-blocked": "What counts as blocked",
+        "the-log": "The log",
+        "escalation-policy": "Escalation policy",
+        "recurring-blockers": "Recurring blockers"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/kanban/blocker-log.md"
+    },
+    "general-swe/kanban/definition-of-workflow": {
+      "provider": "aikya",
+      "path": "docs/general-swe/kanban/definition-of-workflow.md",
+      "source": "aikya-template/docs/general-swe/kanban/definition-of-workflow.md",
+      "area": "general-swe",
+      "group": "kanban",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-what-a-work-item-is": "1. What a work item is",
+        "2-when-work-starts-and-finishes": "2. When work starts and finishes",
+        "3-states": "3. States",
+        "4-how-wip-is-controlled": "4. How WIP is controlled",
+        "5-explicit-policies": "5. Explicit policies",
+        "6-service-level-expectation": "6. Service Level Expectation",
+        "changing-this": "Changing this"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/kanban/definition-of-workflow.md"
+    },
+    "general-swe/kanban/flow-review": {
+      "provider": "aikya",
+      "path": "docs/general-swe/kanban/flow-review.md",
+      "source": "aikya-template/docs/general-swe/kanban/flow-review.md",
+      "area": "general-swe",
+      "group": "kanban",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "the-numbers": "The numbers",
+        "work-item-age-right-now": "Work item age, right now",
+        "where-time-went": "Where time went",
+        "blockers": "Blockers",
+        "what-we-are-changing": "What we are changing",
+        "definition-of-workflow-changes": "Definition of Workflow changes"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/kanban/flow-review.md"
+    },
+    "general-swe/kanban/kanban-system-design": {
+      "provider": "aikya",
+      "path": "docs/general-swe/kanban/kanban-system-design.md",
+      "source": "aikya-template/docs/general-swe/kanban/kanban-system-design.md",
+      "area": "general-swe",
+      "group": "kanban",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-sources-of-dissatisfaction": "1. Sources of dissatisfaction",
+        "2-demand": "2. Demand",
+        "3-current-capability": "3. Current capability",
+        "4-workflow-model": "4. Workflow model",
+        "5-classes-of-service": "5. Classes of service",
+        "6-the-system-design": "6. The system design",
+        "what-we-expect-to-change": "What we expect to change"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/kanban/kanban-system-design.md"
+    },
+    "general-swe/kanban/work-item-types": {
+      "provider": "aikya",
+      "path": "docs/general-swe/kanban/work-item-types.md",
+      "source": "aikya-template/docs/general-swe/kanban/work-item-types.md",
+      "area": "general-swe",
+      "group": "kanban",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "work-item-types": "Work item types",
+        "classes-of-service": "Classes of service",
+        "reserved-capacity": "Reserved capacity"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/kanban/work-item-types.md"
+    },
+    "general-swe/lean/a3": {
+      "provider": "aikya",
+      "path": "docs/general-swe/lean/a3.md",
+      "source": "aikya-template/docs/general-swe/lean/a3.md",
+      "area": "general-swe",
+      "group": "lean",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-issue": "1. Issue",
+        "2-background": "2. Background",
+        "3-current-condition": "3. Current condition",
+        "4-cause-analysis": "4. Cause analysis",
+        "5-target-condition": "5. Target condition",
+        "6-implementation-plan": "6. Implementation plan",
+        "7-follow-up-plan": "7. Follow-up plan",
+        "8-results": "8. Results"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/lean/a3.md"
+    },
+    "general-swe/lean/experiment-record": {
+      "provider": "aikya",
+      "path": "docs/general-swe/lean/experiment-record.md",
+      "source": "aikya-template/docs/general-swe/lean/experiment-record.md",
+      "area": "general-swe",
+      "group": "lean",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-belief": "1. Belief",
+        "2-what-we-already-know": "2. What we already know",
+        "3-prediction": "3. Prediction",
+        "4-method": "4. Method",
+        "5-decision": "5. Decision",
+        "6-what-happened": "6. What happened",
+        "7-what-we-learned": "7. What we learned"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/lean/experiment-record.md"
+    },
+    "general-swe/lean/improvement-kata": {
+      "provider": "aikya",
+      "path": "docs/general-swe/lean/improvement-kata.md",
+      "source": "aikya-template/docs/general-swe/lean/improvement-kata.md",
+      "area": "general-swe",
+      "group": "lean",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-direction": "1. Direction",
+        "2-current-condition": "2. Current condition",
+        "3-next-target-condition": "3. Next target condition",
+        "4-obstacles": "4. Obstacles",
+        "5-experiment-cycles": "5. Experiment cycles"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/lean/improvement-kata.md"
+    },
+    "general-swe/lean/value-stream-map": {
+      "provider": "aikya",
+      "path": "docs/general-swe/lean/value-stream-map.md",
+      "source": "aikya-template/docs/general-swe/lean/value-stream-map.md",
+      "area": "general-swe",
+      "group": "lean",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-scope": "1. Scope",
+        "2-steps-in-order": "2. Steps, in order",
+        "3-queues": "3. Queues",
+        "4-the-comparison": "4. The comparison",
+        "5-what-we-saw": "5. What we saw",
+        "6-future-state": "6. Future state"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/lean/value-stream-map.md"
+    },
+    "general-swe/project-management/project-brief": {
+      "provider": "aikya",
+      "path": "docs/general-swe/project-management/project-brief.md",
+      "source": "aikya-template/docs/general-swe/project-management/project-brief.md",
+      "area": "general-swe",
+      "group": "project-management",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-the-problem": "1. The problem",
+        "2-why-now": "2. Why now",
+        "3-what-we-think-we-would-build": "3. What we think we would build",
+        "4-what-is-out-of-scope": "4. What is out of scope",
+        "5-what-we-are-asking-for": "5. What we are asking for",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/project-management/project-brief.md"
+    },
+    "general-swe/project-management/project-charter": {
+      "provider": "aikya",
+      "path": "docs/general-swe/project-management/project-charter.md",
+      "source": "aikya-template/docs/general-swe/project-management/project-charter.md",
+      "area": "general-swe",
+      "group": "project-management",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-authority": "1. Authority",
+        "2-contents": "2. Contents",
+        "3-out-of-scope": "3. Out of scope",
+        "4-when-you-do-not-need-one": "4. When you do not need one",
+        "5-the-prince2-alternative": "5. The PRINCE2 alternative",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/project-management/project-charter.md"
+    },
+    "general-swe/project-management/risk-register": {
+      "provider": "aikya",
+      "path": "docs/general-swe/project-management/risk-register.md",
+      "source": "aikya-template/docs/general-swe/project-management/risk-register.md",
+      "area": "general-swe",
+      "group": "project-management",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-fields": "1. Fields",
+        "2-write-risks-as-causal-statements": "2. Write risks as causal statements",
+        "3-review-cadence": "3. Review cadence",
+        "4-if-you-score-score-honestly": "4. If you score, score honestly",
+        "5-when-the-matrix-is-mandatory": "5. When the matrix is mandatory",
+        "6-language-to-avoid": "6. Language to avoid",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/project-management/risk-register.md"
+    },
+    "general-swe/project-management/stakeholder-register": {
+      "provider": "aikya",
+      "path": "docs/general-swe/project-management/stakeholder-register.md",
+      "source": "aikya-template/docs/general-swe/project-management/stakeholder-register.md",
+      "area": "general-swe",
+      "group": "project-management",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-fields": "1. Fields",
+        "2-one-row-per-concern-not-per-person": "2. One row per concern, not per person",
+        "3-assessment-use-the-model-that-was-tested": "3. Assessment: use the model that was tested",
+        "4-the-power-interest-grid": "4. The power/interest grid",
+        "5-review-cadence": "5. Review cadence",
+        "6-confidentiality": "6. Confidentiality",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/project-management/stakeholder-register.md"
+    },
+    "general-swe/requirements/non-functional-requirements": {
+      "provider": "aikya",
+      "path": "docs/general-swe/requirements/non-functional-requirements.md",
+      "source": "aikya-template/docs/general-swe/requirements/non-functional-requirements.md",
+      "area": "general-swe",
+      "group": "requirements",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-statement-format": "1. Statement format",
+        "2-which-qualities-to-consider": "2. Which qualities to consider",
+        "3-which-ones-usually-need-a-number": "3. Which ones usually need a number",
+        "4-conflicts": "4. Conflicts",
+        "5-verification": "5. Verification",
+        "6-format": "6. Format",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/requirements/non-functional-requirements.md"
+    },
+    "general-swe/requirements/product-requirements-document": {
+      "provider": "aikya",
+      "path": "docs/general-swe/requirements/product-requirements-document.md",
+      "source": "aikya-template/docs/general-swe/requirements/product-requirements-document.md",
+      "area": "general-swe",
+      "group": "requirements",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-summary": "1. Summary",
+        "2-problem": "2. Problem",
+        "3-goals-and-non-goals": "3. Goals and non-goals",
+        "4-users": "4. Users",
+        "5-requirements": "5. Requirements",
+        "6-non-functional-requirements": "6. Non-functional requirements",
+        "7-design": "7. Design",
+        "8-open-questions": "8. Open questions",
+        "9-release-and-rollout": "9. Release and rollout",
+        "10-out-of-scope": "10. Out of scope",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/requirements/product-requirements-document.md"
+    },
+    "general-swe/requirements/use-case-specification": {
+      "provider": "aikya",
+      "path": "docs/general-swe/requirements/use-case-specification.md",
+      "source": "aikya-template/docs/general-swe/requirements/use-case-specification.md",
+      "area": "general-swe",
+      "group": "requirements",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "casual-form": "Casual form",
+        "fully-dressed-form": "Fully dressed form",
+        "use-cases-and-user-stories": "Use cases and user stories",
+        "on-uml-use-case-diagrams": "On UML use case diagrams",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/requirements/use-case-specification.md"
+    },
+    "general-swe/requirements/vision-and-scope": {
+      "provider": "aikya",
+      "path": "docs/general-swe/requirements/vision-and-scope.md",
+      "source": "aikya-template/docs/general-swe/requirements/vision-and-scope.md",
+      "area": "general-swe",
+      "group": "requirements",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-business-requirements": "1. Business requirements",
+        "2-scope-and-limitations": "2. Scope and limitations",
+        "3-business-context": "3. Business context",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/requirements/vision-and-scope.md"
+    },
+    "general-swe/security-and-compliance/data-protection-impact-assessment": {
+      "provider": "aikya",
+      "path": "docs/general-swe/security-and-compliance/data-protection-impact-assessment.md",
+      "source": "aikya-template/docs/general-swe/security-and-compliance/data-protection-impact-assessment.md",
+      "area": "general-swe",
+      "group": "security-and-compliance",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-do-you-need-one": "1. Do you need one?",
+        "2-what-is-being-processed": "2. What is being processed",
+        "3-necessity-and-proportionality": "3. Necessity and proportionality",
+        "4-risks-to-individuals": "4. Risks to individuals",
+        "5-measures": "5. Measures",
+        "6-consultation": "6. Consultation",
+        "7-outcome-and-review": "7. Outcome and review",
+        "tooling": "Tooling",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/security-and-compliance/data-protection-impact-assessment.md"
+    },
+    "general-swe/security-and-compliance/data-retention-policy": {
+      "provider": "aikya",
+      "path": "docs/general-swe/security-and-compliance/data-retention-policy.md",
+      "source": "aikya-template/docs/general-swe/security-and-compliance/data-retention-policy.md",
+      "area": "general-swe",
+      "group": "security-and-compliance",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-how-a-period-gets-decided": "1. How a period gets decided",
+        "2-the-schedule": "2. The schedule",
+        "3-backups": "3. Backups",
+        "4-where-retention-conflicts-with-itself": "4. Where retention conflicts with itself",
+        "5-enforcement": "5. Enforcement",
+        "6-anonymisation-as-an-alternative-to-deletion": "6. Anonymisation as an alternative to deletion",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/security-and-compliance/data-retention-policy.md"
+    },
+    "general-swe/security-and-compliance/incident-response-plan": {
+      "provider": "aikya",
+      "path": "docs/general-swe/security-and-compliance/incident-response-plan.md",
+      "source": "aikya-template/docs/general-swe/security-and-compliance/incident-response-plan.md",
+      "area": "general-swe",
+      "group": "security-and-compliance",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-scope-and-definitions": "1. Scope and definitions",
+        "2-the-lifecycle-you-are-using": "2. The lifecycle you are using",
+        "3-roles": "3. Roles",
+        "4-declaring-an-incident": "4. Declaring an incident",
+        "5-detect-and-analyse": "5. Detect and analyse",
+        "6-respond": "6. Respond",
+        "7-notification": "7. Notification",
+        "8-recover": "8. Recover",
+        "9-after": "9. After",
+        "10-exercises": "10. Exercises",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/security-and-compliance/incident-response-plan.md"
+    },
+    "general-swe/security-and-compliance/record-of-processing-activities": {
+      "provider": "aikya",
+      "path": "docs/general-swe/security-and-compliance/record-of-processing-activities.md",
+      "source": "aikya-template/docs/general-swe/security-and-compliance/record-of-processing-activities.md",
+      "area": "general-swe",
+      "group": "security-and-compliance",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-controller-record-the-seven-required-items": "1. Controller record: the seven required items",
+        "2-processor-record-only-four-items": "2. Processor record: only four items",
+        "3-shape-of-an-entry": "3. Shape of an entry",
+        "4-format-and-access": "4. Format and access",
+        "5-the-small-organisation-exemption": "5. The small-organisation exemption",
+        "6-keeping-the-record-current": "6. Keeping the record current",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/security-and-compliance/record-of-processing-activities.md"
+    },
+    "general-swe/security-and-compliance/security-review-checklist": {
+      "provider": "aikya",
+      "path": "docs/general-swe/security-and-compliance/security-review-checklist.md",
+      "source": "aikya-template/docs/general-swe/security-and-compliance/security-review-checklist.md",
+      "area": "general-swe",
+      "group": "security-and-compliance",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-when-a-change-gets-a-security-review": "1. When a change gets a security review",
+        "2-the-list": "2. The list",
+        "3-what-to-check-the-list-against": "3. What to check the list against",
+        "4-asvs-and-what-changed-in-5-0": "4. ASVS, and what changed in 5.0",
+        "5-beyond-review": "5. Beyond review",
+        "6-length-cap": "6. Length cap",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/security-and-compliance/security-review-checklist.md"
+    },
+    "general-swe/shape-up/cool-down-guide": {
+      "provider": "aikya",
+      "path": "docs/general-swe/shape-up/cool-down-guide.md",
+      "source": "aikya-template/docs/general-swe/shape-up/cool-down-guide.md",
+      "area": "general-swe",
+      "group": "shape-up",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-what-cool-down-is-for": "1. What cool-down is for",
+        "2-what-cool-down-is-not": "2. What cool-down is not",
+        "3-our-rules": "3. Our rules",
+        "4-shaping-review": "4. Shaping review"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/shape-up/cool-down-guide.md"
+    },
+    "general-swe/shape-up/kick-off-message": {
+      "provider": "aikya",
+      "path": "docs/general-swe/shape-up/kick-off-message.md",
+      "source": "aikya-template/docs/general-swe/shape-up/kick-off-message.md",
+      "area": "general-swe",
+      "group": "shape-up",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "the-bets": "The bets",
+        "what-we-passed-on": "What we passed on",
+        "the-rules-for-these-six-weeks": "The rules for these six weeks"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/shape-up/kick-off-message.md"
+    },
+    "general-swe/shape-up/pitch": {
+      "provider": "aikya",
+      "path": "docs/general-swe/shape-up/pitch.md",
+      "source": "aikya-template/docs/general-swe/shape-up/pitch.md",
+      "area": "general-swe",
+      "group": "shape-up",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-problem": "1. Problem",
+        "2-appetite": "2. Appetite",
+        "3-solution": "3. Solution",
+        "4-rabbit-holes": "4. Rabbit holes",
+        "5-no-gos": "5. No-gos"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/shape-up/pitch.md"
+    },
+    "general-swe/shape-up/scope-map": {
+      "provider": "aikya",
+      "path": "docs/general-swe/shape-up/scope-map.md",
+      "source": "aikya-template/docs/general-swe/shape-up/scope-map.md",
+      "area": "general-swe",
+      "group": "shape-up",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-scopes": "1. Scopes",
+        "2-chowder": "2. Chowder",
+        "3-nice-to-haves": "3. Nice-to-haves",
+        "4-when-you-redraw": "4. When you redraw"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/shape-up/scope-map.md"
+    },
+    "general-swe/user-documentation/documentation-style-guide": {
+      "provider": "aikya",
+      "path": "docs/general-swe/user-documentation/documentation-style-guide.md",
+      "source": "aikya-template/docs/general-swe/user-documentation/documentation-style-guide.md",
+      "area": "general-swe",
+      "group": "user-documentation",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-base-guide": "1. Base guide",
+        "2-voice-and-mechanics": "2. Voice and mechanics",
+        "3-terminology": "3. Terminology",
+        "4-structure-rules-per-document-type": "4. Structure rules per document type",
+        "5-formatting": "5. Formatting",
+        "6-accessible-and-inclusive-language": "6. Accessible and inclusive language",
+        "7-enforcement": "7. Enforcement",
+        "8-changes": "8. Changes",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/user-documentation/documentation-style-guide.md"
+    },
+    "general-swe/user-documentation/explanation": {
+      "provider": "aikya",
+      "path": "docs/general-swe/user-documentation/explanation.md",
+      "source": "aikya-template/docs/general-swe/user-documentation/explanation.md",
+      "area": "general-swe",
+      "group": "user-documentation",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-title": "1. Title",
+        "2-overview": "2. Overview",
+        "3-terms": "3. Terms",
+        "4-the-model": "4. The model",
+        "5-design-rationale": "5. Design rationale",
+        "6-limits-and-non-goals": "6. Limits and non-goals",
+        "7-further-reading": "7. Further reading",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/user-documentation/explanation.md"
+    },
+    "general-swe/user-documentation/how-to-guide": {
+      "provider": "aikya",
+      "path": "docs/general-swe/user-documentation/how-to-guide.md",
+      "source": "aikya-template/docs/general-swe/user-documentation/how-to-guide.md",
+      "area": "general-swe",
+      "group": "user-documentation",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-title": "1. Title",
+        "2-overview": "2. Overview",
+        "3-before-you-start": "3. Before you start",
+        "4-steps": "4. Steps",
+        "5-verify": "5. Verify",
+        "6-troubleshooting": "6. Troubleshooting",
+        "7-related-tasks": "7. Related tasks",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/user-documentation/how-to-guide.md"
+    },
+    "general-swe/user-documentation/installation-guide": {
+      "provider": "aikya",
+      "path": "docs/general-swe/user-documentation/installation-guide.md",
+      "source": "aikya-template/docs/general-swe/user-documentation/installation-guide.md",
+      "area": "general-swe",
+      "group": "user-documentation",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-requirements": "1. Requirements",
+        "2-installation-methods": "2. Installation methods",
+        "3-install": "3. Install",
+        "4-verify": "4. Verify",
+        "5-first-configuration": "5. First configuration",
+        "6-common-installation-problems": "6. Common installation problems",
+        "7-upgrading": "7. Upgrading",
+        "8-uninstalling": "8. Uninstalling",
+        "testing-this-document": "Testing this document",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/user-documentation/installation-guide.md"
+    },
+    "general-swe/user-documentation/reference-page": {
+      "provider": "aikya",
+      "path": "docs/general-swe/user-documentation/reference-page.md",
+      "source": "aikya-template/docs/general-swe/user-documentation/reference-page.md",
+      "area": "general-swe",
+      "group": "user-documentation",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-structure-is-the-product": "1. Structure is the product",
+        "2-field-order-for-a-function-or-method": "2. Field order for a function or method",
+        "3-field-order-for-an-endpoint": "3. Field order for an endpoint",
+        "4-prose-style": "4. Prose style",
+        "5-generated-versus-hand-written": "5. Generated versus hand-written",
+        "6-completeness": "6. Completeness",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/user-documentation/reference-page.md"
+    },
+    "general-swe/user-documentation/troubleshooting-guide": {
+      "provider": "aikya",
+      "path": "docs/general-swe/user-documentation/troubleshooting-guide.md",
+      "source": "aikya-template/docs/general-swe/user-documentation/troubleshooting-guide.md",
+      "area": "general-swe",
+      "group": "user-documentation",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-how-to-find-your-problem": "1. How to find your problem",
+        "2-entry-format": "2. Entry format",
+        "3-getting-more-information": "3. Getting more information",
+        "4-where-to-get-help": "4. Where to get help",
+        "maintenance": "Maintenance",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/user-documentation/troubleshooting-guide.md"
+    },
+    "general-swe/user-documentation/tutorial": {
+      "provider": "aikya",
+      "path": "docs/general-swe/user-documentation/tutorial.md",
+      "source": "aikya-template/docs/general-swe/user-documentation/tutorial.md",
+      "area": "general-swe",
+      "group": "user-documentation",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-title": "1. Title",
+        "2-what-you-will-build": "2. What you will build",
+        "3-prerequisites": "3. Prerequisites",
+        "4-steps": "4. Steps",
+        "5-checkpoints": "5. Checkpoints",
+        "6-what-you-built": "6. What you built",
+        "testing-this-document": "Testing this document",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/user-documentation/tutorial.md"
+    },
+    "general-swe/waterfall/change-request": {
+      "provider": "aikya",
+      "path": "docs/general-swe/waterfall/change-request.md",
+      "source": "aikya-template/docs/general-swe/waterfall/change-request.md",
+      "area": "general-swe",
+      "group": "waterfall",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-what-is-changing": "1. What is changing",
+        "2-why": "2. Why",
+        "3-impact-assessment": "3. Impact assessment",
+        "4-implementation-approach": "4. Implementation approach",
+        "5-decision": "5. Decision",
+        "6-closure": "6. Closure"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/waterfall/change-request.md"
+    },
+    "general-swe/waterfall/master-test-plan": {
+      "provider": "aikya",
+      "path": "docs/general-swe/waterfall/master-test-plan.md",
+      "source": "aikya-template/docs/general-swe/waterfall/master-test-plan.md",
+      "area": "general-swe",
+      "group": "waterfall",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "change-history": "Change history",
+        "1-context-of-testing": "1. Context of testing",
+        "2-scope": "2. Scope",
+        "3-stakeholders": "3. Stakeholders",
+        "4-assumptions-and-constraints": "4. Assumptions and constraints",
+        "5-risk-register": "5. Risk register",
+        "6-test-strategy": "6. Test strategy",
+        "7-traceability": "7. Traceability",
+        "8-test-environments-and-data": "8. Test environments and data",
+        "9-defect-management": "9. Defect management",
+        "10-activities-schedule-and-resources": "10. Activities, schedule and resources",
+        "11-reporting": "11. Reporting"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/waterfall/master-test-plan.md"
+    },
+    "general-swe/waterfall/phase-gate-review": {
+      "provider": "aikya",
+      "path": "docs/general-swe/waterfall/phase-gate-review.md",
+      "source": "aikya-template/docs/general-swe/waterfall/phase-gate-review.md",
+      "area": "general-swe",
+      "group": "waterfall",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-what-this-gate-authorises": "1. What this gate authorises",
+        "2-required-deliverables": "2. Required deliverables",
+        "3-review-criteria": "3. Review criteria",
+        "4-traceability-status": "4. Traceability status",
+        "5-open-items": "5. Open items",
+        "6-decision": "6. Decision"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/waterfall/phase-gate-review.md"
+    },
+    "general-swe/waterfall/requirements-traceability-matrix": {
+      "provider": "aikya",
+      "path": "docs/general-swe/waterfall/requirements-traceability-matrix.md",
+      "source": "aikya-template/docs/general-swe/waterfall/requirements-traceability-matrix.md",
+      "area": "general-swe",
+      "group": "waterfall",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "what-this-matrix-is-for": "What this matrix is for",
+        "the-trace-chain": "The trace chain",
+        "the-matrix": "The matrix",
+        "coverage-summary": "Coverage summary",
+        "waivers-and-deferrals": "Waivers and deferrals",
+        "hazard-and-risk-traceability": "Hazard and risk traceability",
+        "where-traceability-is-genuinely-mandatory": "Where traceability is genuinely mandatory"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/waterfall/requirements-traceability-matrix.md"
+    },
+    "general-swe/waterfall/software-design-description": {
+      "provider": "aikya",
+      "path": "docs/general-swe/waterfall/software-design-description.md",
+      "source": "aikya-template/docs/general-swe/waterfall/software-design-description.md",
+      "area": "general-swe",
+      "group": "waterfall",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "change-history": "Change history",
+        "1-introduction": "1. Introduction",
+        "2-design-stakeholders-and-their-concerns": "2. Design stakeholders and their concerns",
+        "3-design-viewpoints-in-use": "3. Design viewpoints in use",
+        "4-design-views": "4. Design views",
+        "5-design-elements": "5. Design elements",
+        "6-design-rationale": "6. Design rationale",
+        "7-design-constraints-and-their-sources": "7. Design constraints and their sources",
+        "8-verification-approach": "8. Verification approach"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/waterfall/software-design-description.md"
+    },
+    "general-swe/waterfall/software-requirements-specification": {
+      "provider": "aikya",
+      "path": "docs/general-swe/waterfall/software-requirements-specification.md",
+      "source": "aikya-template/docs/general-swe/waterfall/software-requirements-specification.md",
+      "area": "general-swe",
+      "group": "waterfall",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "change-history": "Change history",
+        "1-purpose": "1. Purpose",
+        "2-scope": "2. Scope",
+        "3-definitions-acronyms-and-references": "3. Definitions, acronyms and references",
+        "4-product-perspective": "4. Product perspective",
+        "5-product-functions": "5. Product functions",
+        "6-user-characteristics": "6. User characteristics",
+        "7-limitations": "7. Limitations",
+        "8-assumptions-and-dependencies": "8. Assumptions and dependencies",
+        "9-specified-requirements": "9. Specified requirements",
+        "10-external-interfaces": "10. External interfaces",
+        "11-quality-and-performance-requirements": "11. Quality and performance requirements",
+        "12-design-and-implementation-constraints": "12. Design and implementation constraints",
+        "13-apportioning-of-requirements": "13. Apportioning of requirements",
+        "14-verification": "14. Verification",
+        "15-supporting-information": "15. Supporting information"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/waterfall/software-requirements-specification.md"
+    },
+    "general-swe/waterfall/user-acceptance-test-plan": {
+      "provider": "aikya",
+      "path": "docs/general-swe/waterfall/user-acceptance-test-plan.md",
+      "source": "aikya-template/docs/general-swe/waterfall/user-acceptance-test-plan.md",
+      "area": "general-swe",
+      "group": "waterfall",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-purpose-and-what-acceptance-triggers": "1. Purpose and what acceptance triggers",
+        "2-scope-of-acceptance": "2. Scope of acceptance",
+        "3-participants-and-roles": "3. Participants and roles",
+        "4-environment-and-data": "4. Environment and data",
+        "5-entry-criteria": "5. Entry criteria",
+        "6-acceptance-scenarios": "6. Acceptance scenarios",
+        "7-defect-handling": "7. Defect handling",
+        "8-exit-criteria": "8. Exit criteria",
+        "9-acceptance-decision": "9. Acceptance decision",
+        "10-sign-off": "10. Sign-off"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/waterfall/user-acceptance-test-plan.md"
+    },
+    "platform-engineering/foundations/platform-onboarding-guide": {
+      "provider": "aikya",
+      "path": "docs/platform-engineering/foundations/platform-onboarding-guide.md",
+      "source": "aikya-template/docs/platform-engineering/foundations/platform-onboarding-guide.md",
+      "area": "platform-engineering",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "before-you-start": "Before you start",
+        "first-integration": "First integration",
+        "moving-your-real-workload-over": "Moving your real workload over",
+        "ownership-boundary": "Ownership boundary",
+        "getting-help": "Getting help"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/platform-engineering/foundations/platform-onboarding-guide.md"
+    },
+    "platform-engineering/foundations/service-catalog-entry": {
+      "provider": "aikya",
+      "path": "docs/platform-engineering/foundations/service-catalog-entry.md",
+      "source": "aikya-template/docs/platform-engineering/foundations/service-catalog-entry.md",
+      "area": "platform-engineering",
+      "group": "foundations",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-purpose-and-audience": "1. Purpose and audience",
+        "2-getting-started": "2. Getting started",
+        "3-what-you-re-agreeing-to": "3. What you're agreeing to",
+        "4-alternatives-and-exit": "4. Alternatives and exit"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/platform-engineering/foundations/service-catalog-entry.md"
+    },
+    "platform-engineering/reliability/error-budget-policy": {
+      "provider": "aikya",
+      "path": "docs/platform-engineering/reliability/error-budget-policy.md",
+      "source": "aikya-template/docs/platform-engineering/reliability/error-budget-policy.md",
+      "area": "platform-engineering",
+      "group": "reliability",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-goals-and-non-goals": "1. Goals and non-goals",
+        "2-slo-miss-policy": "2. SLO-miss policy",
+        "3-outage-and-postmortem-policy": "3. Outage and postmortem policy",
+        "4-escalation": "4. Escalation"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/platform-engineering/reliability/error-budget-policy.md"
+    },
+    "platform-engineering/reliability/slo-document": {
+      "provider": "aikya",
+      "path": "docs/platform-engineering/reliability/slo-document.md",
+      "source": "aikya-template/docs/platform-engineering/reliability/slo-document.md",
+      "area": "platform-engineering",
+      "group": "reliability",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-service-overview": "1. Service overview",
+        "2-slis-and-slos": "2. SLIs and SLOs",
+        "3-rationale": "3. Rationale",
+        "4-error-budget": "4. Error budget",
+        "5-clarifications-and-caveats": "5. Clarifications and caveats"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/platform-engineering/reliability/slo-document.md"
+    },
+    "platform-engineering/reliability/toil-log": {
+      "provider": "aikya",
+      "path": "docs/platform-engineering/reliability/toil-log.md",
+      "source": "aikya-template/docs/platform-engineering/reliability/toil-log.md",
+      "area": "platform-engineering",
+      "group": "reliability",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "the-log": "The log",
+        "toil-budget": "Toil budget",
+        "elimination-candidates": "Elimination candidates"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/platform-engineering/reliability/toil-log.md"
+    },
+    "platform-engineering/resilience/capacity-plan": {
+      "provider": "aikya",
+      "path": "docs/platform-engineering/resilience/capacity-plan.md",
+      "source": "aikya-template/docs/platform-engineering/resilience/capacity-plan.md",
+      "area": "platform-engineering",
+      "group": "resilience",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-current-state": "1. Current state",
+        "2-forecast": "2. Forecast",
+        "3-headroom-target-and-reasoning": "3. Headroom target and reasoning",
+        "4-gap-and-remediation": "4. Gap and remediation"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/platform-engineering/resilience/capacity-plan.md"
+    },
+    "platform-engineering/resilience/disaster-recovery-plan": {
+      "provider": "aikya",
+      "path": "docs/platform-engineering/resilience/disaster-recovery-plan.md",
+      "source": "aikya-template/docs/platform-engineering/resilience/disaster-recovery-plan.md",
+      "area": "platform-engineering",
+      "group": "resilience",
+      "project_types": [
+        "development",
+        "infrastructure",
+        "devops"
+      ],
+      "sections": {
+        "1-business-impact-analysis": "1. Business impact analysis",
+        "2-recovery-targets": "2. Recovery targets",
+        "3-recovery-strategy": "3. Recovery strategy",
+        "4-recovery-procedure": "4. Recovery procedure",
+        "5-testing-training-and-exercises": "5. Testing, training, and exercises"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/platform-engineering/resilience/disaster-recovery-plan.md"
+    },
+    "web-development/accessibility/accessibility-conformance-report": {
+      "provider": "aikya",
+      "path": "docs/web-development/accessibility/accessibility-conformance-report.md",
+      "source": "aikya-template/docs/web-development/accessibility/accessibility-conformance-report.md",
+      "area": "web-development",
+      "group": "accessibility",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "1-product-information": "1. Product information",
+        "2-evaluation-methods-used": "2. Evaluation methods used",
+        "3-applicable-standards-and-guidelines": "3. Applicable standards and guidelines",
+        "4-conformance-tables": "4. Conformance tables",
+        "5-level-aaa": "5. Level AAA",
+        "6-legal-disclaimer": "6. Legal disclaimer",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/accessibility/accessibility-conformance-report.md"
+    },
+    "web-development/accessibility/accessibility-statement": {
+      "provider": "aikya",
+      "path": "docs/web-development/accessibility/accessibility-statement.md",
+      "source": "aikya-template/docs/web-development/accessibility/accessibility-statement.md",
+      "area": "web-development",
+      "group": "accessibility",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "structure": "Structure",
+        "1-commitment-statement": "1. Commitment statement",
+        "2-scope": "2. Scope",
+        "3-compliance-status": "3. Compliance status",
+        "4-non-accessible-content": "4. Non-accessible content",
+        "5-preparation-of-this-statement": "5. Preparation of this statement",
+        "6-feedback-and-contact-information": "6. Feedback and contact information",
+        "7-enforcement-procedure": "7. Enforcement procedure",
+        "optional-what-we-are-doing-to-improve": "Optional: what we are doing to improve",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/accessibility/accessibility-statement.md"
+    },
+    "web-development/accessibility/accessibility-test-plan": {
+      "provider": "aikya",
+      "path": "docs/web-development/accessibility/accessibility-test-plan.md",
+      "source": "aikya-template/docs/web-development/accessibility/accessibility-test-plan.md",
+      "area": "web-development",
+      "group": "accessibility",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "1-scope": "1. Scope",
+        "2-explore-the-product": "2. Explore the product",
+        "3-sample": "3. Sample",
+        "4-methods": "4. Methods",
+        "5-recording-findings": "5. Recording findings",
+        "6-cadence": "6. Cadence",
+        "7-reporting": "7. Reporting",
+        "8-roles": "8. Roles",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/accessibility/accessibility-test-plan.md"
+    },
+    "web-development/foundations/api-design-guide": {
+      "provider": "aikya",
+      "path": "docs/web-development/foundations/api-design-guide.md",
+      "source": "aikya-template/docs/web-development/foundations/api-design-guide.md",
+      "area": "web-development",
+      "group": "foundations",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "1-scope-and-audience": "1. Scope and audience",
+        "2-resources-and-naming": "2. Resources and naming",
+        "3-http-semantics": "3. HTTP semantics",
+        "4-versioning": "4. Versioning",
+        "5-errors": "5. Errors",
+        "6-pagination-filtering-sorting": "6. Pagination, filtering, sorting",
+        "7-authentication-and-authorisation": "7. Authentication and authorisation",
+        "8-rate-limits": "8. Rate limits",
+        "9-deprecation-and-sunset": "9. Deprecation and sunset",
+        "10-changes-to-this-guide": "10. Changes to this guide",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/foundations/api-design-guide.md"
+    },
+    "web-development/foundations/brand-and-visual-guidelines": {
+      "provider": "aikya",
+      "path": "docs/web-development/foundations/brand-and-visual-guidelines.md",
+      "source": "aikya-template/docs/web-development/foundations/brand-and-visual-guidelines.md",
+      "area": "web-development",
+      "group": "foundations",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "relationship-to-the-design-system": "Relationship to the design system",
+        "1-brand-foundation": "1. Brand foundation",
+        "2-logo": "2. Logo",
+        "3-colour": "3. Colour",
+        "4-typography": "4. Typography",
+        "5-iconography": "5. Iconography",
+        "6-photography-and-illustration": "6. Photography and illustration",
+        "7-motion": "7. Motion",
+        "8-voice-and-tone": "8. Voice and tone",
+        "9-applications": "9. Applications",
+        "10-trademark-and-permissions": "10. Trademark and permissions",
+        "11-exceptions": "11. Exceptions",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/foundations/brand-and-visual-guidelines.md"
+    },
+    "web-development/foundations/browser-support-policy": {
+      "provider": "aikya",
+      "path": "docs/web-development/foundations/browser-support-policy.md",
+      "source": "aikya-template/docs/web-development/foundations/browser-support-policy.md",
+      "area": "web-development",
+      "group": "foundations",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "1-supported-browsers": "1. Supported browsers",
+        "2-the-machine-readable-version": "2. The machine-readable version",
+        "3-how-a-browser-gets-added-or-removed": "3. How a browser gets added or removed",
+        "4-feature-adoption": "4. Feature adoption",
+        "5-testing": "5. Testing",
+        "6-what-users-on-unsupported-browsers-see": "6. What users on unsupported browsers see",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/foundations/browser-support-policy.md"
+    },
+    "web-development/foundations/design-system-guide": {
+      "provider": "aikya",
+      "path": "docs/web-development/foundations/design-system-guide.md",
+      "source": "aikya-template/docs/web-development/foundations/design-system-guide.md",
+      "area": "web-development",
+      "group": "foundations",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "1-what-this-system-is-for": "1. What this system is for",
+        "2-design-tokens": "2. Design tokens",
+        "3-components": "3. Components",
+        "4-when-not-to-use-the-system": "4. When not to use the system",
+        "5-accessibility": "5. Accessibility",
+        "6-contributing": "6. Contributing",
+        "7-versioning-and-change": "7. Versioning and change",
+        "8-adoption": "8. Adoption",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/foundations/design-system-guide.md"
+    },
+    "web-development/foundations/frontend-architecture": {
+      "provider": "aikya",
+      "path": "docs/web-development/foundations/frontend-architecture.md",
+      "source": "aikya-template/docs/web-development/foundations/frontend-architecture.md",
+      "area": "web-development",
+      "group": "foundations",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "1-what-this-application-is": "1. What this application is",
+        "2-rendering-strategy": "2. Rendering strategy",
+        "3-structure": "3. Structure",
+        "4-state": "4. State",
+        "5-data-access": "5. Data access",
+        "6-boundaries-and-third-parties": "6. Boundaries and third parties",
+        "7-micro-frontends-if-you-have-them": "7. Micro-frontends, if you have them",
+        "8-accessibility-and-browser-support": "8. Accessibility and browser support",
+        "9-known-problems": "9. Known problems",
+        "10-decisions": "10. Decisions",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/foundations/frontend-architecture.md"
+    },
+    "web-development/foundations/rollout-plan": {
+      "provider": "aikya",
+      "path": "docs/web-development/foundations/rollout-plan.md",
+      "source": "aikya-template/docs/web-development/foundations/rollout-plan.md",
+      "area": "web-development",
+      "group": "foundations",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "1-what-is-changing": "1. What is changing",
+        "2-why-gradually": "2. Why gradually",
+        "3-stages": "3. Stages",
+        "4-how-users-are-selected": "4. How users are selected",
+        "5-what-you-are-watching": "5. What you are watching",
+        "6-rollback": "6. Rollback",
+        "7-cleanup": "7. Cleanup",
+        "8-communication": "8. Communication",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/foundations/rollout-plan.md"
+    },
+    "web-development/performance/performance-budget": {
+      "provider": "aikya",
+      "path": "docs/web-development/performance/performance-budget.md",
+      "source": "aikya-template/docs/web-development/performance/performance-budget.md",
+      "area": "web-development",
+      "group": "performance",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "1-what-this-budget-covers": "1. What this budget covers",
+        "2-the-limits": "2. The limits",
+        "3-enforcement": "3. Enforcement",
+        "4-breaking-the-budget": "4. Breaking the budget",
+        "5-review": "5. Review",
+        "setting-the-initial-numbers": "Setting the initial numbers",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/performance/performance-budget.md"
+    },
+    "web-development/performance/performance-review": {
+      "provider": "aikya",
+      "path": "docs/web-development/performance/performance-review.md",
+      "source": "aikya-template/docs/web-development/performance/performance-review.md",
+      "area": "web-development",
+      "group": "performance",
+      "project_types": [
+        "development"
+      ],
+      "sections": {
+        "1-header": "1. Header",
+        "2-headline-numbers": "2. Headline numbers",
+        "3-what-changed-and-why": "3. What changed and why",
+        "4-budget-status": "4. Budget status",
+        "5-what-we-will-do-next-period": "5. What we will do next period",
+        "6-limitations-of-this-period-s-data": "6. Limitations of this period's data",
+        "common-failures-in-this-document": "Common failures in this document"
+      },
+      "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/performance/performance-review.md"
+    }
+  },
+  "upstream_provider": "Milkeles/software-doc-templates"
+}

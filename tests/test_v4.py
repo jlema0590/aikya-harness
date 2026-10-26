@@ -1,4 +1,5 @@
 """Pruebas v4: integración sin red, consentimiento, diseño UI y especificación Agent Skills."""
+import runtime_support
 import importlib.util
 import json
 import subprocess
@@ -10,17 +11,17 @@ from unittest.mock import patch
 
 HERE=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(HERE))
-import external_skills as ext
-import install as installer
+from aikya.catalogs import external as ext
+from aikya.installation import facade as installer
 
 
 def load_module(path: Path,name: str):
-    spec=importlib.util.spec_from_file_location(name,path)
+    spec=runtime_support.module_spec(name,path)
     module=importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
+    spec.loader.exec_module(module);module=getattr(module,'_module',module)
+    return getattr(module, '_module', module)
 
-LINTER=load_module(HERE/'template/scripts/harness/skills_lint.py','harness_v4_linter')
+LINTER=load_module(HERE/'src/aikya/resources/project_template/scripts/harness/skills_lint.py','harness_v4_linter')
 
 
 class ExternalIntegrationTests(unittest.TestCase):
@@ -78,13 +79,13 @@ class ExternalIntegrationTests(unittest.TestCase):
         self.assertEqual(json.loads((self.root/'.harness/external-skills-lock.json').read_text())['skills']['graphify']['detail'],'offline')
 
     def test_agent_skills_spec_linter_template(self):
-        errors=LINTER.validate(HERE/'template')
+        errors=LINTER.validate(HERE/'src/aikya/resources/project_template')
         self.assertEqual(errors,[])
         bad=self.root/'.claude/skills/BadName';bad.mkdir()
         (bad/'SKILL.md').write_text('no frontmatter')
         self.assertTrue(LINTER.validate(self.root))
 
-    def test_install_creates_design_only_for_ui(self):
+    def test_install_omits_design_without_actual_decisions(self):
         for front in ('none','react'):
             with tempfile.TemporaryDirectory() as directory:
                 root=Path(directory)
@@ -93,7 +94,7 @@ class ExternalIntegrationTests(unittest.TestCase):
                     'package_manager':'npm'},root)
                 installer.install(root,profile,{'modules':[],'findings':[]})
                 design=(root/'aikya/docs/design/design-system.md').exists()
-                self.assertEqual(design,front=='react')
+                self.assertFalse(design)
                 self.assertTrue((root/'.claude/hooks/skills_ready.py').is_file())
                 self.assertTrue((root/'aikya/scripts/harness/external_skills.py').is_file())
                 self.assertEqual(subprocess.run([sys.executable,str(root/'aikya/scripts/harness/skills_lint.py')],
@@ -114,7 +115,7 @@ class ExternalIntegrationTests(unittest.TestCase):
             actions=installer.install(root,profile,{'modules':[],'findings':[]})
             self.assertFalse(any('ACTUALIZADO DESDE v3' in x for x in actions))
             self.assertEqual(old.read_bytes(),(previous/'v3_docs_guard.py').read_bytes())
-            self.assertEqual((root/'aikya/scripts/harness/docs_guard.py').read_bytes(),(HERE/'template/scripts/harness/docs_guard.py').read_bytes())
+            self.assertEqual((root/'aikya/scripts/harness/docs_guard.py').read_bytes(),runtime_support.generated_bytes('docs_guard.py'))
             self.assertFalse((root/'.harness/backup-v3/aikya/scripts/harness/docs_guard.py').exists())
             self.assertEqual(custom.read_text(),'PERSONALIZADO; no sobrescribir')
             self.assertTrue((root/'.claude/rules/02-context-budget.md').is_file())
@@ -134,7 +135,7 @@ class ExternalIntegrationTests(unittest.TestCase):
     def test_cli_with_answers_plan_does_not_download(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d)/'new'
-            result=subprocess.run([sys.executable,str(HERE/'install.py'),
+            result=subprocess.run([sys.executable,str(HERE / 'src/aikya/installation/facade.py'),
                 '--target',str(root),'--answers',str(HERE/'examples/new-next-react.json'),
                 '--external','plan'],text=True,capture_output=True,timeout=30)
             self.assertEqual(result.returncode,0,result.stderr)
