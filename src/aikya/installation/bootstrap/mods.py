@@ -146,7 +146,7 @@ def persist_files(files, version, plugins, minimum, destination):
     if source.parent.exists():
         actual = {p.relative_to(source).as_posix(): hashlib.sha256(state.safe(p).read_bytes()).hexdigest()
                   for p in source.rglob('*') if p.is_file() or p.is_symlink()}
-        if not marker.is_file() or json.loads(marker.read_text()) != record or actual != record['files']:
+        if not marker.is_file() or json.loads(marker.read_text(encoding='utf8')) != record or actual != record['files']:
             raise ValueError('Customized or modified Mods source requires review')
     else:
         destination.mkdir(parents=True, exist_ok=True)

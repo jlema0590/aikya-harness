@@ -11,7 +11,7 @@ from .options import app_root
 
 def run(python, *args):
     try:
-        process = subprocess.run([str(python), '-I', '-B', *map(str, args)], capture_output=True, text=True, timeout=180)
+        process = subprocess.run([str(python), '-I', '-B', '-X', 'utf8', *map(str, args)], capture_output=True, text=True, encoding='utf8', timeout=180)
     except subprocess.SubprocessError as exc:
         raise ValueError('Installer subprocess timed out or could not complete') from exc
     if process.returncode:

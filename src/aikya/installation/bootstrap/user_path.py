@@ -13,7 +13,7 @@ def ensure_user_path(bin_dir, enabled=True, root=None):
     if not enabled:return {'changed':False}
     root = Path(root or environment.app_root())
     marker = state.safe(root/'user-path.json')
-    if marker.exists():return json.loads(marker.read_text())
+    if marker.exists():return json.loads(marker.read_text(encoding='utf8'))
     bin_dir = Path(bin_dir).absolute()
     if os.name == 'nt':return ensure_windows_path(str(bin_dir),marker)
     shell=Path(os.environ.get('SHELL','')).name
@@ -34,7 +34,7 @@ def ensure_user_path(bin_dir, enabled=True, root=None):
 def remove_user_path(root):
     marker=state.safe(Path(root)/'user-path.json')
     if not marker.exists():return
-    record=json.loads(marker.read_text())
+    record=json.loads(marker.read_text(encoding='utf8'))
     if record['platform']=='windows':
         if not remove_windows_path(record):return
     else:

@@ -28,7 +28,7 @@ def registration(python, scope, target, dry_run=False):
 def install_harness(args, root, receipt_file, locked=False):
     args.version = download.resolve_version(args.version, args.offline_dir)
     environment.check_python(args.python)
-    old = json.loads(receipt_file.read_text()) if receipt_file.exists() else None
+    old = json.loads(receipt_file.read_text(encoding='utf8')) if receipt_file.exists() else None
     owned_locations = locations(args.scope, args.target)
     state.snapshot(owned_locations)  # Validate every managed path before provisioning.
     if owned_locations[0].exists() and old is None:
@@ -42,7 +42,7 @@ def install_harness(args, root, receipt_file, locked=False):
         with nullcontext() if locked else state.installation_lock(root):
             if (root / 'pending.json').exists():
                 raise ValueError('Interrupted operation needs review; run aikya-manage doctor')
-            old = json.loads(receipt_file.read_text()) if receipt_file.exists() else None
+            old = json.loads(receipt_file.read_text(encoding='utf8')) if receipt_file.exists() else None
             candidate = root / 'versions' / args.version / uuid.uuid4().hex
             python = environment.create_environment(candidate, args.python, wheel)
             registration(python, args.scope, args.target, True)
@@ -90,7 +90,7 @@ def install_harness(args, root, receipt_file, locked=False):
 def uninstall_harness(args, root, receipt_file, locked=False):
     if not receipt_file.is_file():
         raise ValueError('No owned installation receipt for this scope/target')
-    receipt = json.loads(receipt_file.read_text())
+    receipt = json.loads(receipt_file.read_text(encoding='utf8'))
     allowed = [*locations(args.scope, args.target, receipt.get('commands', [])), root / 'bin']
     for name in set(receipt['before']) | set(receipt['after']):
         path = Path(name)
@@ -134,6 +134,9 @@ def uninstall_harness(args, root, receipt_file, locked=False):
 
 
 def main(argv: list[str] | None = None) -> int:
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, 'reconfigure'):
+            stream.reconfigure(encoding='utf8')
     args = parser().parse_args(argv)
     try:
         root = environment.app_root(); state.safe(root)

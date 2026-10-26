@@ -18,7 +18,7 @@ class Claude:
     def run(self, *args):
         try:
             result = subprocess.run([self.executable, *map(str, args)], cwd=self.cwd,
-                                    stdin=subprocess.DEVNULL, capture_output=True, text=True, timeout=120)
+                                    stdin=subprocess.DEVNULL, capture_output=True, text=True, encoding='utf8', timeout=120)
         except (OSError, subprocess.SubprocessError) as exc:
             raise ValueError('Claude plugin command could not complete') from exc
         if result.returncode:

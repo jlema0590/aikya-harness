@@ -8,7 +8,7 @@ from .claude_plugins import Claude
 
 
 def component_status(root):
-    return [json.loads(state.safe(p).read_text()) for p in sorted((root/'components').glob('*.json'))]
+    return [json.loads(state.safe(p).read_text(encoding='utf8')) for p in sorted((root/'components').glob('*.json'))]
 
 
 def managed_sources(root):
@@ -17,7 +17,7 @@ def managed_sources(root):
 
 def execute(args, root, receipt_file):
     component_file = state.safe(root/'components'/receipt_file.name)
-    previous = json.loads(component_file.read_text()) if component_file.exists() else None
+    previous = json.loads(component_file.read_text(encoding='utf8')) if component_file.exists() else None
     if previous is not None:components.validate_receipt(previous,args.scope,args.target)
     if args.action == 'uninstall':
         return remove(args, root, receipt_file, component_file, previous)
@@ -55,7 +55,7 @@ def execute(args, root, receipt_file):
         import hashlib
         (stage/'harness/SHA256SUMS').write_text(hashlib.sha256(wheel.read_bytes()).hexdigest()+'  '+wheel.name+'\n')
         with state.installation_lock(root):
-            current = json.loads(component_file.read_text()) if component_file.exists() else None
+            current = json.loads(component_file.read_text(encoding='utf8')) if component_file.exists() else None
             if current != previous:
                 raise ValueError('Component selection changed during preparation; retry')
             if bundle:
@@ -83,7 +83,7 @@ def remove(args,root,receipt_file,component_file,previous):
         adapter=Claude(args.target);adapter.preflight()
     from . import cli, user_path
     with state.installation_lock(root):
-        current = json.loads(component_file.read_text()) if component_file.exists() else None
+        current = json.loads(component_file.read_text(encoding='utf8')) if component_file.exists() else None
         if current != previous:raise ValueError('Component receipt changed during uninstall preflight; retry')
         if adapter:
             components.uninstall_plugins(previous,adapter,lambda:state.write_json(component_file,previous))

@@ -3,6 +3,8 @@ import contextlib
 import importlib
 import io
 import json
+import locale
+import sys
 import os
 from pathlib import Path
 import shutil
@@ -232,3 +234,40 @@ class UnifiedInstaller(unittest.TestCase):
             try:owned=components.check_source(SimpleNamespace(path=source),receipt,Host())
             except ValueError:self.fail('Windows case/separator aliases incorrectly lose source ownership')
         self.assertTrue(owned)
+
+    def test_native_json_is_utf8_even_when_user_locale_is_cp1252(self):
+        claude_plugins=self.module('claude_plugins')
+        if sys.flags.utf8_mode:self.skipTest('This interpreter forces UTF-8 independently of locale')
+        with tempfile.TemporaryDirectory() as t,patch.object(claude_plugins.shutil,'which',return_value=sys.executable):
+            host=claude_plugins.Claude(Path(t).resolve())
+            code=r'''import sys;sys.stdout.buffer.write(b'{"path":"caf\xc3\xa9"}')'''
+            with patch.object(locale,'getencoding',return_value='cp1252',create=True),patch.object(locale,'getpreferredencoding',return_value='cp1252'):
+                result=host.run('-c',code)
+            self.assertEqual('café',json.loads(result)['path'])
+
+    def test_managed_python_output_is_utf8_even_when_user_locale_is_cp1252(self):
+        from aikya.installation.bootstrap import environment
+        if sys.flags.utf8_mode:self.skipTest('Interpreter forces UTF-8')
+        code=r'''import sys;sys.stdout.buffer.write(b'{"path":"caf\xc3\xa9"}')'''
+        with patch.object(locale,'getencoding',return_value='cp1252',create=True),patch.object(locale,'getpreferredencoding',return_value='cp1252'):
+            result=environment.run(sys.executable,'-c',code)
+        self.assertEqual('café',json.loads(result)['path'])
+
+    def test_component_receipts_use_utf8_independently_of_system_locale(self):
+        from aikya.installation.bootstrap import coordinator,state
+        with tempfile.TemporaryDirectory() as t:
+            root=Path(t).resolve();state.write_json(root/'components/owned.json',{'source':'/owned/café'})
+            original=Path.read_text
+            def legacy_read(path,encoding=None,errors=None):return original(path,encoding=encoding or 'cp1252',errors=errors)
+            with patch.object(Path,'read_text',legacy_read):result=coordinator.component_status(root)
+            self.assertEqual('/owned/café',result[0]['source'])
+
+    def test_cli_reports_unicode_errors_as_utf8_on_a_legacy_console(self):
+        import io,contextlib
+        from aikya.installation.bootstrap import cli
+        raw=io.BytesIO();stream=io.TextIOWrapper(raw,encoding='cp1252')
+        with patch.object(cli.state,'safe',side_effect=ValueError('Invalid path: 目录')),contextlib.redirect_stderr(stream):
+            try:code=cli.main(['doctor'])
+            except UnicodeError:self.fail('Unicode diagnostic could not be written on a legacy console')
+        stream.flush()
+        self.assertEqual(2,code);self.assertIn('目录',raw.getvalue().decode('utf8'))

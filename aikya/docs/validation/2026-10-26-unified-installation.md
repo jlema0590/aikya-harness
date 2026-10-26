@@ -26,8 +26,8 @@ Date: 2026-10-26. Branch: `feat/unified-installation-mods`.
 
 | Check | Observed result |
 |---|---|
-| Complete regression run with frozen sources and loopback permission, before final review guards | 620 tests, 2 skipped, no failures/errors; 922.768 seconds |
-| Final installer regression subset | 49 tests passed, including real native Claude management and PowerShell 7 |
+| Complete regression run with frozen sources and loopback permission, before the final UTF-8 transport refinement | 624 tests, 2 skipped, no failures/errors; 919.636 seconds |
+| Final installer regression subset | 53 tests passed, including real native Claude management and PowerShell 7 |
 | Final user PATH tests | 5 passed, including registry preservation and environment broadcast |
 | Final Pages tests | 2 passed: exact release bytes, integrity blocking and legacy rejection |
 | Verified Mods distributions | 7 passed: persistent source ownership, SHA-256, malformed catalogs, ZIP traversal/links/duplicates/expansion, Unicode collisions and forged disk markers |
@@ -41,9 +41,16 @@ Date: 2026-10-26. Branch: `feat/unified-installation-mods`.
 | Git prohibition probe | Real native marketplace/plugin install and removal completed with a failing Git guard; Git was not invoked |
 | New Mods packaging format | Locally built unpublished v0.0.14 fixture verified successfully; not treated as a published release |
 
-The latest complete suite for the final revision and remote native CI are pending
-at this checkpoint. The earlier full run and subsequent focused results are
-reported separately rather than attributed to the same source snapshot.
+The 624-test run used code revision `565aba0`. The following UTF-8 refinement was
+verified by 53 installer tests, including four regressions observed failing first:
+native JSON decoding, managed Python output, component-receipt decoding and
+non-Latin CLI diagnostics under a simulated CP1252 locale. Results are separated
+by snapshot rather than attributed to one run.
+
+The native installer matrix at `565aba0` also passed all 12 OS/Python combinations
+and the three Linux distribution jobs. The current revision's full and native
+results are recorded in [PR #22 checks](https://github.com/jlema0590/aikya-harness/pull/22/checks);
+that live record is authoritative for the PR head.
 
 Reproducible checks:
 
@@ -66,7 +73,7 @@ where that executable is absent; this is separate from fixture/protocol acceptan
 
 An initial sandboxed run completed 614 tests with one failure, four errors and two
 skips. The following results were superseded by the frozen-source, loopback-enabled
-620-test run above; no memory-runtime product change was needed:
+subsequent frozen-source runs above; no memory-runtime product change was needed:
 
 - `test_engineering_catalog.EngineeringCatalogTests.test_project_setup_includes_catalog_and_global_does_not_mutate_projects`:
   the runtime correctly rejected a source file edited during package preflight.
@@ -86,8 +93,9 @@ side-effect-free entry preview, version compatibility and Windows source aliases
 - No release or Pages site has been published by this work. The short URLs require
   the reviewed code to reach a published v7.1.0+ release and a successful Pages
   deployment; the workflow refuses drafts, prereleases and legacy installers.
-- Native Windows PowerShell 5.1 and the Windows registry API need their remote
-  runner results; PowerShell 7 on macOS is not evidence of a Windows host run.
+- Native Windows PowerShell 5.1/registry acceptance is covered by the remote
+  Windows installer jobs; the current head must retain those checks. PowerShell 7
+  on macOS alone is not evidence of a Windows host run.
 - No authenticated model execution, live host-pane rendering or automatic
   persistent Flow connection is claimed. Tests do not call AI models.
 - Existing unrelated marketplace sources or shared sources that cannot safely be

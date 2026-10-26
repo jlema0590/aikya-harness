@@ -313,9 +313,10 @@ Interfaces a introducir:
 - [x] Validar con CLI real de Claude registro, instalación y lectura del catálogo;
   esto no exige prompts/modelos. La apariencia de los mods se comprueba en una
   sesión de Claude con soporte nativo, separada del ensayo de instalación.
-- [ ] Cerrar la verificación de la revisión final con la suite completa y CI;
-  la batería de los 28 comandos ya pasó con 52 comprobaciones. Antes de los
-  últimos ajustes pasaron 620 pruebas (2 omitidas);
+- [x] Ejecutar la suite completa y la batería de los 28 comandos: 624 pruebas
+  (2 omitidas), 52 comprobaciones de comandos y 53 pruebas de instalación después
+  del ajuste UTF-8. Los resultados de la revisión actual en CI se conservan en la
+  PR;
   verificar memoria, HTML, ODD/SDD y archivos generados bajo `aikya/docs/`.
 - [x] Revisar convivencia de Flow/Usage con la observabilidad y statusLine actuales:
   no crear otra barra propia ni sobrescribir preferencias para aparentar integración.
@@ -323,8 +324,10 @@ Interfaces a introducir:
   observados. Explicar BoxBot durante/después de la instalación, el reinicio de
   Claude y la actualización explícita conservando la selección; distinguir los
   comandos actuales de los nuevos.
-- [ ] Abrir PR contra develop y completar sus comprobaciones; separar aprobación
-  de código de release y despliegue de Pages.
+- [x] Abrir [PR #22 contra develop](https://github.com/jlema0590/aikya-harness/pull/22)
+  y activar las comprobaciones remotas de la revisión actual.
+- [ ] Revisión humana y aprobación de la PR; separar aprobación de código de
+  release y despliegue de Pages.
 
 ## 7. Conexión de Flow con la evidencia del harness
 
@@ -365,6 +368,10 @@ releases ni habilitado Pages. Las pruebas usan configuraciones temporales aislad
   se emite WM_SETTINGCHANGE; no se modifica el PATH del sistema ni la política.
 - Las fuentes preparadas conservan sus hashes verificados en memoria; cambiar
   sus archivos y falsificar el marcador de disco no permite promoverlos.
+- Los JSON de Claude, los recibos, los procesos Python gestionados y los mensajes
+  del instalador usan UTF-8 explícito para no depender de la página de códigos de
+  Windows. Cuatro regresiones CP1252/Unicode fallaron antes del ajuste y pasaron
+  después.
 - Los ZIP rechazan colisiones Unicode/case, enlaces, duplicados y expansión
   excesiva. Los estados parciales cubren también la retirada y una interrupción
   antes de guardar el resultado de la CLI.

@@ -113,7 +113,7 @@ def entry_preview(argv=None):
             if args.target is None or not args.target.is_dir():raise ValueError('Project scope requires --target pointing to an existing directory')
             args.target=args.target.expanduser().absolute()
         root=app_root();record=root/'components'/receipt_path(root,args.scope,args.target).name
-        previous=json.loads(record.read_text()) if record.is_file() else None
+        previous=json.loads(record.read_text(encoding='utf8')) if record.is_file() else None
         print(json.dumps(preview(args,root,previous)))
     except (ValueError,OSError) as exc:
         print('ERROR: '+str(exc),file=sys.stderr);return 2
