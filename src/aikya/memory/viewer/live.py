@@ -3,6 +3,7 @@ from dataclasses import asdict
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 import secrets
+from socketserver import TCPServer
 import threading
 from aikya.code_index.policy import project_root, read_source
 from aikya.documentation.language import resolve
@@ -10,6 +11,14 @@ from .contracts import LiveEndpoint
 from .publication import read_publication
 from .render import render_html
 from .watch import STATE
+
+
+class LoopbackHTTPServer(ThreadingHTTPServer):
+    def server_bind(self):
+        # The endpoint is numeric loopback; HTTPServer's reverse DNS lookup
+        # adds an unrelated network dependency and can block offline startup.
+        TCPServer.server_bind(self)
+        self.server_name, self.server_port = self.server_address[:2]
 
 
 def serve_live(root, *, stop_event, language=None):
@@ -65,7 +74,7 @@ def serve_live(root, *, stop_event, language=None):
             except (BrokenPipeError, ConnectionResetError):
                 pass
 
-    server = ThreadingHTTPServer(('127.0.0.1', 0), Handler)
+    server = LoopbackHTTPServer(('127.0.0.1', 0), Handler)
     server.daemon_threads = True
     thread = threading.Thread(target=lambda: server.serve_forever(poll_interval=.1), daemon=True)
     thread.start()

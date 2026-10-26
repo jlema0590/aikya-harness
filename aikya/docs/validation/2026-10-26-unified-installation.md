@@ -28,6 +28,7 @@ Date: 2026-10-26. Branch: `feat/unified-installation-mods`.
 |---|---|
 | Complete regression run with frozen sources and loopback permission, before the final UTF-8 transport refinement | 624 tests, 2 skipped, no failures/errors; 919.636 seconds |
 | Final installer regression subset | 53 tests passed, including real native Claude management and PowerShell 7 |
+| Memory regression after native CI review | 48 tests passed; numeric loopback startup succeeds with hostname resolution unavailable |
 | Final user PATH tests | 5 passed, including registry preservation and environment broadcast |
 | Final Pages tests | 2 passed: exact release bytes, integrity blocking and legacy rejection |
 | Verified Mods distributions | 7 passed: persistent source ownership, SHA-256, malformed catalogs, ZIP traversal/links/duplicates/expansion, Unicode collisions and forged disk markers |
@@ -46,6 +47,16 @@ verified by 53 installer tests, including four regressions observed failing firs
 native JSON decoding, managed Python output, component-receipt decoding and
 non-Latin CLI diagnostics under a simulated CP1252 locale. Results are separated
 by snapshot rather than attributed to one run.
+
+Native macOS CI at `05ccb86` exposed a separate live-view startup failure:
+`test_live_client_reuses_session_observer_and_releases_only_its_lease` did not
+receive the ready URL within 30 seconds on Python 3.10 and 3.13. The HTTP server's
+default bind calls `socket.getfqdn` even for numeric loopback; the first server
+test took approximately 35 seconds. A regression with hostname lookup blocked
+failed before the fix and passed after bypassing that lookup for the explicit
+loopback server. All 48 memory tests then passed locally in 27.861 seconds.
+The PR checks below record the resulting native rerun rather than treating the
+earlier readiness timeout as successful acceptance.
 
 The native installer matrix at `565aba0` also passed all 12 OS/Python combinations
 and the three Linux distribution jobs. The current revision's full and native
