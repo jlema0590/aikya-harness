@@ -94,6 +94,9 @@ class Battery:
         self.onboarding()
         odd = self.projects['odd']; sdd = self.projects['sdd']; infra = self.projects['infra']
         workflow = self.helper('odd', 'documentation_workflows.py')
+        self.run('aikya-memory', ('-m', 'aikya'), ['memory', '--target', odd, '--dry-run'], contains='preview')
+        self.run('aikya-memory', ('-m', 'aikya'), ['memory', '--target', odd, '--refresh'], contains='html_path')
+        self.run('aikya-memory', ('-m', 'aikya'), ['memory', '--target', odd, '--dry-run', '--watch'], expected=2, contains='cannot')
         feature = self.fixture('feature', {'title': 'Controlled lookup', 'objective': 'Return a stable controlled missing-item response.',
                                            'acceptance': ['An absent controlled ID returns the specified response.']})
         for command, project in [('aikya-feature', 'odd'), ('aikya-mobile-feature', 'mobile')]:

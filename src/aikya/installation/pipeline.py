@@ -22,6 +22,16 @@ def install(target,profile,detected,dry_run=False,*,adopt_existing=False,docs_la
     write_living_documents(plan,actions)
     activate_engineering(plan,actions)
     plan_infrastructure(plan,actions)
+    from aikya.code_index.policy import configure,load_policy
+    from aikya.memory.viewer.export import export_view
+    policy=configure(target,approved=True,manage_ignore=not adopt_existing,scope=detected.get('analysis_scope','.'))
+    if policy.auto_export:
+        memory=export_view(target,refresh=policy.enabled,language=plan.documentation_language)
+        actions.append('LOCAL MEMORY '+memory.status+': '+memory.html_path)
+    elif policy.enabled:
+        from aikya.code_index.sync import sync
+        sync(target)
+        actions.append('LOCAL MEMORY: existing policy keeps automatic HTML export disabled')
     from aikya.documentation.layout import update_index
     update_index(target,plan.documentation_language)
     from aikya.installation.bootstrap.state import record_project_reference

@@ -1,6 +1,6 @@
 # Plan de implementación: índice local e incremental de código
 
-**Estado:** propuesta pendiente de revisión del desarrollador. Este documento no implementa ni activa la funcionalidad.
+**Estado:** plan base aceptado el 2026-10-25 e implementado en `feat/automatic-local-memory` junto con el visor y la actualización automática. La etapa A y los adaptadores opcionales de B tienen pruebas locales; las etapas C/D y las ampliaciones semánticas siguen separadas. El [informe de implementación](../validation/LOCAL_MEMORY_IMPLEMENTATION.md) distingue resultados locales de la matriz de CI pendiente.
 
 **Objetivo:** que Aikya localice rápidamente clases, funciones, métodos y sus archivos, reutilice el análisis del código que no cambió y entregue a la IA únicamente el contexto relevante y actualizado.
 
@@ -8,7 +8,7 @@
 
 **Tecnologías:** Python 3.10–3.13, `sqlite3`, `hashlib`, `ast`, analizadores Tree-sitter opcionales y pruebas `unittest`. LSP queda para una ampliación posterior, después de validar este índice.
 
-**Requisitos de origen:** petición del desarrollador de conservar el conocimiento de clases y cambios por proyecto, evitar relecturas completas por la IA y no añadir servicios de memoria de pago. La implementación se realizará en una rama independiente después de revisar este plan.
+**Requisitos de origen:** petición del desarrollador de conservar el conocimiento de clases y cambios por proyecto, evitar relecturas completas por la IA y no añadir servicios de memoria de pago. La implementación aceptada se realizó en una rama independiente desde `develop`.
 
 ## 1. Alcance y límites
 
@@ -18,7 +18,7 @@
 - Cada proyecto y worktree tiene identidad y caché propias. Cambiar de rama, mover el proyecto o modificar la versión del analizador obliga a reconciliar o reconstruir la información afectada.
 - No se importará ni ejecutará código del proyecto para indexarlo. No se instalarán analizadores, SDK ni servidores de lenguaje automáticamente.
 - No se creará otra memoria de decisiones, otro compactador de conversaciones ni un segundo motor de búsqueda de notas. Se reutilizará `aikya.memory.knowledge` para las notas revisadas existentes.
-- No se añaden slash commands públicos en la primera versión: se mantienen los 27 actuales y se incorpora una CLI interna del paquete.
+- El índice incorpora una CLI interna del paquete. Por petición posterior del desarrollador, el visor añadirá un único comando público `/aikya-memory`: serán 28 al implementar y verificar la ampliación; los 27 actuales se conservan.
 - Código e instrucciones de ingeniería en inglés. Este plan está en español por petición expresa; documentación generada según la política en/es del proyecto.
 
 ## 2. Datos y ubicación
@@ -29,6 +29,8 @@
 | `.harness/state/code-index/index.sqlite` | Archivos, símbolos, importaciones, relaciones detectadas, generaciones y cambios pendientes | Excluido, regenerable y local |
 | `aikya/docs/memory/` | Notas de decisiones y convenciones con el mecanismo existente | Según la política del proyecto |
 | `aikya/docs/validation/code-index-<id>.md` | Informe solicitado con cobertura, omisiones y resultados reales | Auditable, con pie e índice de documentación |
+| `aikya/docs/memory/view/index.html` | Visor autocontenido de notas, documentación e índice, con cobertura declarada | Regenerable; excluido del versionado por defecto |
+| `aikya/docs/memory/view/report.md` | Resumen auditable de la exportación y huella del HTML | Según la política del proyecto; sin copiar textos de notas |
 
 No se almacenarán copias completas de archivos fuente en SQLite. Cada símbolo incluirá nombre, tipo, nombre cualificado, archivo relativo, posiciones, firma acotada, huella del archivo, analizador y versión. Las relaciones sintácticas no se presentarán como resolución semántica completa. Los objetos creados dinámicamente durante la ejecución no se observarán en esta primera versión.
 
@@ -57,7 +59,9 @@ No se anunciará soporte completo para todos los lenguajes. Sin analizador compa
 6. Un archivo modificado se vuelve a analizar; sus relaciones anteriores se invalidan. Para dependientes se actualizan las relaciones resolubles y se marca la incertidumbre restante.
 7. Si la caché está deshabilitada, dañada, incompleta o no puede actualizarse dentro del límite, el comando conserva su funcionamiento habitual y realiza lecturas directas. Nunca entrega una caché antigua como si estuviera actualizada.
 
-No habrá un daemon obligatorio en el MVP. La actualización es automática en los puntos de integración anteriores; no se promete observación instantánea de cualquier editor mientras Aikya está inactivo.
+Por petición posterior del desarrollador, se añade la [actualización automática de memoria y HTML](2026-10-25-memory-actualizacion-automatica.es.md): un observador local por proyecto detectará también ediciones externas mientras esté activo y reutilizará este sincronizador. No se instala un servicio del sistema. Si Aikya y el observador están detenidos, se reconcilia al volver a iniciar; no se promete observación mientras ningún proceso se ejecuta. El mantenimiento no invoca modelos ni consume tokens.
+
+El comando `/aikya-memory` proyectará las fuentes existentes en un HTML local con grafo, búsqueda, filtros, animación acotada y detalle. Sin índice disponible mostrará notas y documentos, indicando la ausencia del código indexado. No generará una segunda base de memoria ni instalará herramientas ajenas. Opciones, seguridad, contratos y aceptación están en el [plan del visor](2026-10-25-aikya-memory-html.es.md).
 
 ## 5. Seguridad y límites iniciales
 
@@ -98,7 +102,7 @@ Se ampliará el inventario de distribución existente para incluir este paquete:
 
 **Archivos:** nuevos `contracts.py`, `policy.py`, `store.py`; pruebas `tests/test_code_index_store.py` y `tests/test_code_index_policy.py`.
 
-**Interfaces:** `IndexOptions` con habilitación, alcance y límites; `load_policy(root: Path) -> IndexOptions`; `IndexStore(root: Path)` con transacciones y `status() -> dict`. La política no contiene opciones de facturación ni almacenes globales.
+**Interfaces:** `IndexOptions` con habilitación, alcance y límites; `load_policy(root: Path) -> IndexOptions`; `IndexStore(root: Path)` con transacciones y `status() -> dict`. Para recuperación y visor, `IndexStore.read_snapshot() -> IndexSnapshot` entrega `generation`, `status`, `files`, `symbols`, `imports` y `relations` desde una única transacción de lectura y bajo los límites del consumidor, sin reconstruir ni escribir. Definir `IndexSnapshot` en `code_index/contracts.py`; el almacén no depende del visor. La política no contiene opciones de facturación ni almacenes globales.
 
 - [ ] Escribir pruebas que fallen para aislamiento de dos proyectos/worktrees, symlinks, secretos versionados, SQL no parametrizado, esquema incompatible y escritura interrumpida.
 - [ ] Implementar las tablas de archivos/símbolos/importaciones/relaciones y generaciones de acuerdo con las secciones 2 y 5.
@@ -154,7 +158,7 @@ Se ampliará el inventario de distribución existente para incluir este paquete:
 - [ ] Probar corrupción de SQLite, límites de entrada, concurrencia, salida durante commit, caché copiada, gramática ausente/incompatible, contenido no confiable y rutas de secretos.
 - [ ] Medir en fixtures de 100, 1.000 y 10.000 archivos: primer análisis, consulta caliente, un archivo editado, reconstrucción y tamaño de caché. Registrar tiempos y bytes reales; no prometer porcentajes de ahorro de tokens sin medirlos.
 - [ ] Verificar wheel/sdist, instalación sin clonar, actualización y uso del paquete desde runtimes copiados; ejecutar Python 3.10–3.13 y Linux/macOS/Windows.
-- [ ] Ejecutar la batería completa, los 27 comandos/contratos existentes, perfiles y controles de documentación/calidad. Mantener la prueba autenticada del modelo como aceptación separada.
+- [ ] Ejecutar la batería completa, los 27 comandos/contratos existentes y el nuevo `/aikya-memory` cuando se integre el visor, perfiles y controles de documentación/calidad. Mantener la prueba autenticada del modelo como aceptación separada.
 - [ ] Actualizar README en/es, changelog y `indice.md`; guardar commit e informe antes de abrir la PR de la funcionalidad.
 
 ## 8. Orden, esfuerzo y aprobación
@@ -165,15 +169,21 @@ Se ampliará el inventario de distribución existente para incluir este paquete:
 | Etapa B y aceptación multilenguaje | 4–7 jornadas adicionales |
 | Etapa C | 1–3 jornadas por grupo de lenguajes, según gramáticas y plataformas |
 | LSP | Evaluación posterior; no comprometida en este alcance |
+| Visor `/aikya-memory` y aceptación | 4–7 jornadas adicionales; tareas V1–V4 del plan complementario |
+| Animación del visor | 0,5–1 jornada adicional, con parada y movimiento reducido |
+| Skills a elección del usuario, sin presets | 2,5–4 jornadas adicionales; [plan, riesgos y coste](2026-10-25-skills-a-eleccion-del-usuario.es.md) |
+| Estructura y flujos Java del visor | V5: 8–16 h para estructura y 16–32 h para recorridos con evidencia, después del analizador Java; sin resolución universal |
+| Actualización automática de memoria/HTML y vista en vivo | 24–40 h adicionales; [observador, publicación y aceptación](2026-10-25-memory-actualizacion-automatica.es.md), reutilizando índice y visor |
 
 Son estimaciones de esfuerzo, no una tarifa, consumo de tokens ni fecha comprometida. La indexación y recuperación locales no requieren un proveedor de IA; los fragmentos usados por el modelo participan en su consumo habitual de contexto.
 
-Primero se revisa y aprueba la PR de adaptadores/instaladores/worker actual contra `develop`. La nueva rama `feat/local-code-index` se prepara desde esa cabeza para conservar las correcciones; después de integrar la PR se actualiza respecto a `develop`. Si la fusión es squash, se trasladarán únicamente los commits propios de la funcionalidad. La implementación de este plan empieza después de revisarlo con el desarrollador; no se mezcla con la PR de mantenimiento.
+La PR #19 de adaptadores/instaladores/worker se fusionó en `develop`; la propuesta inicial se preparó en `feat/local-code-index`. Tras aceptar el alcance, la implementación se realizó en la nueva rama `feat/automatic-local-memory` desde `origin/develop` actualizado. No se modifica retroactivamente la PR de mantenimiento. El informe enlazado registra la aceptación local y las comprobaciones pendientes en otros entornos.
 
 ## 9. Referencias técnicas
 
 - [Tree-sitter: introducción y gramáticas](https://tree-sitter.github.io/tree-sitter/): análisis sintáctico y cobertura por analizador.
 - [Tree-sitter: edición de árboles](https://tree-sitter.github.io/tree-sitter/using-parsers/3-advanced-parsing.html): requisitos para reutilizar árboles tras cambios exactos.
 - [Language Server Protocol](https://microsoft.github.io/language-server-protocol/): posibles ampliaciones de navegación y referencias; no dependencia del MVP.
+- [Graphify: revisión de referencia](../research/2026-10-25-graphify-memory-viewer.md): evidencia y límites de la inspiración visual, sin importar ni ejecutar el proyecto externo.
 
 GENERATED BY AIKYA HARNESS

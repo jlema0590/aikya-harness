@@ -23,8 +23,12 @@ def resolved_answers(args, target:Path) -> Path:
 
 
 def main(argv=None):
+    selected=sys.argv[1:] if argv is None else list(argv)
+    if selected and selected[0]=='memory':
+        from aikya.cli.memory import main as memory_main
+        return memory_main(selected[1:])
     parser=argparse.ArgumentParser(description='Aikya Harness commands executed by Claude Code')
-    parser.add_argument('command',choices=['probe','requirements','init','answers','status','analyze','feature','bugfix','implement'])
+    parser.add_argument('command',choices=['probe','requirements','init','answers','status','analyze','feature','bugfix','implement','memory'])
     parser.add_argument('--target',type=Path,default=Path.cwd())
     parser.add_argument('--answers',type=Path)
     parser.add_argument('--dry-run',action='store_true')

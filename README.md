@@ -180,7 +180,7 @@ reviewed migration.
 
 | Path | Purpose |
 |---|---|
-| `src/aikya/resources/commands/` | Source of the 27 public Claude Code slash commands. |
+| `src/aikya/resources/commands/` | Source of the 28 public Claude Code slash commands. |
 | `src/aikya/resources/engineering/agents/` | Curated specialist agent definitions. |
 | `src/aikya/resources/engineering/skills/` | Curated technical skills. |
 | `src/aikya/resources/project_template/` | Base project agents, skills, rules and harness utilities. |
@@ -234,6 +234,7 @@ Existing projects are not reorganized automatically.
 | /aikya-verify | Validate technical changes and results |
 | /aikya-models | Review optional model routing policy |
 | /aikya-tokens | Inspect token usage and estimated API costs |
+| /aikya-memory | Browse project-local memory and code in an offline HTML graph, or watch changes live |
 | /aikya-specify | Create a draft specification and acceptance criteria |
 | /aikya-clarify | Resolve specification questions and record explicit approval |
 | /aikya-plan | Draft a technical design and testing plan |
@@ -282,6 +283,42 @@ Initialization guidance and toolchain findings belong in `overview.md`.
 Existing managed documents migrate with backups under `.harness/backup-docs-layout/`.
 Customized conflicts require review. Runtime `.harness/` and `aikya/scripts/harness/`
 retain their existing names.
+
+### Local code memory and HTML
+
+Approved initialization/adoption configures a project-local incremental index and
+automatic updates. Session hooks start the local observer for configured projects;
+session end stops it when no other session remains. For editors outside Claude Code,
+keep an explicit observer running:
+
+```text
+/aikya-memory
+/aikya-memory --refresh --open
+/aikya-memory --watch --open
+/aikya-memory --dry-run
+```
+
+The observer detects saved code, new classes, renames and deletions. It updates
+SQLite in `.harness/state/code-index/`, then regenerates
+`aikya/docs/memory/view/index.html` and its matching `report.md`. `--watch --open`
+also refreshes the open page through a temporary loopback viewer. The exported
+HTML remains a self-contained offline snapshot. No system service is installed.
+
+The report uses the version 2 navy theme by default, with a light-theme switch.
+Its source sidebar, central explorer and source inspector combine a knowledge
+graph, a path-based architecture hierarchy and a searchable inventory. Source
+colors distinguish folders, files, declarations and documents/notes. Filters,
+selection and zoom survive live updates; reduced motion is supported. See the
+[generated example](aikya/docs/examples/aikya-memory-generated.html). Architecture
+shows verified source structure; runtime request-flow analysis remains future work.
+
+Indexing and export call no model and consume no API tokens; they use local CPU
+and disk. Later AI queries retain their normal context usage. Python declarations
+work without dependencies; the optional pinned `code-index` extra adds Java,
+JavaScript/JSX, TypeScript/TSX, C# and Go. Other languages retain file inventory.
+Source changes invalidate note eligibility without rewriting decisions or approvals.
+Existing-project adoption preserves custom ignore files. See
+[configuration, limits and lifecycle](aikya/docs/architecture/local-memory.md).
 
 ## 6. Engineering agents and Agent Skills
 

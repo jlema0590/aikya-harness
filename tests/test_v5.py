@@ -156,7 +156,9 @@ class AikyaStartupTests(unittest.TestCase):
             aikya_setup.setup(ROOT,repo,'project')
             aikya_setup.setup(ROOT,repo,'project')
             after=json.loads(config.read_text())
-            self.assertEqual(1,len(after['hooks']['SessionStart']))
+            self.assertEqual(2,len(after['hooks']['SessionStart']))
+            startup_commands=[h['command'] for group in after['hooks']['SessionStart'] for h in group['hooks']]
+            self.assertEqual(len(startup_commands),len(set(startup_commands)))
             self.assertEqual(2,len(after['hooks']['PreToolUse']))
             self.assertEqual('echo hi',after['hooks']['PreToolUse'][0]['hooks'][0]['command'])
             self.assertTrue(install.only_aikya_bootstrap(repo))

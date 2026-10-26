@@ -90,7 +90,9 @@ def installation_preview(target: Path, profile: dict, inventory: dict) -> list[d
     from aikya.documentation.bootstrap import pages
     from aikya.installation.registration import BOOTSTRAP_COMMANDS
     candidates = {
-        ".aikya/answers.json", ".aikya/model-policy.json",
+        ".aikya/answers.json", ".aikya/model-policy.json", ".aikya/code-index.json",
+        "aikya/docs/memory/view/index.html", "aikya/docs/memory/view/report.md",
+        ".harness/state/code-index/index.sqlite",
         ".harness/project-profile.json", ".harness/engineering-catalog.json",
         ".claude/settings.json", ".claude/rules/00-project-profile.md",
         "CLAUDE.md", "harness.json",
@@ -192,6 +194,14 @@ def installation_preview(target: Path, profile: dict, inventory: dict) -> list[d
     results.extend(updates.values())
     results.extend({'path':op['backup'],'action':'CREATE_MANAGED'} for op in runtime_ops if op.get('backup'))
     results.extend(install.managed_path_conflicts(target))
+    try:
+        from aikya.memory.viewer.export import preflight as memory_preflight
+        memory_preflight(target)
+        if (target/'.aikya/code-index.json').exists():
+            from aikya.code_index.policy import load_policy
+            load_policy(target)
+    except ValueError:
+        results.append({'path':'aikya/docs/memory/view/', 'action':'BLOCKED', 'reason':'Review custom memory policy or publication'})
     if profile.get('methodology') == 'sdd':
         try:
             from aikya.workflows.sdd.assets import prepare
@@ -266,7 +276,7 @@ def execute(target: Path, *, scope: str = ".", focus: str = "general",
     profile = projection["profile"]
     detected = {"modules": [{"role": m["role"], "technology": m["technology"],
                             "path": m["path"]} for m in inventory["modules"]],
-                "findings": inventory["evidence_paths"]}
+                "findings": inventory["evidence_paths"], "analysis_scope": inventory["scope"]}
     if observer:
         observer.done('plan','Methodology and approved Aikya file plan resolved')
         observer.event('implement','running','Installing approved Aikya-owned assets')

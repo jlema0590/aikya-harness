@@ -13,6 +13,11 @@ def project_method(root):
     return 'odd'
 
 def observe(context,event):
+    try:
+        from aikya.code_index.hooks import process_event
+        process_event(context['root'],event)
+    except (ValueError,OSError,TypeError):
+        pass  # Memory maintenance never grants approvals or blocks existing gates.
     hook=event.get('hook_event_name');command=None
     prompt_id=event.get('prompt_id')
     invocation_key=hashlib.sha256(prompt_id.encode()).hexdigest() if isinstance(prompt_id,str) and prompt_id else None
