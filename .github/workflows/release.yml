@@ -179,3 +179,14 @@ jobs:
             --repository "$GITHUB_REPOSITORY" \
             --tag "$RELEASE_TAG" --sha "$GITHUB_SHA" | grep -Fxq match
           gh release view "$RELEASE_TAG" --json url --jq '.url'
+
+  install-pages:
+    name: Publish verified short installation URLs
+    needs: [verify, publish]
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/install-pages.yml
+    with:
+      release-tag: ${{ needs.verify.outputs.release_tag }}
