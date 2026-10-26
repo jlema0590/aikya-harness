@@ -49,7 +49,7 @@ class CleanInstaller(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary:
             base = Path(temporary).resolve(); project = base / 'project'; project.mkdir()
             with patch.dict(os.environ, {'AIKYA_INSTALL_ROOT': str(base / 'app')}), contextlib.redirect_stdout(io.StringIO()):
-                result = cli.main(['install', '--version', '7.0.0', '--scope', 'project', '--target', str(project), '--dry-run'])
+                result = cli.main(['install', '--version', '7.0.0', '--scope', 'project', '--target', str(project), '--mods', 'none', '--dry-run'])
             self.assertEqual(0, result)
             self.assertFalse((base / 'app').exists())
             self.assertEqual([], list(project.iterdir()))
@@ -66,5 +66,5 @@ class CleanInstaller(unittest.TestCase):
         module = self.core('environment')
         with tempfile.TemporaryDirectory() as temporary:
             home = Path(temporary).resolve()
-            with patch.dict(os.environ, {'HOME': str(home), 'USERPROFILE': str(home), 'XDG_DATA_HOME': '', 'AIKYA_INSTALL_ROOT': ''}), patch.object(module.sys, 'platform', 'linux'):
+            with patch.dict(os.environ, {'HOME': str(home), 'USERPROFILE': str(home), 'XDG_DATA_HOME': '', 'AIKYA_INSTALL_ROOT': ''}), patch('sys.platform', 'linux'):
                 self.assertEqual(home / '.local/share/aikya', module.app_root())

@@ -3,28 +3,15 @@ import json
 import os
 from pathlib import Path
 import subprocess
-import sys
 import zipfile
 from email.parser import BytesParser
 
 
-def app_root():
-    override = os.environ.get('AIKYA_INSTALL_ROOT')
-    if override:
-        return Path(override).expanduser().absolute()
-    home = Path.home().resolve()
-    if sys.platform == 'win32':
-        return Path((os.environ.get('LOCALAPPDATA') or str(home / 'AppData/Local'))) / 'Aikya'
-    if sys.platform == 'darwin':
-        return home / 'Library/Application Support/Aikya'
-    if sys.platform.startswith('linux'):
-        return Path((os.environ.get('XDG_DATA_HOME') or str(home / '.local/share'))) / 'aikya'
-    raise ValueError('Supported installation hosts: Windows, Linux and macOS')
-
+from .options import app_root
 
 def run(python, *args):
     try:
-        process = subprocess.run([str(python), '-I', '-B', *map(str, args)], capture_output=True, text=True, timeout=180)
+        process = subprocess.run([str(python), '-I', '-B', '-X', 'utf8', *map(str, args)], capture_output=True, text=True, encoding='utf8', timeout=180)
     except subprocess.SubprocessError as exc:
         raise ValueError('Installer subprocess timed out or could not complete') from exc
     if process.returncode:

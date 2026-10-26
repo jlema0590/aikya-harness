@@ -34,7 +34,7 @@ def write_json(path, data):
 def installation_lock(root):
     safe(root)
     marker = safe(root / 'owner.json')
-    if root.exists() and any(root.iterdir()) and (not marker.is_file() or json.loads(marker.read_text()) != OWNER):
+    if root.exists() and any(root.iterdir()) and (not marker.is_file() or json.loads(marker.read_text(encoding='utf8')) != OWNER):
         raise ValueError('Unowned application directory requires explicit review')
     root.mkdir(parents=True, exist_ok=True)
     lock = root / '.install.lock'
@@ -93,10 +93,7 @@ def activate(root: Path, receipt: dict) -> None:
     write_json(root / 'current.json', receipt)
 
 
-def receipt_path(root, scope, target):
-    identity = scope + ':' + (str(target) if scope == 'project' else str(Path.home().resolve()))
-    return root / 'receipts' / (hashlib.sha256(identity.encode('utf8')).hexdigest() + '.json')
-
+from .options import receipt_path
 
 def record_project_reference(target, prefix=None):
     """Track only projects initialized by an owned managed interpreter; never scan."""
@@ -106,7 +103,7 @@ def record_project_reference(target, prefix=None):
         return
     root = prefix.parents[2]
     marker = safe(root / 'owner.json')
-    if not marker.is_file() or json.loads(marker.read_text()) != OWNER:
+    if not marker.is_file() or json.loads(marker.read_text(encoding='utf8')) != OWNER:
         return
     target = Path(target).resolve()
     record = {'schema': 1, 'target': str(target), 'environment': str(prefix)}
@@ -119,7 +116,7 @@ def active_references(root):
     result = []
     for path in sorted((root / 'references').glob('*.json')):
         safe(path)
-        record = json.loads(path.read_text())
+        record = json.loads(path.read_text(encoding='utf8'))
         target = Path(record['target']); environment = Path(record['environment'])
         if not target.is_absolute() or not environment.is_relative_to(root / 'versions'):
             raise ValueError('Unsafe initialized project reference')

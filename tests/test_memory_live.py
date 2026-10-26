@@ -7,6 +7,7 @@ import threading
 import unittest
 from urllib.error import HTTPError
 from urllib.request import Request, urlopen
+from unittest.mock import patch
 
 
 class MemoryLiveTests(unittest.TestCase):
@@ -41,6 +42,16 @@ class MemoryLiveTests(unittest.TestCase):
             second = json.load(response)
         self.assertNotEqual(first['generation'], second['generation'])
         self.assertIn('Changed', {n['label'] for n in second['snapshot']['nodes']})
+
+    def test_loopback_startup_does_not_require_hostname_resolution(self):
+        from aikya.memory.viewer.live import serve_live
+        # Reverse DNS can block on offline hosts and macOS CI. The explicit
+        # numeric loopback endpoint must stay usable when lookup is unavailable.
+        with patch('socket.getfqdn', side_effect=AssertionError('Unexpected DNS lookup')):
+            server = serve_live(self.root, stop_event=self.stop)
+        self.addCleanup(server.close)
+        with urlopen(server.url, timeout=5) as response:
+            self.assertEqual(200, response.status)
 
     def test_no_arbitrary_paths_foreign_host_origin_or_missing_capability(self):
         for suffix, headers in [('snapshot', {'Host': 'evil.example'}), ('snapshot', {'Origin': 'https://evil.example'}), ('../outside', {})]:

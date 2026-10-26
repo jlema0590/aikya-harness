@@ -18,13 +18,13 @@ def validate_version(version):
     return version
 
 
-def resolve_version(version, offline_dir=None):
+def resolve_version(version, offline_dir=None, latest_url=LATEST_RELEASE):
     """Resolve latest once; all subsequent assets use the selected numeric version."""
     if version not in (None, 'latest'):
         return validate_version(version)
     if offline_dir is not None:
         raise ValueError('Offline installation requires --version X.Y.Z')
-    release = json.loads(https_bytes(LATEST_RELEASE, 1024 * 1024))
+    release = json.loads(https_bytes(latest_url, 1024 * 1024))
     if (not isinstance(release, dict) or release.get('draft') is not False
             or release.get('prerelease') is not False or not release.get('published_at')):
         raise ValueError('Latest release metadata must describe a published stable release')

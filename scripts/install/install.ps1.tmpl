@@ -1,13 +1,19 @@
 # Aikya @@VERSION@@; generated from the reviewed release commit.
 [CmdletBinding()]
 param(
-    [Parameter(Mandatory=$true)][ValidateSet('global','project')][string]$Scope,
+    [ValidateSet('global','project')][string]$Scope = 'global',
     [string]$Target,
     [string]$Python,
     [string]$OfflineDir,
     [string]$Version,
+    [ValidateSet('recommended','all','none')][string]$Mods,
+    [string[]]$Mod,
+    [string]$ModsVersion,
+    [switch]$NoPath,
     [switch]$DryRun
 )
+$callerPreference = $ErrorActionPreference
+try {
 $ErrorActionPreference = 'Stop'
 $probe = 'import sys,venv,ensurepip;sys.exit(0 if (3,10)<=sys.version_info[:2]<=(3,13) else 2)'
 $selected = $null
@@ -26,6 +32,24 @@ foreach ($candidate in $candidates) {
     if ($LASTEXITCODE -eq 0) { $selected = $command.Source; $prefix = $trialPrefix; break }
 }
 if (-not $selected) { throw 'Install Python 3.10-3.13 with venv/ensurepip first.' }
+$options = @('--scope',$Scope)
+if ($Version) { $options += @('--version',$Version) }
+elseif ($OfflineDir) { $options += @('--version','@@VERSION@@') }
+if ($Target) { $options += @('--target',$Target) }
+if ($Python) { $options += @('--python',$Python) }
+if ($OfflineDir) { $options += @('--offline-dir',$OfflineDir) }
+if ($Mods) { $options += @('--mods',$Mods) }
+foreach ($name in $Mod) { $options += @('--mod',$name) }
+if ($ModsVersion) { $options += @('--mods-version',$ModsVersion) }
+if ($NoPath) { $options += '--no-path' }
+if ($DryRun) {
+    $previewCode = @'
+@@PREVIEW_CODE@@
+'@
+    $previewCode | & $selected @prefix -I -B - @options
+    if ($LASTEXITCODE -ne 0) { throw "Aikya preview failed with exit $LASTEXITCODE" }
+    return
+}
 $stage = Join-Path ([IO.Path]::GetTempPath()) ('aikya-install-' + [guid]::NewGuid().ToString('N'))
 New-Item -ItemType Directory -Path $stage | Out-Null
 try {
@@ -40,13 +64,9 @@ sys.exit(0 if actual == sys.argv[2] else "Bootstrap integrity checksum mismatch"
 '@
     $checksumCode | & $selected @prefix -I -B - $payload '@@BOOTSTRAP_SHA256@@'
     if ($LASTEXITCODE -ne 0) { throw 'Bootstrap integrity checksum mismatch' }
-    $arguments = @('-I','-B',$payload,'install','--scope',$Scope)
-    if ($Version) { $arguments += @('--version',$Version) }
-    elseif ($OfflineDir) { $arguments += @('--version','@@VERSION@@') }
-    if ($Target) { $arguments += @('--target',$Target) }
-    if ($Python) { $arguments += @('--python',$Python) }
-    if ($OfflineDir) { $arguments += @('--offline-dir',$OfflineDir) }
-    if ($DryRun) { $arguments += '--dry-run' }
+    $arguments = @('-I','-B',$payload,'install') + $options
     & $selected @prefix @arguments
     if ($LASTEXITCODE -ne 0) { throw "Aikya installation failed with exit $LASTEXITCODE" }
 } finally { Remove-Item -LiteralPath $stage -Recurse -Force }
+
+} finally { $ErrorActionPreference = $callerPreference }
