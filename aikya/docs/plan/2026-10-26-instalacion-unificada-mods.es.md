@@ -13,7 +13,8 @@ GitHub Pages y la CLI de Claude Code. Referencia de CLI comprobada: 2.1.308.
 
 **Especificación:** petición del usuario de integrar la instalación de
 `jlema0590/aikya-mods` en Harness y reducirla a un comando corto. Este documento
-define el contrato propuesto; su implementación se revisará después del plan.
+define el contrato aprobado. El usuario autorizó su implementación en esta rama;
+la publicación de la release y el despliegue permanecen separados de la revisión.
 
 **Rama:** `feat/unified-installation-mods`, creada desde `origin/develop`,
 commit `0b9a392257671167f7af4f4a217190c254207ee9`, que incluye la PR de memoria.
@@ -204,6 +205,8 @@ después, informar de la instalación parcial y permitir un reintento seguro.
 |---|---|
 | `src/aikya/installation/bootstrap/mods.py` (nuevo) | Resolver/verificar el bundle, extraerlo de forma segura y conservar la fuente versionada |
 | `src/aikya/installation/bootstrap/claude_plugins.py` (nuevo) | Adaptador de la CLI nativa: preflight, inventario JSON, registro e instalación sin shell interpolado |
+| `src/aikya/installation/bootstrap/options.py` (nuevo) | Opciones y política compartidas; vista previa embebida sin red ni archivos temporales |
+| `src/aikya/installation/bootstrap/coordinator.py` (nuevo) | Preparación conjunta, serialización y recibos por ámbito antes de activar componentes |
 | `src/aikya/installation/bootstrap/components.py` (nuevo) | Selecciones, ámbitos, planificación y estados parciales/propiedad por componente |
 | `src/aikya/installation/bootstrap/user_path.py` (nuevo) | Bloque gestionado de PATH, recibo y retirada conservadora |
 | `src/aikya/installation/bootstrap/{cli,download,state,launchers}.py` | Integrar opciones y ciclo de vida, reutilizando primitivas existentes |
@@ -212,7 +215,7 @@ después, informar de la instalación parcial y permitir un reintento seguro.
 | `scripts/ci/build_install_pages.py` (nuevo) | Preparar Pages sólo desde un tag publicado y assets comprobados |
 | `.github/workflows/install-pages.yml` (nuevo), `release.yml` | Publicar/reintentar las entradas cortas tras una release correcta |
 | `tests/test_unified_installer.py`, `test_mods_distribution.py`, `test_user_path.py`, `test_install_pages.py` (nuevos) | Contratos y regresiones de los cinco riesgos anteriores |
-| `scripts/ci/installer_smoke.py`, `package_smoke.py`, `installers.yml` | Pruebas desde artefactos finales y entornos aislados |
+| `scripts/ci/installer_smoke.py`, `mods_installer_smoke.py` (nuevo), `package_smoke.py`, `installers.yml` | Pruebas desde artefactos finales y entornos aislados |
 | `README.md`, `README.es.md`, `CHANGELOG.md`, `aikya/docs/indice.md` | Uso sencillo, límites, auditoría y versión aprobada |
 
 Interfaces a introducir:
@@ -230,93 +233,97 @@ Interfaces a introducir:
 
 ### Tarea A — Contrato de releases y bundle verificado · 4–6 h
 
-- [ ] Añadir primero fixtures reales de v0.0.10 y del formato nuevo cuando esté
+- [x] Añadir primero fixtures reales de v0.0.10 y del formato nuevo cuando esté
   publicado. Probar cambio de latest, hash incorrecto, ZIP truncado, traversal,
   symlinks, duplicados, catálogo/versiones inconsistentes y nombres de plugins.
-- [ ] Observar los fallos con `python -B -m unittest discover -s tests -p
+- [x] Observar los fallos con `python -B -m unittest discover -s tests -p
   test_mods_distribution.py -v`; implementar `prepare_mods()` reutilizando el
   transporte HTTPS y parser de checksums actuales, sin ejecutar instaladores.
-- [ ] Repetir las pruebas; exigir cero configuración de Claude si no se confirma
+- [x] Repetir las pruebas; exigir cero configuración de Claude si no se confirma
   la integridad. Guardar un commit independiente.
 
 ### Tarea B — Coordinador de instalación, propiedad y recuperación · 10–14 h
 
-- [ ] Probar antes de implementar selección recomendada/todos/ninguno/individual,
+- [x] Probar antes de implementar selección recomendada/todos/ninguno/individual,
   mapeo de scopes y errores de CLI; `--dry-run` no invoca red ni Claude.
-- [ ] Probar actualización conservando los IDs del recibo: sólo Harness no añade
+- [x] Probar actualización conservando los IDs del recibo: sólo Harness no añade
   mods; Flow + Usage no añade BoxBot; BoxBot gestionado se actualiza. Un catálogo
   ampliado no cambia automáticamente la selección guardada con `--mods all`.
-- [ ] Implementar `plan_components()` e `install_plugins()`. Usar `claude plugin
+- [x] Implementar `plan_components()` e `install_plugins()`. Usar `claude plugin
   marketplace add <fuente> --scope <scope> --json` y `claude plugin install
   <id>@aikya-mods --scope <scope> --json`, con cwd del destino cuando corresponda.
-- [ ] Leer inventario con la API JSON disponible; validar capacidades antes de
+- [x] Leer inventario con la API JSON disponible; validar capacidades antes de
   efectos. Probar archivos/rutas especiales y wrappers nativos en Windows.
-- [ ] Detectar BoxBot añadido por CLI nativa después de registrar el marketplace:
+- [x] Detectar BoxBot añadido por CLI nativa después de registrar el marketplace:
   no duplicarlo ni apropiárselo. Su incorporación al recibo exige una selección
   explícita y confirmar ámbito/origen; no eliminarlo al desinstalar Harness si
   sigue siendo una instalación externa a la gestión.
-- [ ] Preparar y verificar ambas distribuciones antes de activar cambios. Mantener
+- [x] Preparar y verificar ambas distribuciones antes de activar cambios. Mantener
   recibos por componente con versión, scope, fuente, propietario y resultado.
-- [ ] Fallar antes de escribir si falta Claude para el conjunto solicitado.
+- [x] Fallar antes de escribir si falta Claude para el conjunto solicitado.
   Si falla una operación posterior, devolver estado parcial y código distinto de
   éxito total; `doctor` lo muestra y el reintento conserva lo ya verificado.
-- [ ] Actualizar sólo los componentes seleccionados/registrados. Desinstalar sólo
+- [x] Actualizar sólo los componentes seleccionados/registrados. Desinstalar sólo
   mods gestionados en su ámbito, conservar instalaciones previas y fuentes con
   referencias; admitir conservar Mods al retirar Harness.
-- [ ] Ejecutar `test_unified_installer.py`, contratos existentes de instalación y
+- [x] Ejecutar `test_unified_installer.py`, contratos existentes de instalación y
   recuperación; validar repetición, interrupción, fallo del segundo plugin y dos
   ejecuciones simultáneas. Guardar commit.
 
 ### Tarea C — Entradas simples y PATH · 6–10 h
 
-- [ ] Probar scripts sin opciones y sin TTY: global + Flow + Usage en ambos OS,
+- [x] Probar scripts sin opciones y sin TTY: global + Flow + Usage en ambos OS,
   sin consumir stdin para menús. Mantener los parámetros avanzados existentes.
-- [ ] Eliminar la obligatoriedad de escribir el scope para la instalación nueva;
+- [x] Eliminar la obligatoriedad de escribir el scope para la instalación nueva;
   respetar selección explícita y no añadir mods a una actualización heredada.
-- [ ] Gestionar sólo un bloque/entrada de PATH identificable: perfiles admitidos
+- [x] Gestionar sólo un bloque/entrada de PATH identificable: perfiles admitidos
   de Bash/Zsh y PATH de usuario Windows. Conservar contenido ajeno y permitir
   `--no-path`; para otros shells informar del destino sin escribir sintaxis errónea.
-- [ ] Probar reinstalación, perfil editado/symlink, desinstalación y rutas Unicode;
+- [x] Probar reinstalación, perfil editado/symlink, desinstalación y rutas Unicode;
   no duplicar entradas ni exigir sudo o cambiar la ExecutionPolicy guardada.
-- [ ] En ejecución PowerShell mediante `iex`, restaurar las preferencias del
+- [x] En ejecución PowerShell mediante `iex`, restaurar las preferencias del
   llamador y devolver el control sin cerrar su terminal.
-- [ ] Ejecutar `test_user_path.py`, pruebas de entrypoints e instalación limpia;
+- [x] Ejecutar `test_user_path.py`, pruebas de entrypoints e instalación limpia;
   no declarar disponible el comando Unix en el shell padre antes de reabrirlo.
 
 ### Tarea D — URL corta por GitHub Pages · 4–6 h
 
-- [ ] Construir Pages desde `install.sh` e `install.ps1` de un tag ya publicado y
+- [x] Construir Pages desde `install.sh` e `install.ps1` de un tag ya publicado y
   comprobado contra SHA256SUMS; conservar exactamente los bytes del script.
   Publicar los nombres `install.sh` e `install.ps1.txt`, una página mínima de ayuda
   y metadatos de procedencia. No copiar código de una rama móvil.
-- [ ] Crear workflow reutilizable/manual. Invocarlo desde `release.yml` después
+- [x] Crear workflow reutilizable/manual. Invocarlo desde `release.yml` después
   del job `publish`, con permisos de Pages restringidos y entorno `github-pages`.
   No depender sólo de `release: published`: publicaciones con GITHUB_TOKEN no
   disparan automáticamente ese segundo workflow.
 - [ ] Habilitar Pages por Actions como paso de despliegue revisado. Probar que un
   fallo de publicación conserva la entrada anterior y permite reintentar el tag.
-- [ ] Ejecutar `test_install_pages.py`; después del despliegue comprobar HTTPS,
+- [x] Ejecutar `test_install_pages.py` y bloquear instaladores anteriores a 7.1.0.
+- [ ] Después del despliegue comprobar HTTPS,
   cabeceras/codificación, huellas y los comandos cortos reales en los tres OS.
   Anunciar las nuevas URLs sólo después de esa comprobación.
 
 ### Tarea E — Aceptación completa y documentación · 8–12 h
 
-- [ ] Ejecutar una release fixture por HTTPS simulado y los assets finales con
+- [x] Ejecutar una release fixture por HTTPS simulado y los assets finales con
   configuración de Claude aislada; no usar los plugins/credenciales del usuario.
-- [ ] Cubrir Linux, macOS y Windows; PowerShell 5.1/7; global/project; recomendado,
+- [x] Cubrir Linux, macOS y Windows; PowerShell 5.1/7; global/project; recomendado,
   todos, ninguno e individual; primera instalación, repetición, update, parcial,
   reparación, retirada y offline. La instalación debe fallar si intenta ejecutar Git.
-- [ ] Validar con CLI real de Claude registro, instalación y lectura del catálogo;
+- [x] Validar con CLI real de Claude registro, instalación y lectura del catálogo;
   esto no exige prompts/modelos. La apariencia de los mods se comprueba en una
   sesión de Claude con soporte nativo, separada del ensayo de instalación.
-- [ ] Ejecutar la suite completa del repositorio y la batería de los 28 comandos;
+- [ ] Cerrar la verificación de la revisión final con la suite completa y CI;
+  la batería de los 28 comandos ya pasó con 52 comprobaciones. Antes de los
+  últimos ajustes pasaron 620 pruebas (2 omitidas);
   verificar memoria, HTML, ODD/SDD y archivos generados bajo `aikya/docs/`.
-- [ ] Revisar convivencia de Flow/Usage con la observabilidad y statusLine actuales:
+- [x] Revisar convivencia de Flow/Usage con la observabilidad y statusLine actuales:
   no crear otra barra propia ni sobrescribir preferencias para aparentar integración.
-- [ ] Actualizar README en/es, changelog e informe de validación con resultados
+- [x] Actualizar README en/es, changelog e informe de validación con resultados
   observados. Explicar BoxBot durante/después de la instalación, el reinicio de
   Claude y la actualización explícita conservando la selección; distinguir los
-  comandos actuales de los nuevos. Abrir PR contra develop y separar aprobación
+  comandos actuales de los nuevos.
+- [ ] Abrir PR contra develop y completar sus comprobaciones; separar aprobación
   de código de release y despliegue de Pages.
 
 ## 7. Conexión de Flow con la evidencia del harness
@@ -344,13 +351,32 @@ plugins y fallos parciales de la CLI. No se ha identificado una necesidad de
 reescribir el instalador ni fusionar todo el repositorio de Mods dentro de Harness.
 La aceptación nativa y desde paquetes finales deberá confirmar la compatibilidad.
 
-En esta fase se crea la rama y este plan; no se cambian instaladores, se instalan
-mods en el equipo, se publican releases ni se habilita Pages.
+La fase inicial creó la rama y el plan. La implementación autorizada está en esta
+rama; no se han instalado mods en la configuración personal del usuario, publicado
+releases ni habilitado Pages. Las pruebas usan configuraciones temporales aisladas.
+
+## 9. Ajustes de la revisión de implementación
+
+- Gestión conjunta de Mods y publicación de las entradas cortas requieren Harness
+  **7.1.0 o superior**. Un wheel anterior no incorpora los recibos y opciones
+  nuevos; sólo se admite para registros de sólo Harness sin Mods gestionados.
+- Windows utiliza equivalencia nativa de rutas para no perder propiedad por
+  diferencias de mayúsculas o separadores. Después de cambiar el PATH de usuario,
+  se emite WM_SETTINGCHANGE; no se modifica el PATH del sistema ni la política.
+- Las fuentes preparadas conservan sus hashes verificados en memoria; cambiar
+  sus archivos y falsificar el marcador de disco no permite promoverlos.
+- Los ZIP rechazan colisiones Unicode/case, enlaces, duplicados y expansión
+  excesiva. Los estados parciales cubren también la retirada y una interrupción
+  antes de guardar el resultado de la CLI.
+- La release observada de Mods continúa en v0.0.10. El formato local v0.0.14 se
+  probó como fixture sin publicarlo ni presentarlo como última release disponible.
+- Resultados y límites: [informe de validación](../validation/2026-10-26-unified-installation.md).
 
 ## Referencias
 
 - [Harness y sus releases](https://github.com/jlema0590/aikya-harness/releases).
 - [Mods y sus releases](https://github.com/jlema0590/aikya-mods/releases).
+- [WM_SETTINGCHANGE para actualizar el entorno del usuario](https://learn.microsoft.com/en-us/windows/win32/winmsg/wm-settingchange).
 - [Contrato local de la última release observada de Mods](https://github.com/jlema0590/aikya-mods/tree/v0.0.10).
 - [URL de sitios de proyecto en GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages).
 - [Workflows de Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).

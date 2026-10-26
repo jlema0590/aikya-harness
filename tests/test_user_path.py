@@ -94,4 +94,3 @@ class UserPath(unittest.TestCase):
             self.assertEqual([(65535,26,'Environment','C:\\owner;C:\\Aikya\\bin')],send.messages)
             user_path.remove_windows_path({'entry':'C:\\Aikya\\bin'})
             self.assertEqual((65535,26,'Environment','C:\\owner'),send.messages[-1])
-

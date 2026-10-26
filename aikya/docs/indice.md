@@ -40,6 +40,7 @@
 - [research/2026-10-23-repository-cleanup-audit.md](research/2026-10-23-repository-cleanup-audit.md)
 - [research/2026-10-24-root-entrypoints.md](research/2026-10-24-root-entrypoints.md)
 - [research/2026-10-25-graphify-memory-viewer.md](research/2026-10-25-graphify-memory-viewer.md)
+- [validation/2026-10-26-unified-installation.md](validation/2026-10-26-unified-installation.md)
 - [validation/AGENT_LOOP_MEMORY_ACTIVATION.md](validation/AGENT_LOOP_MEMORY_ACTIVATION.md)
 - [validation/AGENT_WORKER_STARTUP_FIX.md](validation/AGENT_WORKER_STARTUP_FIX.md)
 - [validation/COMMAND_ACCEPTANCE.md](validation/COMMAND_ACCEPTANCE.md)
