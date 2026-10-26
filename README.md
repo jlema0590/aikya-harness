@@ -304,6 +304,14 @@ SQLite in `.harness/state/code-index/`, then regenerates
 also refreshes the open page through a temporary loopback viewer. The exported
 HTML remains a self-contained offline snapshot. No system service is installed.
 
+The report uses the version 2 navy theme by default, with a light-theme switch.
+Its source sidebar, central explorer and source inspector combine a knowledge
+graph, a path-based architecture hierarchy and a searchable inventory. Source
+colors distinguish folders, files, declarations and documents/notes. Filters,
+selection and zoom survive live updates; reduced motion is supported. See the
+[generated example](aikya/docs/examples/aikya-memory-generated.html). Architecture
+shows verified source structure; runtime request-flow analysis remains future work.
+
 Indexing and export call no model and consume no API tokens; they use local CPU
 and disk. Later AI queries retain their normal context usage. Python declarations
 work without dependencies; the optional pinned `code-index` extra adds Java,

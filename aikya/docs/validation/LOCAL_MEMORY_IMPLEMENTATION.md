@@ -4,6 +4,9 @@ Date: 2026-10-25.
 Branch: `feat/automatic-local-memory`, created from fetched `origin/develop`
 at `34ca30a53bbb04b61a8e243805bb5a4820b33c86`.
 
+Follow-up: the 2026-10-26 [version 2 acceptance](MEMORY_VIEWER_V2.md) records the
+navy theme and explorer alignment, updated example and fresh publication checks.
+
 ## Delivered behavior
 
 - Project-local incremental SQLite declarations, source hashes and deterministic

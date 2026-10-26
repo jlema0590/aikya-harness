@@ -10,7 +10,8 @@
     inspector:'Inspector de fuentes',traceHint:'La estructura estática no demuestra un recorrido de ejecución ni pruebas superadas.',
     select:'Selecciona una fuente',selectHint:'Explora el grafo o busca una clase para inspeccionar su procedencia.',
     nodes:'nodos',links:'relaciones',notes:'notas',empty:'No hay resultados dentro de estos filtros.',
-    motionOn:'Movimiento activo',motionOff:'Movimiento desactivado',theme:'Cambiar tema',snapshot:'Instantánea local',
+    motionOn:'Movimiento activo',motionOff:'Movimiento desactivado',lightTheme:'Tema claro',darkTheme:'Tema oscuro',snapshot:'Instantánea local',
+    sources:'Fuentes',folders:'Carpetas',files:'Archivos',symbols:'Declaraciones',documents:'Documentos y notas',
     partial:'Cobertura parcial',verified:'Verificado',removed:'La fuente seleccionada ya no está disponible.',
     disconnected:'Disconnected',limit:'Mostrando una selección acotada',of:'de',generation:'generación del índice',source:'Fuente',review:'Revisión',eligible:'Disponible para consultas',lines:'Líneas'
   } : {
@@ -21,13 +22,13 @@
     inspector:'Source inspector',traceHint:'Static structure does not prove a runtime request flow or passing tests.',
     select:'Select a source',selectHint:'Explore the graph or find a class to inspect its provenance.',
     nodes:'nodes',links:'links',notes:'notes',empty:'No results within these filters.',
-    motionOn:'Motion on',motionOff:'Motion off',theme:'Change theme',snapshot:'Local snapshot',
+    motionOn:'Motion on',motionOff:'Motion off',lightTheme:'Light theme',darkTheme:'Dark theme',snapshot:'Local snapshot',
+    sources:'Sources',folders:'Folders',files:'Files',symbols:'Declarations',documents:'Documents and notes',
     partial:'Partial coverage',verified:'Verified',removed:'The selected source is no longer available.',
     disconnected:'Disconnected',limit:'Showing a bounded selection',of:'of',generation:'index generation',source:'Source',review:'Review',eligible:'Eligible for recall',lines:'Lines'
   };
   document.querySelectorAll('[data-i18n]').forEach(el => {el.textContent = words[el.dataset.i18n];});
   $('search').placeholder = words.search;
-  $('theme').textContent = words.theme;
   $('empty').textContent = words.empty;
   let data = JSON.parse($('snapshot').textContent);
   let selected = null, view = 'graph', neighbors = false, page = 0, zoom = 1;
@@ -45,8 +46,11 @@
     $('motion').setAttribute('aria-pressed', String(motion));
   }
   $('motion').onclick = () => {motion = !motion; setMotion();};
-  $('theme').onclick = () => document.body.classList.toggle('dark');
-  if (matchMedia('(prefers-color-scheme: dark)').matches) document.body.classList.add('dark');
+  function setTheme() {
+    $('theme').textContent = document.body.classList.contains('light') ? words.darkTheme : words.lightTheme;
+  }
+  $('theme').onclick = () => {document.body.classList.toggle('light');setTheme();};
+  setTheme();
   matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', event => {if(event.matches) motion=false;setMotion();});
   setMotion();
   function options() {
@@ -125,12 +129,23 @@
       button.classList.toggle('selected',node.id===selected);button.onclick=()=>choose(node.id);folders.get(parent).append(button);
     });
   }
+  function hierarchy(nodes) {
+    const positions=new Map(), levels=new Map();
+    const depth=node=>node.type==='project'?0:node.path.split('/').length;
+    const maxDepth=Math.max(1,...nodes.map(depth));
+    nodes.forEach(node=>{const level=depth(node);if(!levels.has(level))levels.set(level,[]);levels.get(level).push(node);});
+    levels.forEach((members,level)=>{
+      members.sort((a,b)=>a.path.localeCompare(b.path));
+      members.forEach((node,i)=>positions.set(node.id,[80+level/maxDepth*770,45+(i+.5)/members.length*560]));
+    });
+    return positions;
+  }
   function graph(nodes) {
     const canvas=$('canvas');canvas.replaceChildren();
-    const visible=nodes.slice(0,500), positions=new Map();
+    const visible=nodes.slice(0,500), positions=view==='architecture'?hierarchy(visible):new Map();
     const close=selected?neighborIDs():new Set();
     const key=visible.map(n=>n.id).join('|');
-    if(key!==layoutKey){
+    if(view!=='architecture'&&key!==layoutKey){
       const points=visible.map((node,i)=>({id:node.id,x:500+Math.cos(i/Math.max(1,visible.length)*Math.PI*2)*340,
         y:325+Math.sin(i/Math.max(1,visible.length)*Math.PI*2)*230}));
       const byID=new Map(points.map(p=>[p.id,p]));
@@ -148,7 +163,7 @@
       }
       layoutPositions=new Map(points.map(p=>[p.id,[p.x,p.y]]));layoutKey=key;
     }
-    visible.forEach(node=>positions.set(node.id,layoutPositions.get(node.id)));
+    if(view!=='architecture')visible.forEach(node=>positions.set(node.id,layoutPositions.get(node.id)));
     data.edges.slice(0,200000).forEach(edge=>{
       if(!positions.has(edge.source)||!positions.has(edge.target))return;
       const line=document.createElementNS(svgNS,'line'),a=positions.get(edge.source),b=positions.get(edge.target);

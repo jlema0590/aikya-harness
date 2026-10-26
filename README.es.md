@@ -310,6 +310,15 @@ también refresca la página mediante un visor temporal en localhost. El archivo
 exportado sigue siendo una instantánea autónoma sin internet. No instala servicios
 del sistema.
 
+El informe utiliza por defecto el tema azul marino de la versión 2 y permite
+cambiar a tema claro. El panel de fuentes, el explorador central y el inspector
+combinan un grafo de conocimiento, una jerarquía de arquitectura basada en rutas
+y un inventario con búsqueda. Los colores distinguen carpetas, archivos,
+declaraciones y documentos/notas. Conserva filtros, selección y zoom al actualizarse
+y respeta el movimiento reducido. Consulta el
+[ejemplo generado](aikya/docs/examples/aikya-memory-generated.html). La arquitectura
+muestra estructura verificable; el análisis de flujos de ejecución queda pendiente.
+
 Indexar y exportar no llama a modelos ni consume tokens de API; utiliza CPU y disco
 locales. Las consultas posteriores a la IA conservan su consumo habitual. Python
 funciona sin dependencias adicionales; el extra opcional fijado `code-index` añade

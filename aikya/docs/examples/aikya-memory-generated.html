@@ -2,415 +2,222 @@
 <!doctype html>
 <html lang="en" data-mode="snapshot">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-X88Ppz/U2E47YmimcRLRFtkEXxJPT4JOAG8qhJiCcFQ='; style-src 'sha256-NGDEEup52Qq8zlM5RQWSZ45RTbZoviON1cA7ehQnRDA='; img-src data:; object-src 'none'; base-uri 'none'; form-action 'none'; connect-src 'none'">
-<title>Aikya Memory</title><style>:root{
-  color-scheme:light;
-  --bg:#f4f4ef;
-  --panel:#fafbf6;
-  --ink:#24352c;
-  --muted:#667268;
-  --line:#d9dfd5;
-  --accent:#47785d;
-  --wash:#e6ecdf;
-  --focus:#97782e;
-  --fast:140ms;
-  --enter:220ms}
-  *{
-    box-sizing:border-box}
-    body{
-      margin:0;
-      background:var(--bg);
-      color:var(--ink);
-      font:14px/1.5 "Avenir Next","Segoe UI",sans-serif}
-      body.dark{
-        color-scheme:dark;
-        --bg:#121c18;
-        --panel:#19251f;
-        --ink:#e0e9dc;
-        --muted:#9aa99e;
-        --line:#344239;
-        --accent:#9aba80;
-        --wash:#293a2d;
-        --focus:#e6bd60}
-        a{
-          color:inherit}
-          button,input,select{
-            font:inherit;
-            color:inherit}
-            button,select,input{
-              background:var(--panel);
-              border:1px solid var(--line);
-              border-radius:5px;
-              min-height:34px}
-              button{
-                padding:5px 10px;
-                cursor:pointer}
-                button:hover{
-                  background:var(--wash)}
-                  button:disabled{
-                    opacity:.4;
-                    cursor:default}
-                    :focus-visible{
-                      outline:2px solid var(--focus);
-                      outline-offset:3px}
-                      button[aria-pressed=true]{
-                        background:var(--wash);
-                        color:var(--accent);
-                        border-color:var(--accent)}
-                        .topbar{
-                          padding:18px 30px;
-                          border-bottom:1px solid var(--line);
-                          display:flex;
-                          align-items:center;
-                          justify-content:space-between;
-                          gap:16px}
-                          .wordmark{
-                            text-decoration:none;
-                            font-weight:750;
-                            font-size:23px;
-                            letter-spacing:-1px}
-                            .wordmark span{
-                              font-size:13px;
-                              font-weight:400;
-                              letter-spacing:0;
-                              color:var(--muted);
-                              margin-left:16px}
-                              .actions{
-                                display:flex;
-                                gap:8px;
-                                align-items:center;
-                                flex-wrap:wrap}
-                                .actions span{
-                                  font-size:11px;
-                                  color:var(--muted);
-                                  margin-right:12px}
-                                  .intro{
-                                    display:flex;
-                                    justify-content:space-between;
-                                    align-items:center;
-                                    padding:30px;
-                                    gap:20px}
-                                    .eyebrow{
-                                      font-size:10px;
-                                      letter-spacing:1.6px;
-                                      text-transform:uppercase;
-                                      color:var(--muted);
-                                      margin:0 0 9px}
-                                      h1{
-                                        font-family:Georgia,serif;
-                                        font-weight:400;
-                                        font-size:33px;
-                                        line-height:1.15;
-                                        margin:0 0 9px;
-                                        letter-spacing:-.7px}
-                                        h2{
-                                          font-size:14px;
-                                          margin:0 0 12px}
-                                          .muted{
-                                            color:var(--muted);
-                                            margin:4px 0;
-                                            font-size:12px}
-                                            #metrics{
-                                              display:flex;
-                                              gap:25px;
-                                              font-size:11px;
-                                              color:var(--muted)}
-                                              #metrics strong{
-                                                display:block;
-                                                font-size:25px;
-                                                font-weight:500;
-                                                color:var(--ink)}
-                                                .workspace{
-                                                  display:grid;
-                                                  grid-template-columns:230px minmax(0,1fr) 280px;
-                                                  border-block:1px solid var(--line);
-                                                  min-height:620px}
-                                                  .sources,.inspector{
-                                                    padding:24px 20px;
-                                                    background:var(--panel);
-                                                    overflow:auto;
-                                                    max-height:820px}
-                                                    .sources{
-                                                      border-right:1px solid var(--line)}
-                                                      .inspector{
-                                                        border-left:1px solid var(--line)}
-                                                        .inspector h2{
-                                                          font-size:19px;
-                                                          overflow-wrap:anywhere}
-                                                          .mono,pre{
-                                                            font:11px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;
-                                                            overflow-wrap:anywhere}
-                                                            .mono{
-                                                              color:var(--muted)}
-                                                              pre{
-                                                                white-space:pre-wrap;
-                                                                margin:18px 0;
-                                                                padding-top:14px;
-                                                                border-top:1px solid var(--line);
-                                                                max-height:380px;
-                                                                overflow:auto}
-                                                                .evidence-note{
-                                                                  border-top:1px solid var(--line);
-                                                                  padding-top:16px;
-                                                                  color:var(--muted);
-                                                                  font-size:11px}
-                                                                  .toolbar{
-                                                                    display:flex;
-                                                                    gap:12px;
-                                                                    justify-content:space-between;
-                                                                    padding:14px 18px;
-                                                                    border-bottom:1px solid var(--line);
-                                                                    flex-wrap:wrap}
-                                                                    nav{
-                                                                      display:flex;
-                                                                      gap:5px}
-                                                                      nav button{
-                                                                        border-color:transparent;
-                                                                        background:none;
-                                                                        font-size:12px}
-                                                                        .search{
-                                                                          flex:1;
-                                                                          min-width:160px;
-                                                                          max-width:280px}
-                                                                          .search input{
-                                                                            width:100%;
-                                                                            padding:7px 10px}
-                                                                            .filters{
-                                                                              padding:12px 18px;
-                                                                              display:flex;
-                                                                              align-items:center;
-                                                                              gap:12px;
-                                                                              flex-wrap:wrap;
-                                                                              border-bottom:1px solid var(--line);
-                                                                              font-size:11px}
-                                                                              .filters label{
-                                                                                display:flex;
-                                                                                align-items:center;
-                                                                                gap:6px}
-                                                                                .filters select{
-                                                                                  max-width:160px;
-                                                                                  font-size:11px}
-                                                                                  .filters button{
-                                                                                    font-size:11px}
-                                                                                    .zoom{
-                                                                                      display:flex;
-                                                                                      gap:4px;
-                                                                                      margin-left:auto}
-                                                                                      #coverage{
-                                                                                        font-size:11px;
-                                                                                        color:var(--muted);
-                                                                                        padding:0 18px;
-                                                                                        min-height:18px}
-                                                                                        #stage{
-                                                                                          min-height:490px;
-                                                                                          position:relative}
-                                                                                          #graph{
-                                                                                            width:100%;
-                                                                                            height:490px;
-                                                                                            display:block;
-                                                                                            background:radial-gradient(circle,var(--line) .7px,transparent .8px);
-                                                                                            background-size:18px 18px}
-                                                                                            svg[hidden],div[hidden],p[hidden]{
-                                                                                              display:none!important}
-                                                                                              .edge{
-                                                                                                stroke:var(--muted);
-                                                                                                stroke-width:1;
-                                                                                                opacity:.22}
-                                                                                                .edge.active{
-                                                                                                  opacity:.85;
-                                                                                                  stroke:var(--accent);
-                                                                                                  stroke-width:1.8}
-                                                                                                  .node{
-                                                                                                    cursor:pointer;
-                                                                                                    transition:opacity var(--fast) ease-out}
-                                                                                                    .node circle{
-                                                                                                      fill:var(--accent);
-                                                                                                      stroke:var(--bg);
-                                                                                                      stroke-width:3}
-                                                                                                      .node.folder circle{
-                                                                                                        fill:#b9944c}
-                                                                                                        .node.project circle{
-                                                                                                          fill:var(--ink)}
-                                                                                                          .node.file circle{
-                                                                                                            fill:#618e9c}
-                                                                                                            .node.document circle{
-                                                                                                              fill:#a180ac}
-                                                                                                              .node.memory circle{
-                                                                                                                fill:#b36c52}
-                                                                                                                .node.method circle,.node.function circle{
-                                                                                                                  fill:#7b9472}
-                                                                                                                  .node text{
-                                                                                                                    font-size:10px;
-                                                                                                                    fill:var(--ink);
-                                                                                                                    text-anchor:middle;
-                                                                                                                    paint-order:stroke;
-                                                                                                                    stroke:var(--bg);
-                                                                                                                    stroke-width:4px;
-                                                                                                                    stroke-linejoin:round;
-                                                                                                                    pointer-events:none}
-                                                                                                                    .node.selected circle{
-                                                                                                                      stroke:var(--focus);
-                                                                                                                      stroke-width:4}
-                                                                                                                      .node.dimmed{
-                                                                                                                        opacity:.22}
-                                                                                                                        .node:focus{
-                                                                                                                          outline:none}
-                                                                                                                          .node:focus-visible circle{
-                                                                                                                            stroke:var(--focus);
-                                                                                                                            stroke-width:4}
-                                                                                                                            #canvas{
-                                                                                                                              transform-origin:500px 325px;
-                                                                                                                              transition:transform var(--enter) cubic-bezier(.23,1,.32,1)}
-                                                                                                                              .map-footer{
-                                                                                                                                padding:12px 18px;
-                                                                                                                                border-top:1px solid var(--line);
-                                                                                                                                display:flex;
-                                                                                                                                justify-content:space-between;
-                                                                                                                                align-items:center;
-                                                                                                                                gap:12px;
-                                                                                                                                flex-wrap:wrap;
-                                                                                                                                color:var(--muted);
-                                                                                                                                font-size:10px}
-                                                                                                                                #pages{
-                                                                                                                                  display:flex;
-                                                                                                                                  gap:6px;
-                                                                                                                                  align-items:center}
-                                                                                                                                  .tree-button{
-                                                                                                                                    width:100%;
-                                                                                                                                    display:block;
-                                                                                                                                    text-align:left;
-                                                                                                                                    border:0;
-                                                                                                                                    background:transparent;
-                                                                                                                                    font-size:11px;
-                                                                                                                                    min-height:28px;
-                                                                                                                                    padding:4px;
-                                                                                                                                    overflow:hidden;
-                                                                                                                                    text-overflow:ellipsis;
-                                                                                                                                    white-space:nowrap}
-                                                                                                                                    .tree-button.selected{
-                                                                                                                                      background:var(--wash)}
-                                                                                                                                      details{
-                                                                                                                                        font-size:11px}
-                                                                                                                                        details details{
-                                                                                                                                          margin-left:9px}
-                                                                                                                                          summary{
-                                                                                                                                            cursor:pointer;
-                                                                                                                                            padding:5px 0;
-                                                                                                                                            color:var(--muted);
-                                                                                                                                            overflow-wrap:anywhere}
-                                                                                                                                            .inventory-row{
-                                                                                                                                              display:grid;
-                                                                                                                                              grid-template-columns:minmax(0,1fr) 90px;
-                                                                                                                                              gap:4px 12px;
-                                                                                                                                              border:0;
-                                                                                                                                              border-bottom:1px solid var(--line);
-                                                                                                                                              border-radius:0;
-                                                                                                                                              width:100%;
-                                                                                                                                              text-align:left;
-                                                                                                                                              padding:11px 18px;
-                                                                                                                                              background:none;
-                                                                                                                                              font-size:12px}
-                                                                                                                                              .inventory-row small{
-                                                                                                                                                grid-column:1/-1;
-                                                                                                                                                color:var(--muted);
-                                                                                                                                                overflow-wrap:anywhere}
-                                                                                                                                                #empty{
-                                                                                                                                                  padding:60px 30px;
-                                                                                                                                                  color:var(--muted);
-                                                                                                                                                  text-align:center}
-                                                                                                                                                  #connections button{
-                                                                                                                                                    display:block;
-                                                                                                                                                    text-align:left;
-                                                                                                                                                    width:100%;
-                                                                                                                                                    font-size:11px;
-                                                                                                                                                    margin:4px 0;
-                                                                                                                                                    overflow-wrap:anywhere}
-                                                                                                                                                    footer{
-                                                                                                                                                      display:flex;
-                                                                                                                                                      justify-content:space-between;
-                                                                                                                                                      padding:15px 30px;
-                                                                                                                                                      color:var(--muted);
-                                                                                                                                                      font-size:9px;
-                                                                                                                                                      gap:20px}
-                                                                                                                                                      .sr-only{
-                                                                                                                                                        position:absolute;
-                                                                                                                                                        width:1px;
-                                                                                                                                                        height:1px;
-                                                                                                                                                        padding:0;
-                                                                                                                                                        margin:-1px;
-                                                                                                                                                        overflow:hidden;
-                                                                                                                                                        clip:rect(0,0,0,0);
-                                                                                                                                                        white-space:nowrap;
-                                                                                                                                                        border:0}
-                                                                                                                                                        body.motion-off *,body.motion-off *::before,body.motion-off *::after{
-                                                                                                                                                          transition:none!important;
-                                                                                                                                                          animation:none!important;
-                                                                                                                                                          scroll-behavior:auto!important}
-                                                                                                                                                          @media(prefers-reduced-motion:reduce){
-                                                                                                                                                            *{
-                                                                                                                                                              transition:none!important;
-                                                                                                                                                              animation:none!important;
-                                                                                                                                                              scroll-behavior:auto!important}
-                                                                                                                                                            }
-                                                                                                                                                            @media(max-width:1150px){
-                                                                                                                                                              .workspace{
-                                                                                                                                                                grid-template-columns:190px minmax(0,1fr)}
-                                                                                                                                                                .inspector{
-                                                                                                                                                                  grid-column:1/-1;
-                                                                                                                                                                  border-left:0;
-                                                                                                                                                                  border-top:1px solid var(--line);
-                                                                                                                                                                  max-height:none}
-                                                                                                                                                                }
-                                                                                                                                                                @media(max-width:640px){
-                                                                                                                                                                  .topbar,.intro{
-                                                                                                                                                                    padding:18px;
-                                                                                                                                                                    align-items:flex-start;
-                                                                                                                                                                    flex-direction:column}
-                                                                                                                                                                    .actions{
-                                                                                                                                                                      gap:5px}
-                                                                                                                                                                      .intro h1{
-                                                                                                                                                                        font-size:29px}
-                                                                                                                                                                        .workspace{
-                                                                                                                                                                          display:flex;
-                                                                                                                                                                          flex-direction:column}
-                                                                                                                                                                          .sources{
-                                                                                                                                                                            border-right:0;
-                                                                                                                                                                            border-bottom:1px solid var(--line);
-                                                                                                                                                                            max-height:240px}
-                                                                                                                                                                            .toolbar{
-                                                                                                                                                                              padding:12px}
-                                                                                                                                                                              .search{
-                                                                                                                                                                                max-width:none}
-                                                                                                                                                                                nav{
-                                                                                                                                                                                  flex-wrap:wrap}
-                                                                                                                                                                                  #metrics{
-                                                                                                                                                                                    gap:20px}
-                                                                                                                                                                                    #graph{
-                                                                                                                                                                                      height:420px}
-                                                                                                                                                                                      #stage{
-                                                                                                                                                                                        min-height:420px}
-                                                                                                                                                                                        .zoom{
-                                                                                                                                                                                          margin-left:0}
-                                                                                                                                                                                          footer{
-                                                                                                                                                                                            padding:15px 18px;
-                                                                                                                                                                                            flex-direction:column;
-                                                                                                                                                                                            gap:6px}
-                                                                                                                                                                                          }
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-tIkA8o+KM4Z9rg4zXsmyUanVMZIGbZkt/zj33Tz2XEY='; style-src 'sha256-RxD1P3jqGD8EZbCtBwNjiCgT3Qw1Y96bw1sTj69QXjY='; img-src data:; object-src 'none'; base-uri 'none'; form-action 'none'; connect-src 'none'">
+<title>Aikya Memory</title><style>/* Version 2: navy explorer with source-specific colors and a light alternative. */
+:root {
+  color-scheme: dark;
+  --bg: #0c1627;
+  --panel: #112139;
+  --wash: #1a2e49;
+  --line: #29405e;
+  --ink: #edf4ff;
+  --muted: #acbed6;
+  --soft: #829bbd;
+  --file: #94baff;
+  --function: #f3b293;
+  --document: #e5cb85;
+  --accent: #7cddd0;
+  --focus: #b4e9ff;
+  --fast: 140ms;
+  --enter: 220ms;
+}
+body.light {
+  color-scheme: light;
+  --bg: #f3f7fc;
+  --panel: #fff;
+  --wash: #e5edf7;
+  --line: #c9d6e7;
+  --ink: #10263f;
+  --muted: #4b627c;
+  --soft: #536b86;
+  --file: #315ea4;
+  --function: #984d31;
+  --document: #806318;
+  --accent: #176e65;
+  --focus: #164e92;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 14px/1.5 "Avenir Next", "Segoe UI", sans-serif;
+}
+a { color: inherit; }
+button, input, select { font: inherit; color: inherit; }
+button, select, input {
+  background: var(--wash);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  min-height: 38px;
+}
+button { padding: 8px 12px; cursor: pointer; }
+button:disabled { opacity: .55; cursor: default; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
+button[aria-pressed=true] {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+.topbar {
+  min-height: 76px;
+  padding: 16px 28px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.wordmark { text-decoration: none; font-weight: 750; font-size: 25px; letter-spacing: -1.2px; }
+.wordmark span {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--muted);
+  margin-left: 17px;
+  padding-left: 17px;
+  border-left: 1px solid var(--line);
+}
+.actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.actions span { font-size: 11px; color: var(--muted); margin-right: 12px; }
+.intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 23px 28px 20px;
+  gap: 24px;
+  border-bottom: 1px solid var(--line);
+}
+.eyebrow { font-size: 12px; color: var(--muted); margin: 0 0 10px; }
+.intro .eyebrow { display: none; }
+h1 { font-size: 23px; font-weight: 650; line-height: 1.3; margin: 0 0 4px; letter-spacing: -.8px; }
+h2 { font-size: 16px; margin: 0 0 16px; letter-spacing: -.2px; }
+.muted { color: var(--muted); margin: 4px 0; font-size: 12px; }
+.snapshot { text-align: right; color: var(--muted); font-size: 11px; max-width: 280px; }
+.workspace {
+  display: grid;
+  grid-template-columns: 228px minmax(0, 1fr) 304px;
+  min-height: 620px;
+  height: calc(100svh - 229px);
+}
+.sources, .inspector { padding: 24px 20px; background: var(--panel); overflow: auto; min-width: 0; }
+.sources { border-right: 1px solid var(--line); }
+.inspector { border-left: 1px solid var(--line); }
+#metrics { display: flex; flex-direction: column; gap: 10px; margin: 20px 0; color: var(--muted); font-size: 12px; }
+#metrics > span { display: flex; flex-direction: row-reverse; align-items: center; justify-content: space-between; gap: 8px; }
+#metrics strong { color: var(--ink); font-size: 12px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.source-tree { border-top: 1px solid var(--line); padding-top: 18px; margin-top: 18px; }
+.source-tree h3 { font-size: 12px; margin: 0 0 12px; }
+.inspector h2 { font-size: 19px; overflow-wrap: anywhere; }
+.mono, pre { font: 11px/1.65 "SFMono-Regular", Consolas, monospace; overflow-wrap: anywhere; }
+.mono { color: var(--muted); }
+pre { white-space: pre-wrap; margin: 18px 0; padding-top: 14px; border-top: 1px solid var(--line); max-height: 380px; overflow: auto; }
+.evidence-note { border-top: 1px solid var(--line); padding-top: 16px; color: var(--muted); font-size: 11px; }
+.explorer { min-width: 0; min-height: 0; display: flex; flex-direction: column; }
+.toolbar { display: flex; gap: 12px; justify-content: space-between; padding: 16px 22px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+nav { display: flex; gap: 4px; flex-wrap: wrap; }
+nav button { background: none; font-size: 12px; padding: 6px 13px; min-height: 34px; }
+.search { flex: 1; min-width: 160px; max-width: 280px; }
+.search input { width: 100%; padding: 7px 12px; background: var(--panel); font-size: 12px; }
+.search input::placeholder { color: var(--muted); }
+.filters { padding: 10px 18px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; border-bottom: 1px solid var(--line); font-size: 11px; background: var(--panel); }
+.filters label { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.filters select { max-width: 160px; font-size: 11px; padding: 5px 8px; min-height: 30px; background: var(--bg); }
+.filters button { font-size: 11px; padding: 5px 9px; min-height: 30px; }
+.zoom { display: flex; gap: 4px; margin-left: auto; }
+.legend { display: flex; gap: 13px; flex-wrap: wrap; padding: 9px 18px; color: var(--muted); font-size: 10px; }
+.legend span { display: flex; align-items: center; gap: 5px; }
+.legend i { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.legend .file { background: var(--file); }
+.legend .symbol { background: var(--function); }
+.legend .document { background: var(--document); }
+#coverage { font-size: 10px; color: var(--muted); padding: 0 18px; margin: 0 0 10px; min-height: 18px; overflow-wrap: anywhere; }
+#stage { flex: 1; min-height: 350px; position: relative; overflow: auto; background: radial-gradient(var(--line) .7px, transparent .7px); background-size: 24px 24px; }
+#graph { position: absolute; inset: 0; width: 100%; height: 100%; min-height: 350px; display: block; overflow: hidden; }
+[hidden] { display: none !important; }
+.edge { stroke: var(--soft); stroke-width: 1; opacity: .33; }
+.edge.active { opacity: .95; stroke: var(--accent); stroke-width: 1.8; }
+.node { cursor: pointer; transition: opacity var(--fast) ease-out; }
+.node circle { fill: var(--function); stroke: var(--bg); stroke-width: 2.5; }
+.node.folder circle { fill: var(--accent); }
+.node.project circle { fill: var(--panel); stroke: var(--accent); stroke-width: 1.5; }
+.node.file circle { fill: var(--file); }
+.node.document circle, .node.memory circle { fill: var(--document); }
+.node text { font-size: 10px; fill: var(--ink); text-anchor: middle; paint-order: stroke; stroke: var(--bg); stroke-width: 4px; stroke-linejoin: round; pointer-events: none; }
+.node.folder text, .node.project text { font-size: 12px; font-weight: 600; }
+.node.selected circle, .node:focus-visible circle { stroke: var(--focus); stroke-width: 3; }
+.node.dimmed { opacity: .2; }
+.node:focus { outline: none; }
+#canvas { transform-origin: 500px 325px; transition: transform var(--enter) cubic-bezier(.23, 1, .32, 1); }
+.map-footer { padding: 10px 18px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; color: var(--muted); font-size: 10px; }
+#pages { display: flex; gap: 6px; align-items: center; }
+.tree-button { width: 100%; display: block; text-align: left; border: 0; border-radius: 4px; background: transparent; font-size: 11px; min-height: 28px; padding: 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tree-button.selected { background: var(--wash); color: var(--accent); }
+details { font-size: 11px; }
+details details { margin-left: 9px; }
+summary { cursor: pointer; padding: 5px 0; color: var(--muted); overflow-wrap: anywhere; }
+.inventory-row { display: grid; grid-template-columns: minmax(0, 1fr) 90px; gap: 4px 12px; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; width: 100%; text-align: left; padding: 14px 18px; background: var(--bg); font-size: 12px; }
+.inventory-row small { grid-column: 1/-1; color: var(--muted); overflow-wrap: anywhere; }
+#empty { padding: 60px 30px; color: var(--muted); text-align: center; }
+#connections button { display: block; text-align: left; width: 100%; font-size: 11px; margin: 6px 0; overflow-wrap: anywhere; }
+footer { display: flex; justify-content: space-between; padding: 9px 28px; border-top: 1px solid var(--line); color: var(--muted); font-size: 10px; gap: 20px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+body.motion-off *, body.motion-off *::before, body.motion-off *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+@media (hover: hover) and (pointer: fine) {
+  button:hover:not([aria-pressed=true]) { background: var(--wash); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
+@media (max-width: 1100px) {
+  .workspace { grid-template-columns: 180px minmax(0, 1fr) 260px; }
+  .sources, .inspector { padding: 20px 16px; }
+  .toolbar { padding: 14px; }
+}
+@media (max-width: 860px) {
+  .workspace { grid-template-columns: 160px minmax(0, 1fr); height: auto; }
+  .inspector { grid-column: 1/-1; border-left: 0; border-top: 1px solid var(--line); }
+  .explorer { min-height: 580px; }
+  .topbar { flex-wrap: wrap; padding: 15px 18px; gap: 12px; }
+  .intro { padding: 20px 18px; }
+  .snapshot { display: none; }
+}
+@media (max-width: 540px) {
+  .workspace { display: flex; flex-direction: column; }
+  .sources { border-right: 0; border-bottom: 1px solid var(--line); max-height: 280px; }
+  .sources > h2 { margin-bottom: 8px; }
+  #metrics { flex-direction: row; justify-content: space-between; margin: 12px 0; }
+  #metrics > span { gap: 7px; }
+  .source-tree { padding-top: 10px; margin-top: 10px; }
+  .actions { gap: 5px; }
+  .actions span { margin-right: 4px; }
+  .actions button { font-size: 11px; padding: 6px 9px; }
+  h1 { font-size: 21px; }
+  .toolbar { padding: 12px; gap: 10px; }
+  nav button { padding: 5px 9px; }
+  .search { max-width: none; }
+  .filters { padding: 10px 12px; gap: 10px; }
+  .filters select { max-width: 130px; }
+  .zoom { margin-left: 0; }
+  .explorer { min-height: 570px; }
+  footer { padding: 12px 18px; flex-wrap: wrap; gap: 6px; }
+}
 </style></head>
 <body>
-<header class="topbar"><a class="wordmark" href="#">aikya<span> / memory</span></a><div class="actions"><span id="connection" role="status"></span><button id="motion" type="button"></button><button id="theme" type="button"></button></div></header>
-<section class="intro"><div><p class="eyebrow" data-i18n="eyebrow"></p><h1 data-i18n="headline"></h1><p class="muted" id="project"></p></div><div id="metrics" aria-live="polite"></div></section>
+<header class="topbar"><a class="wordmark" href="#">aikya<span>Memory</span></a><div class="actions"><span id="connection" role="status"></span><button id="motion" type="button"></button><button id="theme" type="button"></button></div></header>
+<section class="intro"><div><h1 data-i18n="headline"></h1><p class="muted" id="project"></p></div><p class="snapshot" id="snapshot-time"></p></section>
 <main class="workspace">
-<aside class="sources"><h2 data-i18n="structure"></h2><p class="muted" data-i18n="treeHint"></p><div id="tree"></div></aside>
+<aside class="sources"><h2 data-i18n="sources"></h2><div id="metrics" aria-live="polite"></div><section class="source-tree"><h3 data-i18n="structure"></h3><p class="muted" data-i18n="treeHint"></p><div id="tree"></div></section></aside>
 <section class="explorer" aria-label="Memory explorer"><div class="toolbar"><nav id="views" aria-label="Views"><button type="button" data-view="graph" aria-pressed="true" data-i18n="graph"></button><button type="button" data-view="architecture" aria-pressed="false" data-i18n="architecture"></button><button type="button" data-view="inventory" aria-pressed="false" data-i18n="inventory"></button></nav><label class="search"><span class="sr-only" data-i18n="search"></span><input id="search" type="search" autocomplete="off"></label></div>
 <div class="filters"><label><span data-i18n="type"></span><select id="type"><option value="all" data-i18n="allTypes"></option></select></label><label><span data-i18n="folder"></span><select id="folder"><option value="all" data-i18n="allFolders"></option></select></label><button id="neighbors" type="button" aria-pressed="false" data-i18n="neighbors"></button><div class="zoom"><button id="zoom-out" type="button" aria-label="Zoom out">−</button><button id="zoom-in" type="button" aria-label="Zoom in">+</button><button id="zoom-reset" type="button" data-i18n="reset"></button></div></div>
-<p id="coverage" role="status"></p>
+<div class="legend" aria-label="Source types"><span><i></i><span data-i18n="folders"></span></span><span><i class="file"></i><span data-i18n="files"></span></span><span><i class="symbol"></i><span data-i18n="symbols"></span></span><span><i class="document"></i><span data-i18n="documents"></span></span></div><p id="coverage" role="status"></p>
 <div id="stage"><svg id="graph" viewBox="0 0 1000 650" role="group" aria-label="Knowledge graph"><g id="canvas"></g></svg><div id="inventory" hidden></div><p id="empty" hidden></p></div>
 <div class="map-footer"><span id="shown"></span><div id="pages"><button id="previous" type="button" data-i18n="previous"></button><span id="page"></span><button id="next" type="button" data-i18n="next"></button></div><span data-i18n="evidenceOnly"></span></div>
 </section>
 <aside class="inspector"><p class="eyebrow" data-i18n="inspector"></p><h2 id="detail-title"></h2><p id="detail-type" class="muted"></p><p id="detail-path" class="mono"></p><pre id="detail-body"></pre><div id="connections"></div><p class="evidence-note" data-i18n="traceHint"></p></aside>
-</main><footer><span id="snapshot-time"></span><span>GENERATED BY AIKYA HARNESS</span></footer>
-<script type="application/json" id="snapshot">{"schema_version": 1, "generated_at": 1792961860.645115, "index_generation": 6, "coverage": {"code_index": "available", "documents": "available", "notes": "available"}, "nodes": [{"id": "project:root", "type": "project", "label": "aikya-java-validation", "path": ".", "source_hash": null, "status": "derived", "details": {}}, {"id": "file:src/main/java/demo/Order.java", "type": "file", "label": "Order.java", "path": "src/main/java/demo/Order.java", "source_hash": "4fa7d9de7f7f623eec27979d4b53218c25012b32c2c350d8a30816835e1a3acc", "status": "indexed", "details": {"parser": "treesitter-java", "coverage": "indexed"}}, {"id": "file:src/main/java/demo/OrderRepository.java", "type": "file", "label": "OrderRepository.java", "path": "src/main/java/demo/OrderRepository.java", "source_hash": "77cd1cab11df2abaf6cbe98691bc4cfaeab748ca2876d4d2cb0be6e261e86cd6", "status": "indexed", "details": {"parser": "treesitter-java", "coverage": "indexed"}}, {"id": "file:src/main/java/demo/OrderService.java", "type": "file", "label": "OrderService.java", "path": "src/main/java/demo/OrderService.java", "source_hash": "6775aee3ee01bba9103d04fc52fce893423809e2e87527567ca84bf852c45824", "status": "indexed", "details": {"parser": "treesitter-java", "coverage": "indexed"}}, {"id": "file:tests/test_orders.py", "type": "file", "label": "test_orders.py", "path": "tests/test_orders.py", "source_hash": "2192f0bc4fa8dc437ed485a67523d94a1d30094b578eb6cea6ecaeddbf3e7c28", "status": "indexed", "details": {"parser": "python-ast", "coverage": "indexed"}}, {"id": "symbol:src/main/java/demo/Order.java:demo.Order:1", "type": "class", "label": "demo.Order", "path": "src/main/java/demo/Order.java", "source_hash": "4fa7d9de7f7f623eec27979d4b53218c25012b32c2c350d8a30816835e1a3acc", "status": "current", "details": {"name": "Order", "qualified_name": "demo.Order", "kind": "class", "path": "src/main/java/demo/Order.java", "start_byte": 14, "end_byte": 61, "start_line": 1, "end_line": 1, "signature": "public class Order ", "file_sha256": "4fa7d9de7f7f623eec27979d4b53218c25012b32c2c350d8a30816835e1a3acc", "parser_id": "treesitter-java", "parser_version": "0.25.2/0.23.5/1"}}, {"id": "symbol:src/main/java/demo/Order.java:demo.Order.confirm:1", "type": "method", "label": "demo.Order.confirm", "path": "src/main/java/demo/Order.java", "source_hash": "4fa7d9de7f7f623eec27979d4b53218c25012b32c2c350d8a30816835e1a3acc", "status": "current", "details": {"name": "confirm", "qualified_name": "demo.Order.confirm", "kind": "method", "path": "src/main/java/demo/Order.java", "start_byte": 35, "end_byte": 59, "start_line": 1, "end_line": 1, "signature": "public void confirm() ", "file_sha256": "4fa7d9de7f7f623eec27979d4b53218c25012b32c2c350d8a30816835e1a3acc", "parser_id": "treesitter-java", "parser_version": "0.25.2/0.23.5/1"}}, {"id": "symbol:src/main/java/demo/OrderRepository.java:demo.OrderRepository:1", "type": "interface", "label": "demo.OrderRepository", "path": "src/main/java/demo/OrderRepository.java", "source_hash": "77cd1cab11df2abaf6cbe98691bc4cfaeab748ca2876d4d2cb0be6e261e86cd6", "status": "current", "details": {"name": "OrderRepository", "qualified_name": "demo.OrderRepository", "kind": "interface", "path": "src/main/java/demo/OrderRepository.java", "start_byte": 14, "end_byte": 63, "start_line": 1, "end_line": 1, "signature": "public interface OrderRepository ", "file_sha256": "77cd1cab11df2abaf6cbe98691bc4cfaeab748ca2876d4d2cb0be6e261e86cd6", "parser_id": "treesitter-java", "parser_version": "0.25.2/0.23.5/1"}}, {"id": "symbol:src/main/java/demo/OrderRepository.java:demo.OrderRepository.save:1", "type": "method", "label": "demo.OrderRepository.save", "path": "src/main/java/demo/OrderRepository.java", "source_hash": "77cd1cab11df2abaf6cbe98691bc4cfaeab748ca2876d4d2cb0be6e261e86cd6", "status": "current", "details": {"name": "save", "qualified_name": "demo.OrderRepository.save", "kind": "method", "path": "src/main/java/demo/OrderRepository.java", "start_byte": 49, "end_byte": 61, "start_line": 1, "end_line": 1, "signature": "void save();", "file_sha256": "77cd1cab11df2abaf6cbe98691bc4cfaeab748ca2876d4d2cb0be6e261e86cd6", "parser_id": "treesitter-java", "parser_version": "0.25.2/0.23.5/1"}}, {"id": "symbol:src/main/java/demo/OrderService.java:demo.OrderService:2", "type": "class", "label": "demo.OrderService", "path": "src/main/java/demo/OrderService.java", "source_hash": "6775aee3ee01bba9103d04fc52fce893423809e2e87527567ca84bf852c45824", "status": "current", "details": {"name": "OrderService", "qualified_name": "demo.OrderService", "kind": "class", "path": "src/main/java/demo/OrderService.java", "start_byte": 15, "end_byte": 68, "start_line": 2, "end_line": 2, "signature": "public class OrderService ", "file_sha256": "6775aee3ee01bba9103d04fc52fce893423809e2e87527567ca84bf852c45824", "parser_id": "treesitter-java", "parser_version": "0.25.2/0.23.5/1"}}, {"id": "symbol:src/main/java/demo/OrderService.java:demo.OrderService.create:2", "type": "method", "label": "demo.OrderService.create", "path": "src/main/java/demo/OrderService.java", "source_hash": "6775aee3ee01bba9103d04fc52fce893423809e2e87527567ca84bf852c45824", "status": "current", "details": {"name": "create", "qualified_name": "demo.OrderService.create", "kind": "method", "path": "src/main/java/demo/OrderService.java", "start_byte": 43, "end_byte": 66, "start_line": 2, "end_line": 2, "signature": "public void create() ", "file_sha256": "6775aee3ee01bba9103d04fc52fce893423809e2e87527567ca84bf852c45824", "parser_id": "treesitter-java", "parser_version": "0.25.2/0.23.5/1"}}, {"id": "symbol:src/main/java/demo/OrderService.java:demo.AddedService:3", "type": "class", "label": "demo.AddedService", "path": "src/main/java/demo/OrderService.java", "source_hash": "6775aee3ee01bba9103d04fc52fce893423809e2e87527567ca84bf852c45824", "status": "current", "details": {"name": "AddedService", "qualified_name": "demo.AddedService", "kind": "class", "path": "src/main/java/demo/OrderService.java", "start_byte": 69, "end_byte": 106, "start_line": 3, "end_line": 3, "signature": "class AddedService ", "file_sha256": "6775aee3ee01bba9103d04fc52fce893423809e2e87527567ca84bf852c45824", "parser_id": "treesitter-java", "parser_version": "0.25.2/0.23.5/1"}}, {"id": "symbol:src/main/java/demo/OrderService.java:demo.AddedService.ping:3", "type": "method", "label": "demo.AddedService.ping", "path": "src/main/java/demo/OrderService.java", "source_hash": "6775aee3ee01bba9103d04fc52fce893423809e2e87527567ca84bf852c45824", "status": "current", "details": {"name": "ping", "qualified_name": "demo.AddedService.ping", "kind": "method", "path": "src/main/java/demo/OrderService.java", "start_byte": 90, "end_byte": 104, "start_line": 3, "end_line": 3, "signature": "void ping() ", "file_sha256": "6775aee3ee01bba9103d04fc52fce893423809e2e87527567ca84bf852c45824", "parser_id": "treesitter-java", "parser_version": "0.25.2/0.23.5/1"}}, {"id": "symbol:tests/test_orders.py:TestOrders:1", "type": "class", "label": "TestOrders", "path": "tests/test_orders.py", "source_hash": "2192f0bc4fa8dc437ed485a67523d94a1d30094b578eb6cea6ecaeddbf3e7c28", "status": "current", "details": {"name": "TestOrders", "qualified_name": "TestOrders", "kind": "class", "path": "tests/test_orders.py", "start_byte": 0, "end_byte": 66, "start_line": 1, "end_line": 3, "signature": "class TestOrders:", "file_sha256": "2192f0bc4fa8dc437ed485a67523d94a1d30094b578eb6cea6ecaeddbf3e7c28", "parser_id": "python-ast", "parser_version": "1"}}, {"id": "symbol:tests/test_orders.py:TestOrders.test_contract:2", "type": "method", "label": "TestOrders.test_contract", "path": "tests/test_orders.py", "source_hash": "2192f0bc4fa8dc437ed485a67523d94a1d30094b578eb6cea6ecaeddbf3e7c28", "status": "current", "details": {"name": "test_contract", "qualified_name": "TestOrders.test_contract", "kind": "method", "path": "tests/test_orders.py", "start_byte": 22, "end_byte": 66, "start_line": 2, "end_line": 3, "signature": "def test_contract(self):", "file_sha256": "2192f0bc4fa8dc437ed485a67523d94a1d30094b578eb6cea6ecaeddbf3e7c28", "parser_id": "python-ast", "parser_version": "1"}}, {"id": "document:aikya/docs/overview.md", "type": "document", "label": "Controlled Java validation fixture", "path": "aikya/docs/overview.md", "source_hash": "0b14e3ad30fa34bb2077752f8349ae8c0a7c71128f0be2943f13b91b9752460d", "status": "current", "details": {"excerpt": "# Controlled Java validation fixture\n\nThis project is an executable acceptance fixture, not a user repository. Java declarations are parsed locally; no runtime calls or test results are inferred.\n\nGENERATED BY AIKYA HARNESS\n"}}, {"id": "folder:src", "label": "src", "type": "folder", "path": "src", "source_hash": null, "status": "derived", "details": {}}, {"id": "folder:src/main", "label": "main", "type": "folder", "path": "src/main", "source_hash": null, "status": "derived", "details": {}}, {"id": "folder:src/main/java", "label": "java", "type": "folder", "path": "src/main/java", "source_hash": null, "status": "derived", "details": {}}, {"id": "folder:src/main/java/demo", "label": "demo", "type": "folder", "path": "src/main/java/demo", "source_hash": null, "status": "derived", "details": {}}, {"id": "folder:tests", "label": "tests", "type": "folder", "path": "tests", "source_hash": null, "status": "derived", "details": {}}, {"id": "folder:aikya", "label": "aikya", "type": "folder", "path": "aikya", "source_hash": null, "status": "derived", "details": {}}, {"id": "folder:aikya/docs", "label": "docs", "type": "folder", "path": "aikya/docs", "source_hash": null, "status": "derived", "details": {}}], "edges": [{"id": "file:src/main/java/demo/Order.java|contains|symbol:src/main/java/demo/Order.java:demo.Order:1", "source": "file:src/main/java/demo/Order.java", "target": "symbol:src/main/java/demo/Order.java:demo.Order:1", "relation": "contains", "provenance": "syntax", "evidence": {"path": "src/main/java/demo/Order.java", "line": 1}}, {"id": "file:src/main/java/demo/Order.java|contains|symbol:src/main/java/demo/Order.java:demo.Order.confirm:1", "source": "file:src/main/java/demo/Order.java", "target": "symbol:src/main/java/demo/Order.java:demo.Order.confirm:1", "relation": "contains", "provenance": "syntax", "evidence": {"path": "src/main/java/demo/Order.java", "line": 1}}, {"id": "file:src/main/java/demo/OrderRepository.java|contains|symbol:src/main/java/demo/OrderRepository.java:demo.OrderRepository:1", "source": "file:src/main/java/demo/OrderRepository.java", "target": "symbol:src/main/java/demo/OrderRepository.java:demo.OrderRepository:1", "relation": "contains", "provenance": "syntax", "evidence": {"path": "src/main/java/demo/OrderRepository.java", "line": 1}}, {"id": "file:src/main/java/demo/OrderRepository.java|contains|symbol:src/main/java/demo/OrderRepository.java:demo.OrderRepository.save:1", "source": "file:src/main/java/demo/OrderRepository.java", "target": "symbol:src/main/java/demo/OrderRepository.java:demo.OrderRepository.save:1", "relation": "contains", "provenance": "syntax", "evidence": {"path": "src/main/java/demo/OrderRepository.java", "line": 1}}, {"id": "file:src/main/java/demo/OrderService.java|contains|symbol:src/main/java/demo/OrderService.java:demo.OrderService:2", "source": "file:src/main/java/demo/OrderService.java", "target": "symbol:src/main/java/demo/OrderService.java:demo.OrderService:2", "relation": "contains", "provenance": "syntax", "evidence": {"path": "src/main/java/demo/OrderService.java", "line": 2}}, {"id": "file:src/main/java/demo/OrderService.java|contains|symbol:src/main/java/demo/OrderService.java:demo.OrderService.create:2", "source": "file:src/main/java/demo/OrderService.java", "target": "symbol:src/main/java/demo/OrderService.java:demo.OrderService.create:2", "relation": "contains", "provenance": "syntax", "evidence": {"path": "src/main/java/demo/OrderService.java", "line": 2}}, {"id": "file:src/main/java/demo/OrderService.java|contains|symbol:src/main/java/demo/OrderService.java:demo.AddedService:3", "source": "file:src/main/java/demo/OrderService.java", "target": "symbol:src/main/java/demo/OrderService.java:demo.AddedService:3", "relation": "contains", "provenance": "syntax", "evidence": {"path": "src/main/java/demo/OrderService.java", "line": 3}}, {"id": "file:src/main/java/demo/OrderService.java|contains|symbol:src/main/java/demo/OrderService.java:demo.AddedService.ping:3", "source": "file:src/main/java/demo/OrderService.java", "target": "symbol:src/main/java/demo/OrderService.java:demo.AddedService.ping:3", "relation": "contains", "provenance": "syntax", "evidence": {"path": "src/main/java/demo/OrderService.java", "line": 3}}, {"id": "file:tests/test_orders.py|contains|symbol:tests/test_orders.py:TestOrders:1", "source": "file:tests/test_orders.py", "target": "symbol:tests/test_orders.py:TestOrders:1", "relation": "contains", "provenance": "syntax", "evidence": {"path": "tests/test_orders.py", "line": 1}}, {"id": "file:tests/test_orders.py|contains|symbol:tests/test_orders.py:TestOrders.test_contract:2", "source": "file:tests/test_orders.py", "target": "symbol:tests/test_orders.py:TestOrders.test_contract:2", "relation": "contains", "provenance": "syntax", "evidence": {"path": "tests/test_orders.py", "line": 2}}, {"id": "symbol:src/main/java/demo/Order.java:demo.Order:1|contains|symbol:src/main/java/demo/Order.java:demo.Order.confirm:1", "source": "symbol:src/main/java/demo/Order.java:demo.Order:1", "target": "symbol:src/main/java/demo/Order.java:demo.Order.confirm:1", "relation": "contains", "provenance": "syntax", "evidence": {"path": "src/main/java/demo/Order.java", "line": 1}}, {"id": "symbol:src/main/java/demo/OrderRepository.java:demo.OrderRepository:1|contains|symbol:src/main/java/demo/OrderRepository.java:demo.OrderRepository.save:1", "source": "symbol:src/main/java/demo/OrderRepository.java:demo.OrderRepository:1", "target": "symbol:src/main/java/demo/OrderRepository.java:demo.OrderRepository.save:1", "relation": "contains", "provenance": "syntax", "evidence": {"path": "src/main/java/demo/OrderRepository.java", "line": 1}}, {"id": "symbol:src/main/java/demo/OrderService.java:demo.OrderService:2|contains|symbol:src/main/java/demo/OrderService.java:demo.OrderService.create:2", "source": "symbol:src/main/java/demo/OrderService.java:demo.OrderService:2", "target": "symbol:src/main/java/demo/OrderService.java:demo.OrderService.create:2", "relation": "contains", "provenance": "syntax", "evidence": {"path": "src/main/java/demo/OrderService.java", "line": 2}}, {"id": "symbol:src/main/java/demo/OrderService.java:demo.AddedService:3|contains|symbol:src/main/java/demo/OrderService.java:demo.AddedService.ping:3", "source": "symbol:src/main/java/demo/OrderService.java:demo.AddedService:3", "target": "symbol:src/main/java/demo/OrderService.java:demo.AddedService.ping:3", "relation": "contains", "provenance": "syntax", "evidence": {"path": "src/main/java/demo/OrderService.java", "line": 3}}, {"id": "symbol:tests/test_orders.py:TestOrders:1|contains|symbol:tests/test_orders.py:TestOrders.test_contract:2", "source": "symbol:tests/test_orders.py:TestOrders:1", "target": "symbol:tests/test_orders.py:TestOrders.test_contract:2", "relation": "contains", "provenance": "syntax", "evidence": {"path": "tests/test_orders.py", "line": 2}}, {"id": "project:root|contains|folder:src", "source": "project:root", "target": "folder:src", "relation": "contains", "provenance": "path", "evidence": {"path": "src", "line": null}}, {"id": "folder:src|contains|folder:src/main", "source": "folder:src", "target": "folder:src/main", "relation": "contains", "provenance": "path", "evidence": {"path": "src/main", "line": null}}, {"id": "folder:src/main|contains|folder:src/main/java", "source": "folder:src/main", "target": "folder:src/main/java", "relation": "contains", "provenance": "path", "evidence": {"path": "src/main/java", "line": null}}, {"id": "folder:src/main/java|contains|folder:src/main/java/demo", "source": "folder:src/main/java", "target": "folder:src/main/java/demo", "relation": "contains", "provenance": "path", "evidence": {"path": "src/main/java/demo", "line": null}}, {"id": "folder:src/main/java/demo|contains|file:src/main/java/demo/Order.java", "source": "folder:src/main/java/demo", "target": "file:src/main/java/demo/Order.java", "relation": "contains", "provenance": "path", "evidence": {"path": "src/main/java/demo/Order.java", "line": null}}, {"id": "folder:src/main/java/demo|contains|file:src/main/java/demo/OrderRepository.java", "source": "folder:src/main/java/demo", "target": "file:src/main/java/demo/OrderRepository.java", "relation": "contains", "provenance": "path", "evidence": {"path": "src/main/java/demo/OrderRepository.java", "line": null}}, {"id": "folder:src/main/java/demo|contains|file:src/main/java/demo/OrderService.java", "source": "folder:src/main/java/demo", "target": "file:src/main/java/demo/OrderService.java", "relation": "contains", "provenance": "path", "evidence": {"path": "src/main/java/demo/OrderService.java", "line": null}}, {"id": "project:root|contains|folder:tests", "source": "project:root", "target": "folder:tests", "relation": "contains", "provenance": "path", "evidence": {"path": "tests", "line": null}}, {"id": "folder:tests|contains|file:tests/test_orders.py", "source": "folder:tests", "target": "file:tests/test_orders.py", "relation": "contains", "provenance": "path", "evidence": {"path": "tests/test_orders.py", "line": null}}, {"id": "project:root|contains|folder:aikya", "source": "project:root", "target": "folder:aikya", "relation": "contains", "provenance": "path", "evidence": {"path": "aikya", "line": null}}, {"id": "folder:aikya|contains|folder:aikya/docs", "source": "folder:aikya", "target": "folder:aikya/docs", "relation": "contains", "provenance": "path", "evidence": {"path": "aikya/docs", "line": null}}, {"id": "folder:aikya/docs|contains|document:aikya/docs/overview.md", "source": "folder:aikya/docs", "target": "document:aikya/docs/overview.md", "relation": "contains", "provenance": "path", "evidence": {"path": "aikya/docs/overview.md", "line": null}}], "counts": {"eligible_nodes": 23, "eligible_edges": 27, "omitted_notes": 0, "verified_bytes": 521}, "diagnostics": [], "project": "aikya-java-validation"}</script><script>'use strict';
+</main><footer><span data-i18n="eyebrow"></span><span>GENERATED BY AIKYA HARNESS</span></footer>
+<script type="application/json" id="snapshot">{"schema_version": 1, "generated_at": 1793000180.717731, "index_generation": 9, "coverage": {"code_index": "available", "documents": "available", "notes": "available"}, "nodes": [{"id": "project:root", "type": "project", "label": "aikya-java-validation", "path": ".", "source_hash": null, "status": "derived", "details": {}}, {"id": "file:src/main/java/demo/Order.java", "type": "file", "label": "Order.java", "path": "src/main/java/demo/Order.java", "source_hash": "4fa7d9de7f7f623eec27979d4b53218c25012b32c2c350d8a30816835e1a3acc", "status": "file_only", "details": {"parser": "inventory", "coverage": "file_only"}}, {"id": "file:src/main/java/demo/OrderRepository.java", "type": "file", "label": "OrderRepository.java", "path": "src/main/java/demo/OrderRepository.java", "source_hash": "77cd1cab11df2abaf6cbe98691bc4cfaeab748ca2876d4d2cb0be6e261e86cd6", "status": "file_only", "details": {"parser": "inventory", "coverage": "file_only"}}, {"id": "file:src/main/java/demo/OrderService.java", "type": "file", "label": "OrderService.java", "path": "src/main/java/demo/OrderService.java", "source_hash": "6775aee3ee01bba9103d04fc52fce893423809e2e87527567ca84bf852c45824", "status": "file_only", "details": {"parser": "inventory", "coverage": "file_only"}}, {"id": "file:tests/test_orders.py", "type": "file", "label": "test_orders.py", "path": "tests/test_orders.py", "source_hash": "2192f0bc4fa8dc437ed485a67523d94a1d30094b578eb6cea6ecaeddbf3e7c28", "status": "indexed", "details": {"parser": "python-ast", "coverage": "indexed"}}, {"id": "symbol:tests/test_orders.py:TestOrders:1", "type": "class", "label": "TestOrders", "path": "tests/test_orders.py", "source_hash": "2192f0bc4fa8dc437ed485a67523d94a1d30094b578eb6cea6ecaeddbf3e7c28", "status": "current", "details": {"name": "TestOrders", "qualified_name": "TestOrders", "kind": "class", "path": "tests/test_orders.py", "start_byte": 0, "end_byte": 66, "start_line": 1, "end_line": 3, "signature": "class TestOrders:", "file_sha256": "2192f0bc4fa8dc437ed485a67523d94a1d30094b578eb6cea6ecaeddbf3e7c28", "parser_id": "python-ast", "parser_version": "1"}}, {"id": "symbol:tests/test_orders.py:TestOrders.test_contract:2", "type": "method", "label": "TestOrders.test_contract", "path": "tests/test_orders.py", "source_hash": "2192f0bc4fa8dc437ed485a67523d94a1d30094b578eb6cea6ecaeddbf3e7c28", "status": "current", "details": {"name": "test_contract", "qualified_name": "TestOrders.test_contract", "kind": "method", "path": "tests/test_orders.py", "start_byte": 22, "end_byte": 66, "start_line": 2, "end_line": 3, "signature": "def test_contract(self):", "file_sha256": "2192f0bc4fa8dc437ed485a67523d94a1d30094b578eb6cea6ecaeddbf3e7c28", "parser_id": "python-ast", "parser_version": "1"}}, {"id": "document:aikya/docs/overview.md", "type": "document", "label": "Controlled Java validation fixture", "path": "aikya/docs/overview.md", "source_hash": "0b14e3ad30fa34bb2077752f8349ae8c0a7c71128f0be2943f13b91b9752460d", "status": "current", "details": {"excerpt": "# Controlled Java validation fixture\n\nThis project is an executable acceptance fixture, not a user repository. Java declarations are parsed locally; no runtime calls or test results are inferred.\n\nGENERATED BY AIKYA HARNESS\n"}}, {"id": "folder:src", "label": "src", "type": "folder", "path": "src", "source_hash": null, "status": "derived", "details": {}}, {"id": "folder:src/main", "label": "main", "type": "folder", "path": "src/main", "source_hash": null, "status": "derived", "details": {}}, {"id": "folder:src/main/java", "label": "java", "type": "folder", "path": "src/main/java", "source_hash": null, "status": "derived", "details": {}}, {"id": "folder:src/main/java/demo", "label": "demo", "type": "folder", "path": "src/main/java/demo", "source_hash": null, "status": "derived", "details": {}}, {"id": "folder:tests", "label": "tests", "type": "folder", "path": "tests", "source_hash": null, "status": "derived", "details": {}}, {"id": "folder:aikya", "label": "aikya", "type": "folder", "path": "aikya", "source_hash": null, "status": "derived", "details": {}}, {"id": "folder:aikya/docs", "label": "docs", "type": "folder", "path": "aikya/docs", "source_hash": null, "status": "derived", "details": {}}], "edges": [{"id": "file:tests/test_orders.py|contains|symbol:tests/test_orders.py:TestOrders:1", "source": "file:tests/test_orders.py", "target": "symbol:tests/test_orders.py:TestOrders:1", "relation": "contains", "provenance": "syntax", "evidence": {"path": "tests/test_orders.py", "line": 1}}, {"id": "file:tests/test_orders.py|contains|symbol:tests/test_orders.py:TestOrders.test_contract:2", "source": "file:tests/test_orders.py", "target": "symbol:tests/test_orders.py:TestOrders.test_contract:2", "relation": "contains", "provenance": "syntax", "evidence": {"path": "tests/test_orders.py", "line": 2}}, {"id": "symbol:tests/test_orders.py:TestOrders:1|contains|symbol:tests/test_orders.py:TestOrders.test_contract:2", "source": "symbol:tests/test_orders.py:TestOrders:1", "target": "symbol:tests/test_orders.py:TestOrders.test_contract:2", "relation": "contains", "provenance": "syntax", "evidence": {"path": "tests/test_orders.py", "line": 2}}, {"id": "project:root|contains|folder:src", "source": "project:root", "target": "folder:src", "relation": "contains", "provenance": "path", "evidence": {"path": "src", "line": null}}, {"id": "folder:src|contains|folder:src/main", "source": "folder:src", "target": "folder:src/main", "relation": "contains", "provenance": "path", "evidence": {"path": "src/main", "line": null}}, {"id": "folder:src/main|contains|folder:src/main/java", "source": "folder:src/main", "target": "folder:src/main/java", "relation": "contains", "provenance": "path", "evidence": {"path": "src/main/java", "line": null}}, {"id": "folder:src/main/java|contains|folder:src/main/java/demo", "source": "folder:src/main/java", "target": "folder:src/main/java/demo", "relation": "contains", "provenance": "path", "evidence": {"path": "src/main/java/demo", "line": null}}, {"id": "folder:src/main/java/demo|contains|file:src/main/java/demo/Order.java", "source": "folder:src/main/java/demo", "target": "file:src/main/java/demo/Order.java", "relation": "contains", "provenance": "path", "evidence": {"path": "src/main/java/demo/Order.java", "line": null}}, {"id": "folder:src/main/java/demo|contains|file:src/main/java/demo/OrderRepository.java", "source": "folder:src/main/java/demo", "target": "file:src/main/java/demo/OrderRepository.java", "relation": "contains", "provenance": "path", "evidence": {"path": "src/main/java/demo/OrderRepository.java", "line": null}}, {"id": "folder:src/main/java/demo|contains|file:src/main/java/demo/OrderService.java", "source": "folder:src/main/java/demo", "target": "file:src/main/java/demo/OrderService.java", "relation": "contains", "provenance": "path", "evidence": {"path": "src/main/java/demo/OrderService.java", "line": null}}, {"id": "project:root|contains|folder:tests", "source": "project:root", "target": "folder:tests", "relation": "contains", "provenance": "path", "evidence": {"path": "tests", "line": null}}, {"id": "folder:tests|contains|file:tests/test_orders.py", "source": "folder:tests", "target": "file:tests/test_orders.py", "relation": "contains", "provenance": "path", "evidence": {"path": "tests/test_orders.py", "line": null}}, {"id": "project:root|contains|folder:aikya", "source": "project:root", "target": "folder:aikya", "relation": "contains", "provenance": "path", "evidence": {"path": "aikya", "line": null}}, {"id": "folder:aikya|contains|folder:aikya/docs", "source": "folder:aikya", "target": "folder:aikya/docs", "relation": "contains", "provenance": "path", "evidence": {"path": "aikya/docs", "line": null}}, {"id": "folder:aikya/docs|contains|document:aikya/docs/overview.md", "source": "folder:aikya/docs", "target": "document:aikya/docs/overview.md", "relation": "contains", "provenance": "path", "evidence": {"path": "aikya/docs/overview.md", "line": null}}], "counts": {"eligible_nodes": 15, "eligible_edges": 15, "omitted_notes": 0, "verified_bytes": 521}, "diagnostics": [], "project": "aikya-java-validation"}</script><script>'use strict';
 (() => {
   const $ = id => document.getElementById(id);
   const spanish = document.documentElement.lang === 'es';
@@ -422,7 +229,8 @@
     inspector:'Inspector de fuentes',traceHint:'La estructura estática no demuestra un recorrido de ejecución ni pruebas superadas.',
     select:'Selecciona una fuente',selectHint:'Explora el grafo o busca una clase para inspeccionar su procedencia.',
     nodes:'nodos',links:'relaciones',notes:'notas',empty:'No hay resultados dentro de estos filtros.',
-    motionOn:'Movimiento activo',motionOff:'Movimiento desactivado',theme:'Cambiar tema',snapshot:'Instantánea local',
+    motionOn:'Movimiento activo',motionOff:'Movimiento desactivado',lightTheme:'Tema claro',darkTheme:'Tema oscuro',snapshot:'Instantánea local',
+    sources:'Fuentes',folders:'Carpetas',files:'Archivos',symbols:'Declaraciones',documents:'Documentos y notas',
     partial:'Cobertura parcial',verified:'Verificado',removed:'La fuente seleccionada ya no está disponible.',
     disconnected:'Disconnected',limit:'Mostrando una selección acotada',of:'de',generation:'generación del índice',source:'Fuente',review:'Revisión',eligible:'Disponible para consultas',lines:'Líneas'
   } : {
@@ -433,13 +241,13 @@
     inspector:'Source inspector',traceHint:'Static structure does not prove a runtime request flow or passing tests.',
     select:'Select a source',selectHint:'Explore the graph or find a class to inspect its provenance.',
     nodes:'nodes',links:'links',notes:'notes',empty:'No results within these filters.',
-    motionOn:'Motion on',motionOff:'Motion off',theme:'Change theme',snapshot:'Local snapshot',
+    motionOn:'Motion on',motionOff:'Motion off',lightTheme:'Light theme',darkTheme:'Dark theme',snapshot:'Local snapshot',
+    sources:'Sources',folders:'Folders',files:'Files',symbols:'Declarations',documents:'Documents and notes',
     partial:'Partial coverage',verified:'Verified',removed:'The selected source is no longer available.',
     disconnected:'Disconnected',limit:'Showing a bounded selection',of:'of',generation:'index generation',source:'Source',review:'Review',eligible:'Eligible for recall',lines:'Lines'
   };
   document.querySelectorAll('[data-i18n]').forEach(el => {el.textContent = words[el.dataset.i18n];});
   $('search').placeholder = words.search;
-  $('theme').textContent = words.theme;
   $('empty').textContent = words.empty;
   let data = JSON.parse($('snapshot').textContent);
   let selected = null, view = 'graph', neighbors = false, page = 0, zoom = 1;
@@ -457,8 +265,11 @@
     $('motion').setAttribute('aria-pressed', String(motion));
   }
   $('motion').onclick = () => {motion = !motion; setMotion();};
-  $('theme').onclick = () => document.body.classList.toggle('dark');
-  if (matchMedia('(prefers-color-scheme: dark)').matches) document.body.classList.add('dark');
+  function setTheme() {
+    $('theme').textContent = document.body.classList.contains('light') ? words.darkTheme : words.lightTheme;
+  }
+  $('theme').onclick = () => {document.body.classList.toggle('light');setTheme();};
+  setTheme();
   matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', event => {if(event.matches) motion=false;setMotion();});
   setMotion();
   function options() {
@@ -537,12 +348,23 @@
       button.classList.toggle('selected',node.id===selected);button.onclick=()=>choose(node.id);folders.get(parent).append(button);
     });
   }
+  function hierarchy(nodes) {
+    const positions=new Map(), levels=new Map();
+    const depth=node=>node.type==='project'?0:node.path.split('/').length;
+    const maxDepth=Math.max(1,...nodes.map(depth));
+    nodes.forEach(node=>{const level=depth(node);if(!levels.has(level))levels.set(level,[]);levels.get(level).push(node);});
+    levels.forEach((members,level)=>{
+      members.sort((a,b)=>a.path.localeCompare(b.path));
+      members.forEach((node,i)=>positions.set(node.id,[80+level/maxDepth*770,45+(i+.5)/members.length*560]));
+    });
+    return positions;
+  }
   function graph(nodes) {
     const canvas=$('canvas');canvas.replaceChildren();
-    const visible=nodes.slice(0,500), positions=new Map();
+    const visible=nodes.slice(0,500), positions=view==='architecture'?hierarchy(visible):new Map();
     const close=selected?neighborIDs():new Set();
     const key=visible.map(n=>n.id).join('|');
-    if(key!==layoutKey){
+    if(view!=='architecture'&&key!==layoutKey){
       const points=visible.map((node,i)=>({id:node.id,x:500+Math.cos(i/Math.max(1,visible.length)*Math.PI*2)*340,
         y:325+Math.sin(i/Math.max(1,visible.length)*Math.PI*2)*230}));
       const byID=new Map(points.map(p=>[p.id,p]));
@@ -560,7 +382,7 @@
       }
       layoutPositions=new Map(points.map(p=>[p.id,[p.x,p.y]]));layoutKey=key;
     }
-    visible.forEach(node=>positions.set(node.id,layoutPositions.get(node.id)));
+    if(view!=='architecture')visible.forEach(node=>positions.set(node.id,layoutPositions.get(node.id)));
     data.edges.slice(0,200000).forEach(edge=>{
       if(!positions.has(edge.source)||!positions.has(edge.target))return;
       const line=document.createElementNS(svgNS,'line'),a=positions.get(edge.source),b=positions.get(edge.target);

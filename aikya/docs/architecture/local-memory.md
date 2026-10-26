@@ -176,6 +176,16 @@ preserves policy and reviewed notes; custom/corrupt databases require review.
 
 ## Executable example
 
+Generated reports use the approved version 2 Java preview's navy theme by default,
+independently of OS appearance, with an explicit light/dark theme action. The
+three-column layout contains a source overview/tree, central explorer and source
+inspector. Blue files, peach declarations, teal folders and gold documents/notes
+use separate light-theme values. The graph shows bounded explicit relationships;
+Architecture arranges source paths from parent to descendant. Inventory retains
+100-entry pagination and search. No illustrated request flow is promoted to
+execution evidence. Theme selection is local to the open page and survives live
+snapshot refreshes; it is not written into project policy.
+
 The [generated HTML fixture](../examples/aikya-memory-generated.html) is produced
 by the actual exporter, with 23 nodes and 27 explicit relationships. Its Java and
 Python source fixture lives under `tests/fixtures/memory-viewer/aikya-java-validation/`.
