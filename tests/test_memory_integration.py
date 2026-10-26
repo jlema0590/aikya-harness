@@ -132,7 +132,7 @@ class MemoryIntegrationTests(unittest.TestCase):
                     prompts.append(request['prompt'])
                     return delegate.execute(request, on_event, cancel)
             result = run(root, config(), ObservedRuntime(), approved=True)
-            self.assertEqual('completed', result['status'])
+            self.assertEqual('completed', result['status'], result.get('reason'))
             prompt = prompts[0]
             self.assertIn('Verified code index context', prompt)
             self.assertIn('class Value:', prompt)

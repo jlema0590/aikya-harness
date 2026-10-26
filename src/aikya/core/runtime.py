@@ -1,9 +1,10 @@
 """Optional Claude SDK worker with scoped tools and a bounded subprocess protocol."""
 from __future__ import annotations
 from aikya.core.permissions import settings_paths,settings_fingerprints,tool_path,tool_allowed
-import importlib.util,json,os,selectors,signal,subprocess,sys,time,uuid
+import importlib.util,json,os,signal,subprocess,sys,time,uuid
 from pathlib import Path
 from aikya.core.checkpoints import safe_file
+from aikya.core.pipe_reader import PipeReader
 
 
 
@@ -27,18 +28,17 @@ class ProcessRuntime:
         if not self.available():raise ValueError('optional_sdk_missing')
         env={**os.environ,**self.env,'AIKYA_AGENT_LOOP_CHILD':'1','PYTHONDONTWRITEBYTECODE':'1'}
         proc=subprocess.Popen(self.command,cwd=request['root'],stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.DEVNULL,env=env,start_new_session=os.name!='nt')
-        selector=selectors.DefaultSelector();selector.register(proc.stdout,selectors.EVENT_READ)
+        reader=None
         limit=time.monotonic()+request['timeout_seconds'];buffer=b'';result=None
         try:
+            reader=PipeReader(proc.stdout)
             proc.stdin.write((json.dumps(request)+'\n').encode());proc.stdin.flush()
             while True:
                 if cancel():raise InterruptedError('cancelled')
                 if time.monotonic()>=limit:raise TimeoutError('runtime_timeout')
-                ready=selector.select(min(0.05,max(0,limit-time.monotonic())))
-                if not ready:
-                    if proc.poll() is not None:break
+                chunk=reader.read(min(0.05,max(0,limit-time.monotonic())))
+                if chunk is None:
                     continue
-                chunk=os.read(proc.stdout.fileno(),65536)
                 if not chunk:break
                 buffer+=chunk
                 if len(buffer)>131072:raise ValueError('oversized_runtime_message')
@@ -57,13 +57,13 @@ class ProcessRuntime:
             if proc.returncode or result is None or buffer.strip():raise ValueError('incomplete_runtime_result')
             return result
         finally:
-            selector.close()
             if os.name!='nt':
                 try:os.killpg(proc.pid,signal.SIGKILL)
                 except ProcessLookupError:pass
             elif proc.poll() is None:proc.kill()
             proc.wait()
             proc.stdin.close();proc.stdout.close()
+            if reader is not None:reader.close()
 
 
 def sdk_options(request,emit,ack):

@@ -78,6 +78,18 @@ case. Current native acceptance and merge requirements are visible on
 [pull request 20](https://github.com/jlema0590/aikya-harness/pull/20); these local
 results do not substitute for its Windows jobs.
 
+After the checkout/assertion/cleanup correction, Windows passed those checks but
+still blocked the loop-context integration. The worker transport used an OS
+selector on a subprocess pipe; Windows selectors support sockets, not pipes
+([Python documentation](https://docs.python.org/3/library/selectors.html)). A real
+worker regression reproduced the unavailable-selector failure locally. Transport
+now reads through a separate thread with a two-chunk queue (64 KiB per chunk),
+retaining the 128 KiB message bound, synchronous effect acknowledgments, deadlines,
+cancellation and process cleanup. Runtime, malformed/flooded/hung-worker and
+copied/installed worker-startup acceptance are repeated for this correction. The
+superseded local rerun was intentionally stopped and restarted after this runtime
+change; its partial output is not counted as a successful full regression.
+
 ## Reproduction
 
 Use a contributor environment with the package installed, plus Playwright and

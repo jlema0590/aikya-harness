@@ -99,4 +99,5 @@ jobs:
           python -B -m unittest discover -s tests -p test_memory_viewer.py -v
           python -B -m unittest discover -s tests -p test_memory_watch.py -v
           python -B -m unittest discover -s tests -p test_memory_live.py -v
+          python -B -m unittest discover -s tests -p test_runtime_transport.py -v
           python -B -m unittest discover -s tests -p test_memory_integration.py -v

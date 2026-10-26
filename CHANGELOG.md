@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Replace selectable worker-pipe reads with a bounded reader thread and two-chunk queue so the local worker protocol also operates on Windows. Retain effect acknowledgments, message-size limits, deadlines, cancellation and runtime cleanup; add a real worker regression with OS pipe selectors unavailable and include it in native memory CI.
 - Preserve byte-verified shipped resources during Windows Git checkouts, without relaxing template or migration-catalog integrity checks. Exercise real CRLF checkout conversion, validate UTF-8 declaration offsets against LF/CRLF bytes, hash raw exported HTML in tests, and wait for test-owned observer processes to exit before Windows cleanup. Propagate every native memory-test failure through the CI shell.
 - Align generated memory reports with the approved version 2 Java preview: default navy theme, explicit light/dark theme actions, source overview/tree, graph explorer, source inspector and source-type legend. Lay out architecture by verified path depth; preserve offline operation, local live updates, keyboard navigation, reduced motion and responsive layouts without inventing runtime flows.
 - Add reproducible real-browser acceptance for theme switching, hierarchy, source inspection, empty searches and four viewport sizes. Refresh the generated example, screenshots and English/Spanish README guidance; record complete command, regression and installation evidence in the version 2 validation report.
