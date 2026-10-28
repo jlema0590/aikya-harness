@@ -8,6 +8,7 @@ class Lifecycle:
     def __init__(self,root,session,command,preview=False,methodology=None,focus='general'):
         from aikya.middleware.flow_bridge import context,publish
         self.context=context(root,session,command);self.enabled=True;self.generations={}
+        self.context['cli_attached']=True
         try:
             method=methodology or project_method(root)
             active=state.attach_cli(self.context,command,method,preview) or state.start_run(self.context,command,methodology=method,preview=preview)

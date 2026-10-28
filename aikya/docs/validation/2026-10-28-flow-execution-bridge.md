@@ -4,7 +4,7 @@ Prepared versions: Harness 7.1.1, Mods bundle 0.0.15, Flow 0.1.3. No release is 
 
 ## Verified feature behavior
 
-- Ten focused Harness regressions pass: inherited real session, worktree references, parallel index publication and independent updates within one worktree, foreign/malformed contexts, real CLI preview without project writes, hook/CLI attachment, failure correlation, malformed index preservation and phase/check-runner correlation.
+- Eleven focused Harness regressions pass: inherited real session, worktree references, parallel index publication and independent updates within one worktree, foreign/malformed contexts, real CLI preview without project writes, hook/CLI attachment, failure correlation, malformed index preservation, phase/check-runner correlation and the CLI-attachment race before its first event.
 - The 26 existing execution integration/state/UI tests pass.
 - The matching Mods checkout consumes snapshots from actual CLI architecture/security previews in separate worktree directories, including their initial parent dispatch. Its current-invocation checks reject foreign metadata, accept an earlier hook start and select child results instead of an untouched parent dispatch.
 - An isolated Claude Code 2.1.308 terminal session exports the context to a real Python child, which completes a preview inside a worktree. The pane paints Completed and Not applicable states. The proof uses a local immediate test command and no live model request; it does not certify an authenticated analysis conversation.

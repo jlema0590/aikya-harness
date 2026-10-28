@@ -108,7 +108,7 @@ def start_run(context,command,*,methodology='odd',preview=False,security_require
                'reason':'' if p in selected['required'] else 'Not applicable to this invocation','evidence':[],'actors':{}} for p in PHASES}
     state={'schema':1,'identity':identity(context),'run_id':ident,'command':selected['command'],
            'methodology':selected['methodology'],'status':'running','phase':None,'activity':'',
-           'invocation_key':context.get('invocation_key'),'candidate_generation':0,'cli_attached':False,'revision':0,'started_at':now,'updated_at':now,'phases':phases,'history':[],'seen':[],'actors':{}}
+           'invocation_key':context.get('invocation_key'),'candidate_generation':0,'cli_attached':bool(context.get('cli_attached')),'revision':0,'started_at':now,'updated_at':now,'phases':phases,'history':[],'seen':[],'actors':{}}
     if context.get('flow_invocation'):state['flow_invocation']=context['flow_invocation']
     with locked(folder):
         previous=read_active(context)

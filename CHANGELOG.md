@@ -4,6 +4,7 @@
 
 - Correlate Flow 0.1.3 invocations with CLI execution snapshots using the real Claude session, including worktrees and inherited background processes. Publish bounded atomic per-invocation indexes with independent focus and preview/approved/observed references.
 - Preserve candidate/evidence checks and session isolation; reject foreign or malformed context instead of adopting generic local-session records. Keep normal CLI and legacy manual-cache behavior when no compatible Flow context is present.
+- Keep simultaneous CLI runs independent even within one worktree, while a replacement Flow invocation still rejects late events. Claim CLI-created records atomically before their first phase event.
 - Add real CLI, hook, parallel-worktree and cross-component contract regressions; document updating both Harness and Flow before restarting Claude Code.
 
 ## v7.1.0 — 2026-10-26

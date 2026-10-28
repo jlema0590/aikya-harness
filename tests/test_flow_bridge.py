@@ -160,6 +160,13 @@ class FlowBridgeTests(unittest.TestCase):
         self.assertFalse(third.enabled)
         self.assertEqual('running', state.read_snapshot(replacement.context)['status'])
 
+    def test_cli_created_record_cannot_be_claimed_by_a_second_cli_before_its_first_event(self):
+        from aikya.middleware.flow_bridge import context
+        producer = {**context(self.worktree, 'local', 'aikya-analyze'), 'cli_attached': True}
+        first = state.start_run(producer, 'aikya-analyze', preview=True)
+        second = Lifecycle(self.worktree, 'local', 'aikya-analyze', preview=True)
+        self.assertNotEqual(first['run_id'], second.context['run_id'])
+
 
 if __name__ == '__main__':
     unittest.main()
