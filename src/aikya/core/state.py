@@ -93,6 +93,14 @@ def read_snapshot(context):
         if not isinstance(history,list) or len(history)>500 or not isinstance(seen,list) or len(seen)>2000 or not isinstance(state.get('actors'),dict) or type(state.get('revision')) is not int or state['revision']<0 or state.get('phase') not in (*PHASES,None) or state.get('status') not in STATES:raise ValueError('Invalid execution snapshot')
     return state
 
+def current_invocation(context,snapshot,active):
+    if not active:return False
+    if active.get('run_id')==snapshot.get('run_id'):return True
+    token=context.get('flow_invocation')
+    if not token or snapshot.get('flow_invocation')!=token:return False
+    current=read_snapshot({**context,'run_id':active.get('run_id')})
+    return bool(current and current.get('flow_invocation')==token)
+
 def start_run(context,command,*,methodology='odd',preview=False,security_required=None,review_required=False):
     selected=recipe(command,methodology,preview=preview,security_required=security_required,review_required=review_required)
     folder=directory(context,True);ident=uuid.uuid4().hex;now=time.time()
@@ -105,7 +113,8 @@ def start_run(context,command,*,methodology='odd',preview=False,security_require
     with locked(folder):
         previous=read_active(context)
         if previous and previous['status'] not in TERMINAL and context.get('invocation_key') and previous.get('invocation_key')==context['invocation_key'] and previous['command']==command:return previous
-        if previous and previous['status'] not in TERMINAL:
+        same_flow=bool(context.get('flow_invocation') and previous and previous.get('flow_invocation')==context['flow_invocation'])
+        if previous and previous['status'] not in TERMINAL and not same_flow:
             previous.update(status='interrupted',reason='Superseded by a new explicit invocation',updated_at=now,revision=previous['revision']+1)
             atomic(folder/(previous['run_id']+'.json'),previous)
         atomic(folder/(ident+'.json'),state);atomic(folder/'active.json',{'run_id':ident})
@@ -144,7 +153,7 @@ def record_event(context,event):
         state=read_snapshot(context)
         if not state:raise ValueError('Execution was not started')
         active=read(folder/'active.json')
-        if not active or active.get('run_id')!=context.get('run_id'):raise ValueError('Invocation superseded; ignore late event')
+        if not current_invocation(context,state,active):raise ValueError('Invocation superseded; ignore late event')
         if ident in state['seen']:return state
         if state['status'] in TERMINAL:raise ValueError('Execution is closed; start a new run')
         expected=event.get('expected_revision')
@@ -185,7 +194,7 @@ def finish_run(context,status,reason=''):
             if state['status']==status:return state
             raise ValueError('Execution is closed; start a new reviewed invocation')
         active=read(folder/'active.json')
-        if not active or active.get('run_id')!=context.get('run_id'):raise ValueError('Invocation superseded')
+        if not current_invocation(context,state,active):raise ValueError('Invocation superseded')
         if status=='completed' and any(p['status'] not in ('completed','skipped') for p in state['phases'].values()):raise ValueError('Required phases remain incomplete or failed')
         if status!='completed' and not reason:reason='Execution '+status
         state.update(status=status,reason=text(reason,500),updated_at=time.time(),revision=state['revision']+1)
@@ -200,7 +209,7 @@ def record_actor(context,actor_id,metadata):
     folder=directory(context,True)
     with locked(folder):
         value=read_snapshot(context);active=read(folder/'active.json')
-        if not value or not active or active.get('run_id')!=context.get('run_id') or value['status'] in TERMINAL:return value
+        if not value or not current_invocation(context,value,active) or value['status'] in TERMINAL:return value
         row={k:text(v,120) for k,v in metadata.items() if k in ('actor_type','observed_model','status','source') and isinstance(v,str)}
         value['actors'].setdefault(actor,{}).update(row,updated_at=time.time())
         value.update(updated_at=time.time(),revision=value['revision']+1);atomic(run_path(context),value)

@@ -141,6 +141,25 @@ class FlowBridgeTests(unittest.TestCase):
         self.assertEqual('running', raw['phases']['plan']['status'])
         self.assertEqual('completed', raw['phases']['validate']['status'])
 
+    def test_parallel_cli_runs_in_one_worktree_keep_independent_phase_updates(self):
+        first = Lifecycle(self.worktree, 'local', 'aikya-analyze', preview=True, focus='architecture')
+        second = Lifecycle(self.worktree, 'local', 'aikya-analyze', preview=True, focus='security')
+        first.event('plan', 'running')
+        second.event('plan', 'running')
+        self.assertTrue(first.enabled)
+        self.assertTrue(second.enabled)
+        self.assertEqual('running', state.read_snapshot(first.context)['phases']['plan']['status'])
+        first.finish('blocked', 'Fixture check unavailable')
+        second.finish('blocked', 'Separate fixture check unavailable')
+        self.assertEqual('blocked', state.read_snapshot(first.context)['status'])
+        self.assertEqual('blocked', state.read_snapshot(second.context)['status'])
+        third = Lifecycle(self.worktree, 'local', 'aikya-analyze', preview=True)
+        with patch.dict(os.environ, {'AIKYA_FLOW_CONTEXT': json.dumps({**self.bridge, 'invocation_id': 'b' * 32})}):
+            replacement = Lifecycle(self.worktree, 'local', 'aikya-analyze', preview=True)
+        third.event('plan', 'running')
+        self.assertFalse(third.enabled)
+        self.assertEqual('running', state.read_snapshot(replacement.context)['status'])
+
 
 if __name__ == '__main__':
     unittest.main()
