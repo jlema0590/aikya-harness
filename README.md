@@ -123,9 +123,16 @@ Use `--mods none` to omit the Mods bundle. Initialized projects retain reference
 interpreters. On Windows, the standalone bootstrap can finish cleanup if a
 management executable is in use.
 
-Installing Flow does not connect it to execution evidence automatically. Use
-`/aikya-flow connect <cache-root>` in the current session; `doctor` reports that
-session connection as not checked. Flow and Usage do not replace your statusLine.
+With Harness **7.1.1+** and Flow **0.1.3+**, restart Claude Code after updating both
+components, then run `/aikya-analyze` normally. Flow automatically correlates child
+CLI executions with the real session, including worktrees, and shows each execution
+with its focus and preview/approved label. Follow-up turns preserve the invocation;
+separate executions retain separate phase evidence. Use `/aikya-flow status` for
+connection diagnostics and `/aikya-flow connect auto` to restore automatic mode
+before a new command. Independently started shells need explicit correlation.
+Older compatible runtimes retain `/aikya-flow connect <cache-root>`. `doctor` checks
+installation outside Claude and reports the live session connection as not checked.
+Flow and Usage do not replace your statusLine.
 
 **Contributors:** create a virtual environment, install `build`, `setuptools>=77`
 and `wheel`, then run `python -m pip install --no-build-isolation --no-deps -e .`.

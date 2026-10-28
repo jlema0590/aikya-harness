@@ -1,5 +1,11 @@
 # Changelog
 
+## v7.1.1 — 2026-10-28
+
+- Correlate Flow 0.1.3 invocations with CLI execution snapshots using the real Claude session, including worktrees and inherited background processes. Publish bounded atomic per-invocation indexes with independent focus and preview/approved/observed references.
+- Preserve candidate/evidence checks and session isolation; reject foreign or malformed context instead of adopting generic local-session records. Keep normal CLI and legacy manual-cache behavior when no compatible Flow context is present.
+- Add real CLI, hook, parallel-worktree and cross-component contract regressions; document updating both Harness and Flow before restarting Claude Code.
+
 ## v7.1.0 — 2026-10-26
 
 - Unify clean Harness installation with the verified official Aikya Mods bundle. Default to global Harness + Flow + Usage; support optional BoxBot/all, individual selections, Harness-only installation, independent version pins and deterministic offline bundles. Resolve each published stable release once and retain versioned local marketplace sources without cloning or running upstream installers.

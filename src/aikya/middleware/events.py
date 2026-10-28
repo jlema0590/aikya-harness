@@ -4,7 +4,8 @@ import os,uuid
 import aikya.core.state as state
 class CheckEvents:
     def __init__(self,root):
-        self.context={'root':str(root),'session_id':os.environ.get('CLAUDE_SESSION_ID','local')};self.enabled=False;self.generation=None;self.actor='local-python:'+uuid.uuid4().hex
+        from aikya.middleware.flow_bridge import context
+        self.context=context(root,os.environ.get('CLAUDE_SESSION_ID','local'));self.enabled=False;self.generation=None;self.actor='local-python:'+uuid.uuid4().hex
         try:
             active=state.read_active(self.context)
             if active and active['status'] not in state.TERMINAL:

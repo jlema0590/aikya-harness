@@ -64,7 +64,7 @@ def main(argv=None):
     lifecycle=None
     if args.command in ('init','analyze'):
         from aikya.middleware.lifecycle import Lifecycle
-        lifecycle=Lifecycle(target,args.session,'aikya-'+args.command,preview=args.dry_run or args.report_only or (args.command=='analyze' and not args.approved),methodology=args.methodology)
+        lifecycle=Lifecycle(target,args.session,'aikya-'+args.command,preview=args.dry_run or args.report_only or (args.command=='analyze' and not args.approved),methodology=args.methodology,focus=args.focus)
     if args.command=='analyze':
         from aikya.discovery.analyze import execute
         try:

@@ -13,6 +13,8 @@ def project_method(root):
     return 'odd'
 
 def observe(context,event):
+    from aikya.middleware.flow_bridge import context as flow_context,publish
+    context={**context,**flow_context(context['root'],context.get('session_id'))}
     try:
         from aikya.code_index.hooks import process_event
         process_event(context['root'],event)
@@ -29,11 +31,15 @@ def observe(context,event):
     if command:
         try:recipe(command)
         except ValueError:return None
+        context={**context,**flow_context(context['root'],context.get('session_id'),command)}
         active=state.read_active(context)
-        if active and active['status'] not in state.TERMINAL:
+        if active and active['status'] not in state.TERMINAL and (not context.get('flow_invocation') or active.get('flow_invocation')==context['flow_invocation']):
             if active['command']==command and (hook=='PreToolUse' or (invocation_key and active.get('invocation_key')==invocation_key) or (not invocation_key and not active['history'] and time.time()-active['started_at']<2)):return active
             if hook=='PreToolUse':return state.record_actor({**context,'run_id':active['run_id']},'skill:'+command,{'actor_type':'nested-skill','status':'invoked','source':'hook'})
-        return state.start_run(context,command,methodology=project_method(context['root']))
+        value=state.start_run(context,command,methodology=project_method(context['root']))
+        try:publish(context,value)
+        except (ValueError,OSError,TypeError):pass
+        return value
     active=state.read_active(context)
     if not active:return None
     if invocation_key and active.get('invocation_key') and invocation_key!=active['invocation_key']:return active
@@ -53,7 +59,9 @@ def main(argv=None):
     p.add_argument('action',choices=('start','phase','finish','status','hook'))
     p.add_argument('--root',type=Path,default=Path.cwd());p.add_argument('--session',default=os.environ.get('CLAUDE_SESSION_ID','local'))
     p.add_argument('--command');p.add_argument('--run');p.add_argument('--phase');p.add_argument('--status');p.add_argument('--reason',default='');p.add_argument('--activity',default='');p.add_argument('--input',type=Path);p.add_argument('--generation',type=int,help='Candidate generation captured before a check/review starts');p.add_argument('--model');p.add_argument('--actor',default='main')
-    a=p.parse_args(argv);c={'root':str(a.root.absolute()),'session_id':a.session}
+    a=p.parse_args(argv)
+    from aikya.middleware.flow_bridge import context as flow_context
+    c=flow_context(a.root,a.session,a.command if a.action=='start' else None)
     try:
         if a.action=='start':result=state.start_run(c,a.command,methodology=project_method(c['root']))
         elif a.action=='hook':
@@ -86,7 +94,8 @@ def main(argv=None):
 
 def emit_engine_event(root,engine,action,result,session_id=None):
     """A recorder reports only its own operation. It never certifies tests or approves SDD."""
-    context={'root':str(Path(root).resolve()),'session_id':session_id or os.environ.get('CLAUDE_SESSION_ID','local')}
+    from aikya.middleware.flow_bridge import context as flow_context
+    context=flow_context(root,session_id or os.environ.get('CLAUDE_SESSION_ID','local'))
     try:
         active=state.read_active(context)
         if not active or active['status'] in state.TERMINAL:return

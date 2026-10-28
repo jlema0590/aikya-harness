@@ -127,9 +127,16 @@ versiones anteriores para registros de sólo Harness sin Mods gestionados.
 intérpretes referenciados. En Windows, el bootstrap independiente permite completar
 la retirada si el ejecutable de gestión está en uso.
 
-Instalar Flow no lo conecta automáticamente con la evidencia de ejecución.
-Utiliza `/aikya-flow connect <cache-root>` en la sesión actual; `doctor` indica que
-no ha comprobado esa conexión de sesión. Flow y Usage conservan tu statusLine.
+Con Harness **7.1.1+** y Flow **0.1.3+**, actualiza ambos y reinicia Claude Code.
+Después ejecuta `/aikya-analyze` normalmente: Flow conecta los procesos hijos con
+la sesión real, incluidos los worktrees. Cada ejecución conserva sus fases y su
+etiqueta de foco y vista previa/ejecución aprobada. Los turnos de continuación
+conservan la invocación. Consulta `/aikya-flow status` para ver el diagnóstico;
+`/aikya-flow connect auto` restablece el modo automático antes de otro comando.
+Los procesos iniciados en terminales independientes necesitan correlación explícita.
+Para versiones anteriores compatibles se mantiene `/aikya-flow connect <cache-root>`.
+`doctor` comprueba la instalación fuera de Claude y sigue indicando que no ha
+comprobado la conexión de la sesión activa. Flow y Usage conservan tu statusLine.
 
 **Contribuidores:** crea un entorno virtual, instala `build`, `setuptools>=77` y
 `wheel`, y ejecuta `python -m pip install --no-build-isolation --no-deps -e .`.

@@ -101,6 +101,7 @@ def start_run(context,command,*,methodology='odd',preview=False,security_require
     state={'schema':1,'identity':identity(context),'run_id':ident,'command':selected['command'],
            'methodology':selected['methodology'],'status':'running','phase':None,'activity':'',
            'invocation_key':context.get('invocation_key'),'candidate_generation':0,'cli_attached':False,'revision':0,'started_at':now,'updated_at':now,'phases':phases,'history':[],'seen':[],'actors':{}}
+    if context.get('flow_invocation'):state['flow_invocation']=context['flow_invocation']
     with locked(folder):
         previous=read_active(context)
         if previous and previous['status'] not in TERMINAL and context.get('invocation_key') and previous.get('invocation_key')==context['invocation_key'] and previous['command']==command:return previous
@@ -213,6 +214,7 @@ def attach_cli(context,command,methodology,preview=False):
     with locked(folder):
         value=read_active(context)
         if not value or value['command']!=command or value['status'] in TERMINAL or value['history'] or value.get('cli_attached'):return None
+        if context.get('flow_invocation') and value.get('flow_invocation')!=context['flow_invocation']:return None
         selected=recipe(command,methodology,preview=preview)
         for name,phase in value['phases'].items():
             phase.update(status='pending' if name in selected['required'] else 'skipped',reason='' if name in selected['required'] else 'Not applicable to this invocation')
