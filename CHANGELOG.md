@@ -2,6 +2,7 @@
 
 ## v7.2.0 — 2026-10-29
 
+- Fix clean installer CI by installing the built local wheel before preparing pinned parser bundles.
 - Add content-free task usage receipts and command backend measurements. Separate input/output/cache creation/cache reads, explicit transcript coverage, local bytes and provider quotas; unmeasured model usage remains unknown and time windows are not exact command billing.
 - Add pinned optional Dart syntax extraction, declaration ranges and language coverage in index status/Memory HTML. Retain Python without dependencies and honest inventory fallback for unsupported languages. Verify source hashes and project identity before retrieval.
 - Provision explicit `--code-index none|dart|all` binary release bundles in managed install/update interpreters. Preserve parser selection on updates, fail before activation on missing/corrupt/incompatible artifacts, and package reviewed wheels for supported Linux/macOS/Windows CPython combinations without source compilation.

@@ -8,6 +8,10 @@ No source compiler, model request or hidden package-index resolution runs during
 installation. Missing, corrupt or incompatible wheels stop activation of the new
 candidate and leave the previously active interpreter available.
 
+The clean installer builder installs the locally built Aikya wheel before loading
+the parser manifest; building a src-layout distribution alone does not make it
+importable. This step uses `--no-deps --no-index --find-links dist`.
+
 Release preparation downloads pinned CPython 3.10–3.13 wheels for glibc Linux x86_64/
 aarch64, musl x86_64, macOS arm64/x86_64 and Windows amd64. Each asset joins the
 release SHA-256 manifest. Linux musl aarch64 lacks the pinned core binary; Windows

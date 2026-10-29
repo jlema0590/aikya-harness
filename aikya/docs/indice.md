@@ -3,6 +3,7 @@
 - [architecture/architecture-overview.md](architecture/architecture-overview.md)
 - [architecture/local-memory.md](architecture/local-memory.md)
 - [bugs/2026-10-25-agent-loop-worker-launch.md](bugs/2026-10-25-agent-loop-worker-launch.md)
+- [bugs/2026-10-29-installer-builder-import.md](bugs/2026-10-29-installer-builder-import.md)
 - [bugs/bugs.md](bugs/bugs.md)
 - [changes/REQ-20261029-efff7200.md](changes/REQ-20261029-efff7200.md)
 - [design/design-system.md](design/design-system.md)
