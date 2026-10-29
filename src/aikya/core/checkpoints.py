@@ -61,6 +61,10 @@ def _account(data,result):
             clean[model]={k:values[k] for k in counts}
         usage=clean
     record={'session_id':session,'cost_usd':cost,'model_usage':usage}
+    if 'num_turns' in result:
+        turns=result['num_turns']
+        if turns is not None and (type(turns) is not int or turns<0):raise ValueError('Invalid SDK turn count')
+        record['num_turns']=turns
     if ident in data['results']:
         if data['results'][ident]!=record:raise ValueError('Conflicting duplicate usage result')
         return
