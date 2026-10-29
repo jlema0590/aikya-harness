@@ -20,8 +20,8 @@ def check(wheel):
         env = {**os.environ, 'PYTHONPATH': '', 'PYTHONDONTWRITEBYTECODE': '1', 'HOME': str(base / 'home'), 'AIKYA_EXECUTION_CACHE': str(base / 'cache')}
         env.pop('CLAUDE_PROJECT_DIR', None)
 
-        def run(*argv, expected=0):
-            process = subprocess.run([str(python), *map(str, argv)], cwd=base, env=env, capture_output=True, text=True, timeout=120)
+        def run(*argv, expected=0, stdin=None):
+            process = subprocess.run([str(python), *map(str, argv)], cwd=base, env=env, input=stdin, capture_output=True, text=True, timeout=120)
             if process.returncode != expected:
                 raise ValueError('Wheel subprocess failed: ' + process.stderr[-2000:] + process.stdout[-2000:])
             return process
@@ -33,6 +33,28 @@ def check(wheel):
             registered = base / (scope + '-registered')
             run('-I', '-c', 'from aikya.installation.registration import main;raise SystemExit(main())', '--scope', scope, '--target', registered)
             runtime = base / 'home/.claude/aikya-harnes' if scope == 'global' else registered / '.aikya/runtime'
+            # Exercise the shipped mobile-skill hook and explicit phase CLI with no source imports.
+            bridge = {'schema': 1, 'origin_root': str(registered.resolve()),
+                      'session_id': 'wheel-mobile-session', 'invocation_id': 'a' * 32,
+                      'command': 'aikya-mobile-feature', 'cache_root': str(base / 'cache')}
+            env['AIKYA_FLOW_CONTEXT'] = json.dumps(bridge)
+            payload = {'cwd': str(registered), 'session_id': bridge['session_id'],
+                       'hook_event_name': 'UserPromptSubmit', 'prompt_id': scope + '-mobile',
+                       'prompt': '/aikya-mobile-feature'}
+            run('-B', runtime / 'execution_observer.py', 'hook', stdin=json.dumps(payload))
+            import hashlib
+            identity = hashlib.sha256((str(registered.resolve()) + '\0' + bridge['session_id']).encode()).hexdigest()
+            index = json.loads((base / 'cache' / identity / ('flow-' + bridge['invocation_id'] + '.json')).read_text())
+            assert index['command'] == 'aikya-mobile-feature' and len(index['runs']) == 1
+            phase = run('-B', runtime / 'execution_observer.py', 'phase', '--root', registered,
+                        '--phase', 'explore', '--status', 'running')
+            raw = json.loads(phase.stdout)
+            assert raw['flow_invocation'] == bridge['invocation_id']
+            assert raw['phases']['explore']['status'] == 'running'
+            assert raw['phases']['implement']['status'] == 'pending'
+            assert raw['phases']['validate']['evidence'] == []
+            env.pop('AIKYA_FLOW_CONTEXT')
+            results.append({'scope': scope, 'command': 'mobile-feature-hook-and-phase', 'result': 'passed'})
             for method in ('odd', 'sdd'):
                 for command in ('init', 'analyze'):
                     target = base / '-'.join((scope, method, command))

@@ -5,12 +5,16 @@ from pathlib import Path
 import aikya.core.state as state
 from aikya.middleware.observer import project_method
 class Lifecycle:
-    def __init__(self,root,session,command,preview=False,methodology=None):
-        self.context={'root':str(root),'session_id':session};self.enabled=True;self.generations={}
+    def __init__(self,root,session,command,preview=False,methodology=None,focus='general'):
+        from aikya.middleware.flow_bridge import context,publish
+        self.context=context(root,session,command);self.enabled=True;self.generations={}
+        self.context['cli_attached']=True
         try:
             method=methodology or project_method(root)
             active=state.attach_cli(self.context,command,method,preview) or state.start_run(self.context,command,methodology=method,preview=preview)
             self.context['run_id']=active['run_id'];self.event('explore','running','Inspecting the requested project scope')
+            try:publish(self.context,active,preview=preview,focus=focus)
+            except (ValueError,OSError,TypeError):print('NOTICE: Flow invocation metadata unavailable.',file=sys.stderr)
         except (ValueError,OSError,TypeError):self.enabled=False
     def event(self,phase,status,activity='',reason='',evidence=None,candidate_generation=None):
         if not self.enabled:return
