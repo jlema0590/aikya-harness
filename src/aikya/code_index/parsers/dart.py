@@ -22,14 +22,16 @@ def parse_file(path, content):
         if tree.root_node.has_error:
             raise ValueError('grammar_parse_error')
         result.status = 'indexed'
-        stack = [(tree.root_node, '')]
+        stack = [(tree.root_node, '', None)]
+        body_scopes = {}
         visited = 0
         while stack:
-            node, parent = stack.pop()
+            node, parent, parent_kind = stack.pop()
+            if node.id in body_scopes:parent,parent_kind=body_scopes[node.id]
             visited += 1
             if visited > 200000 or len(result.symbols) >= 50000:
                 raise ValueError('grammar_node_limit')
-            scope = parent
+            scope, scope_kind = parent, parent_kind
             kind = TYPES.get(node.type)
             signature = node.type in SIGNATURES
             if kind or signature:
@@ -43,12 +45,13 @@ def parse_file(path, content):
                         qualified = parent
                     else:
                         qualified = '.'.join(x for x in (parent, label) if x)
-                    kind = kind or ('method' if parent else 'function')
+                    kind = kind or ('method' if parent_kind in ('class','enum','mixin','extension') else 'function')
                     end = node
                     if signature:
                         holder = node.parent if node.parent and node.parent.type in ('method_signature', 'declaration') else node
                         following = holder.next_named_sibling
                         end = following if following and following.type == 'function_body' else holder
+                        if following and following.type == 'function_body':body_scopes[following.id]=(qualified,kind)
                     result.symbols.append(dict(name=label, qualified_name=qualified, kind=kind, path=path,
                         start_byte=node.start_byte, end_byte=end.end_byte, start_line=node.start_point.row+1,
                         end_line=end.end_point.row+1, signature=content[node.start_byte:node.end_byte].decode('utf8')[:400],
@@ -57,11 +60,11 @@ def parse_file(path, content):
                         result.relations.append(dict(source=parent, target=qualified, relation='contains', path=path,
                                                      line=node.start_point.row+1, provenance='syntax'))
                     if not signature:
-                        scope = qualified
+                        scope, scope_kind = qualified, kind
             if node.type == 'import_or_export':
                 result.imports.append(dict(name=content[node.start_byte:node.end_byte].decode('utf8')[:400],
                                            path=path, line=node.start_point.row+1, provenance='syntax'))
-            stack.extend((c, scope) for c in reversed(node.named_children))
+            stack.extend((c, scope, scope_kind) for c in reversed(node.named_children))
     except (ImportError, ValueError, TypeError, UnicodeError, OSError):
         result.status = 'parse_error'
         result.symbols, result.imports, result.relations = [], [], []

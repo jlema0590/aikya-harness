@@ -92,7 +92,7 @@ def validate_component_version(version, selected, previous):
         raise ValueError('Unified Mods management requires Harness 7.1.0 or newer; older releases support --mods none only without managed Mods')
 
 
-def preview(args, root, previous):
+def preview(args, root, previous, previous_harness=None):
     if args.offline_dir:
         if not args.version or args.version == 'latest':
             raise ValueError('Offline installation requires --version X.Y.Z')
@@ -101,10 +101,13 @@ def preview(args, root, previous):
     validate_component_version(args.version,plan.selected,previous)
     if args.offline_dir and plan.selected and (not args.mods_version or args.mods_version == 'latest'):
         raise ValueError('Offline Mods installation requires --mods-version X.Y.Z')
+    index_selection=getattr(args,'code_index',None)
+    if index_selection is None:index_selection=(previous_harness or {}).get('code_index','none') if args.action=='update' else 'none'
+    if index_selection not in ('none','dart','all'):raise ValueError('Invalid stored parser selection')
     return {'action':args.action,'version':args.version or 'latest',
             'mods_version':(args.mods_version or 'latest') if plan.selected else None,
             'mods':list(plan.selected),'scope':args.scope,'target':str(args.target) if args.target else None,
-            'root':str(root),'code_index':getattr(args,'code_index',None) or 'none','writes':False,'network':False}
+            'root':str(root),'code_index':index_selection,'writes':False,'network':False}
 
 
 def entry_preview(argv=None):
@@ -115,7 +118,9 @@ def entry_preview(argv=None):
             args.target=args.target.expanduser().absolute()
         root=app_root();record=root/'components'/receipt_path(root,args.scope,args.target).name
         previous=json.loads(record.read_text(encoding='utf8')) if record.is_file() else None
-        print(json.dumps(preview(args,root,previous)))
+        harness=receipt_path(root,args.scope,args.target)
+        previous_harness=json.loads(harness.read_text()) if harness.is_file() else None
+        print(json.dumps(preview(args,root,previous,previous_harness)))
     except (ValueError,OSError) as exc:
         print('ERROR: '+str(exc),file=sys.stderr);return 2
     return 0

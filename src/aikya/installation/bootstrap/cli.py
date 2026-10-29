@@ -147,7 +147,7 @@ def main(argv: list[str] | None = None) -> int:
         if args.action == 'doctor':
             from .coordinator import component_status
             statuses = component_status(root)
-            print(json.dumps({'components': statuses, 'root': str(root), 'installed': (root / 'current.json').is_file(),
+            print(json.dumps({'code_index':__import__(__package__+'.code_index',fromlist=['doctor']).doctor(root), 'components': statuses, 'root': str(root), 'installed': (root / 'current.json').is_file(),
                               'pending': (root / 'pending.json').exists(), 'cleanup_pending': (root / 'cleanup-pending.json').exists(),
                               'project_references': state.active_references(root),
                               'flow_connection': {'mode': 'session', 'status': 'not-checked', 'command': '/aikya-flow connect <cache-root>'}}))

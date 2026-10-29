@@ -1,0 +1,625 @@
+[
+  {
+    "name": "java",
+    "input": {
+      "mode": "existing",
+      "name": "workflow-fixture",
+      "methodology": "sdd",
+      "backend": "java",
+      "frontend": "none",
+      "mobile": "none",
+      "ci": "none"
+    },
+    "agents": [
+      "java-developer"
+    ],
+    "application_build": "not_run"
+  },
+  {
+    "name": "dotnet",
+    "input": {
+      "mode": "new",
+      "name": "workflow-fixture",
+      "methodology": "odd",
+      "backend": "dotnet",
+      "frontend": "none",
+      "mobile": "none",
+      "ci": "none"
+    },
+    "agents": [
+      "dotnet-developer"
+    ],
+    "application_build": "not_run"
+  },
+  {
+    "name": "node",
+    "input": {
+      "mode": "new",
+      "name": "workflow-fixture",
+      "methodology": "sdd",
+      "backend": "node",
+      "frontend": "none",
+      "mobile": "none",
+      "ci": "none"
+    },
+    "agents": [
+      "node-backend-developer"
+    ],
+    "application_build": "not_run"
+  },
+  {
+    "name": "next",
+    "input": {
+      "mode": "existing",
+      "name": "workflow-fixture",
+      "methodology": "odd",
+      "backend": "next",
+      "frontend": "none",
+      "mobile": "none",
+      "ci": "none"
+    },
+    "agents": [
+      "nextjs-developer"
+    ],
+    "application_build": "not_run"
+  },
+  {
+    "name": "python",
+    "input": {
+      "mode": "new",
+      "name": "workflow-fixture",
+      "methodology": "sdd",
+      "backend": "python",
+      "frontend": "none",
+      "mobile": "none",
+      "ci": "none"
+    },
+    "agents": [
+      "python-developer"
+    ],
+    "application_build": "not_run"
+  },
+  {
+    "name": "react",
+    "input": {
+      "mode": "new",
+      "name": "workflow-fixture",
+      "methodology": "odd",
+      "backend": "none",
+      "frontend": "react",
+      "mobile": "none",
+      "ci": "none"
+    },
+    "agents": [
+      "react-developer"
+    ],
+    "application_build": "not_run"
+  },
+  {
+    "name": "vue",
+    "input": {
+      "mode": "existing",
+      "name": "workflow-fixture",
+      "methodology": "sdd",
+      "backend": "none",
+      "frontend": "vue",
+      "mobile": "none",
+      "ci": "none"
+    },
+    "agents": [
+      "vue-developer"
+    ],
+    "application_build": "not_run"
+  },
+  {
+    "name": "angular",
+    "input": {
+      "mode": "new",
+      "name": "workflow-fixture",
+      "methodology": "odd",
+      "backend": "none",
+      "frontend": "angular",
+      "mobile": "none",
+      "ci": "none"
+    },
+    "agents": [
+      "angular-developer"
+    ],
+    "application_build": "not_run"
+  },
+  {
+    "name": "flutter",
+    "input": {
+      "mode": "new",
+      "name": "workflow-fixture",
+      "methodology": "sdd",
+      "backend": "none",
+      "frontend": "none",
+      "mobile": "both",
+      "ci": "none",
+      "mobile_framework": "flutter"
+    },
+    "agents": [
+      "flutter-developer"
+    ],
+    "application_build": "not_run"
+  },
+  {
+    "name": "react-native-expo",
+    "input": {
+      "mode": "existing",
+      "name": "workflow-fixture",
+      "methodology": "odd",
+      "backend": "none",
+      "frontend": "none",
+      "mobile": "both",
+      "ci": "none",
+      "mobile_framework": "react-native"
+    },
+    "agents": [],
+    "application_build": "not_run"
+  },
+  {
+    "name": "android-java",
+    "input": {
+      "mode": "new",
+      "name": "workflow-fixture",
+      "methodology": "sdd",
+      "backend": "none",
+      "frontend": "none",
+      "mobile": "android",
+      "ci": "none",
+      "mobile_framework": "native",
+      "android_language": "java"
+    },
+    "agents": [],
+    "application_build": "not_run"
+  },
+  {
+    "name": "android-kotlin",
+    "input": {
+      "mode": "new",
+      "name": "workflow-fixture",
+      "methodology": "odd",
+      "backend": "none",
+      "frontend": "none",
+      "mobile": "android",
+      "ci": "none",
+      "mobile_framework": "native",
+      "android_language": "kotlin"
+    },
+    "agents": [
+      "kotlin-developer"
+    ],
+    "application_build": "not_run"
+  },
+  {
+    "name": "ios-swiftui",
+    "input": {
+      "mode": "existing",
+      "name": "workflow-fixture",
+      "methodology": "sdd",
+      "backend": "none",
+      "frontend": "none",
+      "mobile": "ios",
+      "ci": "none",
+      "mobile_framework": "native",
+      "ios_ui": "swiftui"
+    },
+    "agents": [],
+    "application_build": "not_run"
+  },
+  {
+    "name": "ios-uikit",
+    "input": {
+      "mode": "new",
+      "name": "workflow-fixture",
+      "methodology": "odd",
+      "backend": "none",
+      "frontend": "none",
+      "mobile": "ios",
+      "ci": "none",
+      "mobile_framework": "native",
+      "ios_ui": "uikit"
+    },
+    "agents": [],
+    "application_build": "not_run"
+  },
+  {
+    "name": "astro-tailwind",
+    "input": {
+      "mode": "new",
+      "name": "workflow-fixture",
+      "methodology": "sdd",
+      "backend": "node",
+      "frontend": "none",
+      "mobile": "none",
+      "ci": "none"
+    },
+    "modules": [
+      {
+        "technology": "astro"
+      }
+    ],
+    "agents": [
+      "astro-tailwind-developer"
+    ],
+    "application_build": "not_run"
+  },
+  {
+    "name": "ci-undecided",
+    "input": {
+      "mode": "existing",
+      "name": "workflow-fixture",
+      "methodology": "odd",
+      "backend": "python",
+      "frontend": "none",
+      "mobile": "none",
+      "ci": "undecided"
+    },
+    "agents": [],
+    "application_build": "not_run"
+  },
+  {
+    "name": "ci-github-actions",
+    "input": {
+      "mode": "new",
+      "name": "workflow-fixture",
+      "methodology": "sdd",
+      "backend": "python",
+      "frontend": "none",
+      "mobile": "none",
+      "ci": "github-actions"
+    },
+    "agents": [
+      "cicd-engineer"
+    ],
+    "application_build": "not_run"
+  },
+  {
+    "name": "ci-gitlab-ci",
+    "input": {
+      "mode": "new",
+      "name": "workflow-fixture",
+      "methodology": "odd",
+      "backend": "python",
+      "frontend": "none",
+      "mobile": "none",
+      "ci": "gitlab-ci"
+    },
+    "agents": [
+      "cicd-engineer"
+    ],
+    "application_build": "not_run"
+  },
+  {
+    "name": "ci-azure-pipelines",
+    "input": {
+      "mode": "existing",
+      "name": "workflow-fixture",
+      "methodology": "sdd",
+      "backend": "python",
+      "frontend": "none",
+      "mobile": "none",
+      "ci": "azure-pipelines"
+    },
+    "agents": [
+      "cicd-engineer"
+    ],
+    "application_build": "not_run"
+  },
+  {
+    "name": "ci-jenkins",
+    "input": {
+      "mode": "new",
+      "name": "workflow-fixture",
+      "methodology": "odd",
+      "backend": "python",
+      "frontend": "none",
+      "mobile": "none",
+      "ci": "jenkins"
+    },
+    "agents": [
+      "cicd-engineer"
+    ],
+    "application_build": "not_run"
+  },
+  {
+    "name": "ci-none",
+    "input": {
+      "mode": "new",
+      "name": "workflow-fixture",
+      "methodology": "sdd",
+      "backend": "python",
+      "frontend": "none",
+      "mobile": "none",
+      "ci": "none"
+    },
+    "agents": [],
+    "application_build": "not_run"
+  },
+  {
+    "name": "infra-terraform-only",
+    "input": {
+      "mode": "existing",
+      "repository_layout": "singlerepo",
+      "backend": "none",
+      "frontend": "none",
+      "mobile": "none",
+      "backend_framework": "none",
+      "mobile_framework": "none",
+      "package_manager": "none",
+      "deployment": "none",
+      "ci": "none",
+      "name": "network-iac",
+      "project_type": "infrastructure",
+      "infrastructure": {
+        "provider": "aws",
+        "iac": "terraform",
+        "configuration_management": "none",
+        "containers": {
+          "enabled": false,
+          "compose": false
+        },
+        "orchestration": "none",
+        "deployment_method": "none",
+        "environments": [
+          "dev",
+          "staging",
+          "prod"
+        ],
+        "image_repository": "",
+        "container_port": null,
+        "source_kind": "none",
+        "helm_chart_mode": "create",
+        "helm_chart_path": ""
+      },
+      "methodology": "odd"
+    },
+    "agents": [],
+    "application_build": "not_run"
+  },
+  {
+    "name": "infra-ansible-only",
+    "input": {
+      "mode": "new",
+      "repository_layout": "singlerepo",
+      "backend": "none",
+      "frontend": "none",
+      "mobile": "none",
+      "backend_framework": "none",
+      "mobile_framework": "none",
+      "package_manager": "none",
+      "deployment": "none",
+      "ci": "none",
+      "name": "hosts-automation",
+      "project_type": "infrastructure",
+      "infrastructure": {
+        "provider": "on-prem",
+        "iac": "none",
+        "configuration_management": "ansible",
+        "containers": {
+          "enabled": false,
+          "compose": false
+        },
+        "orchestration": "none",
+        "deployment_method": "none",
+        "environments": [
+          "dev",
+          "prod"
+        ],
+        "image_repository": "",
+        "container_port": null,
+        "source_kind": "none",
+        "helm_chart_mode": "create",
+        "helm_chart_path": ""
+      },
+      "methodology": "sdd"
+    },
+    "agents": [],
+    "application_build": "not_run"
+  },
+  {
+    "name": "devops-docker-compose",
+    "input": {
+      "mode": "new",
+      "repository_layout": "singlerepo",
+      "backend": "none",
+      "frontend": "none",
+      "mobile": "none",
+      "backend_framework": "none",
+      "mobile_framework": "none",
+      "package_manager": "none",
+      "deployment": "none",
+      "ci": "none",
+      "name": "compose-service",
+      "project_type": "devops",
+      "infrastructure": {
+        "provider": "none",
+        "iac": "none",
+        "configuration_management": "none",
+        "containers": {
+          "enabled": true,
+          "compose": true
+        },
+        "orchestration": "none",
+        "deployment_method": "none",
+        "environments": [
+          "dev"
+        ],
+        "image_repository": "ghcr.io/example/api:1.0.0",
+        "container_port": 8080,
+        "source_kind": "image",
+        "helm_chart_mode": "create",
+        "helm_chart_path": ""
+      },
+      "methodology": "odd"
+    },
+    "agents": [],
+    "application_build": "not_run"
+  },
+  {
+    "name": "devops-helm-existing",
+    "input": {
+      "mode": "existing",
+      "repository_layout": "singlerepo",
+      "backend": "none",
+      "frontend": "none",
+      "mobile": "none",
+      "backend_framework": "none",
+      "mobile_framework": "none",
+      "package_manager": "none",
+      "deployment": "none",
+      "ci": "none",
+      "name": "existing-chart",
+      "project_type": "devops",
+      "infrastructure": {
+        "provider": "none",
+        "iac": "none",
+        "configuration_management": "none",
+        "containers": {
+          "enabled": false,
+          "compose": false
+        },
+        "orchestration": "kubernetes",
+        "deployment_method": "helm",
+        "environments": [
+          "dev"
+        ],
+        "image_repository": "",
+        "container_port": null,
+        "source_kind": "chart",
+        "helm_chart_mode": "existing",
+        "helm_chart_path": "charts/shared-service"
+      },
+      "methodology": "sdd"
+    },
+    "agents": [],
+    "application_build": "not_run"
+  },
+  {
+    "name": "devops-kustomize",
+    "input": {
+      "mode": "new",
+      "repository_layout": "singlerepo",
+      "backend": "none",
+      "frontend": "none",
+      "mobile": "none",
+      "backend_framework": "none",
+      "mobile_framework": "none",
+      "package_manager": "none",
+      "deployment": "none",
+      "ci": "none",
+      "name": "kustomize-service",
+      "project_type": "devops",
+      "infrastructure": {
+        "provider": "none",
+        "iac": "none",
+        "configuration_management": "none",
+        "containers": {
+          "enabled": false,
+          "compose": false
+        },
+        "orchestration": "kubernetes",
+        "deployment_method": "kustomize",
+        "environments": [
+          "dev",
+          "staging",
+          "prod"
+        ],
+        "image_repository": "registry.example.test/service:1.0.0",
+        "container_port": 8080,
+        "source_kind": "image",
+        "helm_chart_mode": "create",
+        "helm_chart_path": ""
+      },
+      "methodology": "odd"
+    },
+    "agents": [],
+    "application_build": "not_run"
+  },
+  {
+    "name": "java-react-ansible-kustomize",
+    "input": {
+      "mode": "new",
+      "name": "servicios-java-react-ansible-kustomize",
+      "backend": "java",
+      "backend_framework": "spring-boot",
+      "frontend": "react",
+      "mobile": "none",
+      "architecture": "clean",
+      "architecture_patterns": [
+        "event-driven"
+      ],
+      "database": "postgresql",
+      "ci": "github-actions",
+      "deployment": "docker",
+      "package_manager": "pnpm",
+      "runtime_versions": "Java 21; Node 22",
+      "notes": "Independent Spring Boot backend and React frontend; introduce events only after defining contracts, outbox and idempotency.",
+      "repository_layout": "monorepo",
+      "infrastructure": {
+        "provider": "on-prem",
+        "iac": "none",
+        "configuration_management": "ansible",
+        "containers": {
+          "enabled": true,
+          "compose": true
+        },
+        "orchestration": "kubernetes",
+        "deployment_method": "kustomize",
+        "environments": [
+          "dev",
+          "staging",
+          "prod"
+        ],
+        "image_repository": "registry.example.test/backend:1.0.0",
+        "container_port": 8080
+      },
+      "methodology": "sdd"
+    },
+    "agents": [],
+    "application_build": "not_run"
+  },
+  {
+    "name": "opentofu",
+    "input": {
+      "mode": "existing",
+      "repository_layout": "singlerepo",
+      "backend": "none",
+      "frontend": "none",
+      "mobile": "none",
+      "backend_framework": "none",
+      "mobile_framework": "none",
+      "package_manager": "none",
+      "deployment": "none",
+      "ci": "none",
+      "name": "network-iac",
+      "project_type": "infrastructure",
+      "infrastructure": {
+        "provider": "aws",
+        "iac": "opentofu",
+        "configuration_management": "none",
+        "containers": {
+          "enabled": false,
+          "compose": false
+        },
+        "orchestration": "none",
+        "deployment_method": "none",
+        "environments": [
+          "dev",
+          "staging",
+          "prod"
+        ],
+        "image_repository": "",
+        "container_port": null,
+        "source_kind": "none",
+        "helm_chart_mode": "create",
+        "helm_chart_path": ""
+      },
+      "methodology": "odd"
+    },
+    "agents": [],
+    "application_build": "not_run"
+  }
+]

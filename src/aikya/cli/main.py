@@ -34,9 +34,10 @@ def _main(argv=None):
         from aikya.cli.memory import main as memory_main
         return memory_main(selected[1:])
     parser=argparse.ArgumentParser(description='Aikya Harness commands executed by Claude Code')
-    parser.add_argument('command',choices=['probe','requirements','init','answers','status','analyze','feature','bugfix','implement','memory'])
+    parser.add_argument('command',choices=['probe','requirements','init','answers','status','analyze','feature','bugfix','implement','memory','context','context-policy'])
     parser.add_argument('--target',type=Path,default=Path.cwd())
     parser.add_argument('--answers',type=Path)
+    parser.add_argument('--summary',action='store_true',help='Compact response; retain blocking reasons and omission counts')
     parser.add_argument('--dry-run',action='store_true')
     parser.add_argument('--strict',action='store_true',help='Fail with exit 4 if SDK requirements are incomplete')
     parser.add_argument('--external',choices=['skip','plan','install'],default='plan')

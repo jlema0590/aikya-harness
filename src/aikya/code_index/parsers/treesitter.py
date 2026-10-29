@@ -50,10 +50,13 @@ def parser_version(path):
         _module('tree_sitter_' + language, distribution)
     except (ImportError, metadata.PackageNotFoundError, ValueError, OSError):
         return 'inventory', '1'
-    return 'treesitter-' + language + ('-tsx' if factory.endswith('tsx') else ''), PINS['tree-sitter'] + '/' + PINS[distribution] + '/1'
+    return 'treesitter-' + language + ('-tsx' if factory.endswith('tsx') else ''), PINS['tree-sitter'] + '/' + PINS[distribution] + ('/2' if language == 'dart' else '/1')
 
 
 def parse_file(path, content):
+    if Path(path).suffix.lower() == '.dart':
+        from .dart import parse_file as dart_parse
+        return dart_parse(path, content)
     parser_id, version = parser_version(path)
     result = ParsedFile(path, content_hash(content), 'file_only', parser_id, version)
     if parser_id == 'inventory':

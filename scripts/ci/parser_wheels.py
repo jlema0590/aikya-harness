@@ -21,6 +21,8 @@ def main():
                 '--only-binary=:all:','--no-deps','--platform',platform,'--python-version',version,
                 '--implementation','cp','--abi','cp'+version,'--abi','abi3','--abi','none',
                 '--dest',str(args.output),*requirements('all')],check=True)
+    import json
+    (args.output/'parser-platforms.json').write_text(json.dumps({'supported':list(args.platform or PLATFORMS),'python':list(args.python_version or ('310','311','312','313')), 'unavailable':{'musllinux_aarch64':'No tree-sitter 0.25.2 binary; inventory fallback','windows_arm64':'Not verified; inventory fallback'}},indent=2)+'\n')
     return 0
 
 if __name__=='__main__':raise SystemExit(main())

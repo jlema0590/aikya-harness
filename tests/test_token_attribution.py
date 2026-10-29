@@ -27,4 +27,15 @@ class AttributionTests(unittest.TestCase):
         for value in command_coverage().values():
             self.assertIsNone(value['tokens']);self.assertIsNone(value['model'])
 
+
+class DirectRoutingTests(unittest.TestCase):
+    def test_contained_work_is_direct_and_explicit_model_is_preserved(self):
+        from aikya.routing.router import route
+        facts={'understood':True,'contained_risk':True,'resumable_from_request_diff':True}
+        value=route('fix python label',{'routine_model':'sonnet'},odd_facts=facts)
+        self.assertEqual(value['execution_mode'],'direct')
+        self.assertEqual(value['recommended_model'],'sonnet')
+        dangerous=route('fix authentication',odd_facts=facts)
+        self.assertTrue(dangerous['independent_review_required'])
+
 if __name__=='__main__':unittest.main()

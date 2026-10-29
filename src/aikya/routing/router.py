@@ -127,19 +127,22 @@ def route(request: str, policy: dict | None = None, *,
     if dangerous:
         use_auxiliary = False
         aux_task = None
+    direct = continuity['size']=='small' and not dangerous and not coordinator
     selected = coordinator or specialist
     inferred_roles = [specialist]
     if "docker" in request.lower() and specialist != "docker-developer":
         inferred_roles.append("docker-developer")
     skills = ["security-audit"] if category == "security" else []
     if analysis_only:
-        return {"odd_continuity":continuity,"mode": "analysis_only", "read_only": True,
+        return {"execution_mode":"direct" if direct or analysis_only else "scoped_specialist",
+            "independent_review_required":dangerous, "odd_continuity":continuity,"mode": "analysis_only", "read_only": True,
                 "category": category, "recommended_role": selected,
                 "recommended_roles": inferred_roles, "recommended_skills": skills,
                 "recommended_model": resolved_agent_model(selected, p),
                 "requires_approval": False, "writes": False,
                 "note": "Read-only routing advice; no LLM invoked and no permissions granted."}
-    return {"odd_continuity":continuity,"category": category, "recommended_role": selected,
+    return {"execution_mode":"direct" if direct or analysis_only else "scoped_specialist",
+            "independent_review_required":dangerous, "odd_continuity":continuity,"category": category, "recommended_role": selected,
             "recommended_model": resolved_agent_model(selected, p),
             "specialist": specialist, "auxiliary_task": aux_task if use_auxiliary else None,
             "auxiliary_agent": ("aikya-docs-assistant" if aux_task == "documentation"

@@ -1,10 +1,11 @@
 # Plan de implementación: eficiencia de tokens y memoria de código
 
-**Estado:** implementación local autorizada el 29 de octubre de 2026. Sin cambios
-en `jourpass_app`, modelos globales ni publicación remota.
+**Estado:** implementación y validación local finalizadas para v7.2.0 el 29 de
+octubre de 2026. Pendientes la CI nativa externa y el experimento con Claude real.
+Sin cambios en `jourpass_app`, modelos globales ni publicación remota.
 **Rama:** `feat/token-efficiency`, develop `177f032` más dependencia Memory `512dea2`.
 **Fecha:** 29 de octubre de 2026.
-**Ejecución propuesta:** secuencial, con pruebas por tarea y revisión de cada entrega.
+**Ejecución realizada:** secuencial, con pruebas por tarea y regresión aislada.
 **Objetivo:** aprovechar la memoria local para consultar código relevante y reducir
 contexto y pasos repetidos, manteniendo aceptación, seguridad y auditoría.
 La validación es transversal a todos los lenguajes, extensiones y stacks actuales
@@ -19,6 +20,27 @@ JavaScript del visor, unittest y CI existente de Linux/macOS/Windows.
 [recibo saneado](../research/2026-10-29-token-efficiency-jourpass.json).
 Ampliación: [auditoría de los 28 comandos](../research/2026-10-29-all-command-token-audit.md)
 y [mediciones de instrucciones/backends](../research/2026-10-29-all-command-token-audit.json).
+
+## Cierre de implementación local
+
+[Informe final](../validation/2026-10-29-token-efficiency.es.md) y
+[recibo de evidencias](../validation/2026-10-29-token-efficiency.json).
+Las casillas completadas acreditan el resultado local de cada paso, con pruebas
+equivalentes cuando su organización final difiere de la propuesta inicial.
+
+| Tareas | Estado observado |
+|---|---|
+| 1–2 · Medición y Dart | Implementadas y verificadas con/sin extras |
+| 3 · Instalación | Verificada en macOS ARM64/Python 3.13; CI de otros sistemas/intérpretes pendiente |
+| 4–6 · Contexto, comandos y preflight | Implementadas; 28 comandos y 29 extensiones cubiertos |
+| 7–8 · Presupuestos y compactación | Implementadas con runtimes simulados y pruebas locales; SDK real pendiente en el otro entorno |
+| 9 · Aceptación y documentación | 678 casos cubiertos, 180 comprobaciones de navegador, wheel e instalación verificados localmente |
+
+La versión preparada es **7.2.0**. La descripción de PR se guarda localmente;
+no se ha creado una PR ni realizado push. La reducción medida corresponde a
+caracteres de herramientas/contexto: el ahorro real de tokens y cuota permanece
+sin medir. Las estimaciones y requisitos originales se conservan a continuación
+como referencia; no representan trabajo pendiente cuando su casilla está marcada.
 
 ## Resultado esperado y límites
 
@@ -58,8 +80,8 @@ por comando. La comparación de ahorro utilizará tareas y condiciones controlad
   Las interfaces adicionales descritas aquí son propuestas, no comandos ya disponibles.
 - Aplicar la calidad de fuente existente: reutilización de helpers y modularización
   por responsabilidad, sin introducir archivos de fuente por encima de 1000 líneas.
-- La versión de trabajo es 7.1.1. Proponer 7.2.0 para estas capacidades aditivas,
-  verificando la siguiente versión disponible antes de preparar la publicación.
+- La base era 7.1.1. La versión local preparada es 7.2.0 para estas capacidades
+  aditivas; contrato de versión y changelog verificados, sin tag ni publicación.
 
 ## Matriz obligatoria de lenguajes y stacks
 
@@ -205,20 +227,20 @@ Añadir a cada contrato bytes stdout/stderr, duración, modo y modelo observado 
 existe. Sólo se acepta `explicit` con correlación real de invocación; una ventana temporal
 permanece etiquetada. Los campos antiguos de uso siguen legibles.
 
-- [ ] Añadir `test_replayed_messages_and_subagents_are_counted_once`,
+- [x] Añadir `test_replayed_messages_and_subagents_are_counted_once`,
   `test_time_window_is_not_exact_command_attribution` y
   `test_missing_or_expired_quota_is_unavailable`; comprobar totales conocidos sin prompts.
   Añadir `test_every_public_command_has_usage_coverage_row` y
   `test_unmeasured_command_usage_is_unknown_not_zero` contra el catálogo canónico.
-- [ ] Ejecutar los tres archivos de pruebas y observar el fallo del contrato nuevo.
-- [ ] Implementar el resumen y las etiquetas de entrada, salida, creación/lectura de
+- [x] Ejecutar los tres archivos de pruebas y observar el fallo del contrato nuevo.
+- [x] Implementar el resumen y las etiquetas de entrada, salida, creación/lectura de
   caché y cuota independiente. Aceptar sólo rutas de transcripción explícitas.
   La salida compacta existente sigue siendo configurable; no duplicar la del mod.
   No inferir llamadas del modelo desde procesos locales, número de herramientas
   o tamaño del SKILL. Separar la medición del observador de la operación observada.
-- [ ] Reejecutar con `python scripts/ci/run_isolated_tests.py --pattern
+- [x] Reejecutar con `python scripts/ci/run_isolated_tests.py --pattern
   'test_token*.py'` y `--pattern 'test_runtime_metrics.py'`; exigir cero fallos.
-- [ ] Registrar una fixture saneada de referencia y cerrar el commit de medición.
+- [x] Registrar una fixture saneada de referencia y cerrar el commit de medición.
 
 ## Tarea 2 — Símbolos Dart reales y cobertura por lenguaje · 8–12 h
 
@@ -242,18 +264,18 @@ declara binding PyCapsule y binarios Linux/macOS/Windows. Esto acredita disponib
 no compatibilidad ya ensayada en Aikya. Antes de incorporarla, verificar licencia,
 proveniencia, hashes y carga con ese core. No actualizar todos los parsers como efecto lateral.
 
-- [ ] Crear fixtures pequeñas con clases Flutter, métodos, constructores con nombre,
+- [x] Crear fixtures pequeñas con clases Flutter, métodos, constructores con nombre,
   funciones, enums, mixins/extensiones e imports; añadir Unicode/CRLF, eliminación,
   sintaxis inválida, parser ausente y módulo impostor. Verificar nombres y rangos exactos.
-- [ ] Ejecutar `python -m unittest discover -s tests -p test_code_index_dart.py -v`
+- [x] Ejecutar `python -m unittest discover -s tests -p test_code_index_dart.py -v`
   y confirmar que falta la cobertura Dart; probar el binding en un entorno desechable.
-- [ ] Implementar extracción estructural sin llamadas dinámicas inferidas. Declarar
+- [x] Implementar extracción estructural sin llamadas dinámicas inferidas. Declarar
   explícitamente formas no soportadas. Incorporar la dependencia al extra opcional
   `code-index`; mantener fallback seguro sin extras y versión de parser en el fingerprint.
-- [ ] Ejecutar pruebas Dart y `test_code_index*.py` con/sin extras; exigir que una
+- [x] Ejecutar pruebas Dart y `test_code_index*.py` con/sin extras; exigir que una
   edición invalide resultados antiguos y que `complete` no oculte cobertura `file_only`.
   Añadir aceptación HTML en/es con cobertura mixta y snapshot anterior sin `languages`.
-- [ ] Guardar el recibo de compatibilidad/dependencia y cerrar el commit del parser.
+- [x] Guardar el recibo de compatibilidad/dependencia y cerrar el commit del parser.
   Si el binding no pasa, conservar la tarea como pendiente; no publicar soporte Dart ficticio.
 
 ## Tarea 3 — Capacidad Dart en la instalación real · 4–6 h
@@ -274,18 +296,20 @@ El instalador actual usa `--no-deps`: modificar sólo `pyproject.toml` no activa
 Dart en el entorno que utiliza el usuario. Resolver este punto antes de dar por
 terminada la primera entrega.
 
-- [ ] Añadir `test_selected_dart_is_installed_in_managed_interpreter`,
+- [x] Añadir `test_selected_dart_is_installed_in_managed_interpreter`,
   `test_update_preserves_parser_selection` y `test_missing_or_corrupt_offline_wheel_preserves_active_runtime`.
-- [ ] Ejecutar esas pruebas y confirmar la ausencia de selección/provisión actual.
-- [ ] Proveer únicamente wheels fijados y verificados, usando el mecanismo de
+- [x] Ejecutar esas pruebas y confirmar la ausencia de selección/provisión actual.
+- [x] Proveer únicamente wheels fijados y verificados, usando el mecanismo de
   manifiesto/recibo existente. Bundles offline contienen los artefactos seleccionados.
   Plataforma sin binario: error explícito antes de activar el candidato; sin compilación,
   descarga durante indexación ni modificación del Python global. Propagar la opción
   por launchers/scripts generados y conservar las garantías de sus previews.
-- [ ] Verificar pip convencional con extras, instalación limpia, update, offline,
-  rollback y global/project en CI nativa. Probar Python 3.10/3.13 y registrar las
-  arquitecturas realmente disponibles; no prometer Windows ARM64 sin artefacto probado.
-- [ ] Documentar la opción adicional, el estado de doctor y cerrar el commit de instalación.
+- [x] Verificar instalación limpia, update, offline, rollback y global/project
+  localmente, con provisión binaria en el intérprete administrado y selección
+  none/Dart/all. Registrar los 60 artefactos disponibles y las limitaciones ARM64.
+- [ ] Ejecutar la CI nativa en Linux/Windows y Python 3.10–3.12; verificar allí
+  las combinaciones pendientes. Los binarios descargados no acreditan ejecución.
+- [x] Documentar la opción adicional, el estado de doctor y cerrar el commit de instalación.
 
 ## Tarea 4 — Contexto relevante compartido · 6–10 h
 
@@ -308,15 +332,15 @@ reconocer un comando de implementación. Así la consulta habitual no exige otro
 turno de herramientas del modelo. El CLI es la alternativa para invocaciones sin
 ese evento y para explorar un alcance que cambie durante la tarea.
 
-- [ ] Añadir `test_exact_symbol_precedes_lexical_path_match`,
+- [x] Añadir `test_exact_symbol_precedes_lexical_path_match`,
   `test_natural_language_query_does_not_require_full_substring`,
   `test_changed_deleted_or_foreign_worktree_source_is_not_recalled` y
   `test_serialized_packet_respects_total_budget_without_duplicate_snippets`.
   Añadir `test_prompt_hook_supplies_bounded_context_without_model_call` y
   `test_disabled_policy_is_preserved_by_context_hook`.
-- [ ] Ejecutar `python -m unittest discover -s tests -p test_task_context.py -v`
+- [x] Ejecutar `python -m unittest discover -s tests -p test_task_context.py -v`
   y observar fallos del contrato nuevo.
-- [ ] Reutilizar sincronización/lectura verificada del índice; priorizar símbolos
+- [x] Reutilizar sincronización/lectura verificada del índice; priorizar símbolos
   explícitos, rutas permitidas y términos de la petición con ranking local determinista.
   Ante cero coincidencias, devolver diagnóstico y alcance para lectura acotada;
   no ampliar silenciosamente el allowlist. Notas opcionales sólo de proyecto,
@@ -324,11 +348,11 @@ ese evento y para explorar un alcance que cambie durante la tarea.
   El hook no registra otro observador, no reimprime la petición ni cambia la política
   de memoria. El contexto se etiqueta como fuente no confiable. Deduplicar sólo
   con identidad de invocación demostrada, sin suponer continuidad tras un fork/compact.
-- [ ] Verificar query antigua, CLI instalada y loop con Dart/Python, índice desactivado,
+- [x] Verificar query antigua, CLI instalada y loop con Dart/Python, índice desactivado,
   fuente cambiada durante consulta, exclusiones y Unicode; ninguna llamada a modelo.
   Ejecutar el mismo contrato de recuperación para Java, JS/JSX/MJS/CJS, TS/TSX,
   C# y Go con extras; para las demás filas, exigir fallback `file_only` correcto.
-- [ ] Cerrar el commit del servicio compartido. No añadir caché «ya leído» basada
+- [x] Cerrar el commit del servicio compartido. No añadir caché «ya leído» basada
   sólo en tiempo: una sesión/actor nuevo o compactado no demuestra tener ese contexto.
 
 ## Tarea 5 — Comandos con contexto acotado · 4–6 h
@@ -350,23 +374,23 @@ Extender `--summary` a Init y consultas pertinentes con presupuesto propuesto de
 Mantener el formato completo anterior cuando no se solicita resumen. Nunca
 ocultar un bloqueo ni escribir un archivo en dry-run para alcanzar ese presupuesto.
 
-- [ ] Añadir contratos que prueben consulta previa en comandos de implementación,
+- [x] Añadir contratos que prueben consulta previa en comandos de implementación,
   summary sin ocultar conflictos, dry-run sin escrituras y Memory delegado al CLI
   local sin editar HTML/CSS/JS ni iniciar monitorización por defecto.
-- [ ] Ejecutar `python -m unittest discover -s tests -p test_efficient_command_contracts.py -v`;
+- [x] Ejecutar `python -m unittest discover -s tests -p test_efficient_command_contracts.py -v`;
   confirmar los fallos y complementar los contratos de texto con pruebas reales del CLI.
-- [ ] Integrar contexto de tarea una vez por alcance; Analyze mantiene discovery
+- [x] Integrar contexto de tarea una vez por alcance; Analyze mantiene discovery
   determinista y ofrece auditoría profunda como alcance separado. Un proyecto nuevo
   sin índice usa discovery y configura Memory sólo después del onboarding aprobado.
   Con contexto ya aportado por el hook, no repetir el mismo CLI como requisito ritual.
   Ningún comando presupone que debe activar planner/orchestrator o todos los especialistas.
-- [ ] Probar onboarding nuevo/existente, ODD/SDD, Flutter Android/iOS y tareas pequeñas.
+- [x] Probar onboarding nuevo/existente, ODD/SDD, Flutter Android/iOS y tareas pequeñas.
   Una auditoría de seguridad requerida no desaparece por seleccionar trabajo acotado.
   La invocación slash sigue teniendo consumo normal del asistente.
   Extender las pruebas a todos los stacks de la matriz, reutilizando los perfiles
   reales: un comando sólo móvil debe rechazar un proyecto incompatible de forma
   clara, sin consumir contexto explorándolo como si fuera Flutter.
-- [ ] Cerrar el commit de workflows y demostrar la primera entrega instalada.
+- [x] Cerrar el commit de workflows y demostrar la primera entrega instalada.
 
 ## Tarea 6 — Menos gestión manual y reintentos documentales · 4–6 h
 
@@ -384,25 +408,25 @@ opcional y compatible: una inspección no exige Implement; una escritura o regis
 de evidencia aprobado mantiene sus fases y requisitos. Acción propuesta `docs_guard.py preflight`
 es local; no añade otra definición de las obligaciones documentales.
 
-- [ ] Añadir `test_preflight_and_stop_agree`,
+- [x] Añadir `test_preflight_and_stop_agree`,
   `test_contained_odd_change_does_not_create_empty_dossier`,
   `test_preflight_never_generates_passing_evidence` y
   `test_repeated_block_preserves_reason_without_recursive_resume`.
   Añadir pruebas de inspección de Models/Quality/Tests/Verify/SDD Status frente a
   sus acciones de escritura, y de invalidación de evidencia al cambiar candidato,
   definición de check o entorno relevante.
-- [ ] Ejecutar las pruebas nuevas y observar fallos de preflight sin cambiar el gate.
-- [ ] Mostrar las obligaciones antes del cierre; actualizar sólo documentos afectados
+- [x] Ejecutar las pruebas nuevas y observar fallos de preflight sin cambiar el gate.
+- [x] Mostrar las obligaciones antes del cierre; actualizar sólo documentos afectados
   con contenido real y mantener REQ. Automatizar fases que el CLI puede acreditar
   por acciones ejecutadas. La implementación y revisión semánticas siguen requiriendo
   evidencia real; no inferir éxito por fin de una herramienta. Reutilizar la
   evidencia existente sólo si coinciden candidato, alcance, definición del check
   y fingerprint del entorno pertinente; si falta una condición, ejecutar la
   comprobación. No crear otra base de datos de evidencia ni tratarla como permiso.
-- [ ] Probar fixture equivalente a los tres bloqueos observados, consultas sin cambios,
+- [x] Probar fixture equivalente a los tres bloqueos observados, consultas sin cambios,
   dossier SDD existente, documento personalizado y fallo real de security. Verificar
   que la corrección evita el reintento previsto sin aprobar resultados falsos.
-- [ ] Cerrar el commit de preflight/observación conservando la protección Stop.
+- [x] Cerrar el commit de preflight/observación conservando la protección Stop.
 
 ## Tarea 7 — Presupuestos acumulados del loop · 4–6 h
 
@@ -415,20 +439,20 @@ ledger) -> dict` produce margen para Implement/Review y motivo de parada.
 Contabilizar cuatro categorías de tokens y turnos realmente observados del SDK;
 no equiparar cantidad de herramientas con turnos del modelo.
 
-- [ ] Añadir `test_review_shares_total_turn_budget`,
+- [x] Añadir `test_review_shares_total_turn_budget`,
   `test_resume_does_not_reset_consumption`, `test_duplicate_result_is_idempotent`
   y `test_unknown_usage_cannot_satisfy_enabled_budget`.
-- [ ] Ejecutar `python -m unittest discover -s tests -p test_loop_budgets.py -v`
+- [x] Ejecutar `python -m unittest discover -s tests -p test_loop_budgets.py -v`
   y comprobar que el límite actual es por consulta.
-- [ ] Persistir el ledger compatible, limitar los turnos de la siguiente consulta
+- [x] Persistir el ledger compatible, limitar los turnos de la siguiente consulta
   al margen total y detener nuevas consultas al alcanzar el límite. Validar la
   disponibilidad real del contador del SDK; si falta, declarar uso desconocido
   y bloquear el presupuesto activado en vez de inventar datos. Conservar tiempo,
   coste, efectos pendientes y conciliación actuales.
-- [ ] Probar cancelación, Review rechazada, replay, reanudación y checkpoint antiguo.
+- [x] Probar cancelación, Review rechazada, replay, reanudación y checkpoint antiguo.
   Los tokens se conocen según lo que informe el runtime: declarar posible exceso
   de la consulta en curso, sin prometer un corte exacto antes de recibir su uso.
-- [ ] Cerrar el commit. En Claude interactivo externo sólo habrá avisos medidos
+- [x] Cerrar el commit. En Claude interactivo externo sólo habrá avisos medidos
   y contexto acotado; estos límites no controlan todas sus solicitudes ni su cuota.
 
 ## Tarea 8 — Instrucciones, modelos y compactación nativa · 4–8 h
@@ -452,7 +476,7 @@ El aviso configurable de 75% sólo se calcula sobre la ventana de trabajo efecti
 si esa relación es verificable; no reutilizar sin más `context_pct`, que puede
 medirse contra la ventana completa del modelo. Sin datos frescos, informar N/D.
 
-- [ ] Añadir pruebas que conserven un modelo explícito, eviten agentes extra en
+- [x] Añadir pruebas que conserven un modelo explícito, eviten agentes extra en
   una tarea mecánica y mantengan revisión independiente cuando el riesgo la exige.
   Probar que el aviso usa una métrica fresca, no se repite por cada herramienta
   y nunca ejecuta `/clear` ni intenta enviar `/compact` como comando de shell.
@@ -460,8 +484,8 @@ medirse contra la ventana completa del modelo. Sin datos frescos, informar N/D.
   `test_post_compact_invalidates_seen_context_without_resetting_budget`,
   `test_effective_window_is_not_assumed_from_model_context_percentage` y
   `test_native_auto_mode_preserves_custom_settings_and_handles_unsupported_host`.
-- [ ] Ejecutarlas antes de modificar instrucciones/routing y observar el fallo.
-- [ ] Acortar el bloque repetido de observación delegando operaciones deterministas
+- [x] Ejecutarlas antes de modificar instrucciones/routing y observar el fallo.
+- [x] Acortar el bloque repetido de observación delegando operaciones deterministas
   al CLI de la tarea 6, manteniendo cerca de cada comando las reglas de seguridad
   esenciales. Evitar reemplazar el bloque por lecturas obligatorias de otro manual.
   No cambiar Opus/Sonnet ni effort global silenciosamente. Quitar estudios de
@@ -474,9 +498,9 @@ medirse contra la ventana completa del modelo. Sin datos frescos, informar N/D.
   el historial ya acumulado por Claude; preservar esta diferencia en la interfaz.
   Aplicar la política de compactación que se detalla a continuación y probar también
   memoria desactivada, ausencia de REQ activo y cancelación durante el resumen.
-- [ ] Comparar footprint estático, herramientas y decisiones de routing frente a
+- [x] Comparar footprint estático, herramientas y decisiones de routing frente a
   la referencia. Una reducción de instrucciones no demuestra por sí sola ahorro real.
-- [ ] Cerrar el commit de instrucciones/routing.
+- [x] Cerrar el commit de instrucciones/routing.
 
 ### Política de compactación de sesiones largas
 
@@ -544,7 +568,7 @@ effort y caché inicial. Registrar bytes locales por separado de tokens observad
 Las ejecuciones de modelo requieren un presupuesto revisado; instalación externa
 y despliegue se sustituyen por fuentes sintéticas/denegaciones/mocks, no por acciones reales.
 
-- [ ] Añadir pruebas de reporte que rechacen afirmar ahorro de cuota sin muestras
+- [x] Añadir pruebas de reporte que rechacen afirmar ahorro de cuota sin muestras
   y que distingan fixture determinista de ejecución real con modelo.
   Añadir `test_every_code_suffix_has_fixture_and_expected_capability`,
   `test_every_optional_parser_is_exercised_with_and_without_extras`,
@@ -553,17 +577,19 @@ y despliegue se sustituyen por fuentes sintéticas/denegaciones/mocks, no por ac
   Exigir que la matriz de comandos coincida con `BOOTSTRAP_COMMANDS` y que
   contratos offline, benchmark de IA y ventanas históricas nunca se presenten
   como mediciones intercambiables.
-- [ ] Ejecutarlas y observar el fallo del comparador inexistente.
-- [ ] Implementar el benchmark y registrar base/candidato, condiciones, categorías
+- [x] Ejecutarlas y observar el fallo del comparador inexistente.
+- [x] Implementar el benchmark y registrar base/candidato, condiciones, categorías
   de tokens disponibles, agentes, solicitudes y comprobaciones funcionales.
   No copiar el código ni la conversación privada de `jourpass_app` a CI.
-- [ ] Ejecutar regresión completa, índice con/sin extras, browser Memory en/es,
+- [x] Ejecutar regresión completa, índice con/sin extras, browser Memory en/es,
   instalación limpia/update/offline/rollback y wheel en intérprete aislado.
-  Renovar pruebas nativas Windows/macOS/Linux para los caminos cambiados.
+  macOS ARM64/Python 3.13 ejecutado; matriz nativa externa configurada.
   La matriz de las 29 extensiones y de todos los stacks enumerados debe quedar
   completa. Una omisión de parser esperado o formato sin fixture impide aprobar
   la entrega; `file_only` verificado es válido sólo donde sea el nivel declarado.
-- [ ] Preparar versión/README/changelog, evidencias, commits y descripción de PR
+- [ ] Ejecutar la matriz nativa Linux/Windows y el benchmark real con/sin
+  compactación, mismo modelo/effort/caché y presupuesto revisado en el otro entorno.
+- [x] Preparar versión/README/changelog, evidencias, commits y descripción de PR
   contra `develop`. Push, PR y publicación sólo dentro de la autorización de ejecución.
   El rollout real actualiza runtime/parsers y regenera el índice/HTML mediante APIs
   existentes, preservando notas y archivos personalizados.

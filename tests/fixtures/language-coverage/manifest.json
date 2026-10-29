@@ -1,0 +1,118 @@
+{
+  ".py": {
+    "file": "sample.py",
+    "parser": "python"
+  },
+  ".pyi": {
+    "file": "sample.pyi",
+    "parser": "python"
+  },
+  ".java": {
+    "file": "sample.java",
+    "parser": "java"
+  },
+  ".js": {
+    "file": "sample.js",
+    "parser": "javascript"
+  },
+  ".jsx": {
+    "file": "sample.jsx",
+    "parser": "javascript"
+  },
+  ".mjs": {
+    "file": "sample.mjs",
+    "parser": "javascript"
+  },
+  ".cjs": {
+    "file": "sample.cjs",
+    "parser": "javascript"
+  },
+  ".ts": {
+    "file": "sample.ts",
+    "parser": "typescript"
+  },
+  ".tsx": {
+    "file": "sample.tsx",
+    "parser": "typescript"
+  },
+  ".cs": {
+    "file": "sample.cs",
+    "parser": "c_sharp"
+  },
+  ".go": {
+    "file": "sample.go",
+    "parser": "go"
+  },
+  ".dart": {
+    "file": "sample.dart",
+    "parser": "dart"
+  },
+  ".kt": {
+    "file": "sample.kt",
+    "parser": "inventory"
+  },
+  ".kts": {
+    "file": "sample.kts",
+    "parser": "inventory"
+  },
+  ".swift": {
+    "file": "sample.swift",
+    "parser": "inventory"
+  },
+  ".rs": {
+    "file": "sample.rs",
+    "parser": "inventory"
+  },
+  ".php": {
+    "file": "sample.php",
+    "parser": "inventory"
+  },
+  ".rb": {
+    "file": "sample.rb",
+    "parser": "inventory"
+  },
+  ".c": {
+    "file": "sample.c",
+    "parser": "inventory"
+  },
+  ".h": {
+    "file": "sample.h",
+    "parser": "inventory"
+  },
+  ".cpp": {
+    "file": "sample.cpp",
+    "parser": "inventory"
+  },
+  ".hpp": {
+    "file": "sample.hpp",
+    "parser": "inventory"
+  },
+  ".cc": {
+    "file": "sample.cc",
+    "parser": "inventory"
+  },
+  ".sh": {
+    "file": "sample.sh",
+    "parser": "inventory"
+  },
+  ".ps1": {
+    "file": "sample.ps1",
+    "parser": "inventory"
+  },
+  ".sql": {
+    "file": "sample.sql",
+    "parser": "inventory"
+  },
+  ".tf": {
+    "file": "sample.tf",
+    "parser": "inventory"
+  },
+  ".vue": {
+    "file": "sample.vue",
+    "parser": "inventory"
+  },
+  ".svelte": {
+    "file": "sample.svelte",
+    "parser": "inventory"
+  }
+}

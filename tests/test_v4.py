@@ -34,17 +34,17 @@ class ExternalIntegrationTests(unittest.TestCase):
         self.temp.cleanup()
 
     def test_backend_has_no_ui_skill(self):
-        self.assertEqual(ext.enabled_names(self.profile),['ponytail','graphify'])
+        self.assertEqual(ext.enabled_names(self.profile),[])
         self.assertNotIn('ui-ux-pro-max-cli',' '.join(ext.planned_commands(self.profile)))
         self.profile['frontend']='vue'
-        self.assertIn('ui-ux-pro-max',ext.enabled_names(self.profile))
-        self.assertIn('ui-ux-pro-max-cli',' '.join(ext.planned_commands(self.profile)))
+        self.assertEqual(ext.enabled_names(self.profile),[])
+        self.assertEqual(ext.planned_commands(self.profile),[])
 
     def test_official_sources_and_double_y_package(self):
         self.assertEqual(ext.SOURCES['ponytail'],'https://github.com/DietrichGebert/ponytail.git')
         self.assertEqual(ext.SOURCES['graphify'],'https://github.com/Graphify-Labs/graphify.git')
         self.assertEqual(ext.SOURCES['ui-ux-pro-max'],'https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git')
-        self.assertIn('graphifyy',' '.join(ext.planned_commands(self.profile)))
+        self.assertEqual(ext.planned_commands(self.profile),[])
 
     def test_explicit_consent_required_no_external_commands(self):
         with self.assertRaises(PermissionError):
@@ -72,7 +72,7 @@ class ExternalIntegrationTests(unittest.TestCase):
             'ponytail':lambda r:{'state':'installed','commit':'1234'},
             'graphify':lambda r:(_ for _ in ()).throw(RuntimeError('offline'))
         }):
-            lock=ext.install_all(self.root,self.profile,permission=True)
+            lock=ext.install_all(self.root,self.profile,permission=True,selected=['ponytail','graphify'])
         self.assertEqual(lock['skills']['ponytail']['state'],'installed')
         self.assertEqual(lock['skills']['graphify']['state'],'failed')
         self.assertTrue((self.root/'.harness/external-skills-lock.json').is_file())
@@ -139,7 +139,7 @@ class ExternalIntegrationTests(unittest.TestCase):
                 '--target',str(root),'--answers',str(HERE/'examples/new-next-react.json'),
                 '--external','plan'],text=True,capture_output=True,timeout=30)
             self.assertEqual(result.returncode,0,result.stderr)
-            self.assertIn('Skills externas PENDIENTES',result.stdout)
+            self.assertIn('External skills: no source selected',result.stdout)
             self.assertFalse((root/'.harness/external-skills-lock.json').exists())
             self.assertTrue((root/'.claude/skills/feature/SKILL.md').is_file())
 

@@ -9,7 +9,9 @@ PINS = {'tree-sitter': '0.25.2', 'tree-sitter-java': '0.23.5',
 
 
 def selection(value, previous, action):
-    selected = value if value is not None else (previous or {}).get('code_index', 'none') if action == 'update' else value or 'none'
+    selected = value
+    if selected is None:
+        selected = (previous or {}).get('code_index', 'none') if action == 'update' else 'none'
     requirements(selected)
     return selected
 
@@ -67,3 +69,20 @@ def provision(python, selected, wheels):
     names = [r.split('==')[0] for r in wanted]
     environment.run(python, '-c', 'import importlib.metadata as m;'+
                     ';'.join('assert m.version('+repr(n)+')=='+repr(PINS[n]) for n in names))
+
+
+def doctor(root):
+    from . import state
+    import json
+    current=state.safe(root/'current.json')
+    if not current.is_file():return {'status':'not_installed'}
+    value=json.loads(current.read_text());candidate=state.safe(Path(value['environment']))
+    python=Path(value['python'])
+    state.safe(python.parent)
+    expected=candidate/('Scripts/python.exe' if __import__('os').name=='nt' else 'bin/python')
+    if not candidate.is_relative_to(root/'versions') or python!=expected:
+        return {'status':'unavailable','reason':'Unowned interpreter reference'}
+    try:
+        script="import json;from aikya.code_index.parsers.registry import parser_version;print(json.dumps({s:parser_version('probe'+s)[0] for s in ['.py','.java','.js','.ts','.cs','.go','.dart']}))"
+        return {'status':'observed','parsers':json.loads(environment.run(python,'-c',script))}
+    except (ValueError,OSError):return {'status':'unavailable','reason':'Managed parser capability could not be verified'}

@@ -162,9 +162,6 @@ def run(root,raw,runtime=None,*,approved=False,run_id=None,cancel=lambda:False):
             data.update(status=status,reason=reason);save();observation.finish(status if status!='waiting' else 'blocked');return data
         def remaining():return config['timeout_seconds']-(base_elapsed+time.monotonic()-started)
         def limits():
-            from aikya.core.budgets import remaining as budget_remaining
-            reason=budget_remaining(config,data)['reason']
-            if reason:raise ValueError(reason)
             if cancel():raise InterruptedError('cancelled')
             if remaining()<=0:raise TimeoutError('time_limit')
             if not data['cost_known']:raise ValueError('usage_unavailable')
@@ -187,12 +184,15 @@ def run(root,raw,runtime=None,*,approved=False,run_id=None,cancel=lambda:False):
             else:raise ValueError('unknown_runtime_event')
         def query(name,prompt):
             limits()
+            from aikya.core.budgets import remaining as budget_remaining
+            available=budget_remaining(config,data)
+            if available['reason']:raise ValueError(available['reason'])
             if bindings(root,config,work_path)!=initial:raise ValueError('approvals_changed')
             work(root,config)
             phase(name,'running');ident='query-'+uuid.uuid4().hex
             data['pending'][ident]={'kind':'query','phase':name};save()
             result=runtime.execute({'root':str(root),**config,'phase':name.lower(),'prompt':prompt,'timeout_seconds':remaining(),
-                'max_turns':__import__('aikya.core.budgets',fromlist=['remaining']).remaining(config,data)['max_turns'],
+                'max_turns':available['max_turns'],
                 'remaining_cost_usd':config['max_cost_usd']-data['cost_usd'],'session_id':data['runtime_session'] if name=='Implement' else None},on_event,cancel)
             if name=='Implement':data['files']=files(root,config)
             store.account(data,result);del data['pending'][ident]

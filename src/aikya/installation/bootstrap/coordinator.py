@@ -28,7 +28,8 @@ def execute(args, root, receipt_file):
         if plan.selected:mods.resolve_version(args.mods_version,args.offline_dir)
     if args.dry_run:
         from .options import preview
-        print(json.dumps(preview(args,root,previous)))
+        previous_harness=json.loads(receipt_file.read_text()) if receipt_file.exists() else None
+        print(json.dumps(preview(args,root,previous,previous_harness)))
         return 0
     adapter = Claude(args.target) if plan.selected else None
     if adapter:adapter.preflight()
@@ -61,6 +62,8 @@ def execute(args, root, receipt_file):
         (stage/'harness/SHA256SUMS').write_text(''.join(hashlib.sha256(p.read_bytes()).hexdigest()+'  '+p.name+'\n' for p in [wheel, *parser_wheels]))
         with state.installation_lock(root):
             current = json.loads(component_file.read_text(encoding='utf8')) if component_file.exists() else None
+            current_harness=json.loads(receipt_file.read_text()) if receipt_file.exists() else None
+            if current_harness != previous_harness:raise ValueError('Harness parser selection changed during preparation; retry')
             if current != previous:
                 raise ValueError('Component selection changed during preparation; retry')
             if bundle:

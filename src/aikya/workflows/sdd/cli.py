@@ -14,6 +14,7 @@ from aikya.workflows.sdd.engine import (
 def _main(argv=None):
     parser=argparse.ArgumentParser(description="Aikya Spec-Driven Engineering")
     parser.add_argument("action",choices=("new","clarify","approve","plan","tasks","worklist","progress","verify","status","list","lint","completion","authorize","templates","document"))
+    parser.add_argument("--summary",action="store_true",help="Compact response with blockers and omissions")
     parser.add_argument("--root",type=Path,default=Path.cwd())
     parser.add_argument("--template",choices=tuple(catalog()))
     parser.add_argument("--approved",action="store_true")

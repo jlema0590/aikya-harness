@@ -69,7 +69,8 @@ def _account(data,result):
         if data['results'][ident]!=record:raise ValueError('Conflicting duplicate usage result')
         return
     data.setdefault('token_totals',{k:0 for k in counts});data.setdefault('token_sessions',{});data.setdefault('tokens_known',True)
-    if usage is None:data['tokens_known']=False
+    if not usage:data['tokens_known']=False
+    if usage is None:pass
     else:
         previous_usage=data['token_sessions'].get(session,{})
         for model,values in usage.items():
@@ -111,6 +112,7 @@ def load(root,run_id):
     if type(data['cost_known']) is not bool or any(not isinstance(data[k],dict) for k in ('pending','bindings','files','sessions','results','token_totals','token_sessions')) or not isinstance(data['events'],list) or len(data['events'])>200:raise ValueError('Invalid checkpoint fields')
     ledger={'cost_usd':0.0,'cost_known':True,'sessions':{},'results':{},'token_totals':{k:0 for k in ('inputTokens','outputTokens','cacheReadInputTokens','cacheCreationInputTokens')},'token_sessions':{},'tokens_known':True}
     for ident,record in data['results'].items():account(ledger,{'id':ident,**record})
+    if data['tokens_known'] is True and any(record.get('model_usage')=={} for record in data['results'].values()):data['tokens_known']=False
     if any(ledger[k]!=data[k] for k in ('cost_usd','cost_known','sessions','token_totals','token_sessions','tokens_known')):raise ValueError('Inconsistent usage ledger')
     if data['evidence_hash'] is not None and data['evidence_hash']!=fingerprint(folder(root,run_id)/'evidence.json'):raise ValueError('Modified loop evidence')
     summary=folder(root,run_id)/'summary.md'

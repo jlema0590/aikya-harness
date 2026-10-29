@@ -410,10 +410,58 @@ upgrade it. Customized reports remain protected by the publication ownership che
 Indexing and export call no model and consume no API tokens; they use local CPU
 and disk. Later AI queries retain their normal context usage. Python declarations
 work without dependencies; the optional pinned `code-index` extra adds Java,
-JavaScript/JSX, TypeScript/TSX, C# and Go. Other languages retain file inventory.
+JavaScript/JSX, TypeScript/TSX, C#, Go and Dart. Other languages retain file inventory.
 Source changes invalidate note eligibility without rewriting decisions or approvals.
 Existing-project adoption preserves custom ignore files. See
 [configuration, limits and lifecycle](aikya/docs/architecture/local-memory.md).
+
+### Context efficiency and long sessions
+
+Task context is prepared locally, verifies current source and provides a packet
+of at most 6,000 characters without duplicated snippets. Prompt hooks supply it to
+implementation commands; missing symbols are reported and permit scoped direct
+reads. Small ODD changes retain their REQ audit without an empty feature dossier.
+Security and approvals remain authoritative.
+
+```sh
+aikya-manage update --code-index dart     # Pinned Dart/Flutter parser and core
+aikya-manage update --code-index all      # All pinned optional parsers
+aikya context --target . --query "change signIn" --allowed-file lib/login.dart
+aikya analyze --target . --dry-run --summary --methodology odd
+python aikya/scripts/harness/docs_guard.py preflight --session <host-session>
+```
+
+New installations default to `--code-index none`; updates without that option
+preserve the previous selection. Only verified release binaries are installed in
+the managed interpreter. Missing compatible binaries stop activation. Python needs
+no extras; Dart, Java, JS/TS, C# and Go need their parsers. Kotlin, Swift and the
+remaining extensions retain inventory. Alpine Linux ARM64 and Windows ARM64 lack
+verified binary support in this pinned set; parsers are never compiled silently.
+
+Compaction is **manual by default**. Inside Claude Code:
+
+```text
+/compact Keep the goal, decisions, affected paths, ODD/SDD state, pending checks and next step. Omit repeated logs and explanations.
+```
+
+The project option `aikya context-policy --target . --native-auto --window 200000
+--approved` requests a native working window when supported, preserving custom
+settings. It changes neither model nor effort. Compaction hooks retain references
+and pending checks; continuation retrieves fresh context without resetting budgets
+or creating approvals. A 75% warning requires fresh verified effective-window
+telemetry; the model's context percentage alone is insufficient and missing data
+stays unavailable. Compaction can itself use tokens and rebuild cache; consumed
+quota is unchanged.
+
+The opt-in loop accepts cumulative `max_total_turns` and `max_recorded_tokens`,
+shared by Implement/Review and retained on resume. All four token categories,
+including cache, count. Unknown usage blocks an enabled limit; token usage arrives
+after a query, so the current query may overrun that budget. These loop limits
+are separate from Claude's five-hour/weekly account quotas.
+
+Reports separate observed tokens, static proxies and local output bytes. Offline
+benchmarks do not prove real token or quota savings; model experiments require
+equivalent accepted tasks and a reviewed budget.
 
 ## 6. Engineering agents and Agent Skills
 
@@ -425,11 +473,7 @@ within the approved scope. An installed agent is not proof that it has run.
 
 ### Optional external skills
 
-| External integration | Registered source | Availability in Aikya |
-|---|---|---|
-| Ponytail | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | Optional; included in the external integration plan. |
-| Graphify CLI | [Graphify-Labs/graphify](https://github.com/Graphify-Labs/graphify) | Optional; CLI and project skill integration. |
-| UI UX Pro Max | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | Optional; included in the plan for frontend or mobile profiles. |
+External skills are optional and their source is selected by the user. No vendor is recommended or installed by default.
 
 Review availability and installation impact from Claude Code:
 

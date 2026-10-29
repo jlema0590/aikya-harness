@@ -29,4 +29,26 @@ class TaskContextTests(unittest.TestCase):
         self.assertNotIn('fresh',json.dumps(value));self.assertIn('Replacement',json.dumps(value))
         with self.assertRaises(ValueError):prepare_context(self.root,'x',paths=['../outside.py'])
 
+
+class NaturalNameTests(unittest.TestCase):
+    def test_words_match_camel_case_and_snake_case(self):
+        from aikya.context.ranking import rank
+        self.assertLess(rank({'name':'signIn','path':'user.dart'},'change sign in')[0],0)
+        self.assertLess(rank({'name':'sign_in','path':'user.py'},'change sign in')[0],0)
+
+class UnavailableIndexTests(unittest.TestCase):
+    def test_copied_index_is_preserved_and_fallback_uses_only_current_project(self):
+        import shutil
+        from aikya.code_index.sync import sync
+        with tempfile.TemporaryDirectory() as a,tempfile.TemporaryDirectory() as b:
+            first=Path(a).resolve();second=Path(b).resolve()
+            configure(first,approved=True);configure(second,approved=True)
+            (first/'x.py').write_text('class First: pass');(second/'x.py').write_text('class Second: pass')
+            sync(first,full=True);shutil.copytree(first/'.harness',second/'.harness')
+            database=second/'.harness/state/code-index/index.sqlite';before=database.read_bytes()
+            packet=prepare_context(second,'Second',paths=['x.py'])
+            self.assertIn('index_unavailable',packet['diagnostics'])
+            self.assertIn('Second',json.dumps(packet));self.assertNotIn('First',json.dumps(packet))
+            self.assertEqual(database.read_bytes(),before)
+
 if __name__=='__main__':unittest.main()

@@ -23,13 +23,17 @@ def prepare_context(root, query, *, paths, max_chars=6000):
               'coverage':{},'diagnostics':[],'omitted_count':0}
     entries = []
     if options.enabled:
-        sync(root)
-        snapshot = IndexStore(root).read_snapshot()
-        packet.update(generation=snapshot.generation,status=snapshot.status,
-                      coverage=summarize(snapshot.files,snapshot.symbols))
-        entries = list(snapshot.symbols)
-        entries.extend({'path':f['path'],'name':Path(f['path']).name,'start_line':1,'end_line':20,
-                        'file_sha256':f['sha256'],'kind':'file'} for f in snapshot.files if f['status']=='file_only')
+        try:
+            sync(root)
+            snapshot = IndexStore(root).read_snapshot()
+            packet.update(generation=snapshot.generation,status=snapshot.status,
+                          coverage=summarize(snapshot.files,snapshot.symbols))
+            entries = list(snapshot.symbols)
+            entries.extend({'path':f['path'],'name':Path(f['path']).name,'start_line':1,'end_line':20,
+                            'file_sha256':f['sha256'],'kind':'file'} for f in snapshot.files if f['status']=='file_only')
+        except (ValueError,OSError):
+            packet['status']='fallback'
+            packet['diagnostics'].append('index_unavailable')
     else:
         packet['diagnostics'].append('index_disabled')
     if not entries:

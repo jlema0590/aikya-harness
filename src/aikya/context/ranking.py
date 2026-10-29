@@ -5,7 +5,8 @@ STOP = frozenset(('the','a','an','please','change','modify','method','class','fu
 
 
 def terms(text):
-    return set(re.findall(r'[\w]+', text.casefold())) - STOP
+    split=re.sub(r'([a-z0-9])([A-Z])',r'\1 \2',text).replace('_',' ')
+    return (set(re.findall(r'[\w]+', text.casefold())) | set(re.findall(r'[\w]+',split.casefold()))) - STOP
 
 
 def rank(row, query):

@@ -26,21 +26,12 @@ SOURCES = {
 
 
 def enabled_names(profile: dict[str, Any]) -> list[str]:
-    names = ['ponytail', 'graphify']
-    if profile.get('frontend') not in ('none', None) or profile.get('mobile') not in ('none', None):
-        names.append('ui-ux-pro-max')
-    return names
+    # Optional integrations are selected by the user, never inferred from stack.
+    return []
 
 
 def planned_commands(profile: dict[str, Any]) -> list[str]:
-    commands = [
-        'git clone --depth 1 https://github.com/DietrichGebert/ponytail.git <carpeta-temporal>; copiar exclusivamente skills/ponytail/ -> .claude/skills/ponytail/',
-        'uv tool install graphifyy  (alternativa: pipx install graphifyy)',
-        'graphify install --project --platform claude',
-    ]
-    if 'ui-ux-pro-max' in enabled_names(profile):
-        commands.append('npx --yes ui-ux-pro-max-cli init --ai claude')
-    return commands
+    return []
 
 
 def _invoke(argv: list[str], *, cwd: Path | None = None, timeout: int = 300) -> subprocess.CompletedProcess[str]:
@@ -188,17 +179,18 @@ def status(root: Path, profile: dict[str,Any]) -> dict[str, Any]:
         item = raw.get('skills',{}).get(name,{}) if isinstance(raw.get('skills'),dict) else {}
         state = 'present' if location.is_file() else 'missing'
         print(f'{name}: {state}' + (f' ({item.get("state")}: {item.get("detail", "")})' if item and state=='missing' else ''))
-    print('Graphify CLI:', 'disponible' if _bin('graphify') else 'no encontrado')
     _, note=write_inventory(root,profile)
     print('Inventario:',note)
     return raw
 
 
 def install_all(root: Path, profile: dict[str, Any], *, permission: bool, dry_run: bool=False, selected: list[str]|None=None, record_comparison: bool=False) -> dict[str, Any]:
-    if selected is not None and (not selected or any(n not in enabled_names(profile) for n in selected)):
+    if selected is not None and (not selected or any(n not in SOURCES for n in selected)):
         raise ValueError('Selection includes unknown skills or skills incompatible with this profile.')
     if not dry_run and not permission:
         raise PermissionError('Third-party installation requires explicit approval (--yes).')
+    if not dry_run and not (selected if selected is not None else enabled_names(profile)):
+        raise ValueError('Select a skill source with --only or --repo before installation.')
     root = root.resolve()
     if (root/'.claude').is_symlink() or (root/'.claude/skills').is_symlink() or (root/'.harness').is_symlink():
         raise ValueError('Symlinked .claude/.harness paths are not allowed for external installations.')
@@ -208,7 +200,7 @@ def install_all(root: Path, profile: dict[str, Any], *, permission: bool, dry_ru
         for cmd in planned_commands(profile):
             print('PLAN:',cmd)
         return {'dry_run':True}
-    record: dict[str,Any] = {'schema_version':1, 'sources':SOURCES, 'updated_at_utc':datetime.now(timezone.utc).isoformat(), 'skills':{}}
+    record: dict[str,Any] = {'schema_version':1, 'sources':{name:SOURCES[name] for name in selected or []}, 'updated_at_utc':datetime.now(timezone.utc).isoformat(), 'skills':{}}
     old_lock = root/'.harness/external-skills-lock.json'
     if old_lock.exists():
         try:
@@ -308,7 +300,7 @@ def install_custom(root: Path, profile: dict[str, Any], *, name: str, repo: str,
     if (root/'.claude').is_symlink() or (root/'.claude/skills').is_symlink() or (root/'.harness').is_symlink():
         raise ValueError('Symlinked .claude/.harness paths are not allowed for external installations.')
     lock=root/'.harness/external-skills-lock.json'
-    record={'schema_version':1,'sources':SOURCES,'updated_at_utc':datetime.now(timezone.utc).isoformat(),'skills':{}}
+    record={'schema_version':1,'sources':{name:repo},'updated_at_utc':datetime.now(timezone.utc).isoformat(),'skills':{}}
     if lock.is_file():
         try:
             old=json.loads(lock.read_text(encoding='utf8'))
