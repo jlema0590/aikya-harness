@@ -1,0 +1,90 @@
+{
+  "checks": [
+    {
+      "name": "Version 2 navy theme is default, including on a light OS",
+      "pass": true
+    },
+    {
+      "name": "Light theme switches the whole canvas",
+      "pass": true
+    },
+    {
+      "name": "Theme button describes the next action",
+      "pass": true
+    },
+    {
+      "name": "Theme can return to navy",
+      "pass": true
+    },
+    {
+      "name": "Source overview accompanies the source tree",
+      "pass": true
+    },
+    {
+      "name": "Keyboard selection retains graph focus",
+      "pass": true
+    },
+    {
+      "name": "Inspector exposes the selected source",
+      "pass": true
+    },
+    {
+      "name": "Architecture lays out descendants after their parent",
+      "pass": true
+    },
+    {
+      "name": "Architecture never presents a fabricated execution trace",
+      "pass": true
+    },
+    {
+      "name": "Inventory includes navigable real sources",
+      "pass": true
+    },
+    {
+      "name": "Inventory hides the SVG and receives real row clicks",
+      "pass": true
+    },
+    {
+      "name": "Inventory row click reaches the inspector",
+      "pass": true
+    },
+    {
+      "name": "Empty searches explain the empty result",
+      "pass": true
+    },
+    {
+      "name": "Motion can be disabled",
+      "pass": true
+    },
+    {
+      "name": "Reduced motion removes transitions",
+      "pass": true
+    },
+    {
+      "name": "No horizontal overflow at 1560px",
+      "pass": true
+    },
+    {
+      "name": "No horizontal overflow at 1024px",
+      "pass": true
+    },
+    {
+      "name": "No horizontal overflow at 768px",
+      "pass": true
+    },
+    {
+      "name": "No horizontal overflow at 390px",
+      "pass": true
+    },
+    {
+      "name": "No browser errors or CSP failures",
+      "pass": true
+    },
+    {
+      "name": "Offline HTML makes no external requests",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "external": []
+}

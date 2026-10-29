@@ -384,9 +384,28 @@ The report uses the version 2 navy theme by default, with a light-theme switch.
 Its source sidebar, central explorer and source inspector combine a knowledge
 graph, a path-based architecture hierarchy and a searchable inventory. Source
 colors distinguish folders, files, declarations and documents/notes. Filters,
-selection and zoom survive live updates; reduced motion is supported. See the
-[generated example](aikya/docs/examples/aikya-memory-generated.html). Architecture
+selection and zoom survive live updates; reduced motion is supported. Expand
+folders progressively, drag individual nodes to arrange them, or drag the
+background to pan. Arrow keys move a focused node; Escape cancels a drag.
+**Fit view** adjusts the camera; **Reset layout** releases manual positions in
+the current view. Positions are local to the open page and reset on reload.
+
+Motion also draws new connections and animates visible relationships, with a
+limit of 80 simultaneous connections. Select a component or filter a dense graph
+to focus that effect. Unknown-direction relationships pulse without directional
+travel. Motion off and reduced motion keep all connections static. This visual
+flow describes indexed evidence, not measured runtime execution.
+
+Inventory has its own exclusive view, with 100 sources per page. Grouped nodes
+and drawing limits are reported explicitly; search and Inventory retain access
+to sources outside the current diagram. See the
+[interactive synthetic example](aikya/docs/examples/aikya-memory-interactive.html). Architecture
 shows verified source structure; runtime request-flow analysis remains future work.
+
+After upgrading Harness, regenerate existing reports with `/aikya-memory --refresh`
+and reopen them. Restart an older observer/live server to load the new renderer.
+The HTML embeds its scripts and styles; reloading an old snapshot alone does not
+upgrade it. Customized reports remain protected by the publication ownership checks.
 
 Indexing and export call no model and consume no API tokens; they use local CPU
 and disk. Later AI queries retain their normal context usage. Python declarations

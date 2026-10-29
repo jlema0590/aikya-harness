@@ -1,0 +1,25 @@
+{
+  "checks": [
+    "Interrupting an expansion still reaches the correct architecture position",
+    "Architecture has no expansion button for declarations excluded from that view",
+    "80 connections can animate",
+    "81 connections stay static with an explanation",
+    "Connection arrival traces obey the same animation budget",
+    "Selecting a source bounds animated connections to its neighbors",
+    "Drawing limits cannot conceal excess connections from the animation budget",
+    "Dense graph stays bounded and finishes loading",
+    "Drawing omissions keep the correct total",
+    "Search reaches a source outside the initial drawing limit",
+    "Deep architecture is finite and spans its real depth",
+    "No horizontal overflow at 1560",
+    "No horizontal overflow at 1024",
+    "No horizontal overflow at 768",
+    "No horizontal overflow at 390",
+    "Live additions preserve manual positions and camera",
+    "Live additions become explorable",
+    "Live relation-only changes update endpoints with unchanged node IDs",
+    "Live publication preserves exclusive Inventory mode",
+    "No dense/live JS or CSP errors"
+  ],
+  "errors": []
+}

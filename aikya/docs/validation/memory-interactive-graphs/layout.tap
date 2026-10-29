@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: architecture reserves space for every sibling and puts parents before children
+ok 1 - architecture reserves space for every sibling and puts parents before children
+  ---
+  duration_ms: 9.006
+  type: 'test'
+  ...
+# Subtest: collapsed folders keep descendants accessible when searching and report hidden counts
+ok 2 - collapsed folders keep descendants accessible when searching and report hidden counts
+  ---
+  duration_ms: 1.373875
+  type: 'test'
+  ...
+# Subtest: projection bounds visible nodes without losing the true omission counts or selection
+ok 3 - projection bounds visible nodes without losing the true omission counts or selection
+  ---
+  duration_ms: 0.929417
+  type: 'test'
+  ...
+# Subtest: cyclic and missing containment endpoints cannot trap a layout traversal
+ok 4 - cyclic and missing containment endpoints cannot trap a layout traversal
+  ---
+  duration_ms: 0.684208
+  type: 'test'
+  ...
+# Subtest: network separates 100 node centers and respects manually pinned positions
+ok 5 - network separates 100 node centers and respects manually pinned positions
+  ---
+  duration_ms: 37.768125
+  type: 'test'
+  ...
+# Subtest: network separates 500 node centers and respects manually pinned positions
+ok 6 - network separates 500 node centers and respects manually pinned positions
+  ---
+  duration_ms: 10.279625
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 110.359

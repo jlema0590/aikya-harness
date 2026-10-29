@@ -4,22 +4,23 @@ import hashlib
 from pathlib import Path
 from .contracts import encoded_snapshot
 
+RESOURCES = Path(__file__).resolve().parents[2] / 'resources/memory-viewer'
+SCRIPTS = ('layout.js', 'labels.js', 'camera.js', 'graph.js', 'viewer.js')
+
 
 def asset_fingerprint():
-    resources = Path(__file__).resolve().parents[2] / 'resources/memory-viewer'
     digest = hashlib.sha256()
-    for name in ('index.html.tmpl', 'viewer.css', 'viewer.js'):
-        digest.update((resources / name).read_bytes())
+    for name in ('index.html.tmpl', 'viewer.css', *SCRIPTS):
+        digest.update((RESOURCES / name).read_bytes())
     return digest.hexdigest()
 
 
 def render_html(snapshot, *, language='en', live=False):
     if language not in ('en', 'es'):
         raise ValueError('Unsupported viewer language')
-    resources = Path(__file__).resolve().parents[2] / 'resources/memory-viewer'
-    template = (resources / 'index.html.tmpl').read_text(encoding='utf8')
-    css = (resources / 'viewer.css').read_text(encoding='utf8')
-    script = (resources / 'viewer.js').read_text(encoding='utf8')
+    template = (RESOURCES / 'index.html.tmpl').read_text(encoding='utf8')
+    css = (RESOURCES / 'viewer.css').read_text(encoding='utf8')
+    script = '\n'.join((RESOURCES / name).read_text(encoding='utf8') for name in SCRIPTS)
     payload = encoded_snapshot(snapshot)
     digest = lambda text: "'sha256-" + base64.b64encode(hashlib.sha256(text.encode()).digest()).decode() + "'"
     csp = ("default-src 'none'; script-src " + digest(script) + '; style-src ' + digest(css)

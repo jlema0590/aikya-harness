@@ -19,15 +19,18 @@ const path = require('path');
   try {
     await page.goto(pathToFileURL(path.resolve(process.argv[2])).href);
     await page.waitForSelector('.node');
+    const spanish=await page.locator('html').getAttribute('lang')==='es';
     check('Version 2 navy theme is default, including on a light OS',
       await page.locator('body').evaluate(el => getComputedStyle(el).backgroundColor) === 'rgb(12, 22, 39)');
     await page.locator('#theme').click();
     check('Light theme switches the whole canvas',
       await page.locator('body').evaluate(el => getComputedStyle(el).backgroundColor) === 'rgb(243, 247, 252)');
-    check('Theme button describes the next action', await page.locator('#theme').textContent() === 'Dark theme');
+    check('Theme button describes the next action', await page.locator('#theme').textContent() === (spanish?'Tema oscuro':'Dark theme'));
     await page.locator('#theme').click();
     check('Theme can return to navy', await page.locator('body').evaluate(el => getComputedStyle(el).backgroundColor) === 'rgb(12, 22, 39)');
     check('Source overview accompanies the source tree', await page.locator('.sources #metrics strong').count() === 3);
+    const expand=page.locator('.node.folder .expand').first();
+    if(await expand.count()){await expand.focus();await expand.press('Enter');}
     const node = page.locator('.node.file').first();
     const label = await node.getAttribute('aria-label');
     await node.focus(); await node.press('Enter');
@@ -37,13 +40,16 @@ const path = require('path');
     check('Architecture lays out descendants after their parent', await page.evaluate(() => {
       const data = JSON.parse(document.querySelector('#snapshot').textContent);
       const visible = new Map([...document.querySelectorAll('.node')].map(el =>
-        [el.dataset.nodeId, Number(el.getAttribute('transform').match(/translate\(([^,]+)/)[1])]));
+        [el.dataset.nodeId, new DOMMatrix(getComputedStyle(el).transform).m41]));
       const edges = data.edges.filter(edge => edge.relation === 'contains' && visible.has(edge.source) && visible.has(edge.target));
       return edges.length > 0 && edges.every(edge => visible.get(edge.target) > visible.get(edge.source));
     }));
     check('Architecture never presents a fabricated execution trace', await page.locator('[data-view=flow]').count() === 0);
     await page.locator('[data-view=inventory]').click();
     check('Inventory includes navigable real sources', await page.locator('.inventory-row').count() > 0);
+    check('Inventory hides the SVG and receives real row clicks', !await page.locator('#graph').isVisible());
+    await page.locator('.inventory-row').first().click({timeout: 3000});
+    check('Inventory row click reaches the inspector', Boolean(await page.locator('#detail-type').textContent()));
     await page.locator('#search').fill('no_such_source_fixture_928');
     check('Empty searches explain the empty result', await page.locator('#empty').isVisible() && await page.locator('.inventory-row').count() === 0);
     await page.locator('#search').fill('');

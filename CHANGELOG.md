@@ -1,5 +1,13 @@
 # Changelog
 
+## v7.1.1 — 2026-10-29
+
+- Fix Memory Inventory exclusivity by reflecting the SVG hidden attribute correctly, so diagrams cannot cover rows or intercept clicks. Preserve real source inspection and 100-row pagination.
+- Replace the fixed-height architecture columns with a subtree-aware layout, progressive folder/file expansion and collision-aware labels. Keep graph nodes separated, expose grouped/drawing-limit counts and retain searchable access to every indexed source.
+- Add per-view pan, anchored zoom, fit and reset controls, individual node dragging, keyboard movement and cancellation. Retain manual positions during filtering and live publication within the open page; keep visual adjustments out of source data and signed artifacts.
+- Animate graph transitions and verified connections locally, with directed containment travel, neutral pulses for unknown directions and an 80-connection budget calculated before drawing truncation. Preserve static base lines, actual inspector endpoints, motion-off/reduced-motion behavior and background pausing.
+- Split viewer behavior into focused local resources embedded in one CSP-hashed offline script. Include every renderer asset in publication fingerprints; keep edited-report protection and unchanged-export idempotence. Add synthetic browser CI for both languages, dense/deep graphs, gestures, interrupted transitions and live updates, plus an interactive example and bilingual upgrade guidance.
+
 ## v7.1.0 — 2026-10-26
 
 - Unify clean Harness installation with the verified official Aikya Mods bundle. Default to global Harness + Flow + Usage; support optional BoxBot/all, individual selections, Harness-only installation, independent version pins and deterministic offline bundles. Resolve each published stable release once and retain versioned local marketplace sources without cloning or running upstream installers.

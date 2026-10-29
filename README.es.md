@@ -394,9 +394,28 @@ cambiar a tema claro. El panel de fuentes, el explorador central y el inspector
 combinan un grafo de conocimiento, una jerarquía de arquitectura basada en rutas
 y un inventario con búsqueda. Los colores distinguen carpetas, archivos,
 declaraciones y documentos/notas. Conserva filtros, selección y zoom al actualizarse
-y respeta el movimiento reducido. Consulta el
-[ejemplo generado](aikya/docs/examples/aikya-memory-generated.html). La arquitectura
+y respeta el movimiento reducido. Expande carpetas progresivamente, arrastra
+objetos para organizarlos o arrastra el fondo para navegar. Las flechas mueven el
+nodo enfocado y Escape cancela un arrastre. **Ajustar vista** encuadra el contenido;
+**Restablecer distribución** libera las posiciones manuales de la vista actual.
+Las posiciones pertenecen a la página abierta y se reinician al recargarla.
+
+El movimiento también traza las conexiones nuevas y anima sus relaciones, hasta
+80 conexiones simultáneas. Selecciona un componente o filtra un grafo denso para
+acotar el efecto. Las relaciones sin dirección conocida usan un pulso sin recorrido
+orientado. Con movimiento desactivado o reducido, todas las conexiones permanecen
+estáticas. Este flujo visual representa evidencia del índice, no ejecución medida.
+
+Inventario mantiene una vista exclusiva con 100 fuentes por página. Se indican los
+elementos agrupados y los límites de dibujo; la búsqueda y el Inventario permiten
+acceder a fuentes fuera del diagrama actual. Consulta el
+[ejemplo sintético interactivo](aikya/docs/examples/aikya-memory-interactive.html). La arquitectura
 muestra estructura verificable; el análisis de flujos de ejecución queda pendiente.
+
+Después de actualizar Harness, regenera los informes con `/aikya-memory --refresh`
+y vuelve a abrirlos. Reinicia un observador/servidor antiguo para cargar el nuevo
+visor. El HTML integra sus scripts y estilos: recargar una instantánea antigua
+no la actualiza. Se mantienen los controles de propiedad de informes personalizados.
 
 Indexar y exportar no llama a modelos ni consume tokens de API; utiliza CPU y disco
 locales. Las consultas posteriores a la IA conservan su consumo habitual. Python

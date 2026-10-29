@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import re
 import tempfile
+import shutil
 import unittest
 from unittest.mock import patch
 
@@ -45,6 +46,33 @@ class MemoryViewerTests(unittest.TestCase):
         self.assertEqual(first.published_generation, second.published_generation)
         snapshot = self.collect(self.root)
         self.assertFalse(any('memory/view/' in n.get('path', '') or n.get('path') == 'aikya/docs/indice.md' for n in snapshot.nodes))
+
+    def test_layout_asset_update_republishes_matching_pair_without_data_changes(self):
+        from aikya.memory.viewer import render
+        from aikya.memory.viewer.publication import read_publication
+        assets = tempfile.TemporaryDirectory()
+        self.addCleanup(assets.cleanup)
+        resources = Path(assets.name) / 'renderer'
+        shutil.copytree(Path(render.__file__).resolve().parents[2] / 'resources/memory-viewer', resources)
+        with patch.object(render, 'RESOURCES', resources, create=True):
+            first = self.export(self.root, refresh=True)
+            asset = resources / 'layout.js'
+            asset.write_text(asset.read_text() + '\n/* new layout revision */\n')
+            second = self.export(self.root)
+            self.assertNotEqual(first.published_generation, second.published_generation)
+            snapshot, generation = read_publication(self.root)
+            self.assertEqual(second.published_generation, generation)
+            raw = (self.root / second.html_path).read_bytes()
+            html = raw.decode('utf8')
+            self.assertIn('new layout revision', html)
+            script = re.search(r'<script>(.*?)</script>', html, re.S)[1]
+            import base64
+            digest = base64.b64encode(hashlib.sha256(script.encode()).digest()).decode()
+            self.assertIn("'sha256-" + digest + "'", html)
+            self.assertIn(hashlib.sha256(raw).hexdigest(), (self.root / second.report_path).read_text())
+            before = (self.root / second.html_path).stat().st_mtime_ns
+            self.export(self.root)
+            self.assertEqual(before, (self.root / second.html_path).stat().st_mtime_ns)
 
     def test_dry_run_never_writes_and_rejects_refresh(self):
         before = {p.relative_to(self.root): p.read_bytes() for p in self.root.rglob('*') if p.is_file()}
