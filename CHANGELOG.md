@@ -1,5 +1,11 @@
 # Changelog
 
+## v7.2.1 — 2026-10-29
+
+- Ship the previously unmerged native Flow execution bridge on the 7.2 runtime: mobile skill hooks, explicit phase commands, analyses, worktrees and parallel child executions share a correlated invocation.
+- Preserve 7.2 task context, compaction checkpoints, action recipes and scoped check evidence bindings.
+- Verify mobile-skill hook publication and phase updates through registered runtimes and the built wheel in global/project scopes, without checkout imports.
+
 ## v7.2.0 — 2026-10-29
 
 - Fix clean installer CI by installing the built local wheel before preparing pinned parser bundles.

@@ -123,9 +123,25 @@ Use `--mods none` to omit the Mods bundle. Initialized projects retain reference
 interpreters. On Windows, the standalone bootstrap can finish cleanup if a
 management executable is in use.
 
-Installing Flow does not connect it to execution evidence automatically. Use
-`/aikya-flow connect <cache-root>` in the current session; `doctor` reports that
-session connection as not checked. Flow and Usage do not replace your statusLine.
+Harness 7.2.1 includes the automatic execution bridge for Flow 0.1.3+ (Flow 0.1.4
+also diagnoses an incompatible producer). Harness 7.2.0 lacks that bridge even
+when Flow is current. Update the effective global or project Harness runtime and
+restart Claude Code before invoking `/aikya-mobile-feature` or `/aikya-analyze`.
+A project runtime can take precedence over the global registration. Semantic
+phases still require explicit transitions and evidence; Bash permission waits
+remain visible and never certify success. `doctor` reports the native session
+connection as not checked. Flow and Usage do not replace your statusLine.
+
+After Harness 7.2.1 is published, update the matching scope:
+
+```sh
+aikya-manage update --version 7.2.1 --scope global --mods none
+# For an existing project registration instead:
+aikya-manage update --version 7.2.1 --scope project --target /absolute/path/to/project --mods none
+```
+
+Update Flow separately, then restart Claude Code and check `/aikya-flow status`.
+`Connected` confirms a correlated snapshot; `No evidence` never means success.
 
 **Contributors:** create a virtual environment, install `build`, `setuptools>=77`
 and `wheel`, then run `python -m pip install --no-build-isolation --no-deps -e .`.
