@@ -11,9 +11,10 @@ from aikya.workflows.sdd.engine import (
     status_data, require_approved_task, validate_completion, validate, create_document,
 )
 
-def main(argv=None):
+def _main(argv=None):
     parser=argparse.ArgumentParser(description="Aikya Spec-Driven Engineering")
     parser.add_argument("action",choices=("new","clarify","approve","plan","tasks","worklist","progress","verify","status","list","lint","completion","authorize","templates","document"))
+    parser.add_argument("--summary",action="store_true",help="Compact response with blockers and omissions")
     parser.add_argument("--root",type=Path,default=Path.cwd())
     parser.add_argument("--template",choices=tuple(catalog()))
     parser.add_argument("--approved",action="store_true")
@@ -82,3 +83,9 @@ def main(argv=None):
     except (SddError,OSError,UnicodeError,TypeError,ValueError,KeyError) as exc:
         print("ERROR SDD: "+str(exc),file=sys.stderr)
         return 2
+def main(argv=None):
+    selected=sys.argv[1:] if argv is None else list(argv)
+    if '--summary' in selected:
+        from aikya.cli.summary import run_compact
+        return run_compact(_main,[x for x in selected if x!='--summary'])
+    return _main(selected)

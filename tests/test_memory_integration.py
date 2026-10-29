@@ -134,7 +134,7 @@ class MemoryIntegrationTests(unittest.TestCase):
             result = run(root, config(), ObservedRuntime(), approved=True)
             self.assertEqual('completed', result['status'], result.get('reason'))
             prompt = prompts[0]
-            self.assertIn('Verified code index context', prompt)
+            self.assertIn('Verified bounded source', prompt)
             self.assertIn('class Value:', prompt)
             self.assertNotIn('ValueOutside', prompt)
 

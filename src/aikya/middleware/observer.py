@@ -33,7 +33,9 @@ def observe(context,event):
         if active and active['status'] not in state.TERMINAL:
             if active['command']==command and (hook=='PreToolUse' or (invocation_key and active.get('invocation_key')==invocation_key) or (not invocation_key and not active['history'] and time.time()-active['started_at']<2)):return active
             if hook=='PreToolUse':return state.record_actor({**context,'run_id':active['run_id']},'skill:'+command,{'actor_type':'nested-skill','status':'invoked','source':'hook'})
-        return state.start_run(context,command,methodology=project_method(context['root']))
+        prompt=event.get('prompt','').strip()
+        inspect_only=command in ('aikya-models','aikya-quality','aikya-tests','aikya-verify') and prompt in ('/'+command,'/'+command+' --inspect','/'+command+' --dry-run','/'+command+' status')
+        return state.start_run(context,command,methodology=project_method(context['root']),action='inspect' if inspect_only else None)
     active=state.read_active(context)
     if not active:return None
     if invocation_key and active.get('invocation_key') and invocation_key!=active['invocation_key']:return active
@@ -60,7 +62,15 @@ def main(argv=None):
             payload=json.load(sys.stdin)
             if not isinstance(payload,dict):raise ValueError('Invalid hook payload')
             c={'root':str(Path(payload.get('cwd') or a.root).resolve()),'session_id':payload.get('session_id') or a.session}
-            observe(c,payload);return 0
+            execution=observe(c,payload)
+            if payload.get('hook_event_name') in ('PreCompact','PostCompact'):
+                from aikya.middleware.compaction import checkpoint
+                checkpoint(c['root'],payload,execution)
+                return 0
+            from aikya.middleware.task_context import for_prompt
+            supplied=for_prompt(c['root'],payload,execution)
+            if supplied:print(json.dumps(supplied,ensure_ascii=False))
+            return 0
         else:
             active=state.read_active(c)
             if not active:raise ValueError('No active Aikya execution')

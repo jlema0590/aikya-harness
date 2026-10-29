@@ -11,20 +11,23 @@ def verify_assets(directory, version):
         raise ValueError('Invalid release version')
     names = {'aikya_harness-' + version + '-py3-none-any.whl', 'aikya_harness-' + version + '.tar.gz',
              'aikya-harness-v' + version + '.zip', 'aikya-bootstrap.pyz', 'install.sh', 'install.ps1'}
+    from aikya.installation.bootstrap.code_index import PINS
+    def parser_asset(name):
+        return any(name.startswith(k.replace('-','_')+'-'+v+'-') and name.endswith('.whl') for k,v in PINS.items())
     entries = {}
     for line in (directory / 'SHA256SUMS').read_text(encoding='ascii').splitlines():
         match = re.fullmatch(r'([a-f0-9]{64})  ([A-Za-z0-9_.-]+)', line)
-        if not match or match[2] in entries or match[2] not in names:
+        if not match or match[2] in entries or (match[2] not in names and not parser_asset(match[2])):
             raise ValueError('Invalid release manifest entry')
         entries[match[2]] = match[1]
-    if set(entries) != names:
+    if not names<=set(entries):
         raise ValueError('Incomplete installer release manifest')
     for name, digest in entries.items():
         path = directory / name
         if path.is_symlink() or not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != digest:
             raise ValueError('Invalid release asset: ' + name)
     verify_wheel(directory / ('aikya_harness-' + version + '-py3-none-any.whl'), version)
-    return sorted(names) + ['SHA256SUMS']
+    return sorted(entries) + ['SHA256SUMS']
 
 
 def compare_assets(candidate, existing, version):

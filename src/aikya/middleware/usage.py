@@ -54,6 +54,8 @@ def summarize(paths, *, event_filter=None):
                         continue
                     if not isinstance(event, dict):
                         continue
+                    if event_filter is not None and not event_filter(event,path):
+                        continue
                     msg = event.get("message")
                     if not isinstance(msg, dict):
                         continue
@@ -73,7 +75,6 @@ def summarize(paths, *, event_filter=None):
                         stop_blocks += 1
                     if msg.get("role") != "assistant":
                         continue
-                    if event_filter is not None and not event_filter(event,path):continue
                     usage = msg.get("usage")
                     if not isinstance(usage, dict):
                         missing_usage += 1

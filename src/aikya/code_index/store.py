@@ -65,6 +65,8 @@ class IndexStore:
             return IndexSnapshot(int(meta['generation']), meta['status'], **rows)
 
     def status(self):
+        from .coverage import summarize
         snapshot = self.read_snapshot()
         return {'generation': snapshot.generation, 'status': snapshot.status,
-                'files': len(snapshot.files), 'symbols': len(snapshot.symbols)}
+                'files': len(snapshot.files), 'symbols': len(snapshot.symbols),
+                'coverage': {'languages': summarize(snapshot.files, snapshot.symbols)}}

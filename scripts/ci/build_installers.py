@@ -9,10 +9,15 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[2]
 
 
-def build(version, output):
+def build(version, output, parser_wheels=None):
     if not re.fullmatch(r'(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)', version):
         raise ValueError('An explicit numeric version is required')
     output.mkdir(parents=True, exist_ok=True)
+    if parser_wheels is not None:
+        import shutil
+        for wheel in sorted(Path(parser_wheels).glob('tree_sitter*.whl')):
+            if wheel.is_symlink():raise ValueError('Symlinked parser wheel')
+            shutil.copyfile(wheel, output/wheel.name)
     source = ROOT / 'src/aikya/installation/bootstrap'
     entries = {'__main__.py': b'from bootstrap.cli import main\nraise SystemExit(main())\n'}
     entries.update({'bootstrap/' + p.name: p.read_bytes() for p in sorted(source.glob('*.py'))})
@@ -41,8 +46,9 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--version', required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--parser-wheels', type=Path, help='Reviewed pinned binary wheel directory for release/offline assets')
     args = parser.parse_args()
-    print('\n'.join(build(args.version, args.output.resolve())))
+    print('\n'.join(build(args.version, args.output.resolve(), args.parser_wheels)))
 
 
 if __name__ == '__main__':

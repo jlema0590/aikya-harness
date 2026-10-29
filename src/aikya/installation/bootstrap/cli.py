@@ -29,6 +29,8 @@ def install_harness(args, root, receipt_file, locked=False):
     args.version = download.resolve_version(args.version, args.offline_dir)
     environment.check_python(args.python)
     old = json.loads(receipt_file.read_text(encoding='utf8')) if receipt_file.exists() else None
+    from . import code_index
+    selected_index = code_index.selection(getattr(args, 'code_index', None), old, args.action)
     owned_locations = locations(args.scope, args.target)
     state.snapshot(owned_locations)  # Validate every managed path before provisioning.
     if owned_locations[0].exists() and old is None:
@@ -39,12 +41,14 @@ def install_harness(args, root, receipt_file, locked=False):
     with tempfile.TemporaryDirectory(prefix='aikya-release-') as temporary:
         assets = download.fetch_release(args.version, Path(temporary), args.offline_dir)
         wheel = assets['wheel']; environment.verify_wheel(wheel, args.version)
+        parser_wheels = code_index.prepare(selected_index, args.version, Path(temporary)/'parsers', args.offline_dir)
         with nullcontext() if locked else state.installation_lock(root):
             if (root / 'pending.json').exists():
                 raise ValueError('Interrupted operation needs review; run aikya-manage doctor')
             old = json.loads(receipt_file.read_text(encoding='utf8')) if receipt_file.exists() else None
             candidate = root / 'versions' / args.version / uuid.uuid4().hex
             python = environment.create_environment(candidate, args.python, wheel)
+            code_index.provision(python, selected_index, parser_wheels)
             registration(python, args.scope, args.target, True)
             commands = json.loads(environment.run(python, '-c', 'import json;from aikya.cli.commands import BOOTSTRAP_COMMANDS;print(json.dumps(list(BOOTSTRAP_COMMANDS)))'))
             owned_locations = locations(args.scope, args.target, commands)
@@ -73,7 +77,7 @@ def install_harness(args, root, receipt_file, locked=False):
                 receipt = {'schema': 1, 'version': args.version, 'environment': str(candidate), 'python': str(python),
                            'scope': args.scope, 'target': str(args.target) if args.target else None,
                            'source': download.REPOSITORY + '/releases/download/v' + args.version,
-                           'wheel_sha256': hashlib.sha256(wheel.read_bytes()).hexdigest(),
+                           'wheel_sha256': hashlib.sha256(wheel.read_bytes()).hexdigest(), 'code_index': selected_index,
                            'before': original, 'after': after, 'commands': commands, 'settings_changes': settings_changes}
                 state.write_json(receipt_file, receipt)
                 state.activate(root, {key: receipt[key] for key in ('version', 'environment', 'python')})
@@ -143,7 +147,7 @@ def main(argv: list[str] | None = None) -> int:
         if args.action == 'doctor':
             from .coordinator import component_status
             statuses = component_status(root)
-            print(json.dumps({'components': statuses, 'root': str(root), 'installed': (root / 'current.json').is_file(),
+            print(json.dumps({'code_index':__import__(__package__+'.code_index',fromlist=['doctor']).doctor(root), 'components': statuses, 'root': str(root), 'installed': (root / 'current.json').is_file(),
                               'pending': (root / 'pending.json').exists(), 'cleanup_pending': (root / 'cleanup-pending.json').exists(),
                               'project_references': state.active_references(root),
                               'flow_connection': {'mode': 'session', 'status': 'not-checked', 'command': '/aikya-flow connect <cache-root>'}}))

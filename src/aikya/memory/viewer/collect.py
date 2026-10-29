@@ -42,6 +42,7 @@ def collect_snapshot(root, *, options=None, now=None):
             index = IndexStore(root).read_snapshot()
             snapshot.index_generation = index.generation
             snapshot.coverage['code_index'] = 'available' if index.status == 'complete' else index.status
+            from aikya.code_index.coverage import summarize
             verified = {}
             for file in index.files:
                 path = file['path']
@@ -58,6 +59,9 @@ def collect_snapshot(root, *, options=None, now=None):
                 snapshot.nodes.append({'id': 'file:' + path, 'type': 'file', 'label': Path(path).name,
                                        'path': path, 'source_hash': file['sha256'], 'status': status,
                                        'details': {'parser': file['parser_id'], 'coverage': file['status']}})
+            snapshot.coverage['languages'] = summarize(
+                [{**f,'status':f['status'] if verified[f['path']] else 'not_revalidated'} for f in index.files if f['path'] in verified],
+                [s for s in index.symbols if verified.get(s['path'])])
             for symbol in index.symbols:
                 path = symbol['path']
                 if not verified.get(path):

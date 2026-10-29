@@ -28,7 +28,8 @@ def execute(args, root, receipt_file):
         if plan.selected:mods.resolve_version(args.mods_version,args.offline_dir)
     if args.dry_run:
         from .options import preview
-        print(json.dumps(preview(args,root,previous)))
+        previous_harness=json.loads(receipt_file.read_text()) if receipt_file.exists() else None
+        print(json.dumps(preview(args,root,previous,previous_harness)))
         return 0
     adapter = Claude(args.target) if plan.selected else None
     if adapter:adapter.preflight()
@@ -40,6 +41,11 @@ def execute(args, root, receipt_file):
     with tempfile.TemporaryDirectory(prefix='aikya-components-') as temporary:
         stage = Path(temporary).resolve()
         wheel = download.fetch_release(version,stage/'harness',args.offline_dir)['wheel']
+        from . import code_index
+        previous_harness = json.loads(receipt_file.read_text()) if receipt_file.exists() else None
+        selected_index = code_index.selection(getattr(args, 'code_index', None), previous_harness, args.action)
+        parser_wheels = code_index.prepare(selected_index, version, stage/'harness', args.offline_dir)
+        args.code_index = selected_index
         environment.verify_wheel(wheel,version)
         bundle = None
         if adapter:
@@ -53,9 +59,11 @@ def execute(args, root, receipt_file):
         from . import cli
         args.version=version; args.offline_dir=stage/'harness'
         import hashlib
-        (stage/'harness/SHA256SUMS').write_text(hashlib.sha256(wheel.read_bytes()).hexdigest()+'  '+wheel.name+'\n')
+        (stage/'harness/SHA256SUMS').write_text(''.join(hashlib.sha256(p.read_bytes()).hexdigest()+'  '+p.name+'\n' for p in [wheel, *parser_wheels]))
         with state.installation_lock(root):
             current = json.loads(component_file.read_text(encoding='utf8')) if component_file.exists() else None
+            current_harness=json.loads(receipt_file.read_text()) if receipt_file.exists() else None
+            if current_harness != previous_harness:raise ValueError('Harness parser selection changed during preparation; retry')
             if current != previous:
                 raise ValueError('Component selection changed during preparation; retry')
             if bundle:

@@ -50,6 +50,8 @@ def main():
     files = sorted(args.path.rglob("*.jsonl")) if args.path.is_dir() else [args.path]
     from aikya.middleware.metrics import aggregate_usage,budget_percentage
     report = aggregate_usage(files,args.start_utc,args.end_utc,args.session_id)
+    from aikya.quality.efficiency import summarize_task
+    report['task_measurement'] = summarize_task(files, session_id=args.session_id, start_utc=args.start_utc, end_utc=args.end_utc)
     if args.budget_tokens is not None:
         total=sum(report["totals"].get(k,0) for k in KEYS)
         report["local_budget"]={"recorded_tokens":total,"budget_tokens":args.budget_tokens,"used_percentage":budget_percentage(total,args.budget_tokens),"note":"Explicit local budget; not account quota or unique context size"}
