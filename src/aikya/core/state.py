@@ -93,8 +93,8 @@ def read_snapshot(context):
         if not isinstance(history,list) or len(history)>500 or not isinstance(seen,list) or len(seen)>2000 or not isinstance(state.get('actors'),dict) or type(state.get('revision')) is not int or state['revision']<0 or state.get('phase') not in (*PHASES,None) or state.get('status') not in STATES:raise ValueError('Invalid execution snapshot')
     return state
 
-def start_run(context,command,*,methodology='odd',preview=False,security_required=None,review_required=False):
-    selected=recipe(command,methodology,preview=preview,security_required=security_required,review_required=review_required)
+def start_run(context,command,*,methodology='odd',preview=False,security_required=None,review_required=False,action=None):
+    selected=recipe(command,methodology,preview=preview,security_required=security_required,review_required=review_required,action=action)
     folder=directory(context,True);ident=uuid.uuid4().hex;now=time.time()
     phases={p:{'status':'pending' if p in selected['required'] else 'skipped',
                'reason':'' if p in selected['required'] else 'Not applicable to this invocation','evidence':[],'actors':{}} for p in PHASES}
@@ -135,7 +135,7 @@ def record_event(context,event):
     clean_evidence=[]
     for value in evidence:
         if not isinstance(value,dict):raise ValueError('Invalid evidence metadata')
-        clean_evidence.append({k:(v if type(v) is int else text(v,500)) for k,v in value.items() if k in ('kind','result','check','exit_code','reviewer','candidate','path')})
+        clean_evidence.append({k:(v if type(v) is int else text(v,500)) for k,v in value.items() if k in ('kind','result','check','exit_code','reviewer','candidate','path','binding')})
     ident=event.get('id') or uuid.uuid4().hex
     if not isinstance(ident,str) or not re.fullmatch(r'[\w-]{1,100}',ident):raise ValueError('Invalid event ID')
     folder=directory(context,True)

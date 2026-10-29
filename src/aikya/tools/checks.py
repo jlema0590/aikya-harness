@@ -25,6 +25,8 @@ def run(config_path=CONFIG):
         print(f'ERROR configuración: {exc}')
         return 2
 
+    from aikya.tools.check_evidence import binding, reusable, previous
+    prior_evidence=previous(ROOT)
     try:
         from aikya.middleware.events import CheckEvents
         observer=CheckEvents(ROOT)
@@ -66,10 +68,15 @@ def run(config_path=CONFIG):
         }
         if cmd == managed.get(name):
             cmd = [sys.executable, *cmd[1:]]
+        candidate_binding=binding(ROOT,check)
+        if any(e.get('check')==name and reusable(e,candidate_binding) for e in prior_evidence):
+            if observer:observer.process(name,0,candidate_binding)
+            print(f'{name}: PASSED (reused matching deterministic evidence)')
+            continue
         print(f'{name}: RUNNING {cmd!r}', flush=True)
         try:
             result = subprocess.run(cmd, cwd=cwd, check=False, timeout=300)
-            if observer:observer.process(name,result.returncode)
+            if observer:observer.process(name,result.returncode,candidate_binding if binding(ROOT,check)==candidate_binding else None)
             if result.returncode != 0:
                 print(f'{name}: FAILED (exit {result.returncode})')
                 failures += 1

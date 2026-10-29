@@ -4,13 +4,14 @@ PHASES=('explore','plan','implement','validate','security','review')
 LABELS={name:name.title() for name in PHASES}
 READ_ONLY=frozenset(('aikya-tokens','aikya-skills-status','aikya-skills-plan','aikya-sdd-status','aikya-doctor'))
 
-def recipe(command: str, methodology='odd', *, preview=False, security_required=None, review_required=False):
+def recipe(command: str, methodology='odd', *, preview=False, security_required=None, review_required=False, action=None):
     from aikya.cli.commands import BOOTSTRAP_COMMANDS
     if not isinstance(command,str):raise ValueError('Invalid command')
     command=command.removeprefix('/')
     if command not in BOOTSTRAP_COMMANDS:raise ValueError('Unknown Aikya command')
     method=normalize_methodology(methodology)
-    read_only=preview or command in READ_ONLY or command=='aikya-arc-review'
+    if action not in (None,'inspect','preview','write','evidence'):raise ValueError('Invalid action mode')
+    read_only=preview or action in ('inspect','preview') or (action is None and (command in READ_ONLY or command=='aikya-arc-review'))
     required=['explore']
     if command not in READ_ONLY:required.append('plan')
     if not read_only:required.append('implement')
