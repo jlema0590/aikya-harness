@@ -174,7 +174,7 @@
       const item=text('span',label);item.prepend(text('strong',String(count)));$('metrics').append(item);
     }
     const partial=Object.values(data.coverage).some(v=>['partial','invalid','missing'].includes(v))||data.diagnostics.length;
-    $('coverage').textContent=(partial?words.partial:words.verified)+' · '+Object.entries(data.coverage).map(([k,v])=>k+': '+v).join(' / ');
+    $('coverage').textContent=(partial?words.partial:words.verified)+' · '+Object.entries(data.coverage).map(([k,v])=>k+': '+(typeof v==='object'?Object.entries(v).map(([ext,c])=>ext+' '+c.indexed+' indexed / '+c.file_only+' file only / '+c.error+' errors').join('; '):v)).join(' / ');
     $('snapshot-time').textContent=new Date(data.generated_at*1000).toLocaleString()+' · '+words.snapshot;
     options();detail();render();
   }

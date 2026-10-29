@@ -10,8 +10,8 @@ from ..policy import content_hash
 
 PINS = {'tree-sitter': '0.25.2', 'tree-sitter-java': '0.23.5',
         'tree-sitter-javascript': '0.25.0', 'tree-sitter-typescript': '0.23.2',
-        'tree-sitter-c-sharp': '0.23.1', 'tree-sitter-go': '0.25.0'}
-LANGUAGES = {'.java': ('java', 'language'), '.js': ('javascript', 'language'),
+        'tree-sitter-c-sharp': '0.23.1', 'tree-sitter-go': '0.25.0', 'tree-sitter-dart': '0.1.0'}
+LANGUAGES = {'.dart': ('dart', 'language'), '.java': ('java', 'language'), '.js': ('javascript', 'language'),
              '.jsx': ('javascript', 'language'), '.mjs': ('javascript', 'language'),
              '.cjs': ('javascript', 'language'), '.ts': ('typescript', 'language_typescript'),
              '.tsx': ('typescript', 'language_tsx'), '.cs': ('c_sharp', 'language'), '.go': ('go', 'language')}

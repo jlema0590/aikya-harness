@@ -42,6 +42,8 @@ def collect_snapshot(root, *, options=None, now=None):
             index = IndexStore(root).read_snapshot()
             snapshot.index_generation = index.generation
             snapshot.coverage['code_index'] = 'available' if index.status == 'complete' else index.status
+            from aikya.code_index.coverage import summarize
+            snapshot.coverage['languages'] = summarize(index.files, index.symbols)
             verified = {}
             for file in index.files:
                 path = file['path']
