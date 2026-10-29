@@ -22,8 +22,14 @@ def resolved_answers(args, target:Path) -> Path:
     return path
 
 
-def main(argv=None):
+def _main(argv=None):
     selected=sys.argv[1:] if argv is None else list(argv)
+    if selected and selected[0]=='context-policy':
+        from aikya.middleware.compaction import main as compaction_main
+        return compaction_main(selected[1:])
+    if selected and selected[0]=='context':
+        from aikya.context.cli import main as context_main
+        return context_main(selected[1:])
     if selected and selected[0]=='memory':
         from aikya.cli.memory import main as memory_main
         return memory_main(selected[1:])
@@ -166,5 +172,12 @@ def main(argv=None):
             print('NOTICE: customized overview preserved: '+str(exc), file=sys.stderr)
         print('\nAikya installed. Resolve outstanding SDK requirements before running project generators.')
     return result
+
+def main(argv=None):
+    selected=sys.argv[1:] if argv is None else list(argv)
+    if '--summary' in selected:
+        from aikya.cli.summary import run_compact
+        return run_compact(_main,[x for x in selected if x!='--summary'])
+    return _main(selected)
 
 if __name__=='__main__':sys.exit(main())
