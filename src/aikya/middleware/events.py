@@ -11,8 +11,8 @@ class CheckEvents:
                 self.context['run_id']=active['run_id'];self.generation=active.get('candidate_generation',0);self.enabled=True;self.record('running')
         except (ValueError,OSError,TypeError,KeyError):pass
         self.evidence=[]
-    def process(self,name,code):
-        self.evidence.append({'kind':'process','check':name[:180],'exit_code':code})
+    def process(self,name,code,binding=None):
+        self.evidence.append({'kind':'process','check':name[:180],'exit_code':code, **({'binding':binding} if binding else {})})
     def record(self,status,reason=''):
         if not self.enabled:return
         try:state.record_event(self.context,{'phase':'validate','status':status,'reason':reason,'activity':'Running configured quality checks','candidate_generation':self.generation,'actor_id':self.actor,'source':'quality-runner','evidence':getattr(self,'evidence',[])[:40]})

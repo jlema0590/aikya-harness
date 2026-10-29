@@ -1,0 +1,1 @@
+struct User { func save() {} }

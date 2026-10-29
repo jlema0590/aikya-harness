@@ -1,0 +1,1838 @@
+{
+  "date": "2026-10-29",
+  "revision": "512dea2",
+  "scope": "28 canonical Harness commands; Mods commands are a separate registry. All execution uses disposable synthetic projects.",
+  "method": {
+    "instructions": "Literal shipped characters divided by 3.5, rounded: static proxy, not provider tokenizer. Selected command bodies are not all loaded at once.",
+    "outputs": "Maximum stdout plus stderr bytes of one local backend contract invocation, not total command token use. Cases include negative paths.",
+    "telemetry": "Reused authorized jourpass_app receipt only; chronological windows are not causal per-command billing. Unmeasured command usage is null, never zero.",
+    "tool": "Temporary MeasuredBattery subclass of scripts/ci/command_acceptance.py; no repository source changes.",
+    "measurement_script_sha256": "77f7e1c3cf355a28c5cd34d48b0ce7102c5f2151be8ff892c882191b14832235"
+  },
+  "validation": {
+    "commands": 28,
+    "process_checks": 52,
+    "expected_negative_cases": 17,
+    "valid": true,
+    "live_model_execution": false,
+    "third_party_installation": false,
+    "infrastructure_deployment": false,
+    "example_profiles_passed": 14,
+    "agent_skill_metadata": "VALID"
+  },
+  "commands": [
+    {
+      "command": "aikya-init",
+      "chars": 5567,
+      "proxy_tokens": 1591,
+      "observer_body_chars": 1658,
+      "observer_body_share_pct": 29.78,
+      "required_phases": [
+        "explore",
+        "plan",
+        "implement",
+        "validate",
+        "security"
+      ],
+      "loop_option": false,
+      "backend_contracts_passed": true,
+      "backend_cases": 5,
+      "peak_output_bytes": 48477,
+      "peak_output_chars": 48477,
+      "observed_factor": "Interview, toolchain report and complete managed-asset lists; local install output is large.",
+      "provider_usage_by_command": null,
+      "exact_provider_quota_delta": null,
+      "checks": [
+        {
+          "support": "-m aikya",
+          "arguments": [
+            "init",
+            "--target",
+            "<fixture>/odd",
+            "--answers",
+            "<source>/examples/next-react/answers.json",
+            "--methodology",
+            "odd",
+            "--docs-lang",
+            "en",
+            "--external",
+            "skip"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "c70c7d2f73ae94413840a0a5a20229b463a41b17d40884e3f935bbe08426cfe8",
+          "asserted_output": null,
+          "stdout_bytes": 47920,
+          "stdout_chars": 47920,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 47920,
+          "output_lines": 702,
+          "elapsed_ms": 2919.65
+        },
+        {
+          "support": "-m aikya",
+          "arguments": [
+            "init",
+            "--target",
+            "<fixture>/sdd",
+            "--answers",
+            "<source>/examples/next-react/answers.json",
+            "--methodology",
+            "sdd",
+            "--docs-lang",
+            "en",
+            "--external",
+            "skip"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "9e9dbcf406801ecfd6c7efc61dc88f77ab2f7462d932f40d02cae28537ff6c79",
+          "asserted_output": null,
+          "stdout_bytes": 47995,
+          "stdout_chars": 47995,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 47995,
+          "output_lines": 704,
+          "elapsed_ms": 3053.09
+        },
+        {
+          "support": "-m aikya",
+          "arguments": [
+            "init",
+            "--target",
+            "<fixture>/mobile",
+            "--answers",
+            "<source>/examples/android-kotlin/answers.json",
+            "--methodology",
+            "odd",
+            "--docs-lang",
+            "en",
+            "--external",
+            "skip"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "41e7e0e398835174b215615a4927bad20df8653193c46b1afb91a335fc03b108",
+          "asserted_output": null,
+          "stdout_bytes": 48477,
+          "stdout_chars": 48477,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 48477,
+          "output_lines": 714,
+          "elapsed_ms": 2824.43
+        },
+        {
+          "support": "-m aikya",
+          "arguments": [
+            "init",
+            "--target",
+            "<fixture>/infra",
+            "--answers",
+            "<source>/examples/infra-terraform-only/answers.json",
+            "--methodology",
+            "odd",
+            "--docs-lang",
+            "en",
+            "--external",
+            "skip"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "f1158e1a9ec4f0c0493a9e0e50a04683c52c9e75451ffc8d1b2e83fd7e742203",
+          "asserted_output": null,
+          "stdout_bytes": 47017,
+          "stdout_chars": 47017,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 47017,
+          "output_lines": 688,
+          "elapsed_ms": 2744.19
+        },
+        {
+          "support": "-m aikya",
+          "arguments": [
+            "init",
+            "--target",
+            "<fixture>/odd",
+            "--answers",
+            "<fixture>/existing-answers.json",
+            "--methodology",
+            "odd"
+          ],
+          "exit": 2,
+          "expected_exit": 2,
+          "output_sha256": "944988a183f3f07c9829c79b085b382ac1bb21612bcc7503c8fb10ba14c55ec4",
+          "asserted_output": "only for new projects",
+          "stdout_bytes": 0,
+          "stdout_chars": 0,
+          "stderr_bytes": 64,
+          "stderr_chars": 64,
+          "combined_chars": 64,
+          "output_lines": 1,
+          "elapsed_ms": 304.8
+        }
+      ]
+    },
+    {
+      "command": "aikya-analyze",
+      "chars": 5836,
+      "proxy_tokens": 1667,
+      "observer_body_chars": 1658,
+      "observer_body_share_pct": 28.41,
+      "required_phases": [
+        "explore",
+        "plan",
+        "implement",
+        "validate",
+        "security"
+      ],
+      "loop_option": false,
+      "backend_contracts_passed": true,
+      "backend_cases": 1,
+      "peak_output_bytes": 48637,
+      "peak_output_chars": 48637,
+      "observed_factor": "Discovery/adoption and complete operation lists; deep architectural/security work may add agents.",
+      "provider_usage_by_command": null,
+      "exact_provider_quota_delta": null,
+      "checks": [
+        {
+          "support": "-m aikya",
+          "arguments": [
+            "analyze",
+            "--target",
+            "<fixture>/existing",
+            "--approved",
+            "--methodology",
+            "sdd",
+            "--docs-lang",
+            "es"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "cd8ba39f60111b297acadb7cb585ee1c0ab419bfabeb2bf5629499fd64087391",
+          "asserted_output": null,
+          "stdout_bytes": 48637,
+          "stdout_chars": 48637,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 48637,
+          "output_lines": 649,
+          "elapsed_ms": 3794.33
+        }
+      ]
+    },
+    {
+      "command": "aikya-answers",
+      "chars": 3190,
+      "proxy_tokens": 911,
+      "observer_body_chars": 1658,
+      "observer_body_share_pct": 51.97,
+      "required_phases": [
+        "explore",
+        "plan",
+        "implement",
+        "validate",
+        "security"
+      ],
+      "loop_option": false,
+      "backend_contracts_passed": true,
+      "backend_cases": 1,
+      "peak_output_bytes": 2929,
+      "peak_output_chars": 2923,
+      "observed_factor": "Reviewed declarative profile and adoption preview; no technical interview is required.",
+      "provider_usage_by_command": null,
+      "exact_provider_quota_delta": null,
+      "checks": [
+        {
+          "support": "-m aikya",
+          "arguments": [
+            "answers",
+            "--target",
+            "<fixture>/answers-preview",
+            "--answers",
+            "<source>/examples/next-react/answers.json",
+            "--methodology",
+            "odd",
+            "--dry-run"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "add79dcb54a2827bb434b803f5e1c54c2cd3f11ccdd2da0ee641c3f297b53502",
+          "asserted_output": null,
+          "stdout_bytes": 2929,
+          "stdout_chars": 2923,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 2923,
+          "output_lines": 96,
+          "elapsed_ms": 1963.45
+        }
+      ]
+    },
+    {
+      "command": "aikya-doctor",
+      "chars": 2636,
+      "proxy_tokens": 753,
+      "observer_body_chars": 1658,
+      "observer_body_share_pct": 62.9,
+      "required_phases": [
+        "explore",
+        "validate"
+      ],
+      "loop_option": false,
+      "backend_contracts_passed": true,
+      "backend_cases": 1,
+      "peak_output_bytes": 1132,
+      "peak_output_chars": 1132,
+      "observed_factor": "Local requirements inspection; common observation instructions exceed the task-specific body.",
+      "provider_usage_by_command": null,
+      "exact_provider_quota_delta": null,
+      "checks": [
+        {
+          "support": "-m aikya",
+          "arguments": [
+            "requirements",
+            "--target",
+            "<fixture>/odd",
+            "--answers",
+            "<source>/examples/next-react/answers.json"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "a5ba36626a51ed7412f88f93d8396f3e24faaca9b4c43c5aa2632e8f9f2c5627",
+          "asserted_output": null,
+          "stdout_bytes": 1132,
+          "stdout_chars": 1132,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 1132,
+          "output_lines": 43,
+          "elapsed_ms": 730.65
+        }
+      ]
+    },
+    {
+      "command": "aikya-project",
+      "chars": 3024,
+      "proxy_tokens": 864,
+      "observer_body_chars": 1658,
+      "observer_body_share_pct": 54.83,
+      "required_phases": [
+        "explore",
+        "plan",
+        "implement",
+        "validate",
+        "security"
+      ],
+      "loop_option": false,
+      "backend_contracts_passed": true,
+      "backend_cases": 1,
+      "peak_output_bytes": 376,
+      "peak_output_chars": 371,
+      "observed_factor": "Boundary/design planning; source inspection and justified planning delegation.",
+      "provider_usage_by_command": null,
+      "exact_provider_quota_delta": null,
+      "checks": [
+        {
+          "support": "scaffold.py",
+          "arguments": [
+            "plan"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "81c21dc9c2359e5439733a1259a2082ffdd50dc91bb5dd959325bec4642acc85",
+          "asserted_output": null,
+          "stdout_bytes": 376,
+          "stdout_chars": 371,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 371,
+          "output_lines": 6,
+          "elapsed_ms": 337.31
+        }
+      ]
+    },
+    {
+      "command": "aikya-infra",
+      "chars": 3290,
+      "proxy_tokens": 940,
+      "observer_body_chars": 1658,
+      "observer_body_share_pct": 50.4,
+      "required_phases": [
+        "explore",
+        "plan",
+        "implement",
+        "validate",
+        "security"
+      ],
+      "loop_option": false,
+      "backend_contracts_passed": true,
+      "backend_cases": 2,
+      "peak_output_bytes": 1188,
+      "peak_output_chars": 1179,
+      "observed_factor": "Infrastructure plans and local validation; external execution is separately authorized.",
+      "provider_usage_by_command": null,
+      "exact_provider_quota_delta": null,
+      "checks": [
+        {
+          "support": "infrastructure.py",
+          "arguments": [
+            "plan",
+            "--target",
+            "<fixture>/infra"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "b6f44a91dab71eae4a910c265c5819e1f9bceed74f377798d647e118fb6779ef",
+          "asserted_output": null,
+          "stdout_bytes": 1188,
+          "stdout_chars": 1179,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 1179,
+          "output_lines": 48,
+          "elapsed_ms": 352.69
+        },
+        {
+          "support": "infrastructure.py",
+          "arguments": [
+            "generate",
+            "--target",
+            "<fixture>/infra"
+          ],
+          "exit": 2,
+          "expected_exit": 2,
+          "output_sha256": "233643f6da414de3745ae92ad0b503dcc3b1e3d8011c6992f0bcf3ff1df230c2",
+          "asserted_output": "Aprobaci\u00f3n",
+          "stdout_bytes": 86,
+          "stdout_chars": 83,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 83,
+          "output_lines": 1,
+          "elapsed_ms": 338.25
+        }
+      ]
+    },
+    {
+      "command": "aikya-scaffold",
+      "chars": 3317,
+      "proxy_tokens": 948,
+      "observer_body_chars": 1658,
+      "observer_body_share_pct": 49.98,
+      "required_phases": [
+        "explore",
+        "plan",
+        "implement",
+        "validate",
+        "security"
+      ],
+      "loop_option": false,
+      "backend_contracts_passed": true,
+      "backend_cases": 1,
+      "peak_output_bytes": 376,
+      "peak_output_chars": 371,
+      "observed_factor": "Generator planning and guarded execution; dependency/toolchain logs when approved.",
+      "provider_usage_by_command": null,
+      "exact_provider_quota_delta": null,
+      "checks": [
+        {
+          "support": "scaffold.py",
+          "arguments": [
+            "plan"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "81c21dc9c2359e5439733a1259a2082ffdd50dc91bb5dd959325bec4642acc85",
+          "asserted_output": null,
+          "stdout_bytes": 376,
+          "stdout_chars": 371,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 371,
+          "output_lines": 6,
+          "elapsed_ms": 347.94
+        }
+      ]
+    },
+    {
+      "command": "aikya-feature",
+      "chars": 7597,
+      "proxy_tokens": 2171,
+      "observer_body_chars": 1658,
+      "observer_body_share_pct": 21.82,
+      "required_phases": [
+        "explore",
+        "plan",
+        "implement",
+        "validate",
+        "security"
+      ],
+      "loop_option": true,
+      "backend_contracts_passed": true,
+      "backend_cases": 2,
+      "peak_output_bytes": 522,
+      "peak_output_chars": 522,
+      "observed_factor": "Source implementation, tests, documentation, optional bounded SDK loop and review.",
+      "provider_usage_by_command": null,
+      "exact_provider_quota_delta": null,
+      "checks": [
+        {
+          "support": "documentation_workflows.py",
+          "arguments": [
+            "write",
+            "--root",
+            "<fixture>/odd",
+            "--command",
+            "aikya-feature",
+            "--slug",
+            "lookup",
+            "--input",
+            "<fixture>/feature.json"
+          ],
+          "exit": 2,
+          "expected_exit": 2,
+          "output_sha256": "0f1d80b310ff4568091fc090ed4437887d85018c580567e168063ac0700135eb",
+          "asserted_output": "approval",
+          "stdout_bytes": 0,
+          "stdout_chars": 0,
+          "stderr_bytes": 47,
+          "stderr_chars": 47,
+          "combined_chars": 47,
+          "output_lines": 1,
+          "elapsed_ms": 360.67
+        },
+        {
+          "support": "documentation_workflows.py",
+          "arguments": [
+            "write",
+            "--root",
+            "<fixture>/odd",
+            "--command",
+            "aikya-feature",
+            "--slug",
+            "lookup",
+            "--input",
+            "<fixture>/feature.json",
+            "--approved"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "69825250e5e6ab7137533595c1d03614fe0b317c77c518b373c21e2a174bf71f",
+          "asserted_output": null,
+          "stdout_bytes": 522,
+          "stdout_chars": 522,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 522,
+          "output_lines": 22,
+          "elapsed_ms": 368.76
+        }
+      ]
+    },
+    {
+      "command": "aikya-bugfix",
+      "chars": 7434,
+      "proxy_tokens": 2124,
+      "observer_body_chars": 1658,
+      "observer_body_share_pct": 22.3,
+      "required_phases": [
+        "explore",
+        "plan",
+        "implement",
+        "validate",
+        "security"
+      ],
+      "loop_option": true,
+      "backend_contracts_passed": true,
+      "backend_cases": 2,
+      "peak_output_bytes": 58,
+      "peak_output_chars": 58,
+      "observed_factor": "Reproduction, hypotheses, source reading and test/review retries; optional SDK loop.",
+      "provider_usage_by_command": null,
+      "exact_provider_quota_delta": null,
+      "checks": [
+        {
+          "support": "documentation_templates.py",
+          "arguments": [
+            "write",
+            "--root",
+            "<fixture>/odd",
+            "--template",
+            "general-swe/foundations/bug-report",
+            "--input",
+            "<fixture>/bug.json",
+            "--approved"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "9313dd0ffcf020e455caed7471bb6575e7e44159d9c40935b41a1a9ae9d26bad",
+          "asserted_output": null,
+          "stdout_bytes": 53,
+          "stdout_chars": 53,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 53,
+          "output_lines": 1,
+          "elapsed_ms": 369.98
+        },
+        {
+          "support": "documentation_templates.py",
+          "arguments": [
+            "write",
+            "--root",
+            "<fixture>/odd",
+            "--template",
+            "general-swe/foundations/bug-report",
+            "--input",
+            "<fixture>/bug.json",
+            "--approved"
+          ],
+          "exit": 2,
+          "expected_exit": 2,
+          "output_sha256": "cd648830fb4fa931c6ceb4243821ed8d6b9334f100a4c2ad650d1523ff8544f7",
+          "asserted_output": "already exists",
+          "stdout_bytes": 0,
+          "stdout_chars": 0,
+          "stderr_bytes": 58,
+          "stderr_chars": 58,
+          "combined_chars": 58,
+          "output_lines": 1,
+          "elapsed_ms": 351.9
+        }
+      ]
+    },
+    {
+      "command": "aikya-arc-review",
+      "chars": 4960,
+      "proxy_tokens": 1417,
+      "observer_body_chars": 1658,
+      "observer_body_share_pct": 33.43,
+      "required_phases": [
+        "explore",
+        "plan",
+        "validate",
+        "review"
+      ],
+      "loop_option": false,
+      "backend_contracts_passed": true,
+      "backend_cases": 1,
+      "peak_output_bytes": 383,
+      "peak_output_chars": 383,
+      "observed_factor": "Cross-module inspection and architectural review; output scope can expand widely.",
+      "provider_usage_by_command": null,
+      "exact_provider_quota_delta": null,
+      "checks": [
+        {
+          "support": "documentation_workflows.py",
+          "arguments": [
+            "plan",
+            "--root",
+            "<fixture>/odd",
+            "--command",
+            "aikya-arc-review"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "257c34d3a640b7f7cc261fd668ddf1d3d3bdf411e3216cbe8ae54051f37fb2a4",
+          "asserted_output": "read_only",
+          "stdout_bytes": 383,
+          "stdout_chars": 383,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 383,
+          "output_lines": 18,
+          "elapsed_ms": 368.84
+        }
+      ]
+    },
+    {
+      "command": "aikya-mobile-feature",
+      "chars": 5798,
+      "proxy_tokens": 1657,
+      "observer_body_chars": 1658,
+      "observer_body_share_pct": 28.6,
+      "required_phases": [
+        "explore",
+        "plan",
+        "implement",
+        "validate",
+        "security"
+      ],
+      "loop_option": false,
+      "backend_contracts_passed": true,
+      "backend_cases": 2,
+      "peak_output_bytes": 532,
+      "peak_output_chars": 532,
+      "observed_factor": "Platform-specific source/tests and specialist work; Dart/Kotlin/Swift symbol gaps matter.",
+      "provider_usage_by_command": null,
+      "exact_provider_quota_delta": null,
+      "checks": [
+        {
+          "support": "documentation_workflows.py",
+          "arguments": [
+            "write",
+            "--root",
+            "<fixture>/mobile",
+            "--command",
+            "aikya-mobile-feature",
+            "--slug",
+            "lookup",
+            "--input",
+            "<fixture>/feature.json"
+          ],
+          "exit": 2,
+          "expected_exit": 2,
+          "output_sha256": "0f1d80b310ff4568091fc090ed4437887d85018c580567e168063ac0700135eb",
+          "asserted_output": "approval",
+          "stdout_bytes": 0,
+          "stdout_chars": 0,
+          "stderr_bytes": 47,
+          "stderr_chars": 47,
+          "combined_chars": 47,
+          "output_lines": 1,
+          "elapsed_ms": 348.28
+        },
+        {
+          "support": "documentation_workflows.py",
+          "arguments": [
+            "write",
+            "--root",
+            "<fixture>/mobile",
+            "--command",
+            "aikya-mobile-feature",
+            "--slug",
+            "lookup",
+            "--input",
+            "<fixture>/feature.json",
+            "--approved"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "ef6cd8a510acf30abbadb04f4c7fe230bc5d4d4a5efcba8be384bd4a07223985",
+          "asserted_output": null,
+          "stdout_bytes": 532,
+          "stdout_chars": 532,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 532,
+          "output_lines": 23,
+          "elapsed_ms": 361.94
+        }
+      ]
+    },
+    {
+      "command": "aikya-skills-status",
+      "chars": 2737,
+      "proxy_tokens": 782,
+      "observer_body_chars": 1658,
+      "observer_body_share_pct": 60.58,
+      "required_phases": [
+        "explore",
+        "validate"
+      ],
+      "loop_option": false,
+      "backend_contracts_passed": true,
+      "backend_cases": 1,
+      "peak_output_bytes": 1174,
+      "peak_output_chars": 1174,
+      "observed_factor": "Local registry inspection; should not expand into third-party audits or installation.",
+      "provider_usage_by_command": null,
+      "exact_provider_quota_delta": null,
+      "checks": [
+        {
+          "support": "external_skills.py",
+          "arguments": [
+            "status",
+            "--target",
+            "<fixture>/odd"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "512b227bcb3951f12ca6c4f397f82247324a22921936fbfca6ba09bd712a3cf2",
+          "asserted_output": null,
+          "stdout_bytes": 1174,
+          "stdout_chars": 1174,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 1174,
+          "output_lines": 49,
+          "elapsed_ms": 355.88
+        }
+      ]
+    },
+    {
+      "command": "aikya-skills-plan",
+      "chars": 2650,
+      "proxy_tokens": 757,
+      "observer_body_chars": 1658,
+      "observer_body_share_pct": 62.57,
+      "required_phases": [
+        "explore",
+        "validate"
+      ],
+      "loop_option": false,
+      "backend_contracts_passed": true,
+      "backend_cases": 1,
+      "peak_output_bytes": 333,
+      "peak_output_chars": 333,
+      "observed_factor": "Source/license/permission planning; avoid unsolicited vendor surveys.",
+      "provider_usage_by_command": null,
+      "exact_provider_quota_delta": null,
+      "checks": [
+        {
+          "support": "external_skills.py",
+          "arguments": [
+            "plan",
+            "--target",
+            "<fixture>/odd"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "51fd855a9071465a64aacc71a94abc6a7d1a7b8b1a2af0761e4798166a491a32",
+          "asserted_output": null,
+          "stdout_bytes": 333,
+          "stdout_chars": 333,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 333,
+          "output_lines": 4,
+          "elapsed_ms": 338.25
+        }
+      ]
+    },
+    {
+      "command": "aikya-quality",
+      "chars": 4299,
+      "proxy_tokens": 1228,
+      "observer_body_chars": 1658,
+      "observer_body_share_pct": 38.57,
+      "required_phases": [
+        "explore",
+        "plan",
+        "implement",
+        "validate",
+        "security"
+      ],
+      "loop_option": false,
+      "backend_contracts_passed": true,
+      "backend_cases": 1,
+      "peak_output_bytes": 72,
+      "peak_output_chars": 70,
+      "observed_factor": "Local check output and analysis of failures; full real-world logs can exceed the small fixture.",
+      "provider_usage_by_command": null,
+      "exact_provider_quota_delta": null,
+      "checks": [
+        {
+          "support": "skills_lint.py",
+          "arguments": [],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "fbb67cd74adb45969bdb3a2e993f05c4f6879fa3139c7212e8ec316f276d81a4",
+          "asserted_output": null,
+          "stdout_bytes": 72,
+          "stdout_chars": 70,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 70,
+          "output_lines": 1,
+          "elapsed_ms": 347.04
+        }
+      ]
+    },
+    {
+      "command": "aikya-docs",
+      "chars": 5377,
+      "proxy_tokens": 1536,
+      "observer_body_chars": 1658,
+      "observer_body_share_pct": 30.84,
+      "required_phases": [
+        "explore",
+        "plan",
+        "implement",
+        "validate"
+      ],
+      "loop_option": false,
+      "backend_contracts_passed": true,
+      "backend_cases": 3,
+      "peak_output_bytes": 58,
+      "peak_output_chars": 58,
+      "observed_factor": "Affected-source reading and substantive documentation drafting; avoid the full library.",
+      "provider_usage_by_command": null,
+      "exact_provider_quota_delta": null,
+      "checks": [
+        {
+          "support": "docs_layout.py",
+          "arguments": [
+            "write",
+            "--root",
+            "<fixture>/odd",
+            "--path",
+            "plan/acceptance.md",
+            "--input",
+            "<fixture>/observed.md"
+          ],
+          "exit": 2,
+          "expected_exit": 2,
+          "output_sha256": "c4445c88b672e6ea040bb0c08bd321414f7061b8a75536049989856be6212898",
+          "asserted_output": "--approved",
+          "stdout_bytes": 55,
+          "stdout_chars": 55,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 55,
+          "output_lines": 1,
+          "elapsed_ms": 333.83
+        },
+        {
+          "support": "docs_layout.py",
+          "arguments": [
+            "write",
+            "--root",
+            "<fixture>/odd",
+            "--path",
+            "plan/acceptance.md",
+            "--input",
+            "<fixture>/observed.md",
+            "--approved"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "0c73d92f6833a3da78152718addba4a359022fb95d5963cb22033e2517731257",
+          "asserted_output": null,
+          "stdout_bytes": 30,
+          "stdout_chars": 30,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 30,
+          "output_lines": 1,
+          "elapsed_ms": 351.84
+        },
+        {
+          "support": "docs_layout.py",
+          "arguments": [
+            "write",
+            "--root",
+            "<fixture>/odd",
+            "--path",
+            "../outside.md",
+            "--input",
+            "<fixture>/observed.md",
+            "--approved"
+          ],
+          "exit": 2,
+          "expected_exit": 2,
+          "output_sha256": "bfc9c0a43ad1ee3a2324e6ea02f492d5f5bf14fb40a40df897ab1e9809a8428b",
+          "asserted_output": "contained",
+          "stdout_bytes": 58,
+          "stdout_chars": 58,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 58,
+          "output_lines": 1,
+          "elapsed_ms": 340.03
+        }
+      ]
+    },
+    {
+      "command": "aikya-tests",
+      "chars": 5332,
+      "proxy_tokens": 1523,
+      "observer_body_chars": 1658,
+      "observer_body_share_pct": 31.1,
+      "required_phases": [
+        "explore",
+        "plan",
+        "implement",
+        "validate",
+        "security"
+      ],
+      "loop_option": false,
+      "backend_contracts_passed": true,
+      "backend_cases": 2,
+      "peak_output_bytes": 310,
+      "peak_output_chars": 310,
+      "observed_factor": "Focused test execution, failure diagnostics and reruns; avoid returning all passing output.",
+      "provider_usage_by_command": null,
+      "exact_provider_quota_delta": null,
+      "checks": [
+        {
+          "support": "run_checks.py",
+          "arguments": [],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "769fc6a1d778042430bf1dd6de60bb9cb3a312a06ac55e74136219714f440b15",
+          "asserted_output": "PASSED",
+          "stdout_bytes": 299,
+          "stdout_chars": 299,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 299,
+          "output_lines": 5,
+          "elapsed_ms": 428.16
+        },
+        {
+          "support": "run_checks.py",
+          "arguments": [],
+          "exit": 1,
+          "expected_exit": 1,
+          "output_sha256": "04cb64bcfd901067466d9f7d691e53959de0d240044cb2ee85db090cc5431d70",
+          "asserted_output": "exit 7",
+          "stdout_bytes": 310,
+          "stdout_chars": 310,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 310,
+          "output_lines": 5,
+          "elapsed_ms": 428.56
+        }
+      ]
+    },
+    {
+      "command": "aikya-docs-sync",
+      "chars": 3713,
+      "proxy_tokens": 1061,
+      "observer_body_chars": 1658,
+      "observer_body_share_pct": 44.65,
+      "required_phases": [
+        "explore",
+        "plan",
+        "implement",
+        "validate"
+      ],
+      "loop_option": false,
+      "backend_contracts_passed": true,
+      "backend_cases": 1,
+      "peak_output_bytes": 0,
+      "peak_output_chars": 0,
+      "observed_factor": "Affected pages and REQ audit; documentation blockers may induce additional assistant turns.",
+      "provider_usage_by_command": null,
+      "exact_provider_quota_delta": null,
+      "checks": [
+        {
+          "support": "docs_layout.py",
+          "arguments": [
+            "index",
+            "--root",
+            "<fixture>/odd",
+            "--approved"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "asserted_output": null,
+          "stdout_bytes": 0,
+          "stdout_chars": 0,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 0,
+          "output_lines": 0,
+          "elapsed_ms": 352.86
+        }
+      ]
+    },
+    {
+      "command": "aikya-verify",
+      "chars": 4190,
+      "proxy_tokens": 1197,
+      "observer_body_chars": 1658,
+      "observer_body_share_pct": 39.57,
+      "required_phases": [
+        "explore",
+        "plan",
+        "implement",
+        "validate",
+        "security"
+      ],
+      "loop_option": false,
+      "backend_contracts_passed": true,
+      "backend_cases": 2,
+      "peak_output_bytes": 222,
+      "peak_output_chars": 222,
+      "observed_factor": "Checks, diff and documentation inspection; reuse current-candidate evidence rather than duplicate work.",
+      "provider_usage_by_command": null,
+      "exact_provider_quota_delta": null,
+      "checks": [
+        {
+          "support": "run_checks.py",
+          "arguments": [],
+          "exit": 1,
+          "expected_exit": 1,
+          "output_sha256": "dc0691cd8f5384485d78df362f7d144350641f084aa4d0bdb8bcb2abee42bbdc",
+          "asserted_output": "NOT_CONFIGURED",
+          "stdout_bytes": 222,
+          "stdout_chars": 222,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 222,
+          "output_lines": 4,
+          "elapsed_ms": 372.83
+        },
+        {
+          "support": "docs_guard.py",
+          "arguments": [
+            "base"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "6b827a5ca9e2740dedd90d13e4e713f343115796ed2d67df14c9add929a0e5bd",
+          "asserted_output": null,
+          "stdout_bytes": 26,
+          "stdout_chars": 26,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 26,
+          "output_lines": 1,
+          "elapsed_ms": 363.44
+        }
+      ]
+    },
+    {
+      "command": "aikya-models",
+      "chars": 2826,
+      "proxy_tokens": 807,
+      "observer_body_chars": 1658,
+      "observer_body_share_pct": 58.67,
+      "required_phases": [
+        "explore",
+        "plan",
+        "implement",
+        "validate",
+        "security"
+      ],
+      "loop_option": false,
+      "backend_contracts_passed": true,
+      "backend_cases": 1,
+      "peak_output_bytes": 248,
+      "peak_output_chars": 248,
+      "observed_factor": "Local policy inspection/configuration; no provider inference is needed just to inspect.",
+      "provider_usage_by_command": null,
+      "exact_provider_quota_delta": null,
+      "checks": [
+        {
+          "support": "inspect_model.py",
+          "arguments": [],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "671138f9c448a793b31dd1994e495c85cf48638c1c93a4c5732f4b287f53b8cd",
+          "asserted_output": "ready_for_cli_delegation",
+          "stdout_bytes": 248,
+          "stdout_chars": 248,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 248,
+          "output_lines": 1,
+          "elapsed_ms": 325.25
+        }
+      ]
+    },
+    {
+      "command": "aikya-tokens",
+      "chars": 3339,
+      "proxy_tokens": 954,
+      "observer_body_chars": 1658,
+      "observer_body_share_pct": 49.66,
+      "required_phases": [
+        "explore",
+        "validate"
+      ],
+      "loop_option": false,
+      "backend_contracts_passed": true,
+      "backend_cases": 2,
+      "peak_output_bytes": 1376,
+      "peak_output_chars": 1376,
+      "observed_factor": "Local authorized transcript aggregation; report category totals rather than transcript text.",
+      "provider_usage_by_command": null,
+      "exact_provider_quota_delta": null,
+      "checks": [
+        {
+          "support": "token_report.py",
+          "arguments": [
+            "--path",
+            "<fixture>/controlled.jsonl",
+            "--budget-tokens",
+            "100"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "7be3c80f3fd083127f660395a480f7803c959edd63c2496dd31c9bd0c5f4e526",
+          "asserted_output": null,
+          "stdout_bytes": 1376,
+          "stdout_chars": 1376,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 1376,
+          "output_lines": 50,
+          "elapsed_ms": 331.75
+        },
+        {
+          "support": "token_report.py",
+          "arguments": [],
+          "exit": 2,
+          "expected_exit": 2,
+          "output_sha256": "d5120ab0ed72ce86a102f95d1c77ec70ed5936119839498f2614540ef75b3842",
+          "asserted_output": "--path is required",
+          "stdout_bytes": 0,
+          "stdout_chars": 0,
+          "stderr_bytes": 365,
+          "stderr_chars": 365,
+          "combined_chars": 365,
+          "output_lines": 6,
+          "elapsed_ms": 342.88
+        }
+      ]
+    },
+    {
+      "command": "aikya-install-skill",
+      "chars": 3061,
+      "proxy_tokens": 875,
+      "observer_body_chars": 1658,
+      "observer_body_share_pct": 54.17,
+      "required_phases": [
+        "explore",
+        "plan",
+        "implement",
+        "validate",
+        "security"
+      ],
+      "loop_option": false,
+      "backend_contracts_passed": true,
+      "backend_cases": 1,
+      "peak_output_bytes": 68,
+      "peak_output_chars": 68,
+      "observed_factor": "Explicit source review and installation permission; fixture exercises denial, not third-party install.",
+      "provider_usage_by_command": null,
+      "exact_provider_quota_delta": null,
+      "checks": [
+        {
+          "support": "external_skills.py",
+          "arguments": [
+            "install",
+            "--target",
+            "<fixture>/odd",
+            "--record-comparison"
+          ],
+          "exit": 2,
+          "expected_exit": 2,
+          "output_sha256": "d1d7517e21e36e189e5e3cb3836661ae423e89138bcece65a6ae701ebfd258c2",
+          "asserted_output": "approval",
+          "stdout_bytes": 0,
+          "stdout_chars": 0,
+          "stderr_bytes": 68,
+          "stderr_chars": 68,
+          "combined_chars": 68,
+          "output_lines": 1,
+          "elapsed_ms": 339.29
+        }
+      ]
+    },
+    {
+      "command": "aikya-specify",
+      "chars": 5337,
+      "proxy_tokens": 1525,
+      "observer_body_chars": 1658,
+      "observer_body_share_pct": 31.07,
+      "required_phases": [
+        "explore",
+        "plan",
+        "implement",
+        "validate",
+        "security"
+      ],
+      "loop_option": false,
+      "backend_contracts_passed": true,
+      "backend_cases": 1,
+      "peak_output_bytes": 100,
+      "peak_output_chars": 100,
+      "observed_factor": "Requirement drafting and questions; local specification writer does not run a model.",
+      "provider_usage_by_command": null,
+      "exact_provider_quota_delta": null,
+      "checks": [
+        {
+          "support": "sdd_engine.py",
+          "arguments": [
+            "new",
+            "--root",
+            "<fixture>/sdd",
+            "--input",
+            "<source>/examples/sdd/development/order-api/spec.json"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "421be2cdd2bd1ffb9f45396371954284de328e9c4c76d1aaa427a4dcbdfdb455",
+          "asserted_output": null,
+          "stdout_bytes": 100,
+          "stdout_chars": 100,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 100,
+          "output_lines": 5,
+          "elapsed_ms": 377.43
+        }
+      ]
+    },
+    {
+      "command": "aikya-clarify",
+      "chars": 3901,
+      "proxy_tokens": 1115,
+      "observer_body_chars": 1658,
+      "observer_body_share_pct": 42.5,
+      "required_phases": [
+        "explore",
+        "plan",
+        "implement",
+        "validate",
+        "security"
+      ],
+      "loop_option": false,
+      "backend_contracts_passed": true,
+      "backend_cases": 2,
+      "peak_output_bytes": 211,
+      "peak_output_chars": 211,
+      "observed_factor": "Only outstanding questions and reviewed answers; preserve approval separation.",
+      "provider_usage_by_command": null,
+      "exact_provider_quota_delta": null,
+      "checks": [
+        {
+          "support": "sdd_engine.py",
+          "arguments": [
+            "clarify",
+            "--root",
+            "<fixture>/sdd",
+            "--id",
+            "SPEC-001",
+            "--input",
+            "<source>/examples/sdd/development/order-api/clarify.json"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "0c8dc74a72af14efe46c4224e2258d5b7f8dd741b05490b7d3e64742c297fa9f",
+          "asserted_output": null,
+          "stdout_bytes": 194,
+          "stdout_chars": 194,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 194,
+          "output_lines": 10,
+          "elapsed_ms": 399.65
+        },
+        {
+          "support": "sdd_engine.py",
+          "arguments": [
+            "approve",
+            "--root",
+            "<fixture>/sdd",
+            "--id",
+            "SPEC-001",
+            "--stage",
+            "spec",
+            "--actor",
+            "controlled-reviewer"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "d8b9976ba788ebb9a1113c185ef6ce7067c6152cb286574e331a3d2fd2505bd4",
+          "asserted_output": null,
+          "stdout_bytes": 211,
+          "stdout_chars": 211,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 211,
+          "output_lines": 12,
+          "elapsed_ms": 375.46
+        }
+      ]
+    },
+    {
+      "command": "aikya-plan",
+      "chars": 5013,
+      "proxy_tokens": 1432,
+      "observer_body_chars": 1658,
+      "observer_body_share_pct": 33.07,
+      "required_phases": [
+        "explore",
+        "plan",
+        "implement",
+        "validate",
+        "security"
+      ],
+      "loop_option": false,
+      "backend_contracts_passed": true,
+      "backend_cases": 3,
+      "peak_output_bytes": 223,
+      "peak_output_chars": 223,
+      "observed_factor": "Design/source investigation and justified planner use; avoid restating the full specification.",
+      "provider_usage_by_command": null,
+      "exact_provider_quota_delta": null,
+      "checks": [
+        {
+          "support": "sdd_engine.py",
+          "arguments": [
+            "plan",
+            "--root",
+            "<fixture>/sdd",
+            "--id",
+            "SPEC-001",
+            "--input",
+            "<source>/examples/sdd/development/order-api/plan.json"
+          ],
+          "exit": 2,
+          "expected_exit": 2,
+          "output_sha256": "bc5d341f4bd455ef0307bdbe2fb32f41dc2052a94eedd720f9a378a8207918cd",
+          "asserted_output": "Approve",
+          "stdout_bytes": 0,
+          "stdout_chars": 0,
+          "stderr_bytes": 49,
+          "stderr_chars": 49,
+          "combined_chars": 49,
+          "output_lines": 1,
+          "elapsed_ms": 351.28
+        },
+        {
+          "support": "sdd_engine.py",
+          "arguments": [
+            "plan",
+            "--root",
+            "<fixture>/sdd",
+            "--id",
+            "SPEC-001",
+            "--input",
+            "<source>/examples/sdd/development/order-api/plan.json"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "ef1bff0b07c5594343871faf6c1464c212f0921171b9173a557054855b91401e",
+          "asserted_output": null,
+          "stdout_bytes": 208,
+          "stdout_chars": 208,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 208,
+          "output_lines": 12,
+          "elapsed_ms": 371.12
+        },
+        {
+          "support": "sdd_engine.py",
+          "arguments": [
+            "approve",
+            "--root",
+            "<fixture>/sdd",
+            "--id",
+            "SPEC-001",
+            "--stage",
+            "plan",
+            "--actor",
+            "controlled-reviewer"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "8aef5636a5893fd00068cc463f796133ab982ac63a8ae2be4460e8e9fcf68abe",
+          "asserted_output": null,
+          "stdout_bytes": 223,
+          "stdout_chars": 223,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 223,
+          "output_lines": 13,
+          "elapsed_ms": 368.18
+        }
+      ]
+    },
+    {
+      "command": "aikya-tasks",
+      "chars": 4999,
+      "proxy_tokens": 1428,
+      "observer_body_chars": 1658,
+      "observer_body_share_pct": 33.17,
+      "required_phases": [
+        "explore",
+        "plan",
+        "implement",
+        "validate",
+        "security"
+      ],
+      "loop_option": false,
+      "backend_contracts_passed": true,
+      "backend_cases": 2,
+      "peak_output_bytes": 235,
+      "peak_output_chars": 235,
+      "observed_factor": "Requirement coverage/dependency graph and reviewed task authoring; avoid reopening completed discovery.",
+      "provider_usage_by_command": null,
+      "exact_provider_quota_delta": null,
+      "checks": [
+        {
+          "support": "sdd_engine.py",
+          "arguments": [
+            "tasks",
+            "--root",
+            "<fixture>/sdd",
+            "--id",
+            "SPEC-001",
+            "--input",
+            "<source>/examples/sdd/development/order-api/tasks.json"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "74fc5e08caa7c84918b524703c38b50b5f7e01d00746884eac80b7957fa4668a",
+          "asserted_output": null,
+          "stdout_bytes": 221,
+          "stdout_chars": 221,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 221,
+          "output_lines": 13,
+          "elapsed_ms": 375.18
+        },
+        {
+          "support": "sdd_engine.py",
+          "arguments": [
+            "approve",
+            "--root",
+            "<fixture>/sdd",
+            "--id",
+            "SPEC-001",
+            "--stage",
+            "tasks",
+            "--actor",
+            "controlled-reviewer"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "5a125b7aa9dfb990514a5cca9daa5564e2bb6c438f4aee13877629b617e33255",
+          "asserted_output": null,
+          "stdout_bytes": 235,
+          "stdout_chars": 235,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 235,
+          "output_lines": 14,
+          "elapsed_ms": 370.73
+        }
+      ]
+    },
+    {
+      "command": "aikya-implement",
+      "chars": 8267,
+      "proxy_tokens": 2362,
+      "observer_body_chars": 1658,
+      "observer_body_share_pct": 20.06,
+      "required_phases": [
+        "explore",
+        "plan",
+        "implement",
+        "validate",
+        "security"
+      ],
+      "loop_option": true,
+      "backend_contracts_passed": true,
+      "backend_cases": 3,
+      "peak_output_bytes": 222,
+      "peak_output_chars": 222,
+      "observed_factor": "Largest selected workflow body; ODD/SDD records, implementation, checks and optional SDK Review.",
+      "provider_usage_by_command": null,
+      "exact_provider_quota_delta": null,
+      "checks": [
+        {
+          "support": "sdd_engine.py",
+          "arguments": [
+            "authorize",
+            "--root",
+            "<fixture>/sdd",
+            "--id",
+            "SPEC-001",
+            "--task",
+            "TASK-001"
+          ],
+          "exit": 2,
+          "expected_exit": 2,
+          "output_sha256": "0c67c0078108ecf2e3a42a33693e1af3c1c9087f34e761089bec8f2a29c99e9d",
+          "asserted_output": "approved",
+          "stdout_bytes": 0,
+          "stdout_chars": 0,
+          "stderr_bytes": 58,
+          "stderr_chars": 58,
+          "combined_chars": 58,
+          "output_lines": 1,
+          "elapsed_ms": 365.04
+        },
+        {
+          "support": "sdd_engine.py",
+          "arguments": [
+            "authorize",
+            "--root",
+            "<fixture>/sdd",
+            "--id",
+            "SPEC-001",
+            "--task",
+            "TASK-001"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "6ed1a262cc218b3328b258929ddbfdc1f0b02e474ea587da8d32c284359f0ead",
+          "asserted_output": null,
+          "stdout_bytes": 222,
+          "stdout_chars": 222,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 222,
+          "output_lines": 10,
+          "elapsed_ms": 364.75
+        },
+        {
+          "support": "sdd_engine.py",
+          "arguments": [
+            "progress",
+            "--root",
+            "<fixture>/sdd",
+            "--id",
+            "SPEC-001",
+            "--task",
+            "TASK-001",
+            "--result",
+            "done",
+            "--evidence",
+            "../missing.log"
+          ],
+          "exit": 2,
+          "expected_exit": 2,
+          "output_sha256": "750ac8f555e6021b9d4b86417e7223ad8f404526b8fd22012ed4398ca0b89aa3",
+          "asserted_output": "Path",
+          "stdout_bytes": 0,
+          "stdout_chars": 0,
+          "stderr_bytes": 43,
+          "stderr_chars": 43,
+          "combined_chars": 43,
+          "output_lines": 1,
+          "elapsed_ms": 361.9
+        }
+      ]
+    },
+    {
+      "command": "aikya-sdd-status",
+      "chars": 5711,
+      "proxy_tokens": 1632,
+      "observer_body_chars": 1658,
+      "observer_body_share_pct": 29.03,
+      "required_phases": [
+        "explore",
+        "validate"
+      ],
+      "loop_option": false,
+      "backend_contracts_passed": true,
+      "backend_cases": 4,
+      "peak_output_bytes": 799,
+      "peak_output_chars": 799,
+      "observed_factor": "Local status/lint/completion records; template/drafting guidance is disproportionate for a simple status.",
+      "provider_usage_by_command": null,
+      "exact_provider_quota_delta": null,
+      "checks": [
+        {
+          "support": "sdd_engine.py",
+          "arguments": [
+            "status",
+            "--root",
+            "<fixture>/sdd",
+            "--id",
+            "SPEC-001"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "5a125b7aa9dfb990514a5cca9daa5564e2bb6c438f4aee13877629b617e33255",
+          "asserted_output": null,
+          "stdout_bytes": 235,
+          "stdout_chars": 235,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 235,
+          "output_lines": 14,
+          "elapsed_ms": 362.57
+        },
+        {
+          "support": "sdd_engine.py",
+          "arguments": [
+            "lint",
+            "--root",
+            "<fixture>/sdd"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "d0070c389fddee3b95e82198c0a41c328bb91c187d627eb59c569b657fcf54d4",
+          "asserted_output": "true",
+          "stdout_bytes": 59,
+          "stdout_chars": 59,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 59,
+          "output_lines": 5,
+          "elapsed_ms": 363.72
+        },
+        {
+          "support": "sdd_engine.py",
+          "arguments": [
+            "completion",
+            "--root",
+            "<fixture>/sdd",
+            "--id",
+            "SPEC-001"
+          ],
+          "exit": 1,
+          "expected_exit": 1,
+          "output_sha256": "5ae002e6badf0d7c2086957dc43da3e692c68c97b3a26d4cda0ae227afb9483b",
+          "asserted_output": "false",
+          "stdout_bytes": 82,
+          "stdout_chars": 82,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 82,
+          "output_lines": 1,
+          "elapsed_ms": 346.83
+        },
+        {
+          "support": "aikya_cli.py",
+          "arguments": [
+            "implement",
+            "--target",
+            "<fixture>/odd"
+          ],
+          "exit": 2,
+          "expected_exit": 2,
+          "output_sha256": "d45d8db6311d1aa8be48b7e9c903195b539bee18761d06af88ec359ae94453f8",
+          "asserted_output": null,
+          "stdout_bytes": 0,
+          "stdout_chars": 0,
+          "stderr_bytes": 799,
+          "stderr_chars": 799,
+          "combined_chars": 799,
+          "output_lines": 10,
+          "elapsed_ms": 379.21
+        }
+      ]
+    },
+    {
+      "command": "aikya-memory",
+      "chars": 2718,
+      "proxy_tokens": 777,
+      "observer_body_chars": 0,
+      "observer_body_share_pct": 0.0,
+      "required_phases": [
+        "explore",
+        "plan",
+        "implement",
+        "validate",
+        "security"
+      ],
+      "loop_option": false,
+      "backend_contracts_passed": true,
+      "backend_cases": 3,
+      "peak_output_bytes": 324,
+      "peak_output_chars": 324,
+      "observed_factor": "Local indexing/export/watch has no model request; later assistant edits/monitoring are separate work.",
+      "provider_usage_by_command": null,
+      "exact_provider_quota_delta": null,
+      "checks": [
+        {
+          "support": "-m aikya",
+          "arguments": [
+            "memory",
+            "--target",
+            "<fixture>/odd",
+            "--dry-run"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "1d201efb90f4b687192915a607b66fa15d552d9582a7167a9ae96cda79a74ad3",
+          "asserted_output": "preview",
+          "stdout_bytes": 209,
+          "stdout_chars": 209,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 209,
+          "output_lines": 1,
+          "elapsed_ms": 368.2
+        },
+        {
+          "support": "-m aikya",
+          "arguments": [
+            "memory",
+            "--target",
+            "<fixture>/odd",
+            "--refresh"
+          ],
+          "exit": 0,
+          "expected_exit": 0,
+          "output_sha256": "f591f8fdaddea634566b11da74193f2333ebf37b08b803852d751f2a67e3f580",
+          "asserted_output": "html_path",
+          "stdout_bytes": 324,
+          "stdout_chars": 324,
+          "stderr_bytes": 0,
+          "stderr_chars": 0,
+          "combined_chars": 324,
+          "output_lines": 1,
+          "elapsed_ms": 429.08
+        },
+        {
+          "support": "-m aikya",
+          "arguments": [
+            "memory",
+            "--target",
+            "<fixture>/odd",
+            "--dry-run",
+            "--watch"
+          ],
+          "exit": 2,
+          "expected_exit": 2,
+          "output_sha256": "dbf9d0a2b097da6593040097ec94702c56675bd292b33335de8519ede9426111",
+          "asserted_output": "cannot",
+          "stdout_bytes": 0,
+          "stdout_chars": 0,
+          "stderr_bytes": 217,
+          "stderr_chars": 217,
+          "combined_chars": 217,
+          "output_lines": 3,
+          "elapsed_ms": 370.37
+        }
+      ]
+    }
+  ],
+  "observed_time_windows": {
+    "/aikya-analyze": {
+      "main_calls": 64,
+      "subagent_calls": 76,
+      "input_tokens": 224,
+      "output_tokens": 115009,
+      "cache_creation_input_tokens": 399268,
+      "cache_read_input_tokens": 12874585,
+      "recorded_total": 13389086
+    },
+    "/aikya-memory": {
+      "main_calls": 89,
+      "subagent_calls": 0,
+      "input_tokens": 193,
+      "output_tokens": 64389,
+      "cache_creation_input_tokens": 115746,
+      "cache_read_input_tokens": 19390527,
+      "recorded_total": 19570855
+    },
+    "/aikya-mobile-feature": {
+      "main_calls": 9,
+      "subagent_calls": 0,
+      "input_tokens": 18,
+      "output_tokens": 5462,
+      "cache_creation_input_tokens": 263370,
+      "cache_read_input_tokens": 2435690,
+      "recorded_total": 2704540
+    },
+    "/aikya-arc-review": {
+      "main_calls": 6,
+      "subagent_calls": 0,
+      "input_tokens": 20,
+      "output_tokens": 6156,
+      "cache_creation_input_tokens": 22520,
+      "cache_read_input_tokens": 1922143,
+      "recorded_total": 1950839
+    }
+  }
+}

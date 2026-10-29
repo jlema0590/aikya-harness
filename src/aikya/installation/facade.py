@@ -165,6 +165,9 @@ def main(argv: list[str]|None=None) -> int:
     failed_external = False
     if not args.dry_run:
         policy = args.external or ('plan' if args.answers else 'ask')
+        if not enabled_names(profile):
+            print('External skills: no source selected. Use /aikya-install-skill to review a source of your choice.')
+            policy='skip'
         if policy in ('ask','install','plan'):
             print('\n=== AGENT SKILLS EXTERNAS ===')
             for command in planned_commands(profile):

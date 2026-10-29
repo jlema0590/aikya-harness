@@ -10,8 +10,8 @@ from ..policy import content_hash
 
 PINS = {'tree-sitter': '0.25.2', 'tree-sitter-java': '0.23.5',
         'tree-sitter-javascript': '0.25.0', 'tree-sitter-typescript': '0.23.2',
-        'tree-sitter-c-sharp': '0.23.1', 'tree-sitter-go': '0.25.0'}
-LANGUAGES = {'.java': ('java', 'language'), '.js': ('javascript', 'language'),
+        'tree-sitter-c-sharp': '0.23.1', 'tree-sitter-go': '0.25.0', 'tree-sitter-dart': '0.1.0'}
+LANGUAGES = {'.dart': ('dart', 'language'), '.java': ('java', 'language'), '.js': ('javascript', 'language'),
              '.jsx': ('javascript', 'language'), '.mjs': ('javascript', 'language'),
              '.cjs': ('javascript', 'language'), '.ts': ('typescript', 'language_typescript'),
              '.tsx': ('typescript', 'language_tsx'), '.cs': ('c_sharp', 'language'), '.go': ('go', 'language')}
@@ -50,10 +50,13 @@ def parser_version(path):
         _module('tree_sitter_' + language, distribution)
     except (ImportError, metadata.PackageNotFoundError, ValueError, OSError):
         return 'inventory', '1'
-    return 'treesitter-' + language + ('-tsx' if factory.endswith('tsx') else ''), PINS['tree-sitter'] + '/' + PINS[distribution] + '/1'
+    return 'treesitter-' + language + ('-tsx' if factory.endswith('tsx') else ''), PINS['tree-sitter'] + '/' + PINS[distribution] + ('/2' if language == 'dart' else '/1')
 
 
 def parse_file(path, content):
+    if Path(path).suffix.lower() == '.dart':
+        from .dart import parse_file as dart_parse
+        return dart_parse(path, content)
     parser_id, version = parser_version(path)
     result = ParsedFile(path, content_hash(content), 'file_only', parser_id, version)
     if parser_id == 'inventory':

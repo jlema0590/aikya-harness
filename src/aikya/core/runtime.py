@@ -119,7 +119,7 @@ async def sdk_worker(request):
             valid=not message.is_error and message.subtype=='success' and terminal in (None,'completed') and getattr(message,'stop_reason',None)!='refusal'
             output=message.structured_output if valid else {'status':'needs_input','approved':False}
             emit({'type':'result','id':message.uuid or uuid.uuid4().hex,'session_id':message.session_id,
-                  'cost_usd':message.total_cost_usd,'model_usage':getattr(message,'model_usage',None),'model':model,'output':output,'error':not valid})
+                  'num_turns':getattr(message,'num_turns',None), 'cost_usd':message.total_cost_usd,'model_usage':getattr(message,'model_usage',None),'model':model,'output':output,'error':not valid})
 
 
 def main():

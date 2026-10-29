@@ -205,6 +205,28 @@ def nonplaceholder(path: Path) -> bool:
     return len(s.strip()) >= 80 and 'TODO: completar' not in s and 'PENDIENTE_DE_COMPLETAR' not in s and 'TODO: complete' not in s and 'PENDING_COMPLETION' not in s
 
 
+def required_for_request(state, changed, updated):
+    required = affected_docs(state['kind'],changed)
+    # A concrete feature contract can cover a request without an empty catalog/roadmap update.
+    if 'feature' in state['kind'].split('+'):
+        feature_specs=sorted(p for p in updated
+                             if re.fullmatch(r'aikya/docs/features/[a-z0-9]+(?:-[a-z0-9]+)*/spec\.md',p)
+                             and nonplaceholder(ROOT/p))
+        if feature_specs:
+            required=[p for p in required if p not in ('aikya/docs/features/index.md','aikya/docs/plan/roadmap.md')]+feature_specs
+    return sorted(set(required))
+
+
+def preflight_request(state, now=None):
+    current = file_map() if now is None else now
+    changed, updated = changes(state['baseline'], current)
+    ok, reasons = validate_request(state, current)
+    required = required_for_request(state, changed, updated) if changed else []
+    if changed:required.append('aikya/docs/changes/'+state['request_id']+'.md')
+    return {'ready':ok, 'required':required, 'changed':changed, 'reasons':reasons,
+            'writes':False, 'evidence_generated':False}
+
+
 def validate_request(state: dict, now: dict|None=None) -> tuple[bool,list[str]]:
     now = now if now is not None else file_map()
     from aikya.documentation.layout import validate_generated_document_paths
@@ -216,14 +238,7 @@ def validate_request(state: dict, now: dict|None=None) -> tuple[bool,list[str]]:
         return True,['Sin cambios en código/infraestructura durante esta petición: no se requieren modificaciones documentales.']
     req = state['request_id']
     change_path = 'aikya/docs/changes/'+req+'.md'
-    required = affected_docs(state['kind'],changed)
-    # A concrete feature contract can cover a request without an empty catalog/roadmap update.
-    if 'feature' in state['kind'].split('+'):
-        feature_specs=sorted(p for p in updated
-                             if re.fullmatch(r'aikya/docs/features/[a-z0-9]+(?:-[a-z0-9]+)*/spec\.md',p)
-                             and nonplaceholder(ROOT/p))
-        if feature_specs:
-            required=[p for p in required if p not in ('aikya/docs/features/index.md','aikya/docs/plan/roadmap.md')]+feature_specs
+    required = required_for_request(state, changed, updated)
     errors: list[str] = []
     if '__TRUNCATED__' in state['baseline'] or '__TRUNCATED__' in now:
         errors.append('Inventario de archivos truncado; revisa manualmente los cambios.')
@@ -291,7 +306,7 @@ def validate_ci(paths: list[str]) -> tuple[bool,list[str]]:
 
 def main(argv=None) -> int:
     parser=argparse.ArgumentParser(description='Validar cobertura documental por petición/CI')
-    parser.add_argument('mode',choices=['base','status','ci'])
+    parser.add_argument('mode',choices=['base','status','ci','preflight'])
     parser.add_argument('--session',default='',help='ID de sesión (vacío: auto si sólo hay un estado local)')
     parser.add_argument('--base')
     args=parser.parse_args(argv)
@@ -324,6 +339,10 @@ def main(argv=None) -> int:
         if state is None:
             print('No se encontró la petición activa. Ejecuta /documentation-sync.',file=sys.stderr)
             return 2
+        if args.mode=='preflight':
+            result=preflight_request(state)
+            print(json.dumps(result,ensure_ascii=False))
+            return 0 if result['ready'] else 1
         ok,messages=validate_request(state)
     print('\n'.join(messages))
     return 0 if ok else 1

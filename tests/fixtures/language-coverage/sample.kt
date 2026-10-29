@@ -1,0 +1,1 @@
+class User { fun save() {} }
