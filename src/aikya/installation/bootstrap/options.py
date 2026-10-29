@@ -14,6 +14,7 @@ def parser():
     for action in ('install', 'update', 'uninstall', 'doctor'):
         command = sub.add_parser(action)
         if action in ('install', 'update'):
+            command.add_argument('--code-index', choices=('none','dart','all'), default=None)
             command.add_argument('--version', help='Release X.Y.Z; defaults to the latest published stable release')
             command.add_argument('--python', type=Path, default=Path(sys.executable))
             command.add_argument('--offline-dir', type=Path)
@@ -103,7 +104,7 @@ def preview(args, root, previous):
     return {'action':args.action,'version':args.version or 'latest',
             'mods_version':(args.mods_version or 'latest') if plan.selected else None,
             'mods':list(plan.selected),'scope':args.scope,'target':str(args.target) if args.target else None,
-            'root':str(root),'writes':False,'network':False}
+            'root':str(root),'code_index':getattr(args,'code_index',None) or 'none','writes':False,'network':False}
 
 
 def entry_preview(argv=None):

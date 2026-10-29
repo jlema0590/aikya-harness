@@ -40,6 +40,11 @@ def execute(args, root, receipt_file):
     with tempfile.TemporaryDirectory(prefix='aikya-components-') as temporary:
         stage = Path(temporary).resolve()
         wheel = download.fetch_release(version,stage/'harness',args.offline_dir)['wheel']
+        from . import code_index
+        previous_harness = json.loads(receipt_file.read_text()) if receipt_file.exists() else None
+        selected_index = code_index.selection(getattr(args, 'code_index', None), previous_harness, args.action)
+        parser_wheels = code_index.prepare(selected_index, version, stage/'harness', args.offline_dir)
+        args.code_index = selected_index
         environment.verify_wheel(wheel,version)
         bundle = None
         if adapter:
@@ -53,7 +58,7 @@ def execute(args, root, receipt_file):
         from . import cli
         args.version=version; args.offline_dir=stage/'harness'
         import hashlib
-        (stage/'harness/SHA256SUMS').write_text(hashlib.sha256(wheel.read_bytes()).hexdigest()+'  '+wheel.name+'\n')
+        (stage/'harness/SHA256SUMS').write_text(''.join(hashlib.sha256(p.read_bytes()).hexdigest()+'  '+p.name+'\n' for p in [wheel, *parser_wheels]))
         with state.installation_lock(root):
             current = json.loads(component_file.read_text(encoding='utf8')) if component_file.exists() else None
             if current != previous:

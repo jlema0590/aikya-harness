@@ -9,6 +9,7 @@ param(
     [ValidateSet('recommended','all','none')][string]$Mods,
     [string[]]$Mod,
     [string]$ModsVersion,
+    [ValidateSet('none','dart','all')][string]$CodeIndex,
     [switch]$NoPath,
     [switch]$DryRun
 )
@@ -40,6 +41,7 @@ if ($Python) { $options += @('--python',$Python) }
 if ($OfflineDir) { $options += @('--offline-dir',$OfflineDir) }
 if ($Mods) { $options += @('--mods',$Mods) }
 foreach ($name in $Mod) { $options += @('--mod',$name) }
+if ($CodeIndex) { $options += @('--code-index',$CodeIndex) }
 if ($ModsVersion) { $options += @('--mods-version',$ModsVersion) }
 if ($NoPath) { $options += '--no-path' }
 if ($DryRun) {
