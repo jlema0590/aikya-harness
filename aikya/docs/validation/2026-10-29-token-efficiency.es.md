@@ -44,7 +44,7 @@ ni la configuración personal de Claude. No se ejecutaron modelos reales.
 | Onboarding | 48 combinaciones de tipo, ODD/SDD, en/es, global/project y nuevo/existente |
 | Navegador | 180 comprobaciones: visor/interacciones en ambos idiomas y cobertura mixta Python/Dart/Swift en/es |
 | Instalación | Limpia/update/offline global y proyecto, selección Dart/all, conservación, doctor y desinstalación que preserva archivos/entornos referenciados |
-| Wheel | 8 casos de registro/onboarding ODD/SDD fuera del checkout; 165 módulos Python coinciden con la fuente actual |
+| Wheel | 8 casos de registro/onboarding ODD/SDD fuera del checkout; 165 módulos Python cotejados con la fuente del build validado |
 | Calidad | Sin errores de calidad de fuente; advertencias de cohesión existentes/de revisión, sin archivos de fuente nuevos de más de 1.000 líneas |
 | Metadatos y plantillas | 28 comandos, 30 agentes, 29 skills y catálogo de 120 plantillas válidos |
 
@@ -98,6 +98,10 @@ cuerpos no se cargan juntos; el proxy no es un tokenizador ni una factura.
   tanto, el aviso del 75% queda N/D sin telemetría fresca verificable; no se calcula
   a partir del porcentaje del modelo. La ventana solicitada de 200.000 puede tener
   overrides del host. Compactar consume tokens y no reinicia cuota.
+
+Antes del push se eliminó una línea vacía final del CLI SDD; su AST Python
+permanece idéntico. El recibo registra ambos hashes. El wheel validado corresponde
+a la fuente anterior a ese ajuste de formato, sin cambio de comportamiento.
 
 ## Aplicación posterior a publicación
 

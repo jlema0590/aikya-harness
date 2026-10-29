@@ -6266,6 +6266,13 @@
     "note": "Final documentation-only closure follows runtime verification; no real model calls.",
     "language_matrix_tests": 5,
     "language_matrix_tests_log_sha256": "eb4dec525473dd56130692230312925c40e01383e890d5e6f2c45bc48ff3d521",
-    "fixture_whitespace": "Trailing blank lines removed from Python fixtures; all 29 extensions revalidated."
+    "fixture_whitespace": "Trailing blank lines removed from Python fixtures; all 29 extensions revalidated.",
+    "pre_push_whitespace_cleanup": {
+      "path": "src/aikya/workflows/sdd/cli.py",
+      "before_sha256": "1d08eebae74c1d090e1814804968271ba63e9ad3526fe11791ce308ef61fe85d",
+      "after_sha256": "39cd42a42091ebd4e4cf83a7c49f2c8914acef2603f8abfd26528676b968cfb5",
+      "change": "Remove trailing blank line; Python AST unchanged.",
+      "behavioral_change": false
+    }
   }
 }

@@ -89,4 +89,3 @@ def main(argv=None):
         from aikya.cli.summary import run_compact
         return run_compact(_main,[x for x in selected if x!='--summary'])
     return _main(selected)
-
