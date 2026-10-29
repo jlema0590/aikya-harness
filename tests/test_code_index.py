@@ -81,11 +81,11 @@ class CodeIndexTests(unittest.TestCase):
             self.query(self.root, 'UserService', allowed_files=['../outside.py'])
 
     def test_non_python_is_honestly_inventory_only(self):
-        self.source('User.dart', 'class User { void save() {} }\n')
+        self.source('User.kt', 'class User { void save() {} }\n')
         self.sync(self.root)
         entry = self.Store(self.root).read_snapshot().files[0]
         self.assertEqual('file_only', entry['status'])
-        result = self.query(self.root, 'User.dart')
+        result = self.query(self.root, 'User.kt')
         self.assertEqual('file', result.matches[0]['kind'])
 
     def test_utf8_positions_nested_names_and_imports_are_source_bound(self):

@@ -14,6 +14,9 @@
     sources:'Fuentes',folders:'Carpetas',files:'Archivos',symbols:'Declaraciones',documents:'Documentos y notas',
     partial:'Cobertura parcial',verified:'Verificado',removed:'La fuente seleccionada ya no está disponible.',
     disconnected:'Disconnected',limit:'Mostrando una selección acotada',of:'de',generation:'generación del índice',source:'Fuente',review:'Revisión',eligible:'Disponible para consultas',lines:'Líneas'
+    ,fit:'Ajustar vista',layoutReset:'Restablecer distribución',expand:'Expandir',collapse:'Contraer',grouped:'agrupados',limited:'fuera del límite',edgeLimit:'conexiones fuera del límite',
+    flowHint:'Flujo visual de relaciones verificadas; no representa ejecución.',flowLimit:'Selecciona un componente o filtra para animar hasta 80 conexiones.',
+    graphHint:'Arrastra objetos para organizarlos; arrastra el fondo para navegar. +/− expande o contrae. Flechas: mover el objeto enfocado.',zoomIn:'Ampliar',zoomOut:'Alejar'
   } : {
     eyebrow:'Local project knowledge',headline:'Every change, in context.',structure:'Project structure',
     treeHint:'Source files and verifiable declarations.',graph:'Knowledge graph',architecture:'Architecture',inventory:'Inventory',
@@ -26,24 +29,28 @@
     sources:'Sources',folders:'Folders',files:'Files',symbols:'Declarations',documents:'Documents and notes',
     partial:'Partial coverage',verified:'Verified',removed:'The selected source is no longer available.',
     disconnected:'Disconnected',limit:'Showing a bounded selection',of:'of',generation:'index generation',source:'Source',review:'Review',eligible:'Eligible for recall',lines:'Lines'
+    ,fit:'Fit view',layoutReset:'Reset layout',expand:'Expand',collapse:'Collapse',grouped:'grouped',limited:'outside drawing limit',edgeLimit:'links outside drawing limit',
+    flowHint:'Visual flow of verified relationships; not runtime execution.',flowLimit:'Select a component or filter to animate up to 80 connections.',
+    graphHint:'Drag objects to arrange; drag the background to pan. +/− expands or collapses. Arrow keys move the focused object.',zoomIn:'Zoom in',zoomOut:'Zoom out'
   };
   document.querySelectorAll('[data-i18n]').forEach(el => {el.textContent = words[el.dataset.i18n];});
   $('search').placeholder = words.search;
   $('empty').textContent = words.empty;
   let data = JSON.parse($('snapshot').textContent);
-  let selected = null, view = 'graph', neighbors = false, page = 0, zoom = 1;
+  let selected = null, view = 'graph', neighbors = false, page = 0, graphViewer=null;
   let motion = !matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let index = new Map(), openBranches = new Set(), layoutKey='', layoutPositions=new Map();
-  const svgNS = 'http://www.w3.org/2000/svg';
+  let index = new Map(), openBranches = new Set();
   const text = (tag, value, className) => {
     const el = document.createElement(tag); el.textContent = value;
     if (className) el.className = className;
     return el;
   };
   function setMotion() {
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches)motion=false;
     document.body.classList.toggle('motion-off', !motion);
     $('motion').textContent = motion ? words.motionOn : words.motionOff;
     $('motion').setAttribute('aria-pressed', String(motion));
+    graphViewer?.motionChanged();
   }
   $('motion').onclick = () => {motion = !motion; setMotion();};
   function setTheme() {
@@ -93,9 +100,9 @@
     $('detail-body').textContent=node?parts.filter(Boolean).join('\n\n'):words.selectHint;
     $('connections').replaceChildren();
     if(node) data.edges.filter(e=>e.source===node.id||e.target===node.id).slice(0,100).forEach(e=>{
-      const other=index.get(e.source===node.id?e.target:e.source);
-      if(!other)return;
-      const button=text('button',e.relation+' → '+other.label);button.type='button';
+      const other=index.get(e.source===node.id?e.target:e.source),source=index.get(e.source),target=index.get(e.target);
+      if(!other||!source||!target)return;
+      const button=text('button',source.label+' — '+e.relation+(e.relation==='contains'?' → ':' · ')+target.label);button.type='button';
       button.onclick=()=>choose(other.id);$('connections').append(button);
     });
   }
@@ -103,7 +110,7 @@
     selected=id;
     const node=index.get(id);
     if(node){const parts=node.path.split('/').slice(0,-1);parts.forEach((_,i)=>openBranches.add(parts.slice(0,i+1).join('/')));}
-    detail();render();
+    graphViewer.reveal(id);detail();render(keyboard);
     if(keyboard){const target=[...$('canvas').querySelectorAll('.node')].find(el=>el.dataset.nodeId===id);if(target)target.focus();}
   }
   function tree() {
@@ -129,62 +136,6 @@
       button.classList.toggle('selected',node.id===selected);button.onclick=()=>choose(node.id);folders.get(parent).append(button);
     });
   }
-  function hierarchy(nodes) {
-    const positions=new Map(), levels=new Map();
-    const depth=node=>node.type==='project'?0:node.path.split('/').length;
-    const maxDepth=Math.max(1,...nodes.map(depth));
-    nodes.forEach(node=>{const level=depth(node);if(!levels.has(level))levels.set(level,[]);levels.get(level).push(node);});
-    levels.forEach((members,level)=>{
-      members.sort((a,b)=>a.path.localeCompare(b.path));
-      members.forEach((node,i)=>positions.set(node.id,[80+level/maxDepth*770,45+(i+.5)/members.length*560]));
-    });
-    return positions;
-  }
-  function graph(nodes) {
-    const canvas=$('canvas');canvas.replaceChildren();
-    const visible=nodes.slice(0,500), positions=view==='architecture'?hierarchy(visible):new Map();
-    const close=selected?neighborIDs():new Set();
-    const key=visible.map(n=>n.id).join('|');
-    if(view!=='architecture'&&key!==layoutKey){
-      const points=visible.map((node,i)=>({id:node.id,x:500+Math.cos(i/Math.max(1,visible.length)*Math.PI*2)*340,
-        y:325+Math.sin(i/Math.max(1,visible.length)*Math.PI*2)*230}));
-      const byID=new Map(points.map(p=>[p.id,p]));
-      const links=data.edges.filter(e=>byID.has(e.source)&&byID.has(e.target)).slice(0,3000);
-      for(let step=0;step<(points.length<100?90:35);step++){
-        const forces=new Map(points.map(p=>[p.id,{x:(500-p.x)*.015,y:(325-p.y)*.015}]));
-        for(let i=0;i<points.length;i++)for(let j=i+1;j<points.length;j++){
-          const a=points[i],b=points[j],dx=a.x-b.x,dy=a.y-b.y,d2=Math.max(120,dx*dx+dy*dy),strength=15000/(d2*Math.sqrt(d2));
-          forces.get(a.id).x+=dx*strength;forces.get(a.id).y+=dy*strength;
-          forces.get(b.id).x-=dx*strength;forces.get(b.id).y-=dy*strength;
-        }
-        links.forEach(e=>{const a=byID.get(e.source),b=byID.get(e.target),dx=b.x-a.x,dy=b.y-a.y,d=Math.max(1,Math.hypot(dx,dy)),f=(d-125)*.025;
-          forces.get(a.id).x+=dx/d*f;forces.get(a.id).y+=dy/d*f;forces.get(b.id).x-=dx/d*f;forces.get(b.id).y-=dy/d*f;});
-        points.forEach(p=>{const f=forces.get(p.id);p.x=Math.max(100,Math.min(900,p.x+Math.max(-12,Math.min(12,f.x))));p.y=Math.max(45,Math.min(605,p.y+Math.max(-12,Math.min(12,f.y))));});
-      }
-      layoutPositions=new Map(points.map(p=>[p.id,[p.x,p.y]]));layoutKey=key;
-    }
-    if(view!=='architecture')visible.forEach(node=>positions.set(node.id,layoutPositions.get(node.id)));
-    data.edges.slice(0,200000).forEach(edge=>{
-      if(!positions.has(edge.source)||!positions.has(edge.target))return;
-      const line=document.createElementNS(svgNS,'line'),a=positions.get(edge.source),b=positions.get(edge.target);
-      for(const [key,value] of Object.entries({x1:a[0],y1:a[1],x2:b[0],y2:b[1]}))line.setAttribute(key,value);
-      line.setAttribute('class','edge'+(edge.source===selected||edge.target===selected?' active':''));canvas.append(line);
-    });
-    visible.forEach(node=>{
-      const [x,y]=positions.get(node.id),group=document.createElementNS(svgNS,'g');
-      group.setAttribute('class','node '+node.type+(node.id===selected?' selected':'')+(selected&&!close.has(node.id)?' dimmed':''));
-      group.setAttribute('transform',`translate(${x},${y})`);group.setAttribute('role','button');group.setAttribute('tabindex','0');
-      group.dataset.nodeId=node.id;
-      group.setAttribute('aria-label',node.type+': '+node.label);group.setAttribute('aria-pressed',String(node.id===selected));
-      const circle=document.createElementNS(svgNS,'circle');circle.setAttribute('r',node.type==='project'?12:node.type==='folder'?8:5);group.append(circle);
-      if(visible.length<100||selected===node.id||['project','folder'].includes(node.type)||$('search').value){
-        const label=document.createElementNS(svgNS,'text');label.setAttribute('y',20);label.textContent=node.label.slice(0,34);group.append(label);
-      }
-      group.onclick=()=>choose(node.id);group.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();choose(node.id,true);}};
-      canvas.append(group);
-    });
-    canvas.style.transform=`scale(${zoom})`;
-  }
   function inventory(nodes) {
     const container=$('inventory');container.replaceChildren();
     nodes.slice(page*100,(page+1)*100).forEach(node=>{
@@ -193,12 +144,16 @@
       row.onclick=()=>choose(node.id);container.append(row);
     });
   }
-  function render() {
+  function render(keyboard=false) {
     const nodes=filtered();page=Math.min(page,Math.max(0,Math.ceil(nodes.length/100)-1));
-    $('graph').hidden=view==='inventory';$('inventory').hidden=view!=='inventory';$('pages').hidden=view!=='inventory';
+    $('graph').toggleAttribute('hidden',view==='inventory');$('inventory').hidden=view!=='inventory';$('pages').hidden=view!=='inventory';
+    $('graph-controls').hidden=view==='inventory';$('graph-hints').hidden=view==='inventory';
+    $('graph').setAttribute('aria-label',view==='architecture'?words.architecture:words.graph);
     $('empty').hidden=nodes.length!==0;
-    if(view==='inventory')inventory(nodes);else graph(nodes);
-    $('shown').textContent=(view==='inventory'?Math.min(100,nodes.length-page*100):Math.min(500,nodes.length))+' '+words.of+' '+nodes.length+' '+words.nodes;
+    if(view==='inventory') {
+      graphViewer.hide();inventory(nodes);
+      $('shown').textContent=Math.min(100,nodes.length-page*100)+' '+words.of+' '+nodes.length+' '+words.nodes;
+    } else graphViewer.render({data,nodes,view,selected,keyboard,detail:Boolean($('search').value)||$('type').value!=='all'||$('folder').value!=='all'||neighbors});
     $('page').textContent=(page+1)+' / '+Math.max(1,Math.ceil(nodes.length/100));
     $('previous').disabled=page===0;$('next').disabled=(page+1)*100>=nodes.length;
     tree();
@@ -219,7 +174,7 @@
       const item=text('span',label);item.prepend(text('strong',String(count)));$('metrics').append(item);
     }
     const partial=Object.values(data.coverage).some(v=>['partial','invalid','missing'].includes(v))||data.diagnostics.length;
-    $('coverage').textContent=(partial?words.partial:words.verified)+' · '+Object.entries(data.coverage).map(([k,v])=>k+': '+v).join(' / ');
+    $('coverage').textContent=(partial?words.partial:words.verified)+' · '+Object.entries(data.coverage).map(([k,v])=>k+': '+(typeof v==='object'?Object.entries(v).map(([ext,c])=>ext+' '+c.indexed+' indexed / '+c.file_only+' file only / '+c.error+' errors').join('; '):v)).join(' / ');
     $('snapshot-time').textContent=new Date(data.generated_at*1000).toLocaleString()+' · '+words.snapshot;
     options();detail();render();
   }
@@ -231,8 +186,9 @@
   for(const id of ['search','type','folder'])$(id).addEventListener(id==='search'?'input':'change',()=>{page=0;render();});
   $('neighbors').onclick=()=>{neighbors=!neighbors;$('neighbors').setAttribute('aria-pressed',String(neighbors));render();};
   $('previous').onclick=()=>{page--;render();};$('next').onclick=()=>{page++;render();};
-  function setZoom(value){zoom=Math.min(3,Math.max(.5,value));$('canvas').style.transform=`scale(${zoom})`;}
-  $('zoom-in').onclick=()=>setZoom(zoom+.2);$('zoom-out').onclick=()=>setZoom(zoom-.2);$('zoom-reset').onclick=()=>setZoom(1);
+  $('zoom-in').setAttribute('aria-label',words.zoomIn);$('zoom-out').setAttribute('aria-label',words.zoomOut);
+  graphViewer=AikyaMemoryGraph({svg:$('graph'),canvas:$('canvas'),words,choose,refresh:render,motion:()=>motion,
+    status(result){$('shown').textContent=result.nodes.length+' '+words.of+' '+filtered().length+' '+words.nodes+' · '+result.grouped+' '+words.grouped+' · '+result.limited+' '+words.limited+(result.omittedEdges?' · '+result.omittedEdges+' '+words.edgeLimit:'');}});
   $('connection').textContent=words.snapshot;accept(data);
   if(document.documentElement.dataset.mode==='live') {
     let generation='',busy=false;

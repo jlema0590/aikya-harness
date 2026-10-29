@@ -394,17 +394,85 @@ cambiar a tema claro. El panel de fuentes, el explorador central y el inspector
 combinan un grafo de conocimiento, una jerarquía de arquitectura basada en rutas
 y un inventario con búsqueda. Los colores distinguen carpetas, archivos,
 declaraciones y documentos/notas. Conserva filtros, selección y zoom al actualizarse
-y respeta el movimiento reducido. Consulta el
-[ejemplo generado](aikya/docs/examples/aikya-memory-generated.html). La arquitectura
+y respeta el movimiento reducido. Expande carpetas progresivamente, arrastra
+objetos para organizarlos o arrastra el fondo para navegar. Las flechas mueven el
+nodo enfocado y Escape cancela un arrastre. **Ajustar vista** encuadra el contenido;
+**Restablecer distribución** libera las posiciones manuales de la vista actual.
+Las posiciones pertenecen a la página abierta y se reinician al recargarla.
+
+El movimiento también traza las conexiones nuevas y anima sus relaciones, hasta
+80 conexiones simultáneas. Selecciona un componente o filtra un grafo denso para
+acotar el efecto. Las relaciones sin dirección conocida usan un pulso sin recorrido
+orientado. Con movimiento desactivado o reducido, todas las conexiones permanecen
+estáticas. Este flujo visual representa evidencia del índice, no ejecución medida.
+
+Inventario mantiene una vista exclusiva con 100 fuentes por página. Se indican los
+elementos agrupados y los límites de dibujo; la búsqueda y el Inventario permiten
+acceder a fuentes fuera del diagrama actual. Consulta el
+[ejemplo sintético interactivo](aikya/docs/examples/aikya-memory-interactive.html). La arquitectura
 muestra estructura verificable; el análisis de flujos de ejecución queda pendiente.
+
+Después de actualizar Harness, regenera los informes con `/aikya-memory --refresh`
+y vuelve a abrirlos. Reinicia un observador/servidor antiguo para cargar el nuevo
+visor. El HTML integra sus scripts y estilos: recargar una instantánea antigua
+no la actualiza. Se mantienen los controles de propiedad de informes personalizados.
 
 Indexar y exportar no llama a modelos ni consume tokens de API; utiliza CPU y disco
 locales. Las consultas posteriores a la IA conservan su consumo habitual. Python
 funciona sin dependencias adicionales; el extra opcional fijado `code-index` añade
-Java, JavaScript/JSX, TypeScript/TSX, C# y Go. Los demás lenguajes mantienen el
+Java, JavaScript/JSX, TypeScript/TSX, C#, Go y Dart. Los demás lenguajes mantienen el
 inventario por archivo. Un cambio de fuente invalida su vigencia sin reescribir
 decisiones ni aprobaciones. La adopción preserva el `.gitignore` personalizado.
 Consulta la [configuración, límites y ciclo de vida](aikya/docs/architecture/local-memory.md).
+
+### Eficiencia de contexto y sesiones largas
+
+El contexto de código se prepara localmente, verifica la fuente actual y entrega
+un paquete de hasta 6.000 caracteres, sin fragmentos duplicados. Los hooks lo
+aportan a los comandos de implementación; si faltan símbolos, se indica la
+limitación y se permite una lectura acotada. ODD pequeño conserva su auditoría
+REQ sin exigir un expediente vacío. Seguridad y aprobaciones siguen vigentes.
+
+```sh
+aikya-manage update --code-index dart     # Dart/Flutter y núcleo fijados
+aikya-manage update --code-index all      # Todos los parsers opcionales fijados
+aikya context --target . --query "change signIn" --allowed-file lib/login.dart
+aikya analyze --target . --dry-run --summary --methodology odd
+python aikya/scripts/harness/docs_guard.py preflight --session <host-session>
+```
+
+`--code-index none` es el valor inicial; una actualización sin esa opción conserva
+la selección previa. Se instalan únicamente binarios verificados del release en
+el intérprete administrado. Sin binario compatible, la operación falla antes de
+activar el candidato. Python funciona sin extras; Dart, Java, JS/TS, C# y Go
+requieren sus parsers. Kotlin, Swift y las demás extensiones conservan inventario.
+Linux Alpine ARM64 y Windows ARM64 no tienen soporte binario verificado en este
+conjunto de versiones; no se compilan parsers automáticamente.
+
+La compactación es **manual por defecto**. Dentro de Claude Code:
+
+```text
+/compact Conserva el objetivo, decisiones, archivos afectados, estado ODD/SDD, pruebas pendientes y siguiente paso. Omite logs y explicaciones repetidas.
+```
+
+La opción por proyecto `aikya context-policy --target . --native-auto --window
+200000 --approved` solicita una ventana nativa si el host la admite y conserva
+ajustes personalizados. No cambia modelo ni effort. Los hooks de compactación
+conservan referencias y checks pendientes; al continuar se recupera contexto
+actual, sin reiniciar presupuestos ni crear aprobaciones. El aviso del 75% exige
+una ventana efectiva y una medida frescas verificables; el porcentaje del modelo
+no basta y, si faltan esos datos, el estado es N/D. Compactar también puede
+consumir tokens y reconstruir caché; no recupera la cuota ya utilizada.
+
+El loop opcional admite `max_total_turns` y `max_recorded_tokens`, acumulados entre
+Implement y Review y conservados al reanudar. Cuenta las cuatro categorías,
+incluida caché. El uso desconocido bloquea un límite activado; los tokens se
+conocen al terminar la consulta, por lo que ésta puede exceder ese presupuesto.
+Son límites del loop, separados de la cuota de 5 horas/semanal de Claude.
+
+Los informes distinguen tokens observados, proxy estático y bytes locales.
+El benchmark offline no acredita ahorro real de tokens ni de cuota; el experimento
+con modelos requiere tareas equivalentes y un presupuesto revisado.
 
 ## 6. Agentes de ingeniería y Agent Skills
 
@@ -416,11 +484,7 @@ que modifican archivos respetan el alcance aprobado. Que un agente esté instala
 
 ### Skills externas opcionales
 
-| Integración externa | Fuente registrada | Disponibilidad en Aikya |
-|---|---|---|
-| Ponytail | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | Opcional; incluida en el plan de integraciones externas. |
-| Graphify CLI | [Graphify-Labs/graphify](https://github.com/Graphify-Labs/graphify) | Opcional; integración de CLI y skill del proyecto. |
-| UI UX Pro Max | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | Opcional; incluida en el plan para perfiles frontend o móviles. |
+Las skills externas son opcionales y su fuente la elige el usuario. No se recomiendan ni instalan proveedores por defecto.
 
 Consulta la disponibilidad y el impacto de la instalación desde Claude Code:
 

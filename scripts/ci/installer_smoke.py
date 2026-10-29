@@ -43,6 +43,20 @@ def check(assets, python=sys.executable):
             runtime = home / '.claude/aikya-harnes' if scope == 'global' else project / '.aikya/runtime'
             run([installed_python, '-B', runtime / 'aikya_cli.py', '--help'])
             run([installed_python, '-I', '-B', payload, 'update', '--version', version, *arguments])
+            if any(assets.glob('tree_sitter_dart-*.whl')):
+                run([installed_python, '-I', '-B', payload, 'update', '--version', version, *arguments, '--code-index', 'dart'])
+                current=json.loads((app/'current.json').read_text());installed_python=current['python']
+                run([installed_python,'-I','-B','-c',"from aikya.code_index.parsers.registry import parse_file;assert parse_file('user.dart',b'class User {}').status=='indexed'"])
+                run([installed_python, '-I', '-B', payload, 'update', '--version', version, *arguments])
+                current=json.loads((app/'current.json').read_text());installed_python=current['python']
+                run([installed_python,'-I','-B','-c',"from aikya.code_index.parsers.registry import parse_file;assert parse_file('user.dart',b'class User {}').status=='indexed'"])
+            if scope=='project' and any(assets.glob('tree_sitter_dart-*.whl')):
+                run([installed_python,'-I','-B',payload,'update','--version',version,*arguments,'--code-index','all'])
+                current=json.loads((app/'current.json').read_text());installed_python=current['python']
+                script="from aikya.code_index.parsers.registry import parse_file; samples={'a.java':b'class A {}','a.js':b'class A {}','a.ts':b'class A {}','a.cs':b'class A {}','a.go':b'package p'+bytes([10])+b'type A struct {}'+bytes([10]),'a.dart':b'class A {}'};results={p:parse_file(p,s).status for p,s in samples.items()};print(results);assert all(v=='indexed' for v in results.values())"
+                run([installed_python,'-I','-B','-c',script])
+            doctor=json.loads(run([installed_python,'-I','-B',payload,'doctor']).stdout)
+            assert doctor['code_index']['status']=='observed'
             results.append({'scope': scope, 'entry_script': 'passed', 'runtime': 'passed', 'update': 'passed'})
         runtime = project / '.aikya/runtime'
         startup = json.loads((project / '.claude/settings.json').read_text())['hooks']['SessionStart'][0]['hooks'][0]

@@ -5,6 +5,9 @@ from ..policy import content_hash
 
 
 def parse_file(path, content):
+    if Path(path).suffix.lower() == '.dart':
+        from .dart import parse_file as dart_parse
+        return dart_parse(path, content)
     if Path(path).suffix.lower() in ('.py', '.pyi'):
         from .python import parse_file as parse_python
         return parse_python(path, content)

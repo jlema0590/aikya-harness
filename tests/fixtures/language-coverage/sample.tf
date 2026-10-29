@@ -1,0 +1,1 @@
+locals { fixture = true }

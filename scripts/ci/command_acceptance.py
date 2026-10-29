@@ -12,6 +12,7 @@ from pathlib import Path
 import subprocess
 import sys
 import tempfile
+import time
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
@@ -42,6 +43,7 @@ class Battery:
         before = self.snapshot()
         entry = list(script) if isinstance(script, tuple) else [str(script)]
         argv = [sys.executable, '-B', *entry, *map(str, arguments)]
+        started = time.monotonic()
         result = subprocess.run(argv, cwd=cwd or self.unrelated, env=self.env,
                                 capture_output=True, text=True, timeout=90)
         output = result.stdout + result.stderr
@@ -52,7 +54,9 @@ class Battery:
         row = self.results[command]
         row['checks'].append({'support': (' '.join(script) if isinstance(script, tuple) else Path(script).name), 'arguments': [str(a).replace(str(ROOT), '<source>').replace(str(self.base), '<fixture>') for a in arguments],
                               'exit': result.returncode, 'expected_exit': expected, 'output_sha256': sha(output.encode()),
-                              'asserted_output': contains})
+                              'asserted_output': contains, 'stdout_bytes': len(result.stdout.encode('utf8')),
+                              'stderr_bytes': len(result.stderr.encode('utf8')), 'duration_seconds': round(time.monotonic()-started, 6),
+                              'model': None, 'tokens': None, 'mode': 'offline_backend_contract'})
         row['markdown_changes'] = sorted(set(row['markdown_changes']) | set(changes))
         return result.stdout
 

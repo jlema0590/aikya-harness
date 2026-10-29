@@ -1,0 +1,58 @@
+import unittest
+import importlib.util
+from aikya.code_index.parsers import registry
+from aikya.code_index.coverage import summarize
+
+SOURCE="""import 'dart:io';
+class Login { Login.named(); void signIn(String user) {print(user);} }
+String greet() => 'héllo';
+mixin Track {void log() {}}
+extension Label on String {String title() => this;}
+enum Role {admin, user}
+""".encode()
+
+class DartTests(unittest.TestCase):
+    @unittest.skipUnless(importlib.util.find_spec('tree_sitter_dart'), 'Optional Dart binary is not installed')
+    def test_declarations_ranges_and_imports(self):
+        result=registry.parse_file('lib/login.dart',SOURCE)
+        self.assertEqual(result.status,'indexed',result.diagnostics)
+        names={s['qualified_name']:s for s in result.symbols}
+        self.assertTrue({'Login','Login.named','Login.signIn','greet','Track','Track.log','Label','Label.title','Role'}<=names.keys(),names.keys())
+        self.assertIn(b'{print(user);}',SOURCE[names['Login.signIn']['start_byte']:names['Login.signIn']['end_byte']])
+        self.assertEqual(len(result.imports),1)
+        self.assertEqual(registry.parse_file('a.dart',SOURCE.replace(b'\n',b'\r\n')).status,'indexed')
+    @unittest.skipUnless(importlib.util.find_spec('tree_sitter_dart'), 'Optional Dart binary is not installed')
+    def test_invalid_syntax_does_not_publish_symbols(self):
+        result=registry.parse_file('a.dart',b'class Broken { void f(')
+        self.assertEqual(result.status,'parse_error');self.assertFalse(result.symbols)
+    def test_coverage_distinguishes_file_only_and_indexed(self):
+        value=summarize([{'path':'a.dart','status':'indexed'},{'path':'a.swift','status':'file_only'}],[])
+        self.assertEqual(value['.dart']['indexed'],1);self.assertEqual(value['.swift']['file_only'],1)
+
+
+class ViewerCoverageFreshness(unittest.TestCase):
+    def test_stale_source_is_not_advertised_as_semantically_verified(self):
+        import tempfile
+        from pathlib import Path
+        from aikya.code_index.policy import configure
+        from aikya.code_index.sync import sync
+        from aikya.memory.viewer.collect import collect_snapshot
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder).resolve();configure(root,approved=True)
+            source=root/'a.py';source.write_text('class Old: pass');sync(root,full=True)
+            source.write_text('class Current: pass')
+            snapshot=collect_snapshot(root)
+            self.assertEqual(snapshot.coverage['languages']['.py']['indexed'],0)
+            self.assertEqual(snapshot.coverage['languages']['.py']['error'],1)
+
+@unittest.skipUnless(importlib.util.find_spec('tree_sitter_dart'), 'Optional Dart binary is not installed')
+class DartNestedScopeTests(unittest.TestCase):
+    def test_local_function_scope_is_not_invented_as_a_class_method(self):
+        value=registry.parse_file('a.dart',b'class C { void f() { int helper() { return 1; } helper(); } }')
+        self.assertEqual(value.status,'indexed',value.diagnostics)
+        by_name={s['qualified_name']:s for s in value.symbols}
+        self.assertIn('C.f.helper',by_name)
+        self.assertEqual(by_name['C.f.helper']['kind'],'function')
+        self.assertNotIn('C.helper',by_name)
+
+if __name__=='__main__':unittest.main()

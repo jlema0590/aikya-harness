@@ -23,6 +23,12 @@ def normalize_runtime_payload(payload: dict,now=None) -> dict:
         bucket=limits.get(key) if isinstance(limits.get(key),dict) else {};reset=number(bucket.get('resets_at'))
         result[label+'_pct']=number(bucket.get('used_percentage'),maximum=100) if reset is not None and reset>now else None
         result[label+'_resets_at']=reset if reset is not None and reset>now else None
+    # The native percentage is relative to model capacity, not the effective
+    # auto-compact window. Leave the latter unavailable without verified telemetry.
+    result['working_window']=None
+    current=ctx.get('current_usage')
+    fields=('input_tokens','cache_creation_input_tokens','cache_read_input_tokens')
+    result['current_context_tokens']=sum(current[k] for k in fields) if isinstance(current,dict) and all(type(current.get(k)) is int and current[k]>=0 for k in fields) else None
     return result
 
 def resolve_actor_model(configured,observed):

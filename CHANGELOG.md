@@ -1,5 +1,25 @@
 # Changelog
 
+## v7.2.0 — 2026-10-29
+
+- Fix clean installer CI by installing the built local wheel before preparing pinned parser bundles.
+- Add content-free task usage receipts and command backend measurements. Separate input/output/cache creation/cache reads, explicit transcript coverage, local bytes and provider quotas; unmeasured model usage remains unknown and time windows are not exact command billing.
+- Add pinned optional Dart syntax extraction, declaration ranges and language coverage in index status/Memory HTML. Retain Python without dependencies and honest inventory fallback for unsupported languages. Verify source hashes and project identity before retrieval.
+- Provision explicit `--code-index none|dart|all` binary release bundles in managed install/update interpreters. Preserve parser selection on updates, fail before activation on missing/corrupt/incompatible artifacts, and package reviewed wheels for supported Linux/macOS/Windows CPython combinations without source compilation.
+- Share bounded task-context packets between the local CLI, prompt observer and optional agent loop. Rank request terms and symbol/path names locally, bound the complete packet to 6,000 characters by default, avoid duplicate snippets and revalidate edits/renames/deletions. Add explicit scoped fallback when memory or parsers are unavailable.
+- Add compact onboarding/SDD responses, proportional inspection phases, documentation preflight using the existing Stop rules and opt-in deterministic check evidence reuse tied to candidate, definition and environment. Shorten repeated command instructions; retain required security, independent review and ODD/SDD approvals.
+- Add cumulative optional loop turn/recorded-token budgets including Review, durable replay-safe accounting and unknown-usage blocking. Keep cost/time controls and declare that a running query can exceed the token budget before reporting usage.
+- Add manual-first native session compaction configuration, bounded continuity metadata and next-prompt context recovery. Preserve budgets, pending checks, custom settings and explicit model/effort choices; never derive an effective working-window percentage from model capacity or run an extra summarizer.
+- Remove unsolicited external skill selections/recommendations while retaining user-selected skill installation. Add fixtures for all 29 indexed extensions, offline efficiency reporting for all 28 commands, bilingual documentation and native CI coverage. Synthetic context/output improvements do not claim real model-token or account-quota savings; live model experiments remain separately budgeted.
+
+## v7.1.1 — 2026-10-29
+
+- Fix Memory Inventory exclusivity by reflecting the SVG hidden attribute correctly, so diagrams cannot cover rows or intercept clicks. Preserve real source inspection and 100-row pagination.
+- Replace the fixed-height architecture columns with a subtree-aware layout, progressive folder/file expansion and collision-aware labels. Keep graph nodes separated, expose grouped/drawing-limit counts and retain searchable access to every indexed source.
+- Add per-view pan, anchored zoom, fit and reset controls, individual node dragging, keyboard movement and cancellation. Retain manual positions during filtering and live publication within the open page; keep visual adjustments out of source data and signed artifacts.
+- Animate graph transitions and verified connections locally, with directed containment travel, neutral pulses for unknown directions and an 80-connection budget calculated before drawing truncation. Preserve static base lines, actual inspector endpoints, motion-off/reduced-motion behavior and background pausing.
+- Split viewer behavior into focused local resources embedded in one CSP-hashed offline script. Include every renderer asset in publication fingerprints; keep edited-report protection and unchanged-export idempotence. Add synthetic browser CI for both languages, dense/deep graphs, gestures, interrupted transitions and live updates, plus an interactive example and bilingual upgrade guidance.
+
 ## v7.1.0 — 2026-10-26
 
 - Unify clean Harness installation with the verified official Aikya Mods bundle. Default to global Harness + Flow + Usage; support optional BoxBot/all, individual selections, Harness-only installation, independent version pins and deterministic offline bundles. Resolve each published stable release once and retain versioned local marketplace sources without cloning or running upstream installers.

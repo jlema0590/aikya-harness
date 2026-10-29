@@ -1,0 +1,379 @@
+{
+  "date": "2026-10-29",
+  "scope": "User-identified jourpass_app main session of 2026-10-28 and its two subagents; read-only metadata analysis. No transcript text or project code included.",
+  "source_revision": "512dea2",
+  "provider_quota_delta": "User reports approximately 50%; no before/after provider samples available to verify or attribute it.",
+  "usage": {
+    "totals": {
+      "input_tokens": 455,
+      "output_tokens": 191016,
+      "cache_creation_input_tokens": 800904,
+      "cache_read_input_tokens": 36622945,
+      "calls": 244
+    },
+    "recorded_total": 37615320,
+    "cache_read_share_pct": 97.36,
+    "models": {
+      "claude-opus-4-7": {
+        "input_tokens": 415,
+        "output_tokens": 162386,
+        "cache_creation_input_tokens": 686424,
+        "cache_read_input_tokens": 35332525
+      },
+      "claude-sonnet-5-5": {
+        "input_tokens": 40,
+        "output_tokens": 28630,
+        "cache_creation_input_tokens": 114480,
+        "cache_read_input_tokens": 1290420
+      }
+    }
+  },
+  "actors": [
+    {
+      "role": "main",
+      "first_utc": "2026-10-28T14:42:32.887Z",
+      "last_utc": "2026-10-28T18:05:57.091Z",
+      "totals": {
+        "input_tokens": 349,
+        "output_tokens": 124351,
+        "cache_creation_input_tokens": 565158,
+        "cache_read_input_tokens": 31813750,
+        "calls": 168
+      },
+      "models": {
+        "claude-opus-4-7": {
+          "input_tokens": 349,
+          "output_tokens": 124351,
+          "cache_creation_input_tokens": 565158,
+          "cache_read_input_tokens": 31813750
+        }
+      },
+      "distinct_request_input_tokens": {
+        "first": 77242,
+        "mean": 192734,
+        "max": 336173
+      }
+    },
+    {
+      "role": "subagent",
+      "first_utc": "2026-10-28T14:51:22.143Z",
+      "last_utc": "2026-10-28T15:01:15.965Z",
+      "totals": {
+        "input_tokens": 66,
+        "output_tokens": 38035,
+        "cache_creation_input_tokens": 121266,
+        "cache_read_input_tokens": 3518775,
+        "calls": 56
+      },
+      "models": {
+        "claude-opus-4-7": {
+          "input_tokens": 66,
+          "output_tokens": 38035,
+          "cache_creation_input_tokens": 121266,
+          "cache_read_input_tokens": 3518775
+        }
+      },
+      "distinct_request_input_tokens": {
+        "first": 15298,
+        "mean": 65002,
+        "max": 121267
+      }
+    },
+    {
+      "role": "subagent",
+      "first_utc": "2026-10-28T14:51:22.132Z",
+      "last_utc": "2026-10-28T14:56:36.767Z",
+      "totals": {
+        "input_tokens": 40,
+        "output_tokens": 28630,
+        "cache_creation_input_tokens": 114480,
+        "cache_read_input_tokens": 1290420,
+        "calls": 20
+      },
+      "models": {
+        "claude-sonnet-5-5": {
+          "input_tokens": 40,
+          "output_tokens": 28630,
+          "cache_creation_input_tokens": 114480,
+          "cache_read_input_tokens": 1290420
+        }
+      },
+      "distinct_request_input_tokens": {
+        "first": 15778,
+        "mean": 70247,
+        "max": 114482
+      }
+    }
+  ],
+  "invocations": [
+    {
+      "name": "/aikya-analyze",
+      "timestamp": "2026-10-28T14:43:43.533Z",
+      "scope_flags": [],
+      "source": "main"
+    },
+    {
+      "name": "/aikya-analyze",
+      "timestamp": "2026-10-28T15:13:10.290Z",
+      "scope_flags": [],
+      "source": "main"
+    },
+    {
+      "name": "/aikya-analyze",
+      "timestamp": "2026-10-28T15:14:40.577Z",
+      "scope_flags": [],
+      "source": "main"
+    },
+    {
+      "name": "/aikya-memory",
+      "timestamp": "2026-10-28T15:19:11.982Z",
+      "scope_flags": [],
+      "source": "main"
+    },
+    {
+      "name": "/aikya-mobile-feature",
+      "timestamp": "2026-10-28T16:34:06.157Z",
+      "scope_flags": [],
+      "source": "main"
+    },
+    {
+      "name": "/aikya-mobile-feature",
+      "timestamp": "2026-10-28T17:19:18.668Z",
+      "scope_flags": [],
+      "source": "main"
+    },
+    {
+      "name": "/aikya-arc-review",
+      "timestamp": "2026-10-28T17:33:40.318Z",
+      "scope_flags": [],
+      "source": "main"
+    }
+  ],
+  "time_windows": {
+    "scope": "Chronological windows between slash-command markers, not causal per-command billing; follow-up requests and plugin operations may share a window",
+    "segments": [
+      {
+        "command": "/aikya-analyze",
+        "start_utc": "2026-10-28T14:43:43.533Z",
+        "end_utc": "2026-10-28T15:13:10.290Z",
+        "main_calls": 41,
+        "subagent_calls": 76,
+        "input_tokens": 182,
+        "output_tokens": 100182,
+        "cache_creation_input_tokens": 375452,
+        "cache_read_input_tokens": 9239443
+      },
+      {
+        "command": "/aikya-analyze",
+        "start_utc": "2026-10-28T15:13:10.290Z",
+        "end_utc": "2026-10-28T15:14:40.577Z",
+        "main_calls": 4,
+        "subagent_calls": 0,
+        "input_tokens": 8,
+        "output_tokens": 3025,
+        "cache_creation_input_tokens": 5647,
+        "cache_read_input_tokens": 583348
+      },
+      {
+        "command": "/aikya-analyze",
+        "start_utc": "2026-10-28T15:14:40.577Z",
+        "end_utc": "2026-10-28T15:19:11.982Z",
+        "main_calls": 19,
+        "subagent_calls": 0,
+        "input_tokens": 34,
+        "output_tokens": 11802,
+        "cache_creation_input_tokens": 18169,
+        "cache_read_input_tokens": 3051794
+      },
+      {
+        "command": "/aikya-memory",
+        "start_utc": "2026-10-28T15:19:11.982Z",
+        "end_utc": "2026-10-28T16:34:06.157Z",
+        "main_calls": 89,
+        "subagent_calls": 0,
+        "input_tokens": 193,
+        "output_tokens": 64389,
+        "cache_creation_input_tokens": 115746,
+        "cache_read_input_tokens": 19390527
+      },
+      {
+        "command": "/aikya-mobile-feature",
+        "start_utc": "2026-10-28T16:34:06.157Z",
+        "end_utc": "2026-10-28T17:19:18.668Z",
+        "main_calls": 1,
+        "subagent_calls": 0,
+        "input_tokens": 5,
+        "output_tokens": 887,
+        "cache_creation_input_tokens": 247483,
+        "cache_read_input_tokens": 44948
+      },
+      {
+        "command": "/aikya-mobile-feature",
+        "start_utc": "2026-10-28T17:19:18.668Z",
+        "end_utc": "2026-10-28T17:33:40.318Z",
+        "main_calls": 8,
+        "subagent_calls": 0,
+        "input_tokens": 13,
+        "output_tokens": 4575,
+        "cache_creation_input_tokens": 15887,
+        "cache_read_input_tokens": 2390742
+      },
+      {
+        "command": "/aikya-arc-review",
+        "start_utc": "2026-10-28T17:33:40.318Z",
+        "end_utc": "2026-10-29T00:00:00Z",
+        "main_calls": 6,
+        "subagent_calls": 0,
+        "input_tokens": 20,
+        "output_tokens": 6156,
+        "cache_creation_input_tokens": 22520,
+        "cache_read_input_tokens": 1922143
+      }
+    ]
+  },
+  "activity": [
+    {
+      "role": "main",
+      "unique_tool_calls": {
+        "Bash": 125,
+        "Read": 23,
+        "AskUserQuestion": 4,
+        "ToolSearch": 5,
+        "TaskCreate": 20,
+        "TaskUpdate": 35,
+        "EnterWorktree": 1,
+        "Agent": 2,
+        "SendMessage": 1,
+        "ExitWorktree": 1,
+        "Write": 11,
+        "Monitor": 2,
+        "Edit": 20,
+        "TaskStop": 6
+      },
+      "classified_bash_calls_not_execution_proof": {
+        "direct_file_dump": 75,
+        "repo_search": 30,
+        "documentation_engine": 2,
+        "cli_analyze": 10
+      },
+      "delegations": [
+        {
+          "type": "flutter-developer",
+          "model_override": null,
+          "prompt_chars": 3052
+        },
+        {
+          "type": "security-reviewer",
+          "model_override": null,
+          "prompt_chars": 4304
+        }
+      ]
+    },
+    {
+      "role": "subagent",
+      "unique_tool_calls": {
+        "Bash": 26,
+        "Read": 29,
+        "SubagentHandback": 1
+      },
+      "classified_bash_calls_not_execution_proof": {
+        "direct_file_dump": 17,
+        "repo_search": 15
+      },
+      "delegations": []
+    },
+    {
+      "role": "subagent",
+      "unique_tool_calls": {
+        "Bash": 29,
+        "Write": 1,
+        "Edit": 1,
+        "SubagentHandback": 1
+      },
+      "classified_bash_calls_not_execution_proof": {
+        "direct_file_dump": 29,
+        "repo_search": 15
+      },
+      "delegations": []
+    }
+  ],
+  "hook_blocks": [
+    {
+      "timestamp": "2026-10-28T15:40:46.493Z",
+      "keys": [
+        "blockingError",
+        "hookEvent",
+        "hookName",
+        "toolUseID",
+        "type"
+      ],
+      "recognized_hook_script_names": [
+        "stop_docs.py"
+      ]
+    },
+    {
+      "timestamp": "2026-10-28T16:08:35.383Z",
+      "keys": [
+        "blockingError",
+        "hookEvent",
+        "hookName",
+        "toolUseID",
+        "type"
+      ],
+      "recognized_hook_script_names": [
+        "stop_docs.py"
+      ]
+    },
+    {
+      "timestamp": "2026-10-28T16:24:17.095Z",
+      "keys": [
+        "blockingError",
+        "hookEvent",
+        "hookName",
+        "toolUseID",
+        "type"
+      ],
+      "recognized_hook_script_names": [
+        "stop_docs.py"
+      ]
+    }
+  ],
+  "current_index_metadata": {
+    "scope": "current project index metadata only; read-only, no sync",
+    "policy": {
+      "enabled": true,
+      "max_files": 12000,
+      "max_file_bytes": 1048576,
+      "max_sync_bytes": 104857600,
+      "watch": true,
+      "auto_export": true,
+      "scope": "."
+    },
+    "index": {
+      "generation": 7,
+      "status": "complete",
+      "files": 209,
+      "symbols": 8,
+      "files_by_suffix_and_status": {
+        ".py / indexed": 1,
+        ".kts / file_only": 3,
+        ".kt / file_only": 1,
+        ".sql / file_only": 41,
+        ".dart / file_only": 153,
+        ".swift / file_only": 1,
+        ".h / file_only": 1,
+        ".sh / file_only": 1,
+        ".ts / file_only": 7
+      },
+      "symbols_by_suffix": {
+        ".py": 8
+      }
+    }
+  },
+  "verification": {
+    "token_efficiency_tests": 11,
+    "runtime_metrics_tests": 5,
+    "context_tests": 3,
+    "status": "all 19 passed; no model requests made by this investigation"
+  }
+}
