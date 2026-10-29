@@ -132,6 +132,7 @@ jobs:
           python -B -m unittest discover -s tests -p test_code_index_languages.py -v
           python -B -m unittest discover -s tests -p test_code_index_dart.py -v
           python -B -m unittest discover -s tests -p test_language_coverage_matrix.py -v
+          python -B -m unittest discover -s tests -p test_flow_bridge.py -v
           python -B -m unittest discover -s tests -p test_task_context.py -v
           python scripts/ci/token_efficiency_benchmark.py
           python -B -m unittest discover -s tests -p test_memory_viewer.py -v
