@@ -15,6 +15,40 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  memory-browser:
+    name: Memory viewer | synthetic browser acceptance
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install contributor-only browser tools
+        run: |
+          python -m pip install --no-deps .
+          npm install --no-save --ignore-scripts playwright@1.62.1
+          npx playwright install --with-deps chromium
+      - name: Check pure layout behavior
+        run: node --test tests/memory_layout.test.cjs
+      - name: Check both languages and dense/live fixtures
+        run: |
+          for language in en es; do
+            python tests/memory_viewer_fixture.py "$RUNNER_TEMP/memory-$language.html" --language "$language"
+            node scripts/ci/memory_viewer_browser.cjs "$RUNNER_TEMP/memory-$language.html"
+            node scripts/ci/memory_interactions_browser.cjs "$RUNNER_TEMP/memory-$language.html"
+          done
+          for shape in mixed flow80 flow81 flow-overflow wide deep; do
+            python tests/memory_viewer_fixture.py "$RUNNER_TEMP/memory-density/$shape.html" --shape "$shape"
+          done
+          python tests/memory_viewer_fixture.py "$RUNNER_TEMP/memory-density/live.html" --live
+          node scripts/ci/memory_density_browser.cjs "$RUNNER_TEMP/memory-density"
+
   unittest:
     name: Unit tests | Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest

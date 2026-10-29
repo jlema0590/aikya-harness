@@ -1,0 +1,55 @@
+{
+  "wheel": "aikya_harness-7.1.1-py3-none-any.whl",
+  "source_imports": false,
+  "sdk_installed": false,
+  "cases": [
+    {
+      "scope": "global",
+      "methodology": "odd",
+      "command": "init",
+      "result": "passed"
+    },
+    {
+      "scope": "global",
+      "methodology": "odd",
+      "command": "analyze",
+      "result": "passed"
+    },
+    {
+      "scope": "global",
+      "methodology": "sdd",
+      "command": "init",
+      "result": "passed"
+    },
+    {
+      "scope": "global",
+      "methodology": "sdd",
+      "command": "analyze",
+      "result": "passed"
+    },
+    {
+      "scope": "project",
+      "methodology": "odd",
+      "command": "init",
+      "result": "passed"
+    },
+    {
+      "scope": "project",
+      "methodology": "odd",
+      "command": "analyze",
+      "result": "passed"
+    },
+    {
+      "scope": "project",
+      "methodology": "sdd",
+      "command": "init",
+      "result": "passed"
+    },
+    {
+      "scope": "project",
+      "methodology": "sdd",
+      "command": "analyze",
+      "result": "passed"
+    }
+  ]
+}
