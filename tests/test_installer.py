@@ -102,7 +102,7 @@ class InstallerTests(unittest.TestCase):
 
     def test_existing_files_preserved_settings_fused_idempotent(self):
         with tempfile.TemporaryDirectory() as d:
-            target=Path(d)
+            target=Path(d).resolve()
             (target/'.claude').mkdir()
             (target/'CLAUDE.md').write_text('MI REGLA PRIVADA DEL REPO\n')
             (target/'harness.json').write_text('{"checks":[]}\n')
@@ -110,13 +110,19 @@ class InstallerTests(unittest.TestCase):
             p=installer.validated(profile(mode='existing'),target)
             detected={'modules':[],'findings':[]}
             installer.install(target,p,detected)
+            initial_settings=(target/'.claude/settings.json').read_bytes()
             installer.install(target,p,detected)
+            self.assertEqual(initial_settings,(target/'.claude/settings.json').read_bytes())
             self.assertEqual('MI REGLA PRIVADA DEL REPO\n',(target/'CLAUDE.md').read_text())
             self.assertEqual('{"checks":[]}\n',(target/'harness.json').read_text())
             settings=json.loads((target/'.claude/settings.json').read_text())
             self.assertIn('Read(./private.txt)',settings['permissions']['deny'])
             self.assertTrue(settings['custom']['feature'])
-            self.assertEqual(3,len(settings['hooks']['PreToolUse']))
+            pretool_hooks=[hook for group in settings['hooks']['PreToolUse'] for hook in group['hooks']]
+            self.assertIn({'type':'command','command':'echo user-hook'},pretool_hooks)
+            commands=[hook['command'] for hook in pretool_hooks]
+            self.assertEqual(len(commands),len(set(commands)))
+            self.assertEqual(1,sum('workspace_guard.py' in command for command in commands))
 
     def test_runner_rejects_cwd_traversal(self):
         with tempfile.TemporaryDirectory() as d:

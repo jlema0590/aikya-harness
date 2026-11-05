@@ -191,5 +191,40 @@
       "templates": "c0b1580b639ebadf9ef331c71dc1eeabe1cde94e1a325b2661ca5a32ec528d06",
       "startup": "bf836748a81eda8cfd35f76242f2082d17403b3dc794fb8ace8bce79b213fb60"
     }
+  },
+  "pr30_ci_followup": {
+    "initial_commit": "7d5ce5625cec50f65f0a2258e758422ba0654395",
+    "installer_run": 42044602558,
+    "unit_run": 42044602707,
+    "native_windows_failing_jobs": [
+      127304565250,
+      127304565292,
+      127304565295,
+      127304565357
+    ],
+    "unit_failures_verified": [
+      127304033027,
+      127304032881
+    ],
+    "causes": [
+      "Git CRLF conversion of byte-pinned legacy command fixtures",
+      "obsolete hook count hidden locally by symlinked temporary alias"
+    ],
+    "runtime_source_changed": false,
+    "migration_hashes_relaxed": false,
+    "focused_tests": {
+      "checkout_conversion": 1,
+      "installer": 12,
+      "command_contracts_renames_scopes": 20,
+      "failures": 0
+    },
+    "full_regression_and_native_rerun_status_at_commit": "pending",
+    "log_sha256": {
+      "line_endings_red": "8101969620e4423d2dc63ced21b4a920a3a03a7824fdcc8efe41088cff4e48ce",
+      "line_endings_green": "f8e8157f115cf08263f8b6ab94686fa71a16e4cd30fe33a89efaf7fb947e564d",
+      "resolved_installer_red": "56bdd4f3d96eb05677a668e7adf881c4def58412aee6c01d7b6eaf9db44814e8",
+      "installer_green": "51d5c55796f719492848a5da5c17bafb8870aa9b5e2384f93e76470f2c2f1260",
+      "commands_green": "ede2353ff0562b1dad9e0e0b63b22afed12529d34f8b0a4448eb50f2bb24a092"
+    }
   }
 }

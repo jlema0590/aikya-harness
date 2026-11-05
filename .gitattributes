@@ -1,3 +1,5 @@
 # Shipped templates, migration catalogs and viewer assets are byte-verified.
 # Preserve their committed bytes even when a checkout enables core.autocrlf.
 src/aikya/resources/** -text
+# Historical command fixtures must retain their pinned migration hashes.
+tests/fixtures/command-renames/** -text
