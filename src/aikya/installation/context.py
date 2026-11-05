@@ -27,3 +27,4 @@ class InstallationPlan:
     methodology_operations: list
     claude_contract: str|None
     bundle: list
+    command_operations: list=field(default_factory=list)

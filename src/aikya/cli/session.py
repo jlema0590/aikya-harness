@@ -60,11 +60,13 @@ def main() -> int:
     except OSError:new=False
     message=banner(root)
     payload={'systemMessage':message}
+    from aikya.middleware.workspace import INSTRUCTION
+    payload['hookSpecificOutput']={'hookEventName':'SessionStart','additionalContext':INSTRUCTION}
     if new:
         payload['systemMessage'] += '\nUnconfigured project. Use /aikya-init for a new project, /aikya-analyze for an existing repository, or /aikya-answers for a declarative profile.'
         if data.get('source','startup')=='startup':
             payload['hookSpecificOutput']={'hookEventName':'SessionStart',
-                'additionalContext':'Aikya is available. The user can explicitly request /aikya-init (new) or /aikya-analyze (existing). Do not generate code or install tools without approval.'}
+                'additionalContext':INSTRUCTION+' Aikya is available. The user can explicitly request /aikya-init (new) or /aikya-analyze (existing). Do not generate code or install tools without approval.'}
     print(json.dumps(payload,ensure_ascii=False))
     return 0
 

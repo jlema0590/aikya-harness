@@ -43,6 +43,9 @@ def prepare_installation(target,profile,detected,adopt_existing,docs_lang,contex
     from aikya.installation.runtime import prepare_bundle,apply_bundle
     from aikya.installation.registration import command_retirement_plan
     command_retirement_plan(target/'.claude/skills',target/'.harness')
+    from aikya.installation.command_scopes import global_commands, reconciliation_plan
+    shared = global_commands(HERE)
+    command_operations = reconciliation_plan(target, HERE, shared) if shared is not None else []
     if profile['methodology'] not in ('odd', 'sdd'):
         raise ValueError('Invalid engineering methodology')
     previous_profile = read_json_safe(target/'.harness/project-profile.json')
@@ -77,4 +80,4 @@ def prepare_installation(target,profile,detected,adopt_existing,docs_lang,contex
         if any(p.is_symlink() for p in (backup,*backup.parents) if p==target or target in p.parents):raise ValueError('Unsafe methodology backup')
     from aikya.workflows.methodology import migration_plan as methodology_plan,apply_migration as apply_methodology
     methodology_operations=methodology_plan(target,previous_profile,profile['methodology'])
-    return InstallationPlan(context=context,target=target,profile=profile,detected=detected,adopt_existing=adopt_existing,documentation_language=documentation_language,previous_profile=previous_profile,previous_decisions=previous_decisions,doc_operations=doc_operations,sdd_operations=sdd_operations,methodology_operations=methodology_operations,claude_contract=claude_contract,bundle=bundle)
+    return InstallationPlan(context=context,target=target,profile=profile,detected=detected,adopt_existing=adopt_existing,documentation_language=documentation_language,previous_profile=previous_profile,previous_decisions=previous_decisions,doc_operations=doc_operations,sdd_operations=sdd_operations,methodology_operations=methodology_operations,claude_contract=claude_contract,bundle=bundle,command_operations=command_operations)

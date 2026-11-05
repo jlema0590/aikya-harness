@@ -153,6 +153,23 @@ Utiliza `aikya`, `aikya-setup` o `python -m aikya`; se retiran los lanzadores Py
 de raíz. La apariencia en la sesión nativa y la ejecución autenticada del modelo
 se validan por separado de la aceptación del instalador.
 
+### Ámbito de los comandos y política de trabajo
+
+Una instalación global verificada proporciona los comandos de Aikya al registrar
+el proyecto y ejecutar `/aikya-init` o `/aikya-analyze`; esas operaciones no crean
+otra copia local de cada comando público. Se mantiene la instalación solo local.
+Para corregir duplicados existentes, actualiza primero la instalación global y
+revisa el registro de ese proyecto (`aikya-setup --scope project --target <proyecto>`)
+o ejecuta `/aikya-analyze --refresh` con aprobación. Solo se retiran carpetas de
+comandos administrados sin cambios, con respaldo en `.harness/command-backups/`.
+Las personalizaciones se conservan para revisión. Una actualización global no
+recorre ni modifica todos los proyectos. Se preservan las políticas, Memory y los
+runtimes existentes del proyecto.
+
+Los cambios habituales utilizan el checkout actual. Solicitar una rama no autoriza
+un worktree. Los intentos reconocidos de crear uno requieren permiso explícito del
+host; la política no constituye un sandbox para terminales o scripts ajenos.
+
 ## 2. Incorporación de proyectos
 
 | Punto de partida | Comando | Funcionamiento |

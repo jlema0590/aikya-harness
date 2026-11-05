@@ -1,0 +1,195 @@
+{
+  "schema": 1,
+  "version": "7.2.2",
+  "base": "7ac1ef99693d17a8c27d3df2b616f2165af947a3",
+  "platform": "macOS arm64",
+  "python": "3.13.18",
+  "live_model_execution": false,
+  "user_installations_modified": false,
+  "worktrees_created": false,
+  "remote_publication": false,
+  "commands": {
+    "command_count": 28,
+    "process_checks": 52,
+    "valid": true,
+    "per_command": {
+      "aikya-init": 5,
+      "aikya-analyze": 1,
+      "aikya-answers": 1,
+      "aikya-doctor": 1,
+      "aikya-project": 1,
+      "aikya-infra": 2,
+      "aikya-scaffold": 1,
+      "aikya-feature": 2,
+      "aikya-bugfix": 2,
+      "aikya-arc-review": 1,
+      "aikya-mobile-feature": 2,
+      "aikya-skills-status": 1,
+      "aikya-skills-plan": 1,
+      "aikya-quality": 1,
+      "aikya-docs": 3,
+      "aikya-tests": 2,
+      "aikya-docs-sync": 1,
+      "aikya-verify": 2,
+      "aikya-models": 1,
+      "aikya-tokens": 2,
+      "aikya-install-skill": 1,
+      "aikya-specify": 1,
+      "aikya-clarify": 2,
+      "aikya-plan": 3,
+      "aikya-tasks": 2,
+      "aikya-implement": 3,
+      "aikya-sdd-status": 4,
+      "aikya-memory": 3
+    }
+  },
+  "wheel": {
+    "wheel": "aikya_harness-7.2.2-py3-none-any.whl",
+    "source_imports": false,
+    "sdk_installed": false,
+    "cases": [
+      {
+        "scope": "global-and-project",
+        "command": "reuse-command-registration",
+        "result": "passed"
+      },
+      {
+        "scope": "global",
+        "command": "mobile-feature-hook-and-phase",
+        "result": "passed"
+      },
+      {
+        "scope": "global",
+        "methodology": "odd",
+        "command": "init",
+        "result": "passed"
+      },
+      {
+        "scope": "global",
+        "methodology": "odd",
+        "command": "analyze",
+        "result": "passed"
+      },
+      {
+        "scope": "global",
+        "methodology": "sdd",
+        "command": "init",
+        "result": "passed"
+      },
+      {
+        "scope": "global",
+        "methodology": "sdd",
+        "command": "analyze",
+        "result": "passed"
+      },
+      {
+        "scope": "project",
+        "command": "mobile-feature-hook-and-phase",
+        "result": "passed"
+      },
+      {
+        "scope": "project",
+        "methodology": "odd",
+        "command": "init",
+        "result": "passed"
+      },
+      {
+        "scope": "project",
+        "methodology": "odd",
+        "command": "analyze",
+        "result": "passed"
+      },
+      {
+        "scope": "project",
+        "methodology": "sdd",
+        "command": "init",
+        "result": "passed"
+      },
+      {
+        "scope": "project",
+        "methodology": "sdd",
+        "command": "analyze",
+        "result": "passed"
+      }
+    ]
+  },
+  "installer": {
+    "platform": "darwin",
+    "python": "3.13.18",
+    "cases": [
+      {
+        "scope": "global",
+        "entry_script": "passed",
+        "runtime": "passed",
+        "update": "passed"
+      },
+      {
+        "scope": "project",
+        "entry_script": "passed",
+        "runtime": "passed",
+        "update": "passed"
+      }
+    ],
+    "uninstall_preserved_user_files": true,
+    "checkout_required": false,
+    "live_model": false,
+    "initialization": [
+      "new/odd/en",
+      "existing/sdd/es"
+    ],
+    "referenced_interpreters_retained": true
+  },
+  "quality": {
+    "files": 16,
+    "errors": [],
+    "warnings": [
+      {
+        "path": "src/aikya/discovery/analyze.py",
+        "line": 86,
+        "function": "installation_preview",
+        "code": "long_function",
+        "message": "137 lines: review cohesion and extract focused helpers where justified."
+      }
+    ],
+    "duplicates": []
+  },
+  "artifacts": {
+    "aikya_harness-7.2.2-py3-none-any.whl": "34eb7cb5ad5bf1efda68242b905eb97b02b9a1ff1dc0bd524e49800a736eadd3",
+    "aikya-bootstrap.pyz": "d255f162462fdd92fac534e1b282753f916459c8c100dfc3a5a486c2e703790a",
+    "install.sh": "d5a4d969a72646790f203d6e86248da52ac07218fb88f9a7fd56fce972bb7aab",
+    "install.ps1": "7dae23081fe33080d1b1d7ceab02b0cf69c1332c208eb1eea5d4db61b686a2c7",
+    "aikya_harness-7.2.2.tar.gz": "a22dccaeb3b50347181d594d32f1bd00610531c67be5bfeb52037c0504ba9fdd",
+    "SHA256SUMS": "2539cead679b59d44bfe6239f1d134e25ddee5d1c30dba8f14220e5301b30304"
+  },
+  "regression": {
+    "full_initial": {
+      "tests": 704,
+      "passed": 700,
+      "failures": 2,
+      "skipped": 2,
+      "seconds": 1054.802
+    },
+    "failures": [
+      "obsolete standalone-scope fixture shared HOME",
+      "obsolete PreToolUse hook group count"
+    ],
+    "corrections": "test fixtures only; implementation source unchanged after full-run start",
+    "focused_after_corrections": {
+      "command_scopes": 13,
+      "workspace": 3,
+      "templates": 12,
+      "startup": 12,
+      "failures": 0
+    },
+    "additional_cases_after_initial_discovery": 2,
+    "full_rerun_after_fixture_corrections": false,
+    "remaining_observed_failures": 0,
+    "log_sha256": {
+      "full": "944890c0d58fc59eafc90ed05ff804774a6b653dcc710f4ee645c767457eabd7",
+      "command_scopes": "e695beba4f6a2ad7dd54e7bde33d4a7ed0b3de48811453c80e36cc82c2787e42",
+      "workspace": "5b0098d4d1e64821ebb9ccb2ee90349f1a92450d45bd4f22ceb618e0bc85d407",
+      "templates": "c0b1580b639ebadf9ef331c71dc1eeabe1cde94e1a325b2661ca5a32ec528d06",
+      "startup": "bf836748a81eda8cfd35f76242f2082d17403b3dc794fb8ace8bce79b213fb60"
+    }
+  }
+}

@@ -75,7 +75,8 @@ SDD continues through its dedicated specification, plan and task approvals.
 ## Efficient scope
 
 Do only the requested action; avoid repeated discovery, vendor research, extra
-agents and worktrees. Inspect current state for queries; preserve required
+agents. Stay in the current checkout; create worktrees only on an explicit
+user request. A branch request does not authorize a worktree. Preserve required
 security and approvals. Use `--summary` for onboarding/SDD support output.
 Use hook-provided task context once. Otherwise use the resolved Python with
 `-m aikya context --target . --query "<request>" --allowed-file <path>`.

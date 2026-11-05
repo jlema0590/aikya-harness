@@ -10,6 +10,7 @@
   "execution_config": "middleware.configuration",
   "execution_lifecycle": "middleware.lifecycle",
   "execution_observer": "middleware.observer",
+  "workspace_guard": "middleware.workspace",
   "runtime_metrics": "middleware.metrics",
   "aikya_statusline": "middleware.statusline",
   "aikya_subagent_statusline": "middleware.subagent_statusline",
