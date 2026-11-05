@@ -27,6 +27,7 @@ class AssetLineEndingTests(unittest.TestCase):
             paths = [root / 'src/aikya/resources' / name for name in (
                 'aikya-template/docs/foundation.md', 'migrations/documentation-hashes.json',
                 'memory-viewer/viewer.js')]
+            paths.append(root / 'tests/fixtures/command-renames/aikya-project-init.md')
             for path in paths:
                 path.parent.mkdir(parents=True, exist_ok=True)
                 path.write_bytes(payload)

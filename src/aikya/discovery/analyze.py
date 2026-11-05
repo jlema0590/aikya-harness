@@ -113,7 +113,10 @@ def installation_preview(target: Path, profile: dict, inventory: dict) -> list[d
             current = install.read_json_safe(target/'harness.json')
             if not any(isinstance(c, dict) and c.get('name') == 'sdd:traceability' for c in current.get('checks', [])):
                 candidates.add('.harness/backup-v611/harness.json')
-    candidates.update(".claude/skills/" + n + "/SKILL.md" for n in BOOTSTRAP_COMMANDS)
+    from aikya.installation.command_scopes import global_commands, preview_reconciliation
+    shared = global_commands(install.HERE)
+    if shared is None:
+        candidates.update(".claude/skills/" + n + "/SKILL.md" for n in BOOTSTRAP_COMMANDS)
     for file in install.TEMPLATE.rglob("*"):
         if not file.is_file() or file.is_symlink() or file.suffix == ".pyc":
             continue
@@ -183,6 +186,8 @@ def installation_preview(target: Path, profile: dict, inventory: dict) -> list[d
             results.append({k:v for k,v in operation.items() if k not in ('updated','expected_sha256')})
     except ValueError as exc:results.append({'path':'.harness/project-profile.json','action':'BLOCKED','reason':str(exc)})
     from aikya.installation.registration import command_retirement_plan
+    if shared is not None:
+        results.extend(preview_reconciliation(target, install.HERE, shared))
     try:
         for op in command_retirement_plan(target/'.claude/skills',target/'.harness'):
             results.append({'path':op['path'].relative_to(target).as_posix(),'action':op['action'],'replacement':op['replacement']})

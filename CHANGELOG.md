@@ -1,5 +1,13 @@
 # Changelog
 
+## v7.2.2 — 2026-11-05
+
+- Reuse verified global Aikya commands during project registration and onboarding, avoiding duplicate user/project entries and redundant bootstrap runtime creation. Preserve standalone local installation when global command provenance is unavailable.
+- Reconcile only the explicitly selected project: back up and retire unchanged managed local command copies, retain custom or extended folders with review notices, and keep pre-upgrade provenance during runtime updates. Preserve local policies, memory, hooks and existing runtimes.
+- Require explicit worktree requests in command/project instructions and add a native permission hook for recognized Git/Claude worktree creation, Agent/Task isolation and EnterWorktree. Keep ordinary edits, branch creation and read-only worktree queries unaffected.
+
+- Preserve historical command-fixture bytes in Windows checkouts and verify settings preservation/idempotence on canonical temporary paths, correcting native CI regressions without weakening migration hashes.
+
 ## v7.2.1 — 2026-10-29
 
 - Ship the previously unmerged native Flow execution bridge on the 7.2 runtime: mobile skill hooks, explicit phase commands, analyses, worktrees and parallel child executions share a correlated invocation.

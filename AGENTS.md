@@ -19,6 +19,8 @@ repository's documentation contract.
 - Historical guides under docs/ remain until the separately reviewed consolidation
   plan is implemented. Do not add new first-party reports or planning directories
   there or directly at the repository root.
+- Work in the existing checkout. Create a worktree only after an explicit user
+  request for one; a new branch or ordinary change request is insufficient.
 - Run checks appropriate to the change and record only observed results. Source
   quality, methodology approvals and configured security checks remain separate
   controls; a planning document does not approve implementation or deployment.

@@ -159,6 +159,9 @@ class AikyaStartupTests(unittest.TestCase):
             self.assertEqual(2,len(after['hooks']['SessionStart']))
             startup_commands=[h['command'] for group in after['hooks']['SessionStart'] for h in group['hooks']]
             self.assertEqual(len(startup_commands),len(set(startup_commands)))
-            self.assertEqual(2,len(after['hooks']['PreToolUse']))
+            self.assertEqual(3,len(after['hooks']['PreToolUse']))
+            pretool_commands=[h['command'] for group in after['hooks']['PreToolUse'] for h in group['hooks']]
+            self.assertEqual(len(pretool_commands),len(set(pretool_commands)))
+            self.assertEqual(1,sum('workspace_guard.py' in command for command in pretool_commands))
             self.assertEqual('echo hi',after['hooks']['PreToolUse'][0]['hooks'][0]['command'])
             self.assertTrue(install.only_aikya_bootstrap(repo))

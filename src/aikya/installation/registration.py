@@ -181,12 +181,12 @@ def command_retirement_plan(skill_root: Path, runtime: Path) -> list[dict]:
         result.append({'path':legacy,'replacement':replacement,'backup':backup,'sha256':digest,'action':'RETIRE_VERIFIED_COMMAND'})
     return result
 
-def retire_legacy_commands(skill_root: Path, runtime: Path, logs: list[str], operations: list[dict] | None = None) -> None:
+def retire_legacy_commands(skill_root: Path, runtime: Path, logs: list[str], operations: list[dict] | None = None, *, replacement_root: Path | None = None) -> None:
     operations=command_retirement_plan(skill_root,runtime) if operations is None else operations
     # A backup alone is not a usable replacement. Validate the whole batch first.
     for op in operations:
         if op['action']!='RETIRE_VERIFIED_COMMAND':continue
-        replacement=skill_root/op['replacement']/'SKILL.md'
+        replacement=(replacement_root or skill_root)/op['replacement']/'SKILL.md'
         if replacement.is_symlink() or replacement.parent.is_symlink() or not replacement.is_file():
             raise ValueError(f'Replacement command is not available: {replacement}')
     for op in operations:
@@ -253,6 +253,19 @@ def setup(source:Path,target:Path,scope:str,home:Path|None=None,dry_run:bool=Fal
     if scope not in ('global','project'):raise ValueError('scope debe ser global o project')
     if any(not (source_path(source,'aikya-skills')/name/'SKILL.md').is_file() for name in BOOTSTRAP_COMMANDS):
         raise ValueError('Source is not a complete Aikya distribution')
+    if scope == 'project':
+        from aikya.installation.command_scopes import global_commands, reconcile
+        shared = global_commands(source, home)
+        if shared is not None:
+            logs = ['REUSE verified global Aikya commands: ' + str(shared)]
+            legacy = command_retirement_plan(target / '.claude/skills', target / '.harness')
+            reconcile(target, source, shared, logs, dry_run=dry_run)
+            if dry_run:
+                logs.extend('PLAN legacy command: ' + op['action'] + ' ' + op['path'].parent.name for op in legacy)
+            else:
+                retire_legacy_commands(target / '.claude/skills', target / '.harness', logs,
+                                       legacy, replacement_root=shared.parent / 'skills')
+            return logs
     runtime=(home/'.claude/aikya-harnes') if scope=='global' else (target/'.aikya/runtime')
     skill_root=(home/'.claude/skills') if scope=='global' else (target/'.claude/skills')
     for candidate in (runtime, runtime.parent, skill_root, skill_root.parent):
@@ -319,6 +332,8 @@ def setup(source:Path,target:Path,scope:str,home:Path|None=None,dry_run:bool=Fal
     bar = status_command(python, runtime / 'aikya_statusline.py', shell)
     subagent = status_command(python, runtime / 'aikya_subagent_statusline.py', shell) if subagent_statusline else None
     register_visibility(settings_path, observer, bar, logs, (home / '.claude' if scope == 'global' else target / '.aikya') / 'visibility-proposed.json', subagent_command=subagent)
+    from aikya.middleware.workspace import register as register_workspace
+    register_workspace(settings_path, render_managed_hook(python, runtime / 'workspace_guard.py', (), shell), logs)
     if scope=='project':
         marker=target/'.aikya/bootstrap.json'
         marker.parent.mkdir(parents=True,exist_ok=True)

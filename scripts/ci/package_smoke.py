@@ -30,9 +30,22 @@ def check(wheel):
         run('-I', '-m', 'aikya', '--help')
         run('-I', '-c', "from importlib.metadata import version;from importlib.util import find_spec;from aikya.documentation.templates import validate_catalog;assert version('aikya-harness')=='" + (ROOT / 'VERSION').read_text().strip() + "';assert find_spec('claude_agent_sdk') is None;assert validate_catalog()['templates']==120")
         for scope in ('global', 'project'):
+            env['HOME'] = str(base / (scope + '-home'))
+            env['USERPROFILE'] = env['HOME']
+            env['CLAUDE_CONFIG_DIR'] = str(Path(env['HOME']) / '.claude')
             registered = base / (scope + '-registered')
             run('-I', '-c', 'from aikya.installation.registration import main;raise SystemExit(main())', '--scope', scope, '--target', registered)
-            runtime = base / 'home/.claude/aikya-harnes' if scope == 'global' else registered / '.aikya/runtime'
+            runtime = Path(env['HOME']) / '.claude/aikya-harnes' if scope == 'global' else registered / '.aikya/runtime'
+            if scope == 'global':
+                mixed = base / 'mixed-registered'
+                run('-I', '-c', 'from aikya.installation.registration import main;raise SystemExit(main())',
+                    '--scope', 'project', '--target', mixed)
+                assert not (mixed / '.aikya/runtime').exists()
+                assert not list((mixed / '.claude/skills').glob('aikya-*/SKILL.md'))
+                results.append({'scope': 'global-and-project', 'command': 'reuse-command-registration', 'result': 'passed'})
+            worktree = run('-B', runtime / 'workspace_guard.py', stdin=json.dumps(
+                {'tool_name': 'Agent', 'tool_input': {'isolation': 'worktree'}}))
+            assert json.loads(worktree.stdout)['hookSpecificOutput']['permissionDecision'] == 'ask'
             # Exercise the shipped mobile-skill hook and explicit phase CLI with no source imports.
             bridge = {'schema': 1, 'origin_root': str(registered.resolve()),
                       'session_id': 'wheel-mobile-session', 'invocation_id': 'a' * 32,

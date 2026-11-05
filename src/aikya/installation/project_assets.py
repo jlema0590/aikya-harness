@@ -81,7 +81,14 @@ def install_commands(plan:InstallationPlan,actions:list[str])->None:
     # Registrar todos los comandos gestionados Aikya cuando el proyecto se inicializa.
     # Los wrappers tienen la marca AIKYA BOOTSTRAP MANAGED y no sustituyen skills personalizadas.
     from aikya.installation.registration import BOOTSTRAP_COMMANDS
+    from aikya.installation.command_scopes import global_commands, reconcile
+    shared = global_commands(HERE)
+    if shared is not None:
+        reconcile(target, HERE, shared, actions, operations=plan.command_operations)
+        actions.append('REUSE verified global Aikya command registration')
     for name in BOOTSTRAP_COMMANDS:
+        if shared is not None:
+            continue
         src=source_path(HERE, 'aikya-skills')/name/'SKILL.md'
         dst=target/'.claude/skills'/name/'SKILL.md'
         if not src.is_file():
@@ -95,7 +102,8 @@ def install_commands(plan:InstallationPlan,actions:list[str])->None:
             safe_write(dst,src.read_text(encoding='utf8'),actions)
     # Migrate old wrappers only when they match the exact original managed asset.
     from aikya.installation.registration import retire_legacy_commands
-    retire_legacy_commands(target/'.claude/skills',target/'.harness',actions)
+    retire_legacy_commands(target/'.claude/skills',target/'.harness',actions,
+                           replacement_root=shared.parent/'skills' if shared is not None else None)
     for _scope in (target/'.aikya/runtime', HERE):
         if (_scope/'bootstrap_skills').is_dir():
             retire_legacy_commands(target/'.claude/skills',_scope,actions)
