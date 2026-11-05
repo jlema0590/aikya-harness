@@ -92,6 +92,9 @@ def configure_project(plan:InstallationPlan,actions:list[str])->None:
     observer = render_managed_hook(python, target / 'aikya/scripts/harness/execution_observer.py', ('hook',), host_shell())
     bar = status_command(python, target / 'aikya/scripts/harness/aikya_statusline.py')
     register_visibility(target/'.claude/settings.json',observer,bar,actions,target/'.aikya/visibility-proposed.json')
+    from aikya.middleware.workspace import register as register_workspace
+    register_workspace(target / '.claude/settings.json', render_managed_hook(
+        python, target / 'aikya/scripts/harness/workspace_guard.py', (), host_shell()), actions)
     claude = target / 'CLAUDE.md'
     if not claude.exists():
         safe_write(claude,claude_contract,actions)

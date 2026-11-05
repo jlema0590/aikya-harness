@@ -40,7 +40,10 @@ def check(assets, python=sys.executable):
             run(command)
             current = json.loads((app / 'current.json').read_text()); installed_python = current['python']
             run([installed_python, '-I', '-B', '-m', 'aikya', '--help'])
-            runtime = home / '.claude/aikya-harnes' if scope == 'global' else project / '.aikya/runtime'
+            runtime = project / '.aikya/runtime' if scope == 'project' and (project / '.aikya/runtime').is_dir() else home / '.claude/aikya-harnes'
+            if scope == 'project':
+                assert not (project / '.aikya/runtime').exists(), 'Verified global registration was redundantly copied'
+                assert not list((project / '.claude/skills').glob('aikya-*/SKILL.md'))
             run([installed_python, '-B', runtime / 'aikya_cli.py', '--help'])
             run([installed_python, '-I', '-B', payload, 'update', '--version', version, *arguments])
             if any(assets.glob('tree_sitter_dart-*.whl')):
@@ -58,8 +61,8 @@ def check(assets, python=sys.executable):
             doctor=json.loads(run([installed_python,'-I','-B',payload,'doctor']).stdout)
             assert doctor['code_index']['status']=='observed'
             results.append({'scope': scope, 'entry_script': 'passed', 'runtime': 'passed', 'update': 'passed'})
-        runtime = project / '.aikya/runtime'
-        startup = json.loads((project / '.claude/settings.json').read_text())['hooks']['SessionStart'][0]['hooks'][0]
+        runtime = home / '.claude/aikya-harnes'
+        startup = json.loads(settings.read_text())['hooks']['SessionStart'][0]['hooks'][0]
         shell = ['powershell', '-NoProfile', '-NonInteractive', '-Command'] if os.name == 'nt' else ['/bin/sh', '-c']
         run([*shell, startup['command']], input=json.dumps({'source': 'startup', 'cwd': str(project)}))
         initialized = base / 'initialized'; initialized.mkdir()

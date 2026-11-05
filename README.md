@@ -149,6 +149,22 @@ Use `aikya`, `aikya-setup` or `python -m aikya`; root Python launchers are retir
 Native session rendering and authenticated model execution are separate from
 installer acceptance tests.
 
+### Command scopes and workspace policy
+
+A verified global installation supplies the Aikya commands during project setup,
+`/aikya-init` and `/aikya-analyze`; those operations do not create another local
+copy of each public command. Project-only installations remain supported.
+For existing duplicates, update the global installation first, then run a reviewed
+project registration (`aikya-setup --scope project --target <project>`) or approved
+`/aikya-analyze --refresh` in that project. Only unchanged managed command folders
+are retired, with backups under `.harness/command-backups/`. Customized commands
+remain for review. A global update does not scan or rewrite every project.
+Project policies, Memory and existing runtimes remain local and are preserved.
+
+Ordinary changes use the current checkout. A branch request does not authorize a
+worktree. Recognized worktree creation requires explicit host permission; the
+policy does not sandbox unrelated terminals or arbitrary scripts.
+
 ## 2. Onboarding
 
 | Starting point | Command | How it works |

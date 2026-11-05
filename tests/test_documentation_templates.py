@@ -123,7 +123,7 @@ class DocumentTemplateTests(unittest.TestCase):
 
     def test_both_runtime_scopes_include_offline_catalog_and_installed_utility(self):
         for scope in ('global','project'):
-            target=self.root/scope;home=self.root/'home';aikya_setup.setup(ROOT,target,scope,home=home)
+            target=self.root/scope;home=self.root/(scope+'-home');aikya_setup.setup(ROOT,target,scope,home=home)
             runtime=target/'.aikya/runtime' if scope=='project' else home/'.claude/aikya-harnes'
             result=subprocess.run([sys.executable,'-B',str(runtime/'documentation_templates.py'),'catalog'],cwd=self.tmp.name,capture_output=True,text=True)
             self.assertEqual(0,result.returncode,result.stderr)
